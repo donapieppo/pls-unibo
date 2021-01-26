@@ -1,0 +1,32 @@
+DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `areas`;
+
+CREATE TABLE `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `surname` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `contact_email` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `telephone` varchar(255)  DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `areas` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `areas` VALUES (
+  (1, "Biologia e Biotecnologie"),
+  (2, "Chimica"),
+  (3, "Fisica"),
+  (4, "Geologia"),
+  (5, "Informatica"),
+  (6, "Matematica"),
+  (7, "Scienze Naturali e Ambientali"),
+  (8, "Statistica")
+);
+
