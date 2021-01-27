@@ -1,5 +1,8 @@
 DROP TABLE IF EXISTS `users`;
 DROP TABLE IF EXISTS `areas`;
+DROP TABLE IF EXISTS `audiences_events`;
+DROP TABLE IF EXISTS `events`;
+DROP TABLE IF EXISTS `audiences`;
 
 CREATE TABLE `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -19,7 +22,7 @@ CREATE TABLE `areas` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `areas` VALUES (
+INSERT INTO `areas` VALUES 
   (1, "Biologia e Biotecnologie"),
   (2, "Chimica"),
   (3, "Fisica"),
@@ -27,6 +30,45 @@ INSERT INTO `areas` VALUES (
   (5, "Informatica"),
   (6, "Matematica"),
   (7, "Scienze Naturali e Ambientali"),
-  (8, "Statistica")
-);
+  (8, "Statistica");
+
+CREATE TABLE `audiences` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `audiences` VALUES 
+  (1, "student"),
+  (2, "teacher"),
+  (3, "unistudent"),
+  (4, "all");
+
+CREATE TABLE `event_types` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `event_types` VALUES 
+  (1, "lab"),
+  (2, "course"),
+  (3, "divulgation");
+
+CREATE TABLE `events` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `event_type_id` int(10) unsigned,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `audiences_events` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `audience_id` int(10) unsigned NOT NULL,
+  `event_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`key_audiences_events_audience_id`) REFERENCES audiences(`id`),
+  FOREIGN KEY (`key_audiences_events_evente_id`) REFERENCES eventes(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
