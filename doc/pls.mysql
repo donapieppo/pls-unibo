@@ -16,6 +16,26 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE `areas` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `payoff` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `notice` text DEFAULT NULL,
+  `in_charge` int(10) unsigned, -- responsabile del settore, i.e. un prof unibo.
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `areas` VALUES
+  (1, "Biologia e Biotecnologie", NULL, NULL, NULL, NULL),
+  (2, "Chimica", NULL, NULL, NULL, NULL),
+  (3, "Fisica", NULL, NULL, NULL, NULL),
+  (4, "Geologia", NULL, NULL, NULL, NULL),
+  (5, "Informatica", NULL, NULL, NULL, NULL),
+  (6, "Matematica", NULL, NULL, NULL, NULL),
+  (7, "Scienze Naturali e Ambientali", NULL, NULL, NULL, NULL),
+  (8, "Statistica", NULL, NULL, NULL, NULL);
+
 CREATE TABLE `contacts`(
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -25,63 +45,61 @@ CREATE TABLE `contacts`(
 );
 
 INSERT INTO `contacts` VALUES 
-(1,'PLS matematica',NULL,'mat-pls@unibo.it');
-(2,'PLS fisica',NULL,'difa.pls@unibo.it');
+  (1,'PLS matematica',NULL,'mat-pls@unibo.it');
+  (2,'PLS fisica',NULL,'difa.pls@unibo.it');
 
-CREATE TABLE `areas` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `in_charge` int(10) unsigned, -- responsabile del settore, i.e. un prof unibo.
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `areas_contacts` (
+  `area_id` int(10) unsigned NOT NULL,
+  `contact_id` int(10) unsigned NOT NULL,
+);
 
-CREATE TABLE areas_contacts ();
-
-INSERT INTO `areas` VALUES 
-  (1, "Biologia e Biotecnologie", NULL, NULL),
-  (2, "Chimica", NULL, NULL),
-  (3, "Fisica", NULL, NULL),
-  (4, "Geologia", NULL, NULL),
-  (5, "Informatica", NULL, NULL),
-  (6, "Matematica", NULL, NULL),
-  (7, "Scienze Naturali e Ambientali", NULL, NULL),
-  (8, "Statistica", NULL, NULL);
+INSERT INTO `areas_contacts` VALUES
+  (6,1),
+  (3,2);
 
 CREATE TABLE `audiences` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `audiences` VALUES 
-  (1, "student"),
-  (2, "teacher"),
-  (3, "unistudent"),
-  (4, "all");
+  (1, "student", NULL),
+  (2, "teacher", NULL),
+  (3, "unistudent", NULL),
+  (4, "all", NULL);
 
 CREATE TABLE `activity_types` ( -- categories or classifications
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `activity_types` VALUES 
-  (1, "lab"),
-  (2, "course"),
-  (3, "divulgation");
-   
+INSERT INTO `activity_types` VALUES
+  (1, "lab", NULL),
+  (2, "course", NULL),
+  (3, "divulgation", NULL);
+
 CREATE TABLE `activities` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
-  `activity_type_id int(10) unsigned,
+  `activity_type_id` int(10) unsigned,
   `audience_id` int(10) unsigned,
 );
+
 INSERT INTO `activities` VALUES
   (1, "Metodi matematici per l'animazione", NULL, 1,1);
 
-CREATE TABLE activities_contacts ();
+CREATE TABLE `activities_areas` (
+  `activity_id` int(10) unsigned NOT NULL,
+  `area_id` int(10) unsigned NOT NULL,
+  `role` ENUM('organizer', 'interest'),
+);
+
+CREATE TABLE `activities_contacts` ();
 
 CREATE TABLE `editions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -91,21 +109,32 @@ CREATE TABLE `editions` (
   `academic_year` smallint unsigned,
   `audience_id` int(10) unsigned,
 );
+
 INSERT INTO `editions` VALUES
   (1, 1, "MMA on-line", NULL, 2020, 1);
   (2, 1, "MMA Math Students", NULL, 2020, 1);
   
-CREATE TABLE contacts_editions ();
-  
+
+CREATE TABLE `areas_editions` (
+  `area_id` int(10) unsigned NOT NULL,
+  `edition_id` int(10) unsigned NOT NULL,
+  `role` ENUM('organizer', 'interest'),
+);
+
+CREATE TABLE `contacts_editions` ();
+
 CREATE TABLE `events` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `edition_id` int(10) unsigned,
   `name` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `audience_id` int(10) unsigned,
-  `datetime`,
+  `start` ,
+  `end`,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE contacts_events ();
+CREATE TABLE `areas_events` ();
+
+CREATE TABLE `contacts_events` ();
 
