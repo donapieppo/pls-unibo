@@ -42,15 +42,25 @@ body {
 
 .form-group {
   label {
-    @apply block my-2 text-sm text-gray-600;
+    @apply block my-1 text-sm text-gray-600;
   }
 
   input.string {
-    @apply w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300;
+    @apply w-full px-3 py-1 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300;
   }
 
   textarea {
-    @apply w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300;
+    @apply w-full px-3 py-1 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300;
+  }
+  .form-check {
+    label {
+      display: inline-block;
+      margin-right: 10px;
+    }
+    input {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
   }
 }
 

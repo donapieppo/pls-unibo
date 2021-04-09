@@ -1,8 +1,8 @@
 <div class="m-6">
-  <%= simple_form_for @activity do |f| %>  
+  <%= simple_form_for [@activity, @edition] do |f| %>  
     <%= f.input :name %>  
     <%= f.input :description, input_html: { cols: 80, rows: 10 } %>
-    <%= f.association :areas, as: :check_boxes %>  
+    <%= f.input :academic_year, collection: (2010...2021) %>
     <%= f.submit %>  
   <% end %>
 </div>

@@ -1,7 +1,15 @@
 <h1 class="title">Attività</h1>
 
-<ul>
+<div>
   <% @activities.each do |activity| %>  
-    <li><%= activity %> <span class="text-sm"><%= link_to 'edit', [:edit, activity] %></span>  </li>
+    <div class="border-2 my-2 p-4">
+      <%= activity.name %>
+      <div class="my-6 text-sm text-gray-900">
+        <%= activity.description %>  
+      </div>
+      <div class="text-right">
+        <%= link_to 'edit', [:edit, activity] %>
+      </div>
+    </div>
   <% end %>
-</ul>
+</div>
