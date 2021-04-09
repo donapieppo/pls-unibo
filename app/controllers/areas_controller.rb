@@ -1,5 +1,8 @@
 class AreasController < ApplicationController
-  before_action :set_area_and_check_permission, only: %i[ edit update destroy ]
+  before_action :set_area_and_check_permission, only: %i[ show edit update destroy ]
+
+  def show
+  end
 
   def edit
   end

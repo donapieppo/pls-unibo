@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%= render 'layouts/seo' %>  
     <title>PlsUnibo</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= javascript_pack_tag 'application' %>
-    <%= stylesheet_pack_tag 'application' %>
+    <%# <%= stylesheet_pack_tag 'application' %1> %>
+    <%# <%= javascript_pack_tag 'application' %1> %>
+    <link rel="stylesheet" media="screen" href="http://127.0.0.1:8080/packs/css/application.css" />
+    <script src="http://127.0.0.1:8080/js/application.js"></script>
   </head>
 
   <body>
-    <%= yield %>
+    <%= render partial: 'layouts/menu' %>  
+
+    <div class="w-100 p-2 lg:p-6">
+      <%= render FlashMessagesComponent.new(flash: flash) %>
+      <%= yield %>
+    </div>
   </body>
 </html>

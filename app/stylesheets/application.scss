@@ -1,4 +1,3 @@
-
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
@@ -41,8 +40,23 @@ body {
   @apply mb-8 text-2xl sm:text-4xl lg:text-4xl text-center leading-none font-light text-gray-600;
 }
 
-label {
-  @apply text-gray-500 text-sm text-red-500;
+.form-group {
+  label {
+    @apply block my-2 text-sm text-gray-600;
+  }
+
+  input.string {
+    @apply w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300;
+  }
+
+  textarea {
+    @apply w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300;
+  }
 }
+
+input[type=submit] {
+  @apply px-4 py-2 my-2 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none;
+}
+
 
 

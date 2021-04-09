@@ -1,4 +1,7 @@
-<%= simple_form_for @activity do |f| %>  
-  <%= f.input :name %>  
-  <%= f.input :description %>  
-<% end %>
+<div class="m-6">
+  <%= simple_form_for @activity do |f| %>  
+    <%= f.input :name %>  
+    <%= f.input :description, input_html: { cols: 80, rows: 10 } %>
+    <%= f.submit %>  
+  <% end %>
+</div>

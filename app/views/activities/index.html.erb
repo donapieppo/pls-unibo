@@ -1,7 +1,7 @@
-<h1>Attività</h1>
+<h1 class="title">Attività</h1>
 
 <ul>
   <% @activities.each do |activity| %>  
-    <li><%= activity %></li>
+    <li><%= activity %> <span class="text-sm"><%= link_to 'edit', [:edit, activity] %></span>  </li>
   <% end %>
 </ul>

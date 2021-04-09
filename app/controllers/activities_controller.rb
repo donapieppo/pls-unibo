@@ -12,14 +12,21 @@ class ActivitiesController < ApplicationController
   end
 
   def create
+    @activity = Activity.new(activity_params)
+    authorize @activity
+    if @activity.save
+      redirect_to activities_path, notice: 'OK'
+    else
+      render action: :new
+    end
   end
 
   def edit
   end
 
   def update
-    if @area.update(area_params)
-      redirect_to root_path, notice: 'OK'
+    if @activity.update(activity_params)
+      redirect_to activities_path, notice: 'OK'
     else
       render action: :edit
     end
@@ -28,11 +35,11 @@ class ActivitiesController < ApplicationController
   private
 
   def set_activity_and_check_permission
-    @area = Area.find(params[:id])
-    authorize @area
+    @activity = Activity.find(params[:id])
+    authorize @activity
   end
 
-  def area_params
-    params[:area].permit(:description)
+  def activity_params
+    params[:activity].permit(:name, :description)
   end
 end
