@@ -24,15 +24,6 @@ module PlsUnibo
 
     config.default_from    = 'PLS <notifica.inviodlist.08218@unibo.it>'
     config.reply_to        = 'dipmat-supportoweb@unibo.it'
-
-    config.dm_unibo_common.update(
-      login_method:        :log_and_create,
-      no_students:         true, 
-      message_footer:      %Q{Messaggio inviato da 'Gestione Seminari Dipartimento di Matematica'.\nNon rispondere a questo messaggio.\nPer problemi tecnici contattare dipmat-supportoweb@unibo.it},
-      impersonate_admins:  ['pietro.donatini@unibo.it', 'valeria.montesi3@unibo.it', 'valeria.montesi4@unibo.it'],
-      interceptor_mails:   ['donatini@dm.unibo.it'], 
-      main_impersonations: ['pietro.donatini@unibo.it', 'giovanni.dore@unibo.it', 'nicola.arcozzi@unibo.it', 'paola.albanelli@unibo.it', 'bruno.franchi@unibo.it', 'patrizia.reina3@unibo.it', 'greta.piovani@unibo.it'] 
-    )
   end
 end
 

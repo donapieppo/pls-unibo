@@ -14,7 +14,6 @@ module PlsUnibo
     config.hosts << "tester.dm.unibo.it"
 
     config.action_mailer.default_url_options = {protocol: 'https'}
-    config.dm_unibo_common = ActiveSupport::HashWithIndifferentAccess.new config_for(:dm_unibo_common)
 
     # Configuration for the application, engines, and railties goes here.
     #
