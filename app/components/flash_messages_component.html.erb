@@ -1,0 +1,6 @@
+<% @flash.each do |type, msg| %>
+  <% message_class = (type == 'alert') ? 'alert' : 'success' %>  
+  <div class="my-2 <%= message_class %>">
+    <%= msg %>
+  </div>
+<% end %>
