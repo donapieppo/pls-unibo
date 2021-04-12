@@ -40,6 +40,6 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params[:activity].permit(:name, :description, :audience_id, area_ids: [])
+    params[:activity].permit(:name, :description, :audience_id, :activity_type, area_ids: [])
   end
 end
