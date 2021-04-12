@@ -12,33 +12,73 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
+  create_table "activities", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "activity_type_id", unsigned: true
+    t.integer "audience_id", unsigned: true
+    t.boolean "global"
+  end
+
+  create_table "activities_areas", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+    t.integer "activity_id", null: false, unsigned: true
+    t.integer "area_id", null: false, unsigned: true
+    t.column "role", "enum('organizer','interest')"
+  end
+
+  create_table "activity_types", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+  end
+
   create_table "areas", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
+    t.text "payoff"
+    t.text "description"
+    t.text "notice"
+    t.integer "in_charge", unsigned: true
+  end
+
+  create_table "areas_contacts", id: false, charset: "utf8mb4", force: :cascade do |t|
+    t.integer "area_id", null: false, unsigned: true
+    t.integer "contact_id", null: false, unsigned: true
+  end
+
+  create_table "areas_editions", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+    t.integer "area_id", null: false, unsigned: true
+    t.integer "edition_id", null: false, unsigned: true
+    t.column "role", "enum('organizer','interest')"
   end
 
   create_table "audiences", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
+    t.text "description"
   end
 
-  create_table "audiences_events", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
-    t.integer "audience_id", null: false, unsigned: true
-    t.integer "event_id", null: false, unsigned: true
-    t.index ["audience_id"], name: "fk_audiences_events_audience_id"
-    t.index ["event_id"], name: "fk_audiences_events_event_id"
-  end
-
-  create_table "event_types", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+  create_table "contacts", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+    t.integer "user_id", unsigned: true
     t.string "name"
+    t.text "description"
+    t.string "email"
+  end
+
+  create_table "editions", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+    t.integer "activity_id", unsigned: true
+    t.string "name"
+    t.text "description"
+    t.integer "academic_year", limit: 2, unsigned: true
+    t.integer "audience_id", unsigned: true
   end
 
   create_table "events", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
-    t.integer "event_type_id", unsigned: true
+    t.integer "edition_id", unsigned: true
     t.string "name"
     t.text "description"
-    t.datetime "when"
-    t.text "where"
+    t.integer "audience_id", unsigned: true
+    t.string "where"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.string "url"
-    t.text "map_url"
   end
 
   create_table "users", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
@@ -51,6 +91,4 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "updated_at"
   end
 
-  add_foreign_key "audiences_events", "audiences", name: "fk_audiences_events_audience_id"
-  add_foreign_key "audiences_events", "events", name: "fk_audiences_events_event_id"
 end
