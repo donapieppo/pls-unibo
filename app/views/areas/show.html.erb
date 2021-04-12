@@ -9,9 +9,13 @@
       <%= @area.description %>
     </div>
 
-    <div>
+    <div class="my-8 text-right">
       <% @area.activities.includes(:activity_type, :audience).order(:name).each do |activity| %>  
-        <div class="border-l-4 border-blue-400 pl-2"><%= activity.name %> (<%= activity.activity_type %> per <%= activity.audience %>)</div>
+        <div class="border-r-4 border-blue-400 pr-2">
+          <%= link_to [:edit, activity] do %>  
+            <%= activity.name %> <span class="text-sm">(<%= activity.activity_type %> per <%= activity.audience %>)</span>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>
