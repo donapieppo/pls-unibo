@@ -8,7 +8,8 @@ class EditionsController < ApplicationController
 
   def new
     @activity = Activity.find(params[:activity_id])
-    @edition = @activity.editions.new(name: @activity.name)
+    @edition = @activity.editions.new(name: @activity.name,
+                                      audience_id: @activity.audience_id)
     authorize @edition
   end
 
@@ -42,6 +43,6 @@ class EditionsController < ApplicationController
   end
 
   def edition_params
-    params[:edition].permit(:name, :description, :academic_year)
+    params[:edition].permit(:name, :description, :academic_year, :audience_id)
   end
 end
