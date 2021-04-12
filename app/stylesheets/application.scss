@@ -62,6 +62,9 @@ body {
       margin-right: 10px;
     }
   }
+  select {
+    @apply block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-900 py-3 px-4 pr-8 rounded;
+  }
 }
 
 input[type=submit] {
