@@ -1,6 +1,7 @@
 it:
   activerecord:
     models:
+      area: Area
       activity: Attività
       edition: Edizione
       event: Evento
@@ -11,6 +12,7 @@ it:
         date: Organizzatori
       edition:
         name: Nome
+        academic_year: Anno accademico
       event:
         name: Nome
         where: Dove si svolge
