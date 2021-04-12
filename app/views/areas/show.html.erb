@@ -4,7 +4,15 @@
   <div class="lg:w-1/2">
     <%= area_image(@area, size: 800) %>  
   </div>
-  <div class="lg:w-1/2 text-gray-900 font-light text-sm">
-    <%= @area.description %>
+  <div class="lg:w-1/2 text-gray-900 font-light">
+    <div class="bg-blue-100 text-gray-900 font-light text-sm rounded-xl p-4">
+      <%= @area.description %>
+    </div>
+
+    <div>
+      <% @area.activities.includes(:activity_type, :audience).order(:name).each do |activity| %>  
+        <div class="border-l-4 border-blue-400 pl-2"><%= activity.name %> (<%= activity.activity_type %> per <%= activity.audience %>)</div>
+      <% end %>
+    </div>
   </div>
 </div>
