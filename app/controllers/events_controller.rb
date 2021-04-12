@@ -7,8 +7,14 @@ class EventsController < ApplicationController
   end
 
   def new
-    @edition = Edition.find(params[:edition_id])
-    @event = @edition.events.new
+    if params[:from]
+      orig = Event.find(params[:from])
+      @edition = Edition.find(orig.edition_id)
+      @event = @edition.events.new(orig.attributes)
+    else
+      @edition = Edition.find(params[:edition_id])
+      @event = @edition.events.new
+    end
     authorize @event
   end
 
