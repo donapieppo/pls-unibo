@@ -8,7 +8,7 @@ class EditionsController < ApplicationController
 
   def new
     @activity = Activity.find(params[:activity_id])
-    @edition = @activity.editions.new
+    @edition = @activity.editions.new(name: @activity.name)
     authorize @edition
   end
 
