@@ -11,6 +11,7 @@ module PlsUnibo
     # Initialize configuration defaults for originally generated Rails version.
     #config.load_defaults 6.1
 
+    config.time_zone = "Rome"
     config.hosts << "tester.dm.unibo.it"
 
     config.action_mailer.default_url_options = {protocol: 'https'}
