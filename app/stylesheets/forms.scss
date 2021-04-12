@@ -1,0 +1,21 @@
+form {
+  .form-group, .submit-wrapper {
+    @apply lg:grid lg:grid-cols-4 lg:gap-4 my-2;
+  }
+  label {
+    @apply lg:col-start-1 lg:col-end-2 lg:text-right pr-2 text-sm font-medium text-gray-600 ;
+  }
+  input, select {
+    @apply lg:col-start-2 lg:col-end-4 w-full h-8 px-4 mb-2 text-lg text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow;
+  }
+  textarea {
+    @apply lg:col-start-2 lg:col-end-4 w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow;
+  }
+  input[type="submit"] {
+    @apply lg:col-start-3;
+  }
+  input[type="file"] {
+    @apply lg:col-start-3;
+  }
+}
+
