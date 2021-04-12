@@ -1,17 +1,12 @@
-<%= simple_form_for(@event) do |f| %>
+<%= simple_form_for [@edition, @event] do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :when %>
-    <%= f.input :where %>
-    <%= f.input :url %>
-    <%= f.input :map_url %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :where %>
+  <%= f.input :start_date %>
+  <%= f.input :end_date %>
+  <%= f.input :url %>
+  <%= f.submit %>
 <% end %>

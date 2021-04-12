@@ -13,6 +13,10 @@ it:
         name: Nome
       event:
         name: Nome
+        where: Dove si svolge
+        start_date: Dal
+        end_date: al
+        url: Pagina web
 
   time:
     am: am

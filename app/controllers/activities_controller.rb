@@ -3,7 +3,7 @@ class ActivitiesController < ApplicationController
 
   def index
     authorize :activity
-    @activities = Activity.order(:name)
+    @activities = Activity.includes(:editions).order(:name)
   end
 
   def new

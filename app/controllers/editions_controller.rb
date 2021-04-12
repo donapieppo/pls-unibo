@@ -3,7 +3,7 @@ class EditionsController < ApplicationController
 
   def index
     authorize :edition
-    @editions = Edition.order(:name)
+    @editions = Edition.includes(:events).order(:name)
   end
 
   def new

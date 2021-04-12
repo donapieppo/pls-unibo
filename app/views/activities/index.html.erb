@@ -12,6 +12,13 @@
       <div class="text-right">
         <%= link_to '<i class="fas fa-edit text-xl"></i>'.html_safe, [:edit, activity] %>
       </div>
+      <ul>
+        <% activity.editions.each do |edition| %>  
+          <li><%= link_to edition, [:edit, edition] %></li>
+        <% end %>
+      </ul>
     </div>
   <% end %>
 </div>
+
+<%= link_to 'Nuova Attività', new_activity_path, class: 'button' %>  
