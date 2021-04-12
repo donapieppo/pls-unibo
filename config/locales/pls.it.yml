@@ -1,0 +1,29 @@
+it:
+  activerecord:
+    models:
+      activity: Attività
+      edition: Edizione
+      event: Evento
+    attributes:
+      activity:
+        name: Nome
+        description: Descrizione
+        date: Organizzatori
+      edition:
+        name: Nome
+      event:
+        name: Nome
+        where: Dove si svolge
+        start_date: Dal
+        end_date: al
+        url: Pagina web
+
+  time:
+    am: am
+    formats:
+      default: "%d %b"
+      complete: "%a %d %b %Y, %H:%M:%S %z"
+      long: "%d %B %Y %H:%M"
+      short: "%d %b %H:%M"
+      day: "%A %d %B"
+      hour: "%H:%M"
