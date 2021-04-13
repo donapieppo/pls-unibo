@@ -3,26 +3,43 @@
 <div>
   <% @activities.each do |activity| %>  
     <div class="border-2 my-2 p-4">
-      <div class="text-xl">
-        <%= activity.name %>
-        <span class="float-right text-sm text-white bg-yellow-700 rounded px-2">
+      <div class="text-lg">
+        <%= activity.name.upcase %>
+        <span class="float-right text-sm text-white bg-yellow-700 rounded">
           <%= activity.activity_type %>
         </span>
       </div>
       <div class="text-right text-sm">
-      Organizzato da: <%= activity.areas_to_s %>
+        Organizzato da: <%= activity.areas_to_s %>
       </div>
       <div class="my-4 text-gray-600 text-sm text-justify">
         <%= activity.description %>  
       </div>
+      <div>
+        <h2>Edizioni:</h2>
+        <div class="">
+          <% activity.editions.each do |edition| %>  
+            <div>
+              <%= link_to edition, [:edit, edition] %> 
+              <span class="text-sm">(<%= edition.academic_year %>)</span>
+              <div class="">
+                <% edition.events.order(:start_date).each do |event| %>  
+                  <%= link_to [:edit, event] do  %>  
+                    <div class="border-l-4 border-b-2 pl-4 my-2">
+                      <span class="text-sm mr-2"><%= l event.start_date, format: :short %></span>  
+                      <%= event.name %> 
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
       <div class="text-right">
         <%= link_to '<i class="fas fa-edit text-xl"></i>'.html_safe, [:edit, activity] %>
       </div>
-      <ul>
-        <% activity.editions.each do |edition| %>  
-          <li><%= link_to edition, [:edit, edition] %></li>
-        <% end %>
-      </ul>
     </div>
   <% end %>
 </div>
