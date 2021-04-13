@@ -12,7 +12,7 @@ form {
     @apply w-full px-3 py-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow;
   }
   input[type=checkbox] {
-    @apply mr-2 text-sm text-gray-700;
+    @apply my-2 mr-2 text-sm text-gray-700;
   }
   select.select {
     @apply w-1/2 h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow;
