@@ -1,12 +1,18 @@
-<h1 class="title">Attività</h1>
+<h1 class="title">Le attività del PLS</h1>
 
 <div>
   <% @activities.each do |activity| %>  
     <div class="border-2 my-2 p-4">
       <div class="text-xl">
         <%= activity.name %>
+        <span class="float-right text-sm text-white bg-yellow-700 rounded px-2">
+          <%= activity.activity_type %>
+        </span>
       </div>
-      <div class="my-6 text-sm text-gray-900">
+      <div class="text-right text-sm">
+      Organizzato da: <%= activity.areas_to_s %>
+      </div>
+      <div class="my-4 text-gray-600 text-sm text-justify">
         <%= activity.description %>  
       </div>
       <div class="text-right">
