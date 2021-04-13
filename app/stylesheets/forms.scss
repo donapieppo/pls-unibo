@@ -2,14 +2,17 @@ form {
   label {
     @apply text-sm font-medium text-gray-600 my-1;
   }
-  label.string, label.text, label.select, legend {
+  label.string, label.text, label.select, label.integer, legend {
     @apply block;
   }
-  input.string, input.textarea {
-    @apply w-full h-8 px-2 text-sm text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow;
+  input.string, input.numeric {
+    @apply w-full h-8 px-2 text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow;
+  }
+  input.numeric {
+    @apply w-24;
   }
   textarea {
-    @apply w-full px-3 py-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow;
+    @apply w-full text-sm px-3 py-2 text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow;
   }
   input[type=checkbox] {
     @apply my-2 mr-2 text-sm text-gray-700;
@@ -17,25 +20,11 @@ form {
   select.select {
     @apply w-1/2 h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow;
   }
-  input[type="submit"] {
-    @apply bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-4 rounded;
-  }
   input[type="file"] {
     @apply lg:col-start-3 lg:col-end-4;
   }
-
-  
-  // .form-group, .submit-wrapper, fieldset {
-  //   @apply lg:grid lg:grid-cols-4 lg:gap-4 my-2;
-  // }
-  // label.string, label.text, legend {
-  //   @apply lg:block lg:col-start-1 lg:col-end-2 lg:text-right pr-2 text-sm font-medium text-gray-600;
-  // }
-  // input.string , select, div.form-check {
-  //   @apply lg:col-start-2 lg:col-end-4 w-full h-8 px-4 mb-2 text-lg text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow;
-  // }
-  // textarea {
-  //   @apply lg:col-start-2 lg:col-end-4 w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow;
-  // }
+  input[type="submit"] {
+    @apply bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-4 my-2 rounded;
+  }
 }
 

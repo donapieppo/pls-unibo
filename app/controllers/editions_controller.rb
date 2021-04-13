@@ -43,6 +43,6 @@ class EditionsController < ApplicationController
   end
 
   def edition_params
-    params[:edition].permit(:name, :description, :academic_year, :audience_id)
+    params[:edition].permit(:name, :description, :academic_year, :audience_id, :seats)
   end
 end
