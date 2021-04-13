@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.text "description"
     t.integer "academic_year", limit: 2, unsigned: true
     t.integer "audience_id", unsigned: true
+    t.integer "seats"
   end
 
   create_table "events", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
@@ -77,8 +78,8 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "audience_id", unsigned: true
     t.string "where"
     t.datetime "start_date"
-    t.datetime "end_date"
-    t.string "url"
+    t.integer "duration"
+    t.integer "seats"
   end
 
   create_table "users", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|

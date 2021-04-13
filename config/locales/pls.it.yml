@@ -13,10 +13,11 @@ it:
       edition:
         name: Nome
         academic_year: Anno accademico
+        seats: Posti disponibili
       event:
         name: Nome
         where: Dove si svolge
-        start_date: Dal
-        end_date: al
-        url: Pagina web
+        start_date: Inizio
+        duration: Durata (minuti)
+        seats: Posti disponibili
 
