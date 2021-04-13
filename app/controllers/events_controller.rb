@@ -30,6 +30,7 @@ class EventsController < ApplicationController
   end
 
   def edit
+    @edition = @event.edition
   end
 
   def update
