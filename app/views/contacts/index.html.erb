@@ -1,0 +1,17 @@
+<h1 class="title">Contatti</h1>
+
+<div class="">
+  <ul>
+    <% @contacts.each do |c| %>  
+      <%= link_to [:edit, c] do %>  
+        <li>
+          <%= c.name %> <span class="text-sm pl-4"><%= c.email %></span> 
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+
+  <div class="my-4">
+    <%= link_to 'Aggiungi nuovo contatto', new_contact_path, class: 'button' %>  
+  </div>
+</div>

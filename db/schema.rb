@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "name"
     t.text "description"
     t.string "email"
+    t.string "web_page"
   end
 
   create_table "editions", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|

@@ -2,12 +2,19 @@ Rails.application.routes.draw do
   resources :areas
   resources :activities do
     resources :editions
+    get  :choose_contact, on: :member
+    post :add_contact, on: :member
   end
   resources :editions do
     resources :events
+    get  :choose_contact, on: :member
+    post :add_contact, on: :member
   end
-  resources :events
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  #
+  resources :events do
+    get  :choose_contact, on: :member
+    post :add_contact, on: :member
+  end
+
+  resources :contacts
   root "home#index"
 end

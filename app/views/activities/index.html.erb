@@ -12,6 +12,9 @@
       <div class="text-right text-sm">
         Organizzato da: <%= activity.areas_to_s %>
       </div>
+      <div class="text-right text-sm">
+        Contatti: <%= activity.contacts.map(&:name).join(', ') %>
+      </div>
       <div class="my-4 text-gray-600 text-sm text-justify">
         <%= activity.description %>  
       </div>

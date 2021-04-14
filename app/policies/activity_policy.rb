@@ -10,4 +10,12 @@ class ActivityPolicy < ApplicationPolicy
   def update?
     true
   end
+
+  def choose_contact?
+    true
+  end
+
+  def add_contact?
+    true
+  end
 end
