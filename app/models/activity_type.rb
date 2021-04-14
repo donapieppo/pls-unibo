@@ -1,6 +1,5 @@
-class Audience < ApplicationRecord
+class ActivityType < ApplicationRecord
   has_many :activities
-  has_many :editions
 
   def to_s
     self.name

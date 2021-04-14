@@ -31,20 +31,20 @@
 
 en:
   hello: "Hello world"
-  time:
-    pm: pm
-    am: am
-    formats:
-      default: ! '%d %b ore %H:%M'
-      long:    ! '%d %B %Y %H:%M'
-      short:   ! '%d %b %H:%M'
-      date_picker: ! "%d/%m/%Y"
-      datetime_html5: ! "%Y-%m-%d"
-      date_html5: ! "%Y-%m-%d"
-      hour_picker: "%H"
-      min_picker: "%M"
-      datetime_picker: "%d/%m/%Y %H:%M"
-      with_day_name: '%A %d %B %Y ore %H:%M'
+#  time:
+#    pm: pm
+#    am: am
+#    formats:
+#      default: ! '%d %b ore %H:%M'
+#      long:    ! '%d %B %Y %H:%M'
+#      short:   ! '%d %b %H:%M'
+#      date_picker: ! "%d/%m/%Y"
+#      datetime_html5: ! "%Y-%m-%d"
+#      date_html5: ! "%Y-%m-%d"
+#      hour_picker: "%H"
+#      min_picker: "%M"
+#      datetime_picker: "%d/%m/%Y %H:%M"
+#      with_day_name: '%A %d %B %Y ore %H:%M'
 
 
 

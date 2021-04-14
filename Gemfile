@@ -5,11 +5,15 @@ gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
 gem 'mysql2', '~> 0.5'
 gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
-gem 'webpacker', '~> 6.x'
+gem 'webpacker', git: 'https://github.com/rails/webpacker.git'
+# gem 'webpacker', '= 6.0.0.pre.2'
 gem 'jbuilder', '~> 2.7'
 
 gem 'simple_form'
 gem 'pundit'
+
+gem "view_component", require: "view_component/engine"
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

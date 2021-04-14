@@ -1,0 +1,23 @@
+it:
+  activerecord:
+    models:
+      area: Area
+      activity: Attività
+      edition: Edizione
+      event: Evento
+    attributes:
+      activity:
+        name: Nome
+        description: Descrizione
+        date: Organizzatori
+      edition:
+        name: Nome
+        academic_year: Anno accademico
+        seats: Posti disponibili
+      event:
+        name: Nome
+        where: Dove si svolge
+        start_date: Inizio
+        duration: Durata (minuti)
+        seats: Posti disponibili
+
