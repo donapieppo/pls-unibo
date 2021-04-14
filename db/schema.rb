@@ -55,12 +55,32 @@ ActiveRecord::Schema.define(version: 0) do
     t.text "description"
   end
 
+  create_table "contact_records", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.string "record_type", null: false
+    t.integer "record_id", null: false, unsigned: true
+    t.integer "contact_id", null: false, unsigned: true
+    t.datetime "created_at", null: false
+    t.index ["contact_id"], name: "fk_contacts_records_contact_id"
+    t.index ["record_type", "record_id", "contact_id"], name: "index_contacts_records_uniqueness", unique: true
+  end
+
   create_table "contacts", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
     t.integer "user_id", unsigned: true
     t.string "name"
     t.text "description"
     t.string "email"
     t.string "web_page"
+  end
+
+  create_table "contacts_relations", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.string "record_type", null: false
+    t.integer "record_id", null: false, unsigned: true
+    t.integer "contact_id", null: false, unsigned: true
+    t.datetime "created_at", null: false
+    t.index ["contact_id"], name: "fk_contacts_relations_contact_id"
+    t.index ["record_type", "record_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
   create_table "editions", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
@@ -93,4 +113,6 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "updated_at"
   end
 
+  add_foreign_key "contact_records", "contacts", name: "fk_contacts_records_contact_id"
+  add_foreign_key "contacts_relations", "contacts", name: "fk_contacts_relations_contact_id"
 end
