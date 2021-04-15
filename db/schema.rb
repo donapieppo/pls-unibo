@@ -51,6 +51,13 @@ ActiveRecord::Schema.define(version: 0) do
     t.column "role", "enum('organizer','interest')"
   end
 
+  create_table "areas_organizations", id: false, charset: "utf8mb4", force: :cascade do |t|
+    t.integer "area_id", null: false, unsigned: true
+    t.integer "organization_id", null: false, unsigned: true
+    t.index ["area_id"], name: "fk_area_org_area_id"
+    t.index ["organization_id"], name: "fk_area_org_organization_id"
+  end
+
   create_table "audiences", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -104,6 +111,12 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "seats"
   end
 
+  create_table "organizations", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.string "url"
+  end
+
   create_table "users", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "surname"
@@ -115,6 +128,8 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   add_foreign_key "areas", "contacts", column: "head_id", name: "fk_area_head"
+  add_foreign_key "areas_organizations", "areas", name: "fk_area_org_area_id"
+  add_foreign_key "areas_organizations", "organizations", name: "fk_area_org_organization_id"
   add_foreign_key "contact_records", "contacts", name: "fk_contacts_records_contact_id"
   add_foreign_key "contacts_relations", "contacts", name: "fk_contacts_relations_contact_id"
 end
