@@ -145,3 +145,20 @@ CREATE TABLE `events` (
 -- attachments 
 -- registrations
 
+
+DROP table `contact_records`;
+
+CREATE TABLE `contact_records` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255),
+  `record_type` varchar(255) NOT NULL, -- Activity Edition Event 
+  `record_id` int(10) unsigned NOT NULL,
+  `contact_id` int(10) unsigned NOT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_contacts_records_uniqueness` (`record_type`,`record_id`, `contact_id`),
+  CONSTRAINT `fk_contacts_records_contact_id` FOREIGN KEY (`contact_id`) REFERENCES `contacts` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
