@@ -1,4 +1,5 @@
 class ActivitiesController < ApplicationController
+  include ContactConcern
   before_action :set_activity_and_check_permission, only: %i[ edit update destroy choose_contact add_contact ]
 
   def index
@@ -30,19 +31,6 @@ class ActivitiesController < ApplicationController
     else
       render action: :edit
     end
-  end
-
-  def choose_contact
-    authorize @activity
-    @url = add_contact_activity_path(@activity)
-    render 'contacts/add_contact'
-  end
-
-  def add_contact
-    authorize @activity
-    @contact = Contact.find(params[:contact_id])
-    @contact.contact_records.new(record_type: 'Activity', record_id: @activity.id).save
-    redirect_to [:edit, @activity]
   end
 
   private
