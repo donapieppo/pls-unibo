@@ -1,11 +1,11 @@
 <h1 class="title">Contatti</h1>
 
-<div class="">
+<div class="w-3/4 lg:w-1/2 mx-auto">
   <ul>
     <% @contacts.each do |c| %>  
       <%= link_to [:edit, c] do %>  
-        <li>
-          <%= c.name %> <span class="text-sm pl-4"><%= c.email %></span> 
+        <li class="p-2 hover:bg-gray-100">
+          <%= c.name %> <span class="float-right text-sm pl-4"><%= c.email %></span> 
         </li>
       <% end %>
     <% end %>
