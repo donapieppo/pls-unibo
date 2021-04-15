@@ -1,4 +1,5 @@
 class Area < ApplicationRecord
+  has_and_belongs_to_many :organizations
   has_and_belongs_to_many :activities
   belongs_to :contact, foreign_key: "head_id"
 

@@ -1,5 +1,5 @@
 <div class="w-full h-3/5 overflow-hidden" 
-     style="background-size: cover; background: no-repeat fixed center url(<%= asset_pack_path(area_image(@area)) %>)">
+     style="background: no-repeat fixed center url(<%= asset_pack_path(area_image(@area)) %>); background-size: cover;">
      <div class="m-8 text-4xl lg:text-8xl text-white"><%= @area %></div>
 </div>
 <div class="relative">
@@ -19,7 +19,7 @@
     <div class="border-r-4 border-blue-400 px-8 mx-8 my-4">
       <%= link_to [:edit, activity] do %>  
         <%= activity.name %><br/> 
-        <span class="text-sm">(<%= activity.activity_type %> per <%= activity.audience %>)</span>
+        <span class="text-sm">(<%= activity.activity_type %> - <%= activity.audience %>)</span>
       <% end %>
     </div>
   <% end %>

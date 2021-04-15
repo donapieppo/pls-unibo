@@ -5,7 +5,7 @@
     <%= render partial: 'form' %>  
   </div>
   <div class="lg:w-1/3 pt-8">
-    <label>Contatti</label>
+    <h2>Contatti</h2>
     <div class="my-2">
       <% @activity.contacts.each do |contact| %>  
         <div><%= contact %></div>
@@ -13,7 +13,7 @@
     </div>
     <%= link_to 'Nuovo contatto', choose_contact_activity_path(@activity), class: 'button' %>
 
-    <label>Edizioni</label>
+    <h2>Edizioni</h2>
     <div class="my-2">
       <% @activity.editions.each do |edition| %>  
         <%= link_to [:edit, edition] do %> 
