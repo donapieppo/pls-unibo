@@ -42,7 +42,7 @@ body {
 }
 
 .title {
-  @apply mb-8 text-2xl sm:text-4xl lg:text-4xl text-center leading-none font-light text-gray-600;
+  @apply mt-4 mb-8 text-2xl sm:text-4xl lg:text-4xl text-center leading-none font-light text-gray-600;
 }
 
 @import 'forms';
