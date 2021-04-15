@@ -12,7 +12,7 @@ class ActivityPolicy < ApplicationPolicy
   end
 
   def choose_contact?
-    true
+    add_contact?
   end
 
   def add_contact?
