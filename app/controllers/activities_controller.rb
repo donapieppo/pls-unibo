@@ -16,7 +16,7 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new(activity_params)
     authorize @activity
     if @activity.save
-      redirect_to activities_path, notice: 'OK'
+      redirect_to [:edit, @activity], notice: 'OK'
     else
       render action: :new
     end
