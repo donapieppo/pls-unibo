@@ -76,9 +76,15 @@ CREATE TABLE `activity_types` ( -- categories or classifications
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `activity_types` VALUES
-  (1, "lab", NULL),
-  (2, "course", NULL),
-  (3, "divulgation", NULL);
+  (1, "laboratorio / corso", NULL),
+  (2, "laboratorio tradizionale", NULL),
+  (3, "laboratorio intensivo", NULL),
+  (4, "laboratorio per classi", NULL),
+  (5, "laboratorio PCTO per piccolo gruppi", NULL),
+  (6, "corso di formazione per insegnanti", NULL),
+  (7, "seminario / ciclo di seminari", NULL),
+  (8, "divulgazione", NULL),
+  (9, "altro", NULL);
 
 CREATE TABLE `activities` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -86,17 +92,17 @@ CREATE TABLE `activities` (
   `description` text DEFAULT NULL,
   `activity_type_id` int(10) unsigned,
   `audience_id` int(10) unsigned,
+  `global` bool DEFAULT NULL, -- vlr
   PRIMARY KEY (`id`)
 );
 
 INSERT INTO `activities` VALUES
-  (1, "Metodi matematici per l'animazione", NULL, 1,1);
+  (1, "Metodi matematici per l'animazione", NULL, 3, 1, NULL);
 
 CREATE TABLE `activities_areas` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `activity_id` int(10) unsigned NOT NULL,
   `area_id` int(10) unsigned NOT NULL,
-  `role` ENUM('organizer', 'interest'),
   PRIMARY KEY (`id`)
 );
 
@@ -109,12 +115,13 @@ CREATE TABLE `editions` (
   `description` text DEFAULT NULL,
   `academic_year` smallint unsigned,
   `audience_id` int(10) unsigned,
+  `global` bool DEFAULT NULL, -- vlr
   PRIMARY KEY (`id`)
 );
 
 INSERT INTO `editions` VALUES
-  (1, 1, "MMA on-line", NULL, 2020, 1),
-  (2, 1, "MMA Math Students", NULL, 2020, 1);
+  (1, 1, "MMA on-line", NULL, 2020, 1, NULL),
+  (2, 1, "MMA Math Students", NULL, 2020, 1, NULL);
   
 
 CREATE TABLE `areas_editions` (
@@ -142,9 +149,37 @@ CREATE TABLE `events` (
 
 --CREATE TABLE `contacts_events` ();
 
+-- da fare
 -- attachments 
 -- registrations
+-- areas_of_interest
 
+-- link "esterni" tipo progetti di fisica
+
+-- novita`
+CREATE TABLE `products` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `global` bool DEFAULT NULL, -- vlr
+  PRIMARY KEY (`id`)
+);
+
+INSERT INTO `products` VALUES
+  (1,'Alla scoperta della flora urbana di Bologna', "documentario realizzato nell'ambito di attività PLS", NULL);
+  -- ha uno o piu` attachments o video
+  
+-- CREATE TABLE `areas_products` ();
+
+-- CREATE TABLE `attachments_products` ();
+
+CREATE TABLE `videos` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+);
+
+<<<<<<< HEAD
 
 DROP table `contact_records`;
 
@@ -159,6 +194,4 @@ CREATE TABLE `contact_records` (
   UNIQUE KEY `index_contacts_records_uniqueness` (`record_type`,`record_id`, `contact_id`),
   CONSTRAINT `fk_contacts_records_contact_id` FOREIGN KEY (`contact_id`) REFERENCES `contacts` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
 

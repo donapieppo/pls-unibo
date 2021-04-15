@@ -1,9 +1,10 @@
 class Activity < ApplicationRecord
+  include ContactRecordMap
+
   has_many :editions
   belongs_to :audience
   belongs_to :activity_type
   has_and_belongs_to_many :areas
-  has_and_belongs_to_many :contacts
 
   validates :name, uniqueness: {}
 

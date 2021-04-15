@@ -5,6 +5,14 @@
     <%= render partial: 'form' %>  
   </div>
   <div class="lg:w-1/3 pt-8">
+    <label>Contatti</label>
+    <div class="my-2">
+      <% @activity.contacts.each do |contact| %>  
+        <div><%= contact %></div>
+      <% end %>
+    </div>
+    <%= link_to 'Nuovo contatto', choose_contact_activity_path(@activity), class: 'button' %>
+
     <label>Edizioni</label>
     <div class="my-2">
       <% @activity.editions.each do |edition| %>  
@@ -17,6 +25,6 @@
         <% end %>
       <% end %>
     </div>
-    <%= link_to 'Nuova Edizione', new_activity_edition_path(@activity), class: 'button' %>  
+    <%= link_to 'Nuova edizione', new_activity_edition_path(@activity), class: 'button' %>  
   </div>
 </div>

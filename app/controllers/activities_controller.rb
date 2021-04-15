@@ -1,5 +1,6 @@
 class ActivitiesController < ApplicationController
-  before_action :set_activity_and_check_permission, only: %i[ edit update destroy ]
+  include ContactConcern
+  before_action :set_activity_and_check_permission, only: %i[ edit update destroy choose_contact add_contact ]
 
   def index
     authorize :activity
