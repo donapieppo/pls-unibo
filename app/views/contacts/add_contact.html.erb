@@ -1,9 +1,0 @@
-<%= form_tag @url do %>  
-  <% Contact.order(:name).each do |contact| %>  
-    <input type="radio" name="contact_id" value="<%= contact.id %>">
-    <%= contact %>  
-    </input>
-  <% end %>
-  <%= submit_tag %>  
-<% end %>
-

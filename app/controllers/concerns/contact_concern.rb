@@ -4,7 +4,8 @@ module ContactConcern
   def choose_contact
     @what = @activity || @edition || @event
     @url = [:add_contact, @what]
-    render 'contacts/add_contact'
+    @contacts = Contact.where.not(id: @what.contact_ids).order(:name)
+    render 'contacts/choose_contact'
   end
 
   def add_contact

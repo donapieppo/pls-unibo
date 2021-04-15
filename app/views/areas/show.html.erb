@@ -5,12 +5,15 @@
 <div class="relative">
   <div class="lg:absolute lg:-top-16 lg:max-w-6xl lg:right-8 bg-blue-100 text-gray-900 font-light text-xl text-justify rounded-xl p-8 border-gray-900 border-4">
     <%= @area.description %>
+    <div class="text-sm text-right">
+      <%= @area.contact %>
+    </div>
   </div>
   <div class="text-white text-xl text-justify p-8">
     <%= @area.description %>
   </div>
 </div>
-<div class="text-right text-xl my-8">
+<div class="text-right text-xl my-16">
   <h2 class="title">Le attività</h2>
   <% @area.activities.includes(:activity_type, :audience).order(:name).each do |activity| %>  
     <div class="border-r-4 border-blue-400 px-8 mx-8 my-4">

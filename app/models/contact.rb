@@ -1,5 +1,6 @@
 class Contact < ApplicationRecord
   has_many :contact_records
+  has_many :areas
 
   def records 
     self.contacts_records.map(&:record)

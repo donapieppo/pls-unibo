@@ -36,7 +36,8 @@ ActiveRecord::Schema.define(version: 0) do
     t.text "payoff"
     t.text "description"
     t.text "notice"
-    t.integer "in_charge", unsigned: true
+    t.integer "head_id", unsigned: true
+    t.index ["head_id"], name: "fk_area_head"
   end
 
   create_table "areas_contacts", id: false, charset: "utf8mb4", force: :cascade do |t|
@@ -113,6 +114,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "updated_at"
   end
 
+  add_foreign_key "areas", "contacts", column: "head_id", name: "fk_area_head"
   add_foreign_key "contact_records", "contacts", name: "fk_contacts_records_contact_id"
   add_foreign_key "contacts_relations", "contacts", name: "fk_contacts_relations_contact_id"
 end

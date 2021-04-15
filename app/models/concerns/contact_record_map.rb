@@ -6,6 +6,10 @@ module ContactRecordMap
   end
 
   def contacts
-    contact_records.map(&:contact)
+    self.contact_records.map(&:contact)
+  end
+
+  def contact_ids
+    self.contact_records.map(&:contact_id)
   end
 end
