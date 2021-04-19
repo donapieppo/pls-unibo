@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :organizations
   resources :areas
-  resources :activities do
+  resources :projects do
     resources :editions
     get  :choose_contact, on: :member
     post :add_contact, on: :member
