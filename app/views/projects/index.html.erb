@@ -1,7 +1,7 @@
 <h1 class="title">Le attività del PLS</h1>
 
 <div>
-  <% @activities.each do |activity| %>  
+  <% @projects.each do |activity| %>  
     <div class="border-2 m-2 p-4">
       <div class="text-lg">
         <%= link_to [:edit, activity] do %>
@@ -42,4 +42,4 @@
   <% end %>
 </div>
 
-<%= link_to 'Nuova Attività', new_activity_path, class: 'button' %>  
+<%= link_to 'Nuova Attività', new_project_path, class: 'button' %>  

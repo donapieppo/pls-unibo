@@ -1,7 +1,9 @@
 class Area < ApplicationRecord
   has_and_belongs_to_many :organizations
-  has_and_belongs_to_many :activities
   belongs_to :contact, foreign_key: "head_id"
+
+  has_and_belongs_to_many :projects, through: 'activities_areas', association_foreign_key: 'activity_id'
+  has_and_belongs_to_many :interesting_projects, through: 'areas_interests', association_foreign_key: 'activity_id', class_name: 'Project'
 
   def to_s
     self.name

@@ -10,7 +10,7 @@ class EventsController < ApplicationController
   def new
     if params[:from]
       orig = Event.find(params[:from])
-      @edition = Edition.find(orig.edition_id)
+      @edition = Edition.find(orig.parent_id)
       @event = @edition.events.new(orig.attributes)
     else
       @edition = Edition.find(params[:edition_id])
@@ -24,7 +24,7 @@ class EventsController < ApplicationController
     @event = @edition.events.new(event_params)
     authorize @event
     if @event.save
-      redirect_to [:edit, @edition], notice: 'OK'
+      redirect_to [:edit, @event], notice: 'OK'
     else
       render action: :new
     end
@@ -36,7 +36,7 @@ class EventsController < ApplicationController
 
   def update
     if @event.update(event_params)
-      redirect_to [:edit, @event.edition], notice: 'OK'
+      redirect_to [:edit, @event], notice: 'OK'
     else
       render action: :edit
     end

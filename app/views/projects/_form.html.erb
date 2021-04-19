@@ -1,5 +1,5 @@
 <div class="m-6">
-  <%= simple_form_for @activity do |f| %>  
+  <%= simple_form_for @project do |f| %>  
     <%= f.input :name %>  
     <%= f.input :description, input_html: { cols: 80, rows: 10 } %>
     <%= f.association :activity_type, include_blank: false %>  
@@ -8,6 +8,7 @@
     <div id="areas_select">
       <%= f.association :areas, as: :check_boxes %>  
     </div>
+    <%= f.association :interested_areas, as: :check_boxes %>  
     <%= f.submit %>  
   <% end %>
 </div>

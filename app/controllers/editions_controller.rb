@@ -8,18 +8,18 @@ class EditionsController < ApplicationController
   end
 
   def new
-    @activity = Activity.find(params[:activity_id])
-    @edition = @activity.editions.new(name: @activity.name,
-                                      audience_id: @activity.audience_id)
+    @project = Project.find(params[:project_id])
+    @edition = @project.editions.new(name: @project.name,
+                                     audience_id: @project.audience_id)
     authorize @edition
   end
 
   def create
-    @activity = Activity.find(params[:activity_id])
-    @edition = @activity.editions.new(edition_params)
+    @project = Project.find(params[:project_id])
+    @edition = @project.editions.new(edition_params)
     authorize @edition
     if @edition.save
-      redirect_to [:edit, @activity], notice: 'OK'
+      redirect_to [:edit, @project], notice: 'OK'
     else
       render action: :new
     end
@@ -30,7 +30,7 @@ class EditionsController < ApplicationController
 
   def update
     if @edition.update(edition_params)
-      redirect_to [:edit, @edition.activity], notice: 'OK'
+      redirect_to [:edit, @edition.project], notice: 'OK'
     else
       render action: :edit
     end

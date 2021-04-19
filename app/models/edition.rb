@@ -1,9 +1,10 @@
-class Edition < ApplicationRecord
-  include ContactRecordMap
+class Edition < Activity
+  has_and_belongs_to_many :contacts, join_table: 'activities_contacts', foreign_key: 'activity_id'
 
-  belongs_to :activity
+  belongs_to :project, foreign_key: 'parent_id'
+  has_many :events, foreign_key: 'parent_id'
+
   belongs_to :audience
-  has_many :events
 
   validates :name, uniqueness: true, presence: true
   validates :academic_year, presence: true

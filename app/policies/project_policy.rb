@@ -1,4 +1,4 @@
-class ActivityPolicy < ApplicationPolicy
+class ProjectPolicy < ApplicationPolicy
   def index?
     true
   end

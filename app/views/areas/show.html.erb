@@ -15,11 +15,11 @@
 </div>
 <div class="text-right text-xl my-16">
   <h2 class="title">Le attività</h2>
-  <% @area.activities.includes(:activity_type, :audience).order(:name).each do |activity| %>  
+  <% @area.projects.includes(:activity_type, :audience).order(:name).each do |project| %>  
     <div class="border-r-4 border-blue-400 px-8 mx-8 my-4">
-      <%= link_to [:edit, activity] do %>  
-        <%= activity.name %><br/> 
-        <span class="text-sm">(<%= activity.activity_type %> - <%= activity.audience %>)</span>
+      <%= link_to [:edit, project] do %>  
+        <%= project.name %><br/> 
+        <span class="text-sm">(<%= project.activity_type %> - <%= project.audience %>)</span>
       <% end %>
     </div>
   <% end %>
