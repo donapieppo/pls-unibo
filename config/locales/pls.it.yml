@@ -6,14 +6,17 @@ it:
       edition: Edizione
       event: Evento
     attributes:
-      activity:
+      project:
         name: Nome
         description: Descrizione
         date: Organizzatori
+        areas: Aree
+        interested_areas: Aree di interesse
       edition:
         name: Nome
         academic_year: Anno accademico
         seats: Posti disponibili
+        interested_areas: Aree di interesse
       event:
         name: Nome
         where: Dove si svolge
