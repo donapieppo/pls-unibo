@@ -1,0 +1,12 @@
+<h2 class="title">Attività comuni</h2>
+
+<% Project.where(global: true).includes(:activity_type, :audience).order(:name).each do |project| %>  
+  <div class="border-r-4 border-blue-400 px-8 mx-8 my-4">
+    <%= link_to [:edit, project] do %>  
+      <%= project.name %><br/> 
+      <span class="text-sm">(<%= project.activity_type %> - <%= project.audience %>)</span>
+    <% end %>
+  </div>
+<% end %>
+
+
