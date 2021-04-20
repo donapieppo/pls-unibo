@@ -1,5 +1,5 @@
 form {
-  label {
+  label, span.hint {
     @apply text-sm font-medium text-gray-600 my-1;
   }
   label.string, label.text, label.select, label.integer, legend {
