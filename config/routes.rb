@@ -10,10 +10,12 @@ Rails.application.routes.draw do
     resources :events
     get  :choose_contact, on: :member
     post :add_contact, on: :member
+    post :add_speaker, on: :member
   end
   resources :events do
     get  :choose_contact, on: :member
     post :add_contact, on: :member
+    post :add_speaker, on: :member
   end
 
   resources :contacts
