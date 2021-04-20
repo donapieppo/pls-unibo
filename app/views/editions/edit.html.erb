@@ -14,13 +14,18 @@
     <h2 class="text-xl">Eventi</h2>
     <div class="my-2">
       <% @edition.events.each do |event| %>  
-        <%= link_to [:edit, event] do %> 
-          <div class="my-1 p-2 border-2 rounded hover:bg-gray-100">
+        <div class="my-1 p-2 border-2 rounded hover:bg-gray-100">
+          <%= link_to [:edit, event] do %> 
             <i class="fas fa-chevron-right mr-2"></i> 
             <%= event.name %> 
-            <div class="float-right"><%= link_to 'duplica', new_event_path(from: event.id) %></div>
+          <% end %>
+          <span class="float-right mx-2">
+            <%= link_to_delete event %>
+          </span>
+          <div class="float-right">
+            <%= link_to 'duplica', new_event_path(from: event.id) %>
           </div>
-        <% end %>
+        </div>
       <% end %>
     </div>
     <%= link_to 'Nuova Evento', new_edition_event_path(@edition), class: 'button' %>  
