@@ -49,14 +49,4 @@ h2 {
   @apply my-2 text-xl;
 }
 
-.home-buttons-container {
-  @apply lg:flex lg:flex-wrap mt-8;
-  div {
-    @apply w-1/2 p-8 text-center text-2xl border-4 bg-gray-50 my-4 hover:bg-blue-500;
-  }
-}
-
-
 @import 'forms';
-
-

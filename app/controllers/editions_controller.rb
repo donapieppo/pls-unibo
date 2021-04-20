@@ -1,6 +1,6 @@
 class EditionsController < ApplicationController
   include ContactConcern
-  before_action :set_edition_and_check_permission, only: %i[ edit update destroy choose_contact add_contact ]
+  before_action :set_edition_and_check_permission, only: %i[ edit update destroy choose_contact add_contact add_speaker ]
 
   def index
     authorize :edition
@@ -34,6 +34,9 @@ class EditionsController < ApplicationController
     else
       render action: :edit
     end
+  end
+
+  def destroy
   end
 
   private

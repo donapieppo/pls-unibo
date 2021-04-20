@@ -13,6 +13,12 @@ module ApplicationHelper
       nil
     end
   end
+
+  def link_to_delete(name = "", url, button: false)
+    link_to url, method: :delete, title: 'elimina', data: { confirm: 'Siete sicuri di voler cancellare?' } do 
+      '<i class="far fa-trash-alt"></i>'.html_safe
+    end
+  end
 end
 
 include IconHelper

@@ -18,6 +18,14 @@ class EventPolicy < ApplicationPolicy
   def add_contact?
     true
   end
+
+  def add_speaker?
+    true
+  end
+
+  def destroy?
+    true
+  end
 end
 
 
