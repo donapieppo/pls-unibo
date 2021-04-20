@@ -42,6 +42,13 @@ class EventsController < ApplicationController
     end
   end
 
+  def destroy
+    if @event.destroy
+      flash[:notice] = 'OK'
+    end
+    redirect_to [:edit, @event.edition]
+  end
+
   private
 
   def set_event_and_check_permission

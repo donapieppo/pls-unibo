@@ -37,6 +37,10 @@ class EditionsController < ApplicationController
   end
 
   def destroy
+    if @edition.destroy
+      flash[:notice] = 'OK'
+    end
+    redirect_to [:edit, @edition.project]
   end
 
   private
