@@ -13,17 +13,36 @@
 ActiveRecord::Schema.define(version: 0) do
 
   create_table "activities", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+    t.string "type", limit: 50
     t.string "name"
     t.text "description"
-    t.integer "activity_type_id", unsigned: true
+    t.integer "academic_year", limit: 2, unsigned: true
+    t.string "place"
+    t.datetime "start_date"
+    t.integer "seats", limit: 2, unsigned: true
+    t.integer "parent_id", unsigned: true
     t.integer "audience_id", unsigned: true
     t.boolean "global"
+    t.integer "duration", limit: 2, unsigned: true
   end
 
   create_table "activities_areas", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
     t.integer "activity_id", null: false, unsigned: true
     t.integer "area_id", null: false, unsigned: true
-    t.column "role", "enum('organizer','interest')"
+  end
+
+  create_table "activities_contacts", id: false, charset: "utf8mb4", force: :cascade do |t|
+    t.integer "activity_id", unsigned: true
+    t.integer "contact_id", unsigned: true
+    t.index ["activity_id"], name: "fk_act_cont_activity_id"
+    t.index ["contact_id"], name: "fk_act_cont_contact_id"
+  end
+
+  create_table "activities_speakers", id: false, charset: "utf8mb4", force: :cascade do |t|
+    t.integer "activity_id", unsigned: true
+    t.integer "contact_id", unsigned: true
+    t.index ["activity_id"], name: "fk_act_spk_activity_id"
+    t.index ["contact_id"], name: "fk_act_spk_contact_id"
   end
 
   create_table "activity_types", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
@@ -51,6 +70,13 @@ ActiveRecord::Schema.define(version: 0) do
     t.column "role", "enum('organizer','interest')"
   end
 
+  create_table "areas_interests", id: false, charset: "utf8mb4", force: :cascade do |t|
+    t.integer "area_id", unsigned: true
+    t.integer "activity_id", unsigned: true
+    t.index ["activity_id"], name: "fk_area_int_activity_id"
+    t.index ["area_id"], name: "fk_area_int_area_id"
+  end
+
   create_table "areas_organizations", id: false, charset: "utf8mb4", force: :cascade do |t|
     t.integer "area_id", null: false, unsigned: true
     t.integer "organization_id", null: false, unsigned: true
@@ -63,32 +89,12 @@ ActiveRecord::Schema.define(version: 0) do
     t.text "description"
   end
 
-  create_table "contact_records", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
-    t.string "name"
-    t.string "record_type", null: false
-    t.integer "record_id", null: false, unsigned: true
-    t.integer "contact_id", null: false, unsigned: true
-    t.datetime "created_at", null: false
-    t.index ["contact_id"], name: "fk_contacts_records_contact_id"
-    t.index ["record_type", "record_id", "contact_id"], name: "index_contacts_records_uniqueness", unique: true
-  end
-
   create_table "contacts", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
     t.integer "user_id", unsigned: true
     t.string "name"
     t.text "description"
     t.string "email"
     t.string "web_page"
-  end
-
-  create_table "contacts_relations", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
-    t.string "name"
-    t.string "record_type", null: false
-    t.integer "record_id", null: false, unsigned: true
-    t.integer "contact_id", null: false, unsigned: true
-    t.datetime "created_at", null: false
-    t.index ["contact_id"], name: "fk_contacts_relations_contact_id"
-    t.index ["record_type", "record_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
   create_table "editions", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
@@ -127,9 +133,13 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "updated_at"
   end
 
+  add_foreign_key "activities_contacts", "activities", name: "fk_act_cont_activity_id"
+  add_foreign_key "activities_contacts", "contacts", name: "fk_act_cont_contact_id"
+  add_foreign_key "activities_speakers", "activities", name: "fk_act_spk_activity_id"
+  add_foreign_key "activities_speakers", "contacts", name: "fk_act_spk_contact_id"
   add_foreign_key "areas", "contacts", column: "head_id", name: "fk_area_head"
+  add_foreign_key "areas_interests", "activities", name: "fk_area_int_activity_id"
+  add_foreign_key "areas_interests", "areas", name: "fk_area_int_area_id"
   add_foreign_key "areas_organizations", "areas", name: "fk_area_org_area_id"
   add_foreign_key "areas_organizations", "organizations", name: "fk_area_org_organization_id"
-  add_foreign_key "contact_records", "contacts", name: "fk_contacts_records_contact_id"
-  add_foreign_key "contacts_relations", "contacts", name: "fk_contacts_relations_contact_id"
 end
