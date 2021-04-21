@@ -17,10 +17,14 @@ it:
         academic_year: Anno accademico
         seats: Posti disponibili
         interested_areas: Aree di interesse
+        sofia: SOFIA
+        pcto: PCTO
       event:
         name: Nome
         where: Dove si svolge
         start_date: Inizio
         duration: Durata (minuti)
         seats: Posti disponibili
+        sofia: SOFIA
+        pcto: PCTO
 
