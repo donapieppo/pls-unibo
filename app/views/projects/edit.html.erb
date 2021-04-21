@@ -8,7 +8,7 @@
     <%= render ContactsComponent.new(what: @project, can_add: policy(@project).edit?) %>
 
     <h2>Edizioni</h2>
-    <div class="my-2">
+    <div class="m-4">
       <% @project.editions.each do |edition| %>  
         <div class="my-1 p-2 border-2 rounded hover:bg-gray-100">
           <%= link_to [:edit, edition] do %> 

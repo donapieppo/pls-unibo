@@ -18,4 +18,8 @@ class ProjectPolicy < ApplicationPolicy
   def add_contact?
     true
   end
+
+  def remove_contact?
+    add_contact?
+  end
 end

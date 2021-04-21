@@ -11,6 +11,10 @@ class EditionPolicy < ApplicationPolicy
     true
   end
 
+  def destroy?
+    true
+  end
+
   def choose_contact?
     add_contact?
   end
@@ -20,10 +24,14 @@ class EditionPolicy < ApplicationPolicy
   end
 
   def add_speaker?
-    true
+    add_contact?
   end
 
-  def destroy?
-    true
+  def remove_contact?
+    add_contact?
+  end
+
+  def remove_speaker?
+    add_contact?
   end
 end

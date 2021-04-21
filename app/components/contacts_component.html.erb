@@ -1,11 +1,22 @@
-<div class="relative border-2 border-gray-300 my-4">
+<div class="relative border-2 border-gray-300 m-4">
   <label class="absolute -top-2 -left-2 p-2 bg-white border-2 border-gray-300 text-sm">
     <%= @label %>  
   </label>
   <div class="my-2 p-2 pt-8">
     <% @contacts.each do |contact| %>  
-      <div><%= contact %></div>
+      <div>
+        <%= contact %>
+        <span class="float-right">
+          <% url = [:remove_contact, @what, { contact_id: contact.id, as: @as }] %>
+          <%= link_to url, method: :delete, title: 'elimina', data: { confirm: 'Siete sicuri di voler cancellare?' } do %>
+            <i class="far fa-trash-alt"></i>
+          <% end %>
+        </span>
+      </div>
     <% end %>
   </div>
-  <%= link_to 'Nuovo contatto', @url, class: 'button my-2' %>
+  <div class="p-2">
+    <% url = [:choose_contact, @what, as: @as] %>
+    <%= link_to 'Nuovo contatto', url, class: 'button my-2' %>
+  </div>
 </div>

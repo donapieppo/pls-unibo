@@ -1,6 +1,6 @@
 class EditionsController < ApplicationController
   include ContactConcern
-  before_action :set_edition_and_check_permission, only: %i[ edit update destroy choose_contact add_contact add_speaker ]
+  before_action :set_edition_and_check_permission, only: %i[ edit update destroy choose_contact add_contact add_speaker remove_contact remove_speaker ]
 
   def index
     authorize :edition
@@ -51,6 +51,6 @@ class EditionsController < ApplicationController
   end
 
   def edition_params
-    params[:edition].permit(:name, :description, :academic_year, :audience_id, :seats)
+    params[:edition].permit(:name, :description, :academic_year, :audience_id, :seats, :sofia, :pcto)
   end
 end
