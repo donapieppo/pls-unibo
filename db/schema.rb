@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "audience_id", unsigned: true
     t.boolean "global"
     t.integer "duration", limit: 2, unsigned: true
+    t.boolean "sofia"
+    t.boolean "pcto"
   end
 
   create_table "activities_areas", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
