@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   include ContactConcern
-  before_action :set_event_and_check_permission, only: %i[ edit update destroy choose_contact add_contact add_speaker ]
+  include ResourceConcern
+  before_action :set_event_and_check_permission, only: %i[ edit update destroy choose_contact add_contact add_speaker choose_resource add_resource ]
 
   def index
     authorize :event

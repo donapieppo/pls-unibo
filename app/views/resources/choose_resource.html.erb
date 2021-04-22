@@ -1,0 +1,12 @@
+<h1 class="title">Scegli il contatto</h1>
+<div class="lg:w-1/2 mx-auto">
+  <%= form_tag @url do %>  
+    <% @resources.each do |resource| %>  
+      <input type="radio" name="resource_id" value="<%= resource.id %>">
+      <%= resource %>  
+      </input> <br/>
+    <% end %>
+    <%= submit_tag 'Aggiungi' %>  
+  <% end %>
+</div>
+

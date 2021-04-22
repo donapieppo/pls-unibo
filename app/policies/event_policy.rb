@@ -19,8 +19,20 @@ class EventPolicy < ApplicationPolicy
     true
   end
 
-  def add_speaker?
-    true
+  def remove_contact?
+    add_contact?
+  end
+
+  def choose_resource?
+    add_contact?
+  end
+
+  def add_resource?
+    add_contact?
+  end
+
+  def remove_resouorce?
+    add_contact?
   end
 
   def destroy?
