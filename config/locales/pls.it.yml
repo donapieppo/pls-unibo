@@ -5,6 +5,8 @@ it:
       activity: Attività
       edition: Edizione
       event: Evento
+      resource: Prodotto
+
     attributes:
       project:
         name: Nome
@@ -27,4 +29,8 @@ it:
         seats: Posti disponibili
         sofia: SOFIA
         pcto: PCTO
+      resource:
+        name: Nome
+        description: Descrizione
+        area: Area
 
