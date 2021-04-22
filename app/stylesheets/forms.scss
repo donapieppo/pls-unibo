@@ -14,13 +14,13 @@ form {
   textarea {
     @apply w-full text-sm px-3 py-2 text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow;
   }
-  input[type=checkbox] {
+  input[type=checkbox], input[type=radio] {
     @apply my-2 mr-2 text-sm text-gray-700;
   }
   select.select {
     @apply w-1/2 h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow;
   }
-  select.datetime {
+  select.datetime, select.date {
     @apply h-10 px-2 placeholder-gray-600 border rounded-lg appearance-none focus:shadow;
   }
   input[type="file"] {
@@ -29,5 +29,11 @@ form {
   input[type="submit"] {
     @apply bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-4 my-2 rounded;
   }
+  
+  .is-invalid {
+    @apply border-2 border-red-500;
+  }
+  .invalid-feedback {
+    @apply text-red-500 my-2 border-l-4 border-red-500 pl-2; 
+  }
 }
-

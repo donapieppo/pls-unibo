@@ -40,6 +40,13 @@ ActiveRecord::Schema.define(version: 0) do
     t.index ["contact_id"], name: "fk_act_cont_contact_id"
   end
 
+  create_table "activities_resources", id: false, charset: "utf8mb4", force: :cascade do |t|
+    t.integer "activity_id", unsigned: true
+    t.integer "resource_id", unsigned: true
+    t.index ["activity_id"], name: "fk_act_activity_id"
+    t.index ["resource_id"], name: "fk_act_resource_id"
+  end
+
   create_table "activities_speakers", id: false, charset: "utf8mb4", force: :cascade do |t|
     t.integer "activity_id", unsigned: true
     t.integer "contact_id", unsigned: true
@@ -86,6 +93,13 @@ ActiveRecord::Schema.define(version: 0) do
     t.index ["organization_id"], name: "fk_area_org_organization_id"
   end
 
+  create_table "areas_resources", id: false, charset: "utf8mb4", force: :cascade do |t|
+    t.integer "area_id", unsigned: true
+    t.integer "resource_id", unsigned: true
+    t.index ["area_id"], name: "fk_ar_area_id"
+    t.index ["resource_id"], name: "fk_ar_resource_id"
+  end
+
   create_table "audiences", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -125,6 +139,21 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "url"
   end
 
+  create_table "resource_items", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+    t.integer "resource_id", unsigned: true
+    t.string "name"
+    t.string "url"
+    t.boolean "video"
+    t.boolean "image"
+    t.index ["resource_id"], name: "fk_items_resource_id"
+  end
+
+  create_table "resources", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.boolean "global"
+  end
+
   create_table "users", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "surname"
@@ -137,6 +166,8 @@ ActiveRecord::Schema.define(version: 0) do
 
   add_foreign_key "activities_contacts", "activities", name: "fk_act_cont_activity_id"
   add_foreign_key "activities_contacts", "contacts", name: "fk_act_cont_contact_id"
+  add_foreign_key "activities_resources", "activities", name: "fk_act_activity_id"
+  add_foreign_key "activities_resources", "resources", name: "fk_act_resource_id"
   add_foreign_key "activities_speakers", "activities", name: "fk_act_spk_activity_id"
   add_foreign_key "activities_speakers", "contacts", name: "fk_act_spk_contact_id"
   add_foreign_key "areas", "contacts", column: "head_id", name: "fk_area_head"
@@ -144,4 +175,7 @@ ActiveRecord::Schema.define(version: 0) do
   add_foreign_key "areas_interests", "areas", name: "fk_area_int_area_id"
   add_foreign_key "areas_organizations", "areas", name: "fk_area_org_area_id"
   add_foreign_key "areas_organizations", "organizations", name: "fk_area_org_organization_id"
+  add_foreign_key "areas_resources", "areas", name: "fk_ar_area_id"
+  add_foreign_key "areas_resources", "resources", name: "fk_ar_resource_id"
+  add_foreign_key "resource_items", "resources", name: "fk_items_resource_id"
 end

@@ -1,0 +1,9 @@
+<h1>Resources</h1>
+
+<% @resources.each do |resource| %>  
+  <div>
+    <%= link_to resource.name, [:edit, resource] %>  
+  </div>
+<% end %>
+
+<%= link_to 'Aggiungi risorsa', new_resource_path, class: 'button' %>

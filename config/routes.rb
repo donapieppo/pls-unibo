@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :resources
   resources :organizations
   resources :areas
   
@@ -22,5 +23,11 @@ Rails.application.routes.draw do
   end
 
   resources :contacts
+
+  resources :resources do
+    resources :resource_items, only: [:new, :create, :update]
+  end
+  resources :resource_items, only: [:edit, :destroy]
+
   root "home#index"
 end
