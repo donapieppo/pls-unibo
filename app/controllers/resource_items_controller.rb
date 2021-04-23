@@ -52,6 +52,6 @@ class ResourceItemsController < ApplicationController
   end
 
   def resource_item_params
-    params[:resource_item].permit(:name, :url, :video, :image)
+    params[:resource_item].permit(:name, :url, :document)
   end
 end

@@ -4,7 +4,7 @@
   <ul>
     <% @contacts.each do |c| %>  
       <%= link_to [:edit, c] do %>  
-        <li class="p-2 hover:bg-gray-100">
+        <li class="px-2 hover:bg-gray-100">
           <%= c.name %> <span class="float-right text-sm pl-4"><%= c.email %></span> 
         </li>
       <% end %>

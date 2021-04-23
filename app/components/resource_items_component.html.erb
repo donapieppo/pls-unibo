@@ -1,5 +1,5 @@
 <div>
-  <% if @resource_item.video %>  
+  <% if @resource_item.video? %>  
     <div class="embed-responsive embed-responsive-16by9 my-3" style="width: 800px">
       <iframe class="embed-responsive-item" src="<%= @resource_item.embed_url %>" frameborder="0"></iframe>
     </div>

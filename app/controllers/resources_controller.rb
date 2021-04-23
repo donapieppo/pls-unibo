@@ -3,7 +3,7 @@ class ResourcesController < ApplicationController
 
   def index
     authorize :resource
-    @resources = Resource.all
+    @resources = Resource.includes(:resource_items).all
   end
 
   def show

@@ -18,3 +18,4 @@ end
 include IconHelper
 include ImageHelper
 include LinkHelper
+include ResourceHelper

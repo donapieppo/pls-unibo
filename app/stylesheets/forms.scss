@@ -2,7 +2,7 @@ form {
   label, span.hint {
     @apply text-sm font-medium text-gray-600 my-1;
   }
-  label.string, label.text, label.select, label.integer, legend {
+  label.string, label.text, label.select, label.integer, label.file, legend {
     @apply block;
   }
   input.string, input.numeric {

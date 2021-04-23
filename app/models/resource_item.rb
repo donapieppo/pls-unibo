@@ -1,8 +1,20 @@
 class ResourceItem < ApplicationRecord
   belongs_to :resource
+  has_one_attached :document
+
+  validates :name, presence: true, allow_blank: false
 
   def to_s
-    self.name
+    self.name.blank? ? ' - ' : self.name
+  end
+
+  def video?
+    self.url or return false
+    self.url.match("^https://vimeo.com") || self.url.match("^https://(www.)?youtu\.?be")
+  end
+
+  def image?
+    false
   end
 
   def embed_url
