@@ -12,6 +12,8 @@ module PlsUnibo
     #config.load_defaults 6.1
 
     config.time_zone = "Rome"
+    config.i18n.default_locale = :it
+
     config.hosts << "tester.dm.unibo.it"
 
     config.action_mailer.default_url_options = {protocol: 'https'}
