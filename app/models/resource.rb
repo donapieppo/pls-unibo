@@ -3,7 +3,7 @@ class Resource < ApplicationRecord
   has_and_belongs_to_many :activities
   has_many :resource_items
 
-  validates :name, uniqueness: true
+  validates :name, presence: true, allow_blank: false
 
   def to_s
     self.name
