@@ -23,7 +23,8 @@ it:
         pcto: PCTO
       event:
         name: Nome
-        where: Dove si svolge
+        description: Descrizione
+        place: Dove si svolge
         start_date: Inizio
         duration: Durata (minuti)
         seats: Posti disponibili
