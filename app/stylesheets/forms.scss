@@ -34,6 +34,6 @@ form {
     @apply border-2 border-red-500;
   }
   .invalid-feedback {
-    @apply text-red-500 my-2 border-l-4 border-red-500 pl-2; 
+    @apply text-sm text-red-500 my-2 pl-2; 
   }
 }

@@ -1,0 +1,8 @@
+<div class="border-r-4 border-blue-400 px-8 mx-8 my-4">
+  <%= link_to project do %>  
+    <%= project.name %><br/> 
+    <span class="text-sm">(<%= project.activity_type %> - <%= project.audience %>)</span>
+  <% end %>
+  <%= link_to(icon_pencil, [:edit, project]) if policy(project).edit? %>
+</div>
+
