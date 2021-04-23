@@ -12,3 +12,17 @@
   <%= @project.description %>  
 </div>
 
+<div class="mt-4">
+  <% @editions.each do |edition| %>  
+    <div class="lg:w-1/2 mx-auto p-4 ">
+      <div class="inline bg-yellow-100 border-2 border-yellow-400 p-4 text-xl rounded-full -mx-4">
+        <%= edition.name %> (<%= edition.academic_year %>)
+      </div>
+      <div class="text-gray-600 text-justify mt-8">
+        <%= edition.description %>  
+      </div>
+    </div>
+  <% end %>
+</div>
+
+

@@ -171,6 +171,7 @@ ActiveRecord::Schema.define(version: 2021_04_23_125453) do
     t.integer "resource_id", unsigned: true
     t.string "name"
     t.string "url"
+    t.text "credits"
     t.index ["resource_id"], name: "fk_items_resource_id"
   end
 

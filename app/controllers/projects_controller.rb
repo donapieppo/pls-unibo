@@ -8,6 +8,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @editions = @project.editions.order([:academic_year, :name]).all
   end
 
   def new
