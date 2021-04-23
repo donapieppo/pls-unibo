@@ -5,7 +5,7 @@
   <div class="my-2 p-2 pt-8">
     <% @resources.each do |resource| %>  
       <div>
-        <%= resource %>
+        <%= link_to resource, [:edit, resource] %>
       </div>
     <% end %>
   </div>
