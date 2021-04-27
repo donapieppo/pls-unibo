@@ -8,6 +8,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @editions = @project.editions.order([:academic_year, :name]).with_rich_text_details.all
   end
 
   def new
@@ -44,6 +45,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params[:project].permit(:name, :description, :audience_id, :parent_id, :global, interested_area_ids: [], area_ids: [])
+    params[:project].permit(:name, :description, :details, :audience_id, :parent_id, :global, interested_area_ids: [], area_ids: [])
   end
 end

@@ -34,4 +34,10 @@ it:
         name: Nome
         description: Descrizione
         area: Area
+      resource_item:
+        name: Nome
+        url: Indirizzo esterno
+        document: Allegato
+        credit: Credits
+
 
