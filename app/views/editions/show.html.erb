@@ -1,0 +1,17 @@
+<h1 class="title">
+  <%= @edition %>
+  <%= link_to_edit_if_editable @edition %>
+</h1>
+
+<h2>Eventi</h2>
+
+<% @events.each do |event| %>  
+  <div class="border-2">
+    <h2>
+      <%= event %>
+      <%= link_to_edit_if_editable event %>
+    </h2>
+    <div>
+      <%= event.description %>  
+    </div>
+  <% end %>
