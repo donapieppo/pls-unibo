@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
   <head>
     <%= render 'layouts/seo' %>  
     <title>PlsUnibo</title>
@@ -8,7 +8,6 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_pack_tag 'application' %>
-    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
@@ -18,5 +17,7 @@
       <%= render FlashMessagesComponent.new(flash: flash) %>
       <%= yield %>
     </div>
+
+    <%= javascript_pack_tag 'application' %>
   </body>
 </html>
