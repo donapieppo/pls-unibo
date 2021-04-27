@@ -1,10 +1,14 @@
 class EditionsController < ApplicationController
   include ContactConcern
-  before_action :set_edition_and_check_permission, only: %i[ edit update destroy choose_contact add_contact add_speaker remove_contact remove_speaker ]
+  before_action :set_edition_and_check_permission, only: %i[ show edit update destroy choose_contact add_contact add_speaker remove_contact remove_speaker ]
 
   def index
     authorize :edition
     @editions = Edition.includes(:events).order(:name)
+  end
+
+  def show
+    @events = @edition.events.order([:name]).with_rich_text_details.all
   end
 
   def new
@@ -51,6 +55,6 @@ class EditionsController < ApplicationController
   end
 
   def edition_params
-    params[:edition].permit(:name, :description, :academic_year, :audience_id, :seats, :sofia, :pcto)
+    params[:edition].permit(:name, :description, :details, :academic_year, :audience_id, :seats, :sofia, :pcto)
   end
 end
