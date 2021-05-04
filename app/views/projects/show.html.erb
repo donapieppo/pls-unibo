@@ -3,8 +3,7 @@
   <%= link_to_edit_if_editable @project %>
 </h1>
 
-
-<h2 class="text-lg text-right mx-8">
+<h2 class="lg:ml-auto m-4 p-4 lg:mr-4 lg:max-w-4xl bg-blue-100 text-gray-900 font-light text-lg text-right rounded-xl border-gray-900 border-4">
   <%= @project.activity_type %> - <%= @project.audience %><br/>
   Organizzato da 
   <% @project.areas.each do |area| %>  
@@ -12,29 +11,43 @@
   <% end %>
 </h2>
 
-<div class="ml-auto my-4 p-4 lg:mr-4 lg:max-w-6xl bg-blue-100 text-gray-900 font-light text-lg text-justify rounded-xl border-gray-900 border-4">
+
+<div class="text-right my-4 mx-8 text-lg">
   <%= simple_format @project.description %>  
 </div>
 <div class="text-right my-4 mx-8 text-gray-700">
   <%= @project.details %>  
 </div>
 
-<div class="mt-4 lg:w-1/2 mx-auto p-4">
-  <h2>Edizioni</h2>
+<h2 class="text-center text-4xl mx-auto my-8">Edizioni</h2>
+
+<div class="m-4 py-4">
   <% @editions.each do |edition| %>  
-    <div>
-      <div class="p-2 text-xl border-l-4">
-        <%= link_to edition do %>  
-          <%= edition.name %> (<%= edition.academic_year %>)
-          <%= link_to_edit_if_editable edition %>
-        <% end %>
-      </div>
-      <div class="text-gray-600 text-justify mt-8">
-        <%= simple_format edition.description %>  
-        <hr/>
-        <div class="italic">
-          <%= edition.details %>  
+    <div class="relative lg:w-2/3 mx-auto border-2 border-yellow-500 p-4 my-8">
+      <div>
+        <div class="relative -top-8 -left-8 border-2 rounded-xl bg-white w-2/3 p-4 text-xl border-yellow-400">
+          <%= link_to edition do %>  
+            <%= edition.name %> (<%= edition.academic_year %>)
+            <%= link_to_edit_if_editable edition %>
+          <% end %>
         </div>
+        <div class="mt-4">
+          <%= simple_format edition.description %>  
+          <div class="italic text-justify my-4 text-gray-600">
+            <%= edition.details %>  
+          </div>
+        </div>
+        <% events = edition.events.order(:date).all %>  
+        <% if events.any? %>  
+          <div>
+            <h3>Eventi</h3>
+            <% edition.events.each do |event| %>  
+              <div>
+                <%= event %>  
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>
