@@ -1,11 +1,31 @@
+<div id="modal-menu" style="display: none" onclick="toggle_menu();" class="ease-linear transition-all duration-500">
+  <div class="h-screen overflow-x-hidden fixed inset-0 z-50 outline-none focus:outline-none ease-linear transition-all duration-500">
+    <div class="h-screen relative float-left w-full lg:w-1/3 ">
+      <div class="h-screen flex flex-col items-center justify-center border-l-4 border-yellow-600 shadow-lg bg-white focus:outline-none py-4">
+        <div class="text-2xl text-center">
+          <%= link_to 'PLS', root_path %>
+        </div>
+        <div class="my-8 text-center">
+          <div><%= link_to 'home', root_path,         class: 'm-2 px-4 py-1'%></div>
+          <div><%= link_to 'attività', projects_path, class: 'm-2 px-4 py-1' %></div>  
+          <div><%= link_to 'contatti', contacts_path, class: 'm-2 px-4 py-1' %></div>
+          <div><%= link_to 'risorse', resources_path, class: 'm-2 px-4 py-1' %></div>  
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="opacity-30 fixed inset-0 z-40 bg-black"></div>
+</div>
+
 <div class="w-full flex text-center border-b-2 border-indigo-500">
   <div class="inline-block text-2xl font-light mx-4 my-2 px-4 py-2 text-blue-900 border-2 border-blue-900 font-bold tracking-widest rounded-2xl">
-    <%= link_to 'PLS', root_path %>
-  </div>
-  <div class="text-center w-full my-6">
-  <%= link_to 'home', root_path, class: 'border-2 rounded-xl px-4 py-1'%>  
-  <%= link_to 'attività', projects_path, class: 'border-2 rounded-xl px-4 py-1' %>  
-  <%= link_to 'contatti', contacts_path, class: 'border-2 rounded-xl px-4 py-1' %>  
-  <%= link_to 'risorse', resources_path, class: 'border-2 rounded-xl px-4 py-1' %>  
+    <a href="javascript:void(0);" id="modal-opener" onclick="toggle_menu();">PLS</a>
   </div>
 </div>
+
+<%= javascript_tag do %>  
+  function toggle_menu() {
+    var modal = document.getElementById("modal-menu");
+    modal.style.display = (modal.style.display == 'none') ? 'block' : 'none';
+  }
+<% end %>
