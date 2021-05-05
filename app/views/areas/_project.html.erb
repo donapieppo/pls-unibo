@@ -1,8 +1,7 @@
-<div class="border-r-4 border-blue-400 px-8 mx-8 my-4">
-  <%= link_to project do %>  
+<%= link_to project do %>  
+  <div class="border-r-4 border-blue-400 p-1 px-8 mx-8 my-2 hover:bg-blue-100">
     <%= project.name %><br/> 
     <span class="text-sm">(<%= project.activity_type %> - <%= project.audience %>)</span>
-  <% end %>
-  <%= link_to(icon_pencil, [:edit, project]) if policy(project).edit? %>
-</div>
+  </div>
+<% end %>
 
