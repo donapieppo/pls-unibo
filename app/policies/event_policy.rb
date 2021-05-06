@@ -11,10 +11,6 @@ class EventPolicy < ApplicationPolicy
     true
   end
 
-  def choose_contact?
-    add_contact?
-  end
-
   def add_contact?
     true
   end
@@ -31,7 +27,7 @@ class EventPolicy < ApplicationPolicy
     add_contact?
   end
 
-  def remove_resouorce?
+  def remove_resource?
     add_contact?
   end
 

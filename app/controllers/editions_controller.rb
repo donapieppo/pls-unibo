@@ -1,6 +1,6 @@
 class EditionsController < ApplicationController
   include ContactConcern
-  before_action :set_edition_and_check_permission, only: %i[ show edit update destroy choose_contact add_contact add_speaker remove_contact remove_speaker ]
+  before_action :set_edition_and_check_permission, only: %i[ show edit update destroy add_contact add_speaker remove_contact remove_speaker ]
 
   def index
     authorize :edition
@@ -23,7 +23,7 @@ class EditionsController < ApplicationController
     @edition = @project.editions.new(edition_params)
     authorize @edition
     if @edition.save
-      redirect_to [:edit, @project], notice: 'OK'
+      redirect_to [:edit, @edition], notice: 'OK'
     else
       render action: :new
     end

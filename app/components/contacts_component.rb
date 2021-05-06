@@ -13,6 +13,8 @@ class ContactsComponent < ViewComponent::Base
       @label = 'CONTATTI'
       @contacts = @what.contacts
     end
+
+    @form_id = "form_#{@what.id}_#{@as}"
   end
 end
 

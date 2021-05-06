@@ -40,4 +40,19 @@ it:
         document: Allegato
         credit: Credits
 
+  time:
+    am: am
+    formats:
+      default: "%d %b %H:%M"
+      complete: "%a %d %b %Y, %H:%M:%S %z"
+      long: "%d %B %Y %H:%M"
+      short: "%d %b %H:%M"
+      day: "%A %d %B"
+      hour: "%H:%M"
+  date:
+    formats:
+      date_picker: ! "%d-%m-%Y"
+      datetime_html5: ! "%d-%m-%y"
+      date_html5: ! "%d-%m-%Y"
+      date_it: ! "%d-%m-%Y"
 

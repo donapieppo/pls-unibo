@@ -23,11 +23,11 @@
             <%= link_to_delete event %>
           </span>
           <div class="float-right">
-            <%= link_to 'duplica', new_event_path(from: event.id) %>
+            <%= link_to clone_icon, new_event_path(from: event.id) %>
           </div>
         </div>
       <% end %>
     </div>
-    <%= link_to 'Nuova Evento', new_edition_event_path(@edition), class: 'button' %>  
+    <%= link_to 'Nuovo Evento', new_edition_event_path(@edition), class: 'button' %>  
   </div>
 </div>

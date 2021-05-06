@@ -1,15 +1,22 @@
 <h1 class="title">Contatti</h1>
 
 <div class="w-3/4 lg:w-1/2 mx-auto">
-  <ul>
+  <div>
     <% @contacts.each do |c| %>  
       <%= link_to [:edit, c] do %>  
-        <li class="px-2 hover:bg-gray-100">
-          <%= c.name %> <span class="float-right text-sm pl-4"><%= c.email %></span> 
-        </li>
+        <div class="px-2 hover:bg-gray-100">
+          <%= c.name %> 
+          <div class="float-right text-sm pl-4">
+            <% if c.deletable? %>
+              <%= link_to_delete c %>
+            <% end %>
+            <%= mail_to c.email, mail_icon %>
+            <%= link_to link_icon, c.web_page %>
+          </div> 
+        </div>
       <% end %>
     <% end %>
-  </ul>
+  </div>
 
   <div class="my-4">
     <%= link_to 'Aggiungi nuovo contatto', new_contact_path, class: 'button' %>  

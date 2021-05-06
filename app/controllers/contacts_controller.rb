@@ -32,6 +32,11 @@ class ContactsController < ApplicationController
     end
   end
 
+  def destroy
+    @contact.destroy
+    redirect_to contacts_path
+  end
+
   private
 
   def set_activity_and_check_permission
