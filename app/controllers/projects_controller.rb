@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @editions = @project.editions.order([:academic_year, :name]).with_rich_text_details.all
+    @editions = @project.editions.order('academic_year desc, name').with_rich_text_details.all
   end
 
   def new
@@ -27,6 +27,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    @editions = @project.editions.order('academic_year desc')
   end
 
   def update

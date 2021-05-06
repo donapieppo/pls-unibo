@@ -5,12 +5,14 @@
 
 <h2 class="lg:ml-auto m-4 p-4 lg:mr-4 lg:max-w-4xl bg-blue-100 text-gray-900 font-light text-lg text-right rounded-xl border-gray-900 border-4">
   <%= @project.activity_type %> - <%= @project.audience %><br/>
-  Organizzato da 
-  <% @project.areas.each do |area| %>  
-    <%= link_to area, area %>  
-  <% end %>
+  <div class="text-sm">
+    Organizzato da 
+    <% @project.areas.each do |area| %>  
+      <%= link_to area, area %>  
+    <% end %> <br/>
+    Contatti: <%= @project.contacts.map(&:name).join(', ') %>  
+  </div>
 </h2>
-
 
 <div class="text-right my-4 mx-8 text-lg">
   <%= simple_format @project.description %>  
@@ -23,32 +25,6 @@
 
 <div class="m-4 py-4">
   <% @editions.each do |edition| %>  
-    <div class="relative lg:w-2/3 mx-auto border-2 border-yellow-500 p-4 my-8">
-      <div>
-        <div class="relative -top-8 -left-8 border-2 rounded-xl bg-white w-2/3 p-4 text-xl border-yellow-400">
-          <%= link_to [:edit, edition] do %>  
-            <%= edition.name %> (<%= edition.academic_year %>)
-          <% end %>
-        </div>
-        <div class="mt-4">
-          <%= simple_format edition.description %>  
-          <div class="italic text-justify my-4 text-gray-600">
-            <%= edition.details %>  
-          </div>
-        </div>
-        <% events = edition.events.order(:date).all %>  
-        <% if events.any? %>  
-          <div>
-            <h3>Eventi</h3>
-            <% edition.events.each do |event| %>  
-              <div class="my-4">
-                <span class="date-tag bg-blue-500 text-white rounded text-sm font-bold p-1 px-4"><%= l event.start_date %></span>
-                <%= event.name %>  
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-    </div>
+    <%= render(EditionComponent.new(edition: edition)) %>
   <% end %>
 </div>
