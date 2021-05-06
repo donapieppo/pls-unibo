@@ -30,10 +30,10 @@ Rails.application.routes.draw do
 
   resources :contacts
 
-  resources :resources do
-    resources :resource_items, only: [:new, :create, :update]
+  resources :resource_contaiers do
+    resources :resources, only: [:new, :create, :update]
   end
-  resources :resource_items, only: [:edit, :destroy]
+  resources :resourcess, only: [:edit, :destroy]
 
   root "home#index"
 end
