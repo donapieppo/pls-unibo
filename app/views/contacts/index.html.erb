@@ -6,12 +6,12 @@
       <%= link_to [:edit, c] do %>  
         <div class="px-2 hover:bg-gray-100">
           <%= c.name %> 
-          <div class="float-right text-sm pl-4">
+          <div class="float-right pl-4">
             <% if c.deletable? %>
               <%= link_to_delete c %>
             <% end %>
-            <%= mail_to c.email, mail_icon %>
-            <%= link_to link_icon, c.web_page %>
+            <%= mail_to(c.email, mail_icon) unless c.email.blank? %>
+            <%= link_to(link_icon, c.web_page) unless c.web_page.blank? %>
           </div> 
         </div>
       <% end %>
