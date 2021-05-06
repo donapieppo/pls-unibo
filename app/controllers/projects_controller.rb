@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   include ContactConcern
-  before_action :set_project_and_check_permission, only: %i[ show edit update destroy choose_contact add_contact remove_contact ]
+  before_action :set_project_and_check_permission, only: %i[ show edit update destroy add_contact remove_contact ]
 
   def index
     authorize :project
