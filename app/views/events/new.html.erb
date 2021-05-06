@@ -1,4 +1,7 @@
-<h1 class="title"><%= @edition %></h1>
+<h1 class="title">
+  <%= @edition %>
+  <%= link_to edit_icon, [:edit, @edition] %>
+</h1>
 
 <%= render 'form' %>
 

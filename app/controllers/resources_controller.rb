@@ -3,22 +3,21 @@ class ResourcesController < ApplicationController
 
   def index
     authorize :resource
-    @resources = Resource.includes(:resource_items).all
+    @resources = Resource.all
   end
 
   def show
   end
 
   def new
-    @resource = Resource.new
     authorize :resource
-  end
-
-  def edit
+    @resource = Resource.find(params[:resource_id])
+    @resource = @resource.resource.new
   end
 
   def create
-    @resource = Resource.new(resource_params)
+    @resource = Resource.find(params[:resource_id])
+    @resource = @resource.resource_items.new(resource_params)
     authorize @resource
     if @resource.save
       redirect_to [:edit, @resource], notice: "Resource was successfully created." 
@@ -27,7 +26,12 @@ class ResourcesController < ApplicationController
     end
   end
 
+  def edit
+    @resource = @resource.resource
+  end
+
   def update
+    @resource = @resource.resource
     if @resource.update(resource_params)
       redirect_to [:edit, @resource], notice: "Resource was successfully updated."
     else
@@ -37,19 +41,16 @@ class ResourcesController < ApplicationController
 
   def destroy
     @resource.destroy
-    respond_to do |format|
-      format.html { redirect_to resources_url, notice: "Resource was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to resources_url, notice: "Resource was successfully destroyed." 
   end
 
   private
   def set_resource_and_check_permission
-    @resource = Resource.find(params[:id])
+    @resource= Resource.find(params[:id])
     authorize @resource
   end
 
   def resource_params
-    params[:resource].permit(:name, :description, area_ids: [])
+    params[:resource].permit(:name, :url, :document)
   end
 end

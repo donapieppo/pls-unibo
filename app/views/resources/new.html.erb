@@ -1,4 +1,6 @@
-<h1>New Resource</h1>
+<h1 class="title">
+  Nuova robba <br/>
+  <span class="text-sm">per <%= link_to @resource, [:edit, @resource] %></span>
+</h1>
 
-<%= render 'form', resource: @resource %>
-
+<%= render 'form', resource_item: @resource_item %>

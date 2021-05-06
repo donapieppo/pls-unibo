@@ -55,3 +55,12 @@ h2 {
 }
 
 @import 'forms';
+
+.menu-items {
+  @apply my-8 text-center;
+  div {
+    @apply border-b-4 py-2 mt-2 text-lg hover:bg-blue-500 hover:text-white;
+    border-color: rgb(153, 230, 51);
+    color: #0033b3;
+  }
+}

@@ -37,3 +37,11 @@ form {
     @apply text-sm text-red-500 my-2 pl-2; 
   }
 }
+
+.pls-card {
+  @apply border-2 border-gray-400 shadow-lg p-2 rounded-lg relative my-2;
+  .pls-card-title {
+    @apply block bg-blue-200 text-blue-900 rounded border-2 border-gray-400 absolute -top-1 -left-1 p-1 px-4;
+  }
+}
+
