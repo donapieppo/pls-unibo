@@ -14,9 +14,27 @@
         </span>
       </div>
     <% end %>
-  </div>
-  <div class="p-2">
-    <% url = [:choose_contact, @what, as: @as] %>
-    <%= link_to 'Nuovo contatto', url, class: 'button my-2' %>
+
+    <hr class="my-2"/>
+
+    <%= simple_form_for [:add_contact, @what], method: :post, html: { id: @form_id } do |f| %>  
+      <input type="hidden" name="as" value="<%= @as %>"></input>
+      <label>Cerca nome/cognome</label><br/>
+      <input name="contact_id" class="border-4 rounded my-2" list="<%= @form_id %>_contacts" />
+      <datalist id="<%= @form_id %>_contacts" style="background-color: #ccc;">
+        <% Contact.find_each do |c| %>  
+          <option data-value="<%= c.id %>" value="<%= c.name %>"/>
+        <% end %>
+      </datalist>
+      <input type="submit" value="aggiungi"/>
+    <% end %>
   </div>
 </div>
+
+<%= javascript_tag do %>  
+  document.getElementById("<%= @form_id %>").addEventListener("submit", () => {
+    var shownVal = document.querySelector("#<%= @form_id %> input[name=\"contact_id\"]").value;
+    var value2send = document.querySelector("#<%= @form_id %> option[value='"+shownVal+"']").dataset.value;
+    document.querySelector("#<%= @form_id %> input[name=\"contact_id\"]").value = value2send;
+  });
+<% end %>
