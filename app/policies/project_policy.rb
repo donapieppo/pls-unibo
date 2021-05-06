@@ -15,10 +15,6 @@ class ProjectPolicy < ApplicationPolicy
     true
   end
 
-  def choose_contact?
-    add_contact?
-  end
-
   def add_contact?
     true
   end
