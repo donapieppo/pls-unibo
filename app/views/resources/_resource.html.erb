@@ -1,0 +1,17 @@
+<div>
+  <div class="font-bold">
+    <%= resource %>
+    <%= link_to_edit_if_editable resource %>  
+    <%= link_to_delete([:remove_resource, what, { resource_id: resource.id }]) if defined? what %>  
+  </div>
+  <% if resource.video? %>  
+    <div class="embed-responsive embed-responsive-16by9 my-3" style="width: 800px">
+      <iframe class="embed-responsive-item" src="<%= resource.embed_url %>" frameborder="0"></iframe>
+    </div>
+  <% elsif resource.document && resource.document.previewable? %>  
+    <%= image_tag resource.document.preview(resize_to_limit: [250, 250]) %>  
+  <% elsif resource.document.image? %>
+    <%= image_tag(resource.document.variant(resize_to_limit: [250, 250])) %>
+  <% end %>  
+</div>
+

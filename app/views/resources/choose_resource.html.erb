@@ -1,0 +1,12 @@
+<h1 class="title">Scegli la risorsa</h1>
+
+<div class="mx-auto">
+  <% @resources.each do |resource| %>  
+    <%= link_to [:add_resource, @what, {resource_id: resource.id}], method: :post do %>  
+      <div class="">
+        <%= render resource %>  
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
