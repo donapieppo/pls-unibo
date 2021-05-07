@@ -1,15 +1,7 @@
-<h1 class="title">Risorse</h1>
+<h1 class="title">Robbe</h1>
 
-<% @resources.each do |resource| %>  
-  <div class="border-2 p-2 px-4 m-2">
-    <%= link_to resource.name, [:edit, resource] %> 
-    <% resource.resource_items.each do |item| %>  
-      <div class="ml-4 text-gray-600">
-        <%= resource_item_icon(item) %>  
-        <%= link_to item.name, [:edit, item] %>
-      </div>
-    <% end %>
-  </div>
-<% end %>
-
-<%= link_to 'Aggiungi risorsa', new_resource_path, class: 'button' %>
+<ul>
+  <% @resources.each do |resource| %>  
+    <li><%= link_to resource, resource %> </li>
+  <% end %>
+</ul>

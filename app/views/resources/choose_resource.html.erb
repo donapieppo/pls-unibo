@@ -1,12 +1,12 @@
-<h1 class="title">Scegli il contatto</h1>
-<div class="lg:w-1/2 mx-auto">
-  <%= form_tag @url do %>  
-    <% @resources.each do |resource| %>  
-      <input type="radio" name="resource_id" value="<%= resource.id %>">
-      <%= resource %>  
-      </input> <br/>
+<h1 class="title">Scegli la risorsa</h1>
+
+<div class="mx-auto">
+  <% @resources.each do |resource| %>  
+    <%= link_to [:add_resource, @what, {resource_id: resource.id}], method: :post do %>  
+      <div class="">
+        <%= render resource %>  
+      </div>
     <% end %>
-    <%= submit_tag 'Aggiungi' %>  
   <% end %>
 </div>
 

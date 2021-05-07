@@ -3,7 +3,6 @@ module ResourceConcern
 
   def choose_resource
     @what = @project || @edition || @event
-    @url = [:add_resource, @what]
     @resources = Resource.where.not(id: @what.resource_ids).order(:name)
     render 'resources/choose_resource'
   end

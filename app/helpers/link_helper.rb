@@ -1,7 +1,7 @@
 module LinkHelper
   def link_to_edit_if_editable(what)
     if policy(what).edit?
-      link_to icon_pencil, [:edit, what]
+      link_to(edit_icon, [:edit, what])
     end
   end
 

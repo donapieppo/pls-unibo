@@ -1,17 +1,12 @@
-<div class="relative border-2 border-gray-300 m-4">
-  <label class="absolute -top-2 -left-2 p-2 bg-white border-2 border-gray-300 text-sm">
-    RISORSE  
-  </label>
-  <div class="my-2 p-2 pt-8">
+<div class="pls-card">
+  <div class="pls-card-title">
+    RISORSE
+  </div>
+  <div class="pls-card-content">
     <% @resources.each do |resource| %>  
-      <div>
-        <%= link_to resource, [:edit, resource] %>
-      </div>
+      <%= render resource, what: @what %>  
     <% end %>
   </div>
-  <div class="p-2">
-    <% url = [:choose_resource, @what] %>
-    <%= link_to 'Associa risorsa', url, class: 'button my-2' %>
-  </div>
+  <%= link_to 'aggiungi risorsa', [:choose_resource, @what], class: 'button' %>  
+  <%= link_to 'crea nuova risorsa', [:new, @what, :resource], class: 'button' %>  
 </div>
-

@@ -1,34 +1,3 @@
-<p id="notice"><%= notice %></p>
+<h1 class="title"><%= @event %></h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
-
-<p>
-  <strong>When:</strong>
-  <%= @event.when %>
-</p>
-
-<p>
-  <strong>Where:</strong>
-  <%= @event.where %>
-</p>
-
-<p>
-  <strong>Url:</strong>
-  <%= @event.url %>
-</p>
-
-<p>
-  <strong>Map url:</strong>
-  <%= @event.map_url %>
-</p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>

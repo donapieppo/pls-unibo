@@ -55,3 +55,23 @@ h2 {
 }
 
 @import 'forms';
+
+.menu-items {
+  @apply my-8 text-center;
+  div {
+    @apply border-b-4 py-2 mt-2 text-lg hover:bg-blue-500 hover:text-white;
+    border-color: rgb(153, 230, 51);
+    color: #0033b3;
+  }
+}
+
+.pls-card {
+  @apply border-2 border-gray-400 shadow-lg p-2 rounded-lg relative my-2;
+  .pls-card-title {
+    @apply block bg-blue-200 text-blue-900 rounded border-2 border-gray-400 absolute -top-1 -left-1 p-1 px-4;
+  }
+  .pls-card-content {
+    @apply mt-8;
+  }
+}
+

@@ -1,4 +1,4 @@
-class ResourceItemPolicy < ApplicationPolicy
+class ResourceContainerPolicy < ApplicationPolicy
   def index?
     true
   end
