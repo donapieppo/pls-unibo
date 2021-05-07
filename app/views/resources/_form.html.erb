@@ -1,17 +1,17 @@
 <div class="mx-4">
-  <%= simple_form_for [@resource, @resource_item] do |f| %>
+  <%= simple_form_for [@what, @resource] do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
     <%= f.input :name %>  
     <%= f.input :url %>  
 
-    <% if @resource_item.document.attached? %>
-      <%= link_to url_for(@resource_item.document) do %>  
-        <% if @resource_item.document.previewable? %>  
-          <%= image_tag @resource_item.document.preview(resize_to_limit: [250, 250]) %>  
-        <% elsif @resource_item.document.image? %>
-          <%= link_to image_tag(@resource_item.document.variant(resize_to_limit: [250, 250])), url_for(@resource_item.document) %>
+    <% if @resource.document.attached? %>
+      <%= link_to url_for(@resource.document) do %>  
+        <% if @resource.document.previewable? %>  
+          <%= image_tag @resource.document.preview(resize_to_limit: [250, 250]) %>  
+        <% elsif @resource.document.image? %>
+          <%= link_to image_tag(@resource.document.variant(resize_to_limit: [250, 250])), url_for(@resource.document) %>
         <% else %>  
           <div class="button">Download</div>
         <% end %>

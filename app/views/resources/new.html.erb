@@ -1,6 +1,10 @@
-<h1 class="title">
-  Nuova robba <br/>
-  <span class="text-sm">per <%= link_to @resource, [:edit, @resource] %></span>
-</h1>
-
-<%= render 'form', resource_item: @resource_item %>
+<div class="lg:w-1/2 m-auto">
+  <div class="pls-card">
+    <label class="pls-card-title">
+      Nuova risorsa
+    </label>
+    <div class="pls-card-content">
+      <%= render 'form', resource: @resource %>
+    </div>
+  </div>
+</div>

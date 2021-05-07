@@ -1,6 +1,11 @@
 <h1 class="title">
-  <%= @resource_item %><br/>
-  <span class="text-sm">per <%= link_to @resource, [:edit, @resource] %></span>
+  <%= @resource %><br/>
 </h1>
 
-<%= render 'form', resource_item: @resource_item %>
+<%= render 'form', resource: @resource %>
+
+<h2>A cosa è attaccata?</h2>
+
+<% @resource.activities.each do |activity| %>  
+  <%= link_to activity.name, activity %>  
+<% end %>

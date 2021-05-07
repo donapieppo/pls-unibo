@@ -1,8 +1,4 @@
-class EventPolicy < ApplicationPolicy
-  def index?
-    true
-  end
-
+class EventPolicy < ActivityPolicy
   def create?
     true
   end

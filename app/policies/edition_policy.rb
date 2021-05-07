@@ -1,12 +1,4 @@
-class EditionPolicy < ApplicationPolicy
-  def index?
-    true
-  end
-
-  def show?
-    true
-  end
-
+class EditionPolicy < ActivityPolicy
   def create?
     true
   end

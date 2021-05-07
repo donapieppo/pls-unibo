@@ -1,4 +1,5 @@
 class ResourcesController < ApplicationController
+  before_action :set_what, only: %i[ new create ]
   before_action :set_resource_and_check_permission, only: %i[ show edit update destroy ]
 
   def index
@@ -11,27 +12,25 @@ class ResourcesController < ApplicationController
 
   def new
     authorize :resource
-    @resource = Resource.find(params[:resource_id])
-    @resource = @resource.resource.new
+    @resource = @what.resources.new
   end
 
   def create
-    @resource = Resource.find(params[:resource_id])
-    @resource = @resource.resource_items.new(resource_params)
+    @resource = @what.resources.new(resource_params)
     authorize @resource
     if @resource.save
-      redirect_to [:edit, @resource], notice: "Resource was successfully created." 
+      @what.resources << @resource
+      redirect_to [:edit, @what], notice: "Resource was successfully created." 
     else
       render :new, status: :unprocessable_entity 
     end
   end
 
   def edit
-    @resource = @resource.resource
   end
 
   def update
-    @resource = @resource.resource
+    @resource = @resource
     if @resource.update(resource_params)
       redirect_to [:edit, @resource], notice: "Resource was successfully updated."
     else
@@ -50,7 +49,11 @@ class ResourcesController < ApplicationController
     authorize @resource
   end
 
+  def set_what
+    @what = Activity.find(params[:event_id] || params[:edition_id] || params[:project_id])
+  end
+
   def resource_params
-    params[:resource].permit(:name, :url, :document)
+    params[:resource].permit(:name, :url, :document, :credits)
   end
 end

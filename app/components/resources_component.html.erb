@@ -1,18 +1,12 @@
 <div class="pls-card">
   <div class="pls-card-title">
-    Risorse
+    RISORSE
   </div>
-  <div class="my-4">
+  <div class="pls-card-content">
     <% @resources.each do |resource| %>  
-      <div>
-        <% if resource.video? %>  
-          <div class="embed-responsive embed-responsive-16by9 my-3" style="width: 800px">
-            <iframe class="embed-responsive-item" src="<%= resource.embed_url %>" frameborder="0"></iframe>
-          </div>
-        <% end %>
-        <%= link_to resource, [:edit, resource] %>  
-      </div>
+      <%= render resource, what: @what %>  
     <% end %>
   </div>
   <%= link_to 'aggiungi risorsa', [:choose_resource, @what], class: 'button' %>  
+  <%= link_to 'crea nuova risorsa', [:new, @what, :resource], class: 'button' %>  
 </div>

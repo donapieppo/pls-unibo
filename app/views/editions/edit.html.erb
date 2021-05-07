@@ -10,6 +10,7 @@
   <div class="lg:w-1/3">
     <%= render ContactsComponent.new(what: @edition, can_add: policy(@edition).edit?) %>
     <%= render ContactsComponent.new(what: @edition, as: :speaker, can_add: policy(@edition).edit?) %>
+    <%= render ResourcesComponent.new(what: @edition) %>
 
     <h2 class="text-xl">Eventi</h2>
     <div class="my-2">

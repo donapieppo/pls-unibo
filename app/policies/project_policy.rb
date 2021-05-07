@@ -1,12 +1,4 @@
-class ProjectPolicy < ApplicationPolicy
-  def index?
-    true
-  end
-
-  def show?
-    true
-  end
-
+class ProjectPolicy < ActivityPolicy
   def create?
     true
   end

@@ -19,11 +19,11 @@
   <% end %>
 
   <h2 class="title">Risorse</h2>
-  <% @area.resources.order(:name).each do |resource| %>  
-    <h3><%= resource.name %></h3>
-    <% resource.resource_items.each do |ri| %>  
+  <% @area.resource_containers.order(:name).each do |resource_container| %>  
+    <h3><%= resource_container.name %></h3>
+    <% resource_container.resources.each do |ri| %>  
       <div>
-        <%= render ResourceItemsComponent.new(ri) %>
+        <%= render ResourceComponent.new(ri) %>
       </div>
     <% end %>
   <% end %>
