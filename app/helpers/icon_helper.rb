@@ -23,6 +23,10 @@ module IconHelper
     '<i class="far fa-clone"></i>'.html_safe
   end
 
+  def plus_icon
+    '<i class="far fa-plus-square"></i>'.html_safe
+  end
+
   def link_icon
     '<i class="fas fa-external-link-alt"></i>'.html_safe
   end
