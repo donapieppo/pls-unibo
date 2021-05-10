@@ -1,12 +1,15 @@
 <h1 class="title">Scegli la risorsa</h1>
 
-<div class="mx-auto">
+<div class="mx-auto lg:flex lg:flex-wrap">
   <% @resources.each do |resource| %>  
-    <%= link_to [:add_resource, @what, {resource_id: resource.id}], method: :post do %>  
-      <div class="">
+    <div class="lg:w-1/3 xl:w-1/6 border-2 p-4">
+      <div class="text-4xl">
+        <%= link_to plus_icon, [:add_resource, @what, {resource_id: resource.id}], method: :post %>  
+      </div>
+      <div class="text-center">
         <%= render resource %>  
       </div>
-    <% end %>
+    </div>
   <% end %>
 </div>
 
