@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :resources
   resources :organizations
   resources :areas
+  resources :bookings
   
   resources :projects do
     resources :editions

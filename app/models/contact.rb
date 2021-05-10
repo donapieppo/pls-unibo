@@ -9,7 +9,7 @@ class Contact < ApplicationRecord
   has_and_belongs_to_many :editions
   has_and_belongs_to_many :events
 
-  validates :name, :email, uniqueness: true
+  validates :name, :email, uniqueness: { allow_blank: true }
 
   def records 
     self.contacts_records.map(&:record)
