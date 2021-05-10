@@ -18,4 +18,8 @@ class ResourceContainerPolicy < ApplicationPolicy
   def choose_resource?
     add_resource?
   end
+
+  def remove_resource?
+    add_resource?
+  end
 end
