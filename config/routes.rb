@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :editions do
     resources :events
 
-    resources :resources, only: [:new, :create]
+    resources :resources, only: [:index, :new, :create]
     get  :choose_resource, on: :member
     post :add_resource, on: :member
     delete :remove_resource, on: :member
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   end
 
   resources :events do
-    resources :resources, only: [:new, :create]
+    resources :resources, only: [:index, :new, :create]
     get  :choose_resource, on: :member
     post :add_resource, on: :member
     delete :remove_resource, on: :member
@@ -34,8 +34,11 @@ Rails.application.routes.draw do
 
   resources :contacts
 
-  resources :resource_contaiers do
-    resources :resources, only: [:new, :create, :update]
+  resources :resource_containers do
+    resources :resources, only: [:index, :new, :create]
+    get  :choose_resource, on: :member
+    post :add_resource, on: :member
+    delete :remove_resource, on: :member
   end
   resources :resourcess, only: [:edit, :destroy]
 
