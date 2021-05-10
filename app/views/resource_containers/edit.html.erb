@@ -1,6 +1,6 @@
 <h1 class="title">
-  <%= @resource %> <br/>
-  <span class="text-sm">in <%= @resource.areas_to_s %></span>
+  <%= @resource_container %> <br/>
+  <span class="text-sm">in <%= @resource_container.areas_to_s %></span>
 </h1>
 
 <div class="lg:flex">
@@ -9,15 +9,11 @@
   </div>
 
   <div class="lg:w-1/3">
-    <h2>stuffs</h2>
+    <h2>Risorse</h2>
     <div class="my-2">
-      <% @resource.resource_items.each do |ri| %>  
-        <div>
-          <%= render ResourceItemsComponent.new(ri) %>
-        </div>
-      <% end %>
+      <%= render ResourcesComponent.new(what: @resource_container) %>
     </div>
-    <%= link_to 'Aggiungi robba', new_resource_resource_item_path(@resource), class: 'button' %>  
+    <%= link_to 'Aggiungi robba', new_resource_container_resource_path(@resource_container), class: 'button' %>  
   </div>
 </div>
 </div>

@@ -50,7 +50,11 @@ class ResourcesController < ApplicationController
   end
 
   def set_what
-    @what = Activity.find(params[:event_id] || params[:edition_id] || params[:project_id])
+    if params[:resource_container_id]
+      @what = ResourceContainer.find(params[:resource_container_id])
+    else
+      @what = Activity.find(params[:event_id] || params[:edition_id] || params[:project_id])
+    end
   end
 
   def resource_params

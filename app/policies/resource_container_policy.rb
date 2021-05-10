@@ -10,4 +10,12 @@ class ResourceContainerPolicy < ApplicationPolicy
   def update?
     true
   end
+
+  def add_resource?
+    true
+  end
+
+  def choose_resource?
+    add_resource?
+  end
 end

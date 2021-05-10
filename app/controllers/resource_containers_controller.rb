@@ -1,55 +1,53 @@
 class ResourceContainersController < ApplicationController
-  before_action :set_resource_and_check_permission, only: %i[ show edit update destroy ]
+  include ResourceConcern
+  before_action :set_resource_container_and_check_permission, only: %i[ show edit update destroy choose_resource add_resource remove_resource ]
 
   def index
-    authorize :resource
-    @resources = Resource.includes(:resource_items).all
+    authorize :resource_container
+    @resource_containers = ResourceContainer.includes(:resources).all
   end
 
   def show
   end
 
   def new
-    @resource = Resource.new
-    authorize :resource
+    @resource_container = ResourceContainer.new
+    authorize :resource_container
   end
 
   def edit
   end
 
   def create
-    @resource = Resource.new(resource_params)
-    authorize @resource
-    if @resource.save
-      redirect_to [:edit, @resource], notice: "Resource was successfully created." 
+    @resource_container = ResourceContainer.new(resource_container_params)
+    authorize @resource_container
+    if @resource_container.save
+      redirect_to [:edit, @resource_container], notice: "Resource was successfully created." 
     else
       render :new, status: :unprocessable_entity 
     end
   end
 
   def update
-    if @resource.update(resource_params)
-      redirect_to [:edit, @resource], notice: "Resource was successfully updated."
+    if @resource_container.update(resource_container_params)
+      redirect_to [:edit, @resource_container], notice: "Resource was successfully updated."
     else
       render :edit, status: :unprocessable_entity 
     end
   end
 
   def destroy
-    @resource.destroy
-    respond_to do |format|
-      format.html { redirect_to resources_url, notice: "Resource was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    @resource_container.destroy
+    redirect_to resource_containers_url, notice: "Resource was successfully destroyed." 
   end
 
   private
-  def set_resource_and_check_permission
-    @resource = Resource.find(params[:id])
-    authorize @resource
+  def set_resource_container_and_check_permission
+    @resource_container = ResourceContainer.find(params[:id])
+    authorize @resource_container
   end
 
-  def resource_params
-    params[:resource].permit(:name, :description, area_ids: [])
+  def resource_container_params
+    params[:resource_container].permit(:name, :description, area_ids: [])
   end
 end

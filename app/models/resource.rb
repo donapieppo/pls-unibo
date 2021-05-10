@@ -1,5 +1,6 @@
 class Resource < ApplicationRecord
   has_and_belongs_to_many :activities
+  has_and_belongs_to_many :resource_containers
   has_one_attached :document
 
   validates :name, presence: true, allow_blank: false
