@@ -6,8 +6,8 @@ module.exports = {
       colors: {
         pls: {
           light: '#00ffff',
-          DEFAULT: '#0033b3',
-          strong: '#99e633',
+          DEFAULT: '#99e633',
+          strong: '#0033b3',
         }
       }
     }
