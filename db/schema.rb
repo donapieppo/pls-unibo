@@ -138,9 +138,11 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.text "description"
   end
 
-  create_table "bookings", id: false, charset: "utf8mb4", force: :cascade do |t|
+  create_table "bookings", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
     t.integer "activity_id", unsigned: true
     t.integer "user_id", unsigned: true
+    t.datetime "created_at"
+    t.boolean "confirmed"
     t.index ["activity_id"], name: "fk_book_activity"
     t.index ["user_id"], name: "fk_book_user"
   end
@@ -181,6 +183,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
   end
 
   create_table "users", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+    t.boolean "staff"
     t.string "name"
     t.string "surname"
     t.string "email"

@@ -1,7 +1,10 @@
 <h1 class="title">
-  <%= @event %> <br/>
-  <span class="text-sm">in <%= link_to @event.edition.name, [:edit, @event.edition], class: 'button' %></span>
+  <%= @event %> 
 </h1>
+
+<div class="text-center">
+  in <%= link_to @event.edition.name, [:edit, @event.edition], class: 'button' %>
+</div>
 
 <div class="lg:flex">
   <div class="lg:w-2/3">
@@ -11,10 +14,6 @@
     <%= render ContactsComponent.new(what: @event, can_add: policy(@event).edit?) %>
     <%= render ContactsComponent.new(what: @event, as: :speaker) %>
     <%= render ResourcesComponent.new(what: @event) %>
-
-    <div class="back">
-      <%= link_to 'indietro', [:edit, @event.edition], class: 'button' %>  
-    </div>
   </div>
 </div>
 </div>

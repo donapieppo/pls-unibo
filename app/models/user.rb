@@ -24,4 +24,8 @@ class User < ApplicationRecord
       (name[0] + surname[0])
     end
   end
+
+  def staff?
+    self.staff
+  end
 end
