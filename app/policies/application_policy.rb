@@ -7,15 +7,15 @@ class ApplicationPolicy
   end
 
   def index?
-    false
+    true
   end
 
   def show?
-    false
+    true
   end
 
   def create?
-    false
+    @user && @user.staff?
   end
 
   def new?
@@ -23,7 +23,7 @@ class ApplicationPolicy
   end
 
   def update?
-    false
+    @user && @user.staff?
   end
 
   def edit?
@@ -31,6 +31,26 @@ class ApplicationPolicy
   end
 
   def destroy?
-    false
+    @user && @user.staff?
+  end
+
+  def add_contact?
+    @user && @user.staff?
+  end
+
+  def remove_contact?
+    add_contact?
+  end
+
+  def add_resource?
+    @user && @user.staff?
+  end
+
+  def choose_resource?
+    add_resource?
+  end
+
+  def remove_resource?
+    add_resource?
   end
 end

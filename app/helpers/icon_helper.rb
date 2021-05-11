@@ -34,4 +34,8 @@ module IconHelper
   def mail_icon
     '<i class="far fa-envelope"></i>'.html_safe
   end
+
+  def booking_icon
+    '<i class="fas fa-user-clock"></i>'.html_safe
+  end
 end

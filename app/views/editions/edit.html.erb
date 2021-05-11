@@ -1,7 +1,10 @@
 <h1 class="title">
-  <%= @edition.name %> <br/>
-  <span class="text-sm">in <%= link_to @edition.project.name, [:edit, @edition.project], class: 'button' %></span>
+  <%= @edition.name %>
 </h1>
+
+<div class="text-center">
+  in <%= link_to @edition.project.name, [:edit, @edition.project], class: 'button' %>
+</div>
 
 <div class="lg:flex">
   <div class="lg:w-2/3">

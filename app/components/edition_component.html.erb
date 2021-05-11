@@ -1,5 +1,7 @@
 <div class="relative bg-pls border-t-8 border-pls py-16">
-  <div class="bg-pls text-2xl lg:text-4xl absolute -top-10 ml-8 text-white p-4 px-8 rounded-xl tracking-wider"><%= @edition.academic_year %></div>
+  <div class="bg-pls text-2xl lg:text-4xl font-bold absolute -top-10 ml-8 text-white p-4 px-8 rounded-xl tracking-wider">
+    <%= @edition.academic_year %>
+  </div>
   <h3 class="text-xl lg:text-4xl mx-4 lg:max-w-6xl lg:mx-auto"> 
     <%= @edition.name %> 
     <%= link_to(edit_icon, [:edit, @edition], class: 'float-right') if @can_edit %>  
@@ -19,11 +21,25 @@
       <div>
         <h3>Eventi</h3>
         <% @events.each do |event| %>  
-          <div class="my-4">
-            <span class="date-tag bg-blue-500 text-white rounded text-sm font-bold p-1 px-4"><%= l event.start_date %></span>
-            <%= event.name %> <br/>
-            <%= event.speakers.map(&:name).join(', ') %>  
-            <%= link_to edit_icon, [:edit, event] %>  
+          <div class="my-4 flex px-2">
+            <div class="w-32 pr-4 text-center">
+              <div class="bg-blue-500 text-white rounded-2xl text-sm font-bold py-2 px-4">
+                <%= l event.start_date %>
+              </div>
+            </div>
+            <div class="w-full">
+              <div class="text-lg">
+                <%= event.name.upcase %> 
+              </div>
+              <div class="text-sm text-justify mt-4">
+                <%= event.description %>  
+              </div>
+              Relatori: <%= event.speakers.map(&:name).join(', ') %><br/>
+              <% if helpers.policy(event).book? %>  
+                <%= link_to booking_icon, new_event_booking_path(event) %>  
+              <% end %>
+              <%= link_to edit_icon, [:edit, event], class: "float-right" %>  
+            </div>
           </div>
         <% end %>
       </div>
