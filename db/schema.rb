@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.integer "academic_year", limit: 2, unsigned: true
     t.string "place"
     t.datetime "start_date"
+    t.datetime "deadline"
     t.integer "seats", limit: 2, unsigned: true
     t.integer "parent_id", unsigned: true
     t.integer "audience_id", unsigned: true
@@ -111,12 +112,6 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.integer "contact_id", null: false, unsigned: true
   end
 
-  create_table "areas_editions", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
-    t.integer "area_id", null: false, unsigned: true
-    t.integer "edition_id", null: false, unsigned: true
-    t.column "role", "enum('organizer','interest')"
-  end
-
   create_table "areas_interests", id: false, charset: "utf8mb4", force: :cascade do |t|
     t.integer "area_id", unsigned: true
     t.integer "activity_id", unsigned: true
@@ -143,32 +138,19 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.text "description"
   end
 
+  create_table "bookings", id: false, charset: "utf8mb4", force: :cascade do |t|
+    t.integer "activity_id", unsigned: true
+    t.integer "user_id", unsigned: true
+    t.index ["activity_id"], name: "fk_book_activity"
+    t.index ["user_id"], name: "fk_book_user"
+  end
+
   create_table "contacts", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
     t.integer "user_id", unsigned: true
     t.string "name"
     t.text "description"
     t.string "email"
     t.string "web_page"
-  end
-
-  create_table "editions", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
-    t.integer "activity_id", unsigned: true
-    t.string "name"
-    t.text "description"
-    t.integer "academic_year", limit: 2, unsigned: true
-    t.integer "audience_id", unsigned: true
-    t.integer "seats"
-  end
-
-  create_table "events", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
-    t.integer "edition_id", unsigned: true
-    t.string "name"
-    t.text "description"
-    t.integer "audience_id", unsigned: true
-    t.string "where"
-    t.datetime "start_date"
-    t.integer "duration"
-    t.integer "seats"
   end
 
   create_table "organizations", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
@@ -192,10 +174,10 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
   end
 
   create_table "resources", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
-    t.integer "resource_id", unsigned: true
     t.string "name"
     t.string "url"
     t.text "credits"
+    t.timestamp "created_at", default: -> { "current_timestamp()" }, null: false
   end
 
   create_table "users", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
@@ -223,6 +205,8 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
   add_foreign_key "areas_organizations", "organizations", name: "fk_area_org_organization_id"
   add_foreign_key "areas_resource_containers", "areas", name: "fk_ar_area_id"
   add_foreign_key "areas_resource_containers", "resource_containers", name: "fk_ar_resource_id"
+  add_foreign_key "bookings", "activities", name: "fk_book_activity"
+  add_foreign_key "bookings", "users", name: "fk_book_user"
   add_foreign_key "resource_containers_resources", "resource_containers", name: "fk_res_res_c_id"
   add_foreign_key "resource_containers_resources", "resources", name: "fk_res_res_id"
 end

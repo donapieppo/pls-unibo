@@ -26,11 +26,18 @@
       PLS
     </a>
   </div>
+  <div class="">
+    <% if current_user %>  
+      <span class="rounded-full border-2 border-blue-400 text-blue-400 float-right font-bold py-1 px-4">
+        <%= current_user.initials %>
+      </span>
+    <% end %>
+  </div>
 </div>
 
 <%= javascript_tag do %>  
   function toggle_menu() {
-    var modal = document.getElementById("modal-menu");
-    modal.style.display = (modal.style.display == 'none') ? 'block' : 'none';
+  var modal = document.getElementById("modal-menu");
+  modal.style.display = (modal.style.display == 'none') ? 'block' : 'none';
   }
 <% end %>
