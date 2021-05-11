@@ -17,16 +17,16 @@
   <div class="opacity-30 fixed inset-0 z-40 bg-black"></div>
 </div>
 
-<div class="w-full flex flex-row text-center border-b-2 border-indigo-500">
-  <div class="text-4xl mx-4 my-2 px-4 py-2 text-blue-900">
+<div class="w-full h-full flex flex-row items-center justify-center border-b-2 border-indigo-500 py-2">
+  <div class="text-4xl ml-4 px-4 py-2 text-blue-900">
     <a href="javascript:void(0);" id="modal-opener" onclick="toggle_menu();"><i class="fas fa-bars"></i></a>
   </div>
-  <div class="flex-grow mx-4 my-2 px-4 py-2">
-    <a href="/" class="margin-auto text-2xl mx-4 my-2 px-4 py-2 font-light text-blue-900 border-2 border-blue-900 font-bold tracking-widest rounded-2xl">
+  <div class="flex-grow px-4 text-center">
+    <a href="/" class="margin-auto text-xl lg:text-2xl px-4 py-2 font-light text-blue-900 border-2 border-blue-900 font-bold tracking-widest rounded-2xl">
       PLS
     </a>
   </div>
-  <div class="">
+  <div class="mx-4">
     <% if current_user %>  
       <span class="rounded-full border-2 border-blue-400 text-blue-400 float-right font-bold py-1 px-4">
         <%= current_user.initials %>
