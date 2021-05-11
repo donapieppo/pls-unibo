@@ -64,12 +64,12 @@ h2 {
 }
 
 .pls-card {
-  @apply border-2 border-pls-strong shadow-lg p-2 rounded-lg relative m-2;
+  @apply border-2 border-pls-strong shadow-lg p-2 rounded-lg relative;
   .pls-card-title {
     @apply block bg-pls-light font-bold rounded border-2 border-pls-strong absolute -top-2 -left-2 p-1 px-4;
   }
   .pls-card-content {
-    @apply mt-8;
+    @apply mt-8 mb-4;
   }
 }
 
