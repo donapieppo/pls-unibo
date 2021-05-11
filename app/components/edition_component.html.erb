@@ -1,11 +1,11 @@
-<div class="relative bg-pls-light border-t-8 border-pls py-16">
+<div class="relative bg-pls border-t-8 border-pls py-16">
+  <div class="bg-pls text-2xl lg:text-4xl absolute -top-10 ml-8 text-white p-4 px-8 rounded-xl tracking-wider"><%= @edition.academic_year %></div>
   <h3 class="text-xl lg:text-4xl mx-4 lg:max-w-6xl lg:mx-auto"> 
-    <span class="text-4xl bg-pls text-white rounded-2xl p-4 px-8"><%= @edition.academic_year %></span>
     <%= @edition.name %> 
-    <%= link_to(edit_icon, [:edit, @edition]) if @can_edit %>  
+    <%= link_to(edit_icon, [:edit, @edition], class: 'float-right') if @can_edit %>  
   </h3>
 
-  <div class="max-w-6xl m-auto my-16">
+  <div class="px-2 max-w-6xl m-auto my-16">
     <div class="mt-4">
       Contatti: <%= @edition.contacts.map(&:name).join(', ') %> <br/> 
       Relatori: <%= @edition.speakers.map(&:name).join(', ') %>  

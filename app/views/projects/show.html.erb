@@ -28,10 +28,8 @@
   <%= @project.details %>  
 </div>
 
-<h2 class="title">Edizioni</h2>
-
-<div class="py-4">
-  <% @editions.each do |edition| %>  
+<% @editions.each do |edition| %>  
+  <div class="py-8 bg-white">
     <%= render(EditionComponent.new(edition: edition, can_edit: policy(edition).edit?)) %>
-  <% end %>
-</div>
+  </div>
+<% end %>
