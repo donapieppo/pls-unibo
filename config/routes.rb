@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :organizations
   resources :areas
   resources :bookings
+  resources :users do
+    get :myedit, on: :collection
+  end
   
   resources :projects do
     resources :editions
@@ -44,5 +47,7 @@ Rails.application.routes.draw do
   end
   resources :resourcess, only: [:edit, :destroy]
 
+  get "/presentazione", to: "home#presentazione", as: "presentation"
+  get "/contatti", to: "home#contacts", as: "contacts_page"
   root "home#index"
 end
