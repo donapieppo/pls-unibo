@@ -1,7 +1,11 @@
-<h1 class="title">Iscrizione</h1>
+<div class="m-auto max-w-2xl px-2">
+  <h1 class="title">Iscrizione</h1>
 
-Ti vuoi iscrivere a 
+  <p class="my-8">Puoi registrarti a</p>
 
-<%= @activity %>  
+  <%= render @activity %>  
 
-<%= link_to 'ISCRIVITI', [@activity, :bookings], method: :post, class: 'button' %>  
+  <div class="my-8">
+    <%= link_to 'ISCRIVITI', [@activity, :bookings], method: :post, class: 'button' %>  
+  </div>
+</div>

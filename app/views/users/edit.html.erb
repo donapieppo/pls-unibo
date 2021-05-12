@@ -15,7 +15,11 @@
   <div class="lg:w-1/2 p-2 ">
     <h2 class="my-8">Le tue prenotazioni</h2>
     <% @user.bookings.each do |b| %>  
-      <div><%= link_to b.activity, b.activity.is_a?(Event) ? b.activity.edition : b.activity %></div>
+      <div>
+        <%= link_to b.activity.is_a?(Event) ? b.activity.edition : b.activity do %>
+          <%= render b.activity.is_a?(Event) ? b.activity.edition : b.activity %>  
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>
