@@ -1,0 +1,98 @@
+class LoginsController < ApplicationController
+  #skip_before_action :verify_authenticity_token, only: :developer  
+  skip_before_action :force_sso_user, raise: false
+
+  def index
+    skip_authorization
+    @no_container = true
+    # render layout: nil
+  end
+
+  # env['omniauth.auth'].info = {email, name, last_name}
+  def google_oauth2
+    skip_authorization
+    parse_google_omniauth
+    user = User.where(email: @email).first
+    if ! user
+      logger.info "Authentication: User #{@email} to be CREATED"
+      session[:tmp_email]   = @email
+      session[:tmp_name]    = @name
+      session[:tmp_surname] = @surname
+      redirect_to reconciliation_form_path
+    else
+      logger.info "Authentication: allow_and_create found user #{user.inspect}"
+      sign_in_and_redirect user, root_path
+    end
+  end
+
+  def developer
+    skip_authorization
+    parse_developer_omniauth
+    check_developer!
+    user = User.where(email: @email).first
+    if ! user
+      logger.info "Developer Authentication: User #{@email} to be RCREATED"
+      session[:tmp_email]   = @email
+      session[:tmp_name]    = @name
+      session[:tmp_surname] = @surname
+      redirect_to reconciliation_form_path
+    else
+      logger.info "Developer Authentication: allow_and_create found user #{user.inspect}"
+      sign_in_and_redirect user, root_path
+    end
+  end
+
+  def check_developer!
+    # Socket.gethostname == 'tester' or Socket.gethostname == 'casa' or raise "NOT IN TRUFFAUT"
+    Rails.env.development? or raise "NOT IN DEVELOPMENT"
+    request.remote_ip == '137.204.134.32' or 
+      request.remote_ip == '127.0.0.1' or 
+      request.remote_ip =~ /^192\.\d+\.\d+\.\d+/ or request.remote_ip == '::1' or request.remote_ip =~ /^172\.\d+\.\d+\.\d+/ or raise "ONLY LOCAL OF DOCKER. YOU ARE #{request.remote_ip}"
+  end
+
+  def logout
+    skip_authorization
+    session[:user_id] = nil
+    reset_session
+    # logger.info("after logout we redirect to params[:return] = #{params[:return]}")
+    # redirect_to (params[:return] || 'https://www.muriditalia.it')
+    redirect_to root_path, notice: "Uscito correttamente."
+  end
+
+  private 
+
+  # omniauth.auth: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=... token="..."> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="..." aud="..." azp="..." email="donapieppo@gmail.com" email_verified=true exp=1472639186 iat=1472635586 iss="accounts.google.com" sub="..."> id_token="..." raw_info=#<OmniAuth::AuthHash email="donapieppo@gmail.com" email_verified="true" family_name="Dona" gender="male" given_name="Pieppo" kind="plus#personOpenIdConnect" locale="it" name="Pieppo Dona" picture="..." profile="..." sub="...">> info=#<OmniAuth::AuthHash::InfoHash email="donapieppo@gmail.com" first_name="Pieppo" image="https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg" last_name="Dona" name="Pieppo Dona" urls=#<OmniAuth::AuthHash Google="https://plus.google.com/104065190780467868357">> provider="google_oauth2" uid="104065190780467868357">
+  def parse_google_omniauth
+    # logger.info("omniauth.auth: #{request.env['omniauth.auth'].inspect}")
+    oinfo  = request.env['omniauth.auth'].info
+    @email = oinfo.email
+    @name  = oinfo.firstname
+    @surname = oinfo.last_name
+  end
+
+  def parse_developer_omniauth
+    oinfo  = request.env['omniauth.auth'].info
+    @email = oinfo.name
+    @name  = "Pippo"
+    @surname = "Pluto"
+  end
+
+  def sign_in_and_redirect(user, url)
+    user.update(last_login: Time.now)
+    session[:user_id] = user.id
+    # redirect_to session[:original_request] || root_path
+    redirect_to url
+  end
+
+  def allow_if_email
+    user = @idAnagraficaUnica ? User.where(id: @idAnagraficaUnica).first : User.where(email: @email).first
+    if user
+      logger.info "Authentication: allow_if_email as #{user.inspect} with groups #{session[:isMemberOf].inspect}"
+      user.update_attributes(name: @name, surname: @surname)
+      sign_in_and_redirect user
+    else
+      logger.info "User #{@email} not allowed"
+      redirect_to no_access_path
+    end
+  end
+end
