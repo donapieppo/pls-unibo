@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'auth/google_oauth2',          as: 'google_login'
+  get 'auth/google_oauth2/callback', to: 'logins#google_oauth2'
+  get 'auth/developer',              as: 'developer_login'
+  post 'auth/developer/callback',    to: 'logins#developer'
+  get 'login',                       to: 'logins#index',  as: :login
+  get 'logins/logout',               to: 'logins#logout', as: :logout
+
   resources :resources
   resources :organizations
   resources :areas
