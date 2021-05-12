@@ -49,5 +49,6 @@ Rails.application.routes.draw do
 
   get "/presentazione", to: "home#presentazione", as: "presentation"
   get "/contatti", to: "home#contacts", as: "contacts_page"
+  get "/privacy", to: "home#privacy", as: "privacy"
   root "home#index"
 end
