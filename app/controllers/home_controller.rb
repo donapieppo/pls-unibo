@@ -11,4 +11,7 @@ class HomeController < ApplicationController
 
   def presentazione
   end
+
+  def privacy
+  end
 end
