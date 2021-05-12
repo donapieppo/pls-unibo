@@ -14,6 +14,10 @@ gem 'pundit'
 
 gem "view_component", require: "view_component/engine"
 
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection"
+gem 'pretender'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
