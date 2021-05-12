@@ -18,29 +18,19 @@
     </div>
 
     <% if @events.any? %>  
-      <div>
-        <h3>Eventi</h3>
+      <div class="my-4">
+        <h3 class="text-2xl">Eventi</h3>
         <% @events.each do |event| %>  
-          <div class="my-4 flex px-2">
-            <div class="w-32 pr-4 text-center">
-              <div class="bg-blue-500 text-white rounded-2xl text-sm font-bold py-2 px-4">
-                <%= l event.start_date %>
-              </div>
-            </div>
-            <div class="w-full">
-              <div class="text-lg">
-                <%= event.name.upcase %> 
-              </div>
-              <div class="text-sm text-justify mt-4">
-                <%= event.description %>  
-              </div>
-              Relatori: <%= event.speakers.map(&:name).join(', ') %><br/>
-              <% if helpers.policy(event).book? %>  
-                <%= link_to booking_icon, new_event_booking_path(event) %>  
-              <% end %>
-              <%= link_to edit_icon, [:edit, event], class: "float-right" %>  
-            </div>
-          </div>
+          <%= render 'events/event_item', event: event %>  
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if @resources.any? %>  
+      <div class="my-4">
+        <h3 class="text-2xl">Risorse</h3>
+        <% @resources.each do |resource| %>
+          <%= render resource %>  
         <% end %>
       </div>
     <% end %>
