@@ -190,6 +190,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.string "contact_email"
     t.text "description"
     t.string "telephone"
+    t.datetime "last_login"
     t.datetime "updated_at"
   end
 
