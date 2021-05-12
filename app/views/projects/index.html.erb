@@ -27,7 +27,7 @@
             <% activity.editions.each do |edition| %>  
               <div>
                 <%= link_to edition, [:edit, edition] %> 
-                <span class="text-sm">(<%= edition.academic_year %>)</span>
+                <span class="text-sm">(<%= edition.academic_year_to_s %>)</span>
                 <div class="">
                   <% edition.events.order(:start_date).each do |event| %>  
                     <%= link_to [:edit, event] do  %>  

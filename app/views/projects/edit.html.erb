@@ -14,7 +14,7 @@
           <div class="my-1 p-2 hover:bg-gray-100">
             <%= link_to [:edit, edition] do %> 
               <span class="bg-blue-100 rounded-xl p-2 mr-2">
-                <%= edition.academic_year %>
+                <%= edition.academic_year_to_s %>
               </span>
               <%= edition.name %> 
             <% end %>
