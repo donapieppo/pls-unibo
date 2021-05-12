@@ -50,4 +50,4 @@ test:
 #
 production:
   <<: *default
-  database: pls_unibo_production
+  database: pls

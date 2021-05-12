@@ -14,4 +14,8 @@ class Edition < Activity
   def to_s
     self.name
   end
+
+  def academic_year_to_s
+    "a.a. #{self.academic_year}/#{self.academic_year + 1}"
+  end
 end
