@@ -1,6 +1,5 @@
 <div class="py-6">
   <div class="mx-auto max-w-lg text-center border-4 border-eden-500 shadow-lg bg-gray-50 shadow-md py-4">
-    <h1 class="title">Accedi</h1>
     <%= image_pack_tag 'Logo_PLS_s.png', style: "width: 200px; margin: auto" %>
 
     <div class="my-4">
@@ -14,7 +13,7 @@
 
     <div class="text-center">
       <%= form_tag(google_login_url, method: 'post') do %>
-        <input type="submit" />
+        <input type="submit" value="Accedi" />
       <% end %>
     </div>
 
