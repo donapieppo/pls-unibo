@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.integer "duration", limit: 2, unsigned: true
     t.boolean "sofia"
     t.boolean "pcto"
+    t.boolean "bookable"
+    t.boolean "atomic"
   end
 
   create_table "activities_areas", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|

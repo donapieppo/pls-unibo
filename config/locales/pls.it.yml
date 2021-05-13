@@ -21,6 +21,8 @@ it:
         interested_areas: Aree di interesse
         sofia: SOFIA
         pcto: PCTO
+        atomic: eventi non separabili
+        bookable: con iscrizioni
       event:
         name: Nome
         description: Descrizione
@@ -30,6 +32,7 @@ it:
         seats: Posti disponibili
         sofia: SOFIA
         pcto: PCTO
+        bookable: con iscrizioni
       resource:
         name: Nome
         description: Descrizione
