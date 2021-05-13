@@ -33,6 +33,6 @@
 
 <% @editions.each do |edition| %>  
   <div class="py-8 bg-white">
-    <%= render(EditionComponent.new(edition: edition, can_edit: policy(edition).edit?)) %>
+    <%= render EditionComponent.new(edition: edition) %>
   </div>
 <% end %>
