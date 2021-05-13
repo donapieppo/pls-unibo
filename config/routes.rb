@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :editions do
     resources :events
 
+    resources :bookings, only: [:index, :new, :create]
     resources :resources, only: [:index, :new, :create]
     get  :choose_resource, on: :member
     post :add_resource, on: :member
@@ -34,8 +35,8 @@ Rails.application.routes.draw do
   end
 
   resources :events do
-    resources :resources, only: [:index, :new, :create]
     resources :bookings, only: [:index, :new, :create]
+    resources :resources, only: [:index, :new, :create]
     get  :choose_resource, on: :member
     post :add_resource, on: :member
     delete :remove_resource, on: :member

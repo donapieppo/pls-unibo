@@ -5,16 +5,17 @@
   <h3 class="text-xl lg:text-4xl mx-4 lg:max-w-6xl lg:mx-auto"> 
     <%= @edition.name %> 
     <%= link_to(edit_icon, [:edit, @edition], class: 'float-right') if helpers.policy(@edition).edit? %>  
+    <%= link_to(booking_icon, [:new, @edition, :booking], class: 'float-right') if helpers.policy(@edition).book? %>  
   </h3>
 
   <div class="px-2 max-w-6xl m-auto my-16">
     <div class="mt-4">
       Contatti: <%= @edition.contacts.map(&:name).join(', ') %> <br/> 
       Relatori: <%= @edition.speakers.map(&:name).join(', ') %>  
-    <%= simple_format @edition.description %>  
-    <div class="italic text-justify my-4 text-gray-600">
-      <%= @edition.details %>  
-    </div>
+      <%= simple_format @edition.description %>  
+      <div class="italic text-justify my-4 text-gray-600">
+        <%= @edition.details %>  
+      </div>
     </div>
 
     <% if @events.any? %>  

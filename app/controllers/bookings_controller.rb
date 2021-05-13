@@ -17,7 +17,7 @@ class BookingsController < ApplicationController
   private
 
   def set_activity_and_check_permission
-    @activity_id = params[:event_id] or params[:edition_id]
+    @activity_id = params[:event_id] || params[:edition_id]
     @activity = Activity.find(@activity_id)
     skip_authorization
   end
