@@ -4,7 +4,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    @user && (@user == @record)
+    @user && ((@user == @record) || @user.staff?)
   end
 
   def myedit?
