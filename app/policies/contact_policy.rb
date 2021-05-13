@@ -1,5 +1,5 @@
 class ContactPolicy < ApplicationPolicy
   def index?
-    false
+    @user && @user.staff?
   end
 end

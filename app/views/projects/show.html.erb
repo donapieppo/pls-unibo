@@ -12,11 +12,24 @@
   </h1>
 
   <div class="text-right">
-    Organizzato da 
-    <% @project.areas.each do |area| %>  
-      <%= link_to area, area %>  
-    <% end %> <br/>
-    Contatti: <%= @project.contacts.map(&:name).join(', ') %>  
+    <div>
+      Organizzato da 
+      <% @project.areas.each do |area| %>  
+        <%= link_to area, area %>  
+      <% end %> 
+    </div>
+    <div>
+      Contatti: 
+      <% @project.contacts.each do |c| %>
+        <%= mail_to c.email, c.name %>
+      <% end %>
+    </div>
+    <div>
+      Aree di interesse:
+      <% @project.interested_areas.each do |a| %>
+        <%= link_to a.name, a, class: 'border px-2 py-1' %>  
+      <% end %>
+    </div>
   </div>
   <div class="text-right">
     <%= link_to_edit_if_editable @project %>
