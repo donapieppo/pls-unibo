@@ -4,7 +4,7 @@
   </div>
   <h3 class="text-xl lg:text-4xl mx-4 lg:max-w-6xl lg:mx-auto"> 
     <%= @edition.name %> 
-    <%= link_to(edit_icon, [:edit, @edition], class: 'float-right') if @can_edit %>  
+    <%= link_to(edit_icon, [:edit, @edition], class: 'float-right') if helpers.policy(@edition).edit? %>  
   </h3>
 
   <div class="px-2 max-w-6xl m-auto my-16">
