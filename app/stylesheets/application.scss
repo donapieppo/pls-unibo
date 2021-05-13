@@ -49,7 +49,7 @@ body {
 }
 
 .title {
-  @apply block m-auto text-3xl sm:text-5xl lg:text-6xl leading-none font-bold text-gray-900 tracking-tight mt-8 mb-8 text-center;
+  @apply block m-auto text-3xl sm:text-5xl lg:text-6xl leading-none font-bold text-pls tracking-tight mt-8 mb-8 text-center;
 }
 
 h1 {
@@ -67,7 +67,7 @@ h3 {
 .menu-items {
   @apply my-8 text-center;
   div.menu-items-item {
-    @apply uppercase text-pls border border-b-4 border-pls-light p-2 px-4 mt-2 font-bold hover:bg-pls-light hover:text-black;
+    @apply uppercase text-pls border border-b-2 border-pls p-2 px-4 mt-2 font-bold hover:bg-pls hover:text-white;
   }
 }
 

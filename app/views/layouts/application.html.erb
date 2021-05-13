@@ -2,22 +2,23 @@
 <html lang="it" >
   <head>
     <%= render 'layouts/seo' %>  
-    <title>PlsUnibo</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+  <title>PlsUnibo</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application' %>
+  <%= stylesheet_pack_tag 'application' %>
   </head>
 
   <body>
-    <%= render partial: 'layouts/menu' %>  
-
     <div class="w-100 h-screen">
+      <%= render partial: 'layouts/menu' %>  
+
       <%= render FlashMessagesComponent.new(flash: flash) %>
       <%= yield %>
-    </div>
 
+      <%= render partial: 'layouts/footer' %>  
+    </div>
     <%= javascript_pack_tag 'application' %>
   </body>
 </html>
