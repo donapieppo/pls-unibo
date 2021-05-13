@@ -15,10 +15,8 @@ class LoginsController < ApplicationController
     user = User.where(email: @email).first
     if ! user
       logger.info "Authentication: User #{@email} to be CREATED"
-      session[:tmp_email]   = @email
-      session[:tmp_name]    = @name
-      session[:tmp_surname] = @surname
-      redirect_to reconciliation_form_path
+      user = create_logged_user
+      sign_in_and_redirect user, myedit_users_path
     else
       logger.info "Authentication: allow_and_create found user #{user.inspect}"
       sign_in_and_redirect user, root_path
@@ -31,11 +29,9 @@ class LoginsController < ApplicationController
     check_developer!
     user = User.where(email: @email).first
     if ! user
-      logger.info "Developer Authentication: User #{@email} to be RCREATED"
-      session[:tmp_email]   = @email
-      session[:tmp_name]    = @name
-      session[:tmp_surname] = @surname
-      redirect_to reconciliation_form_path
+      logger.info "Developer Authentication: User #{@email} to be CREATED"
+      user = create_logged_user
+      sign_in_and_redirect user, myedit_users_path
     else
       logger.info "Developer Authentication: allow_and_create found user #{user.inspect}"
       sign_in_and_redirect user, root_path
@@ -94,5 +90,9 @@ class LoginsController < ApplicationController
       logger.info "User #{@email} not allowed"
       redirect_to no_access_path
     end
+  end
+
+  def create_logged_user
+    User.create(name: @name, surname: @surname, email: @email)
   end
 end
