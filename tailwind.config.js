@@ -5,9 +5,9 @@ module.exports = {
     extend: {
       colors: {
         pls: {
-          light: '#00ffff',
-          DEFAULT: '#99e633',
-          strong: '#0033b3',
+          light: '#CFF09E',
+          DEFAULT: '#0B486B',
+          strong: '#3B8686  ',
         }
       }
     }
