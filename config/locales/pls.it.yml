@@ -22,7 +22,7 @@ it:
         sofia: SOFIA
         pcto: PCTO
         atomic: eventi non separabili
-        bookable: con iscrizioni
+        bookable: possibile iscriversi
       event:
         name: Nome
         description: Descrizione
@@ -32,7 +32,7 @@ it:
         seats: Posti disponibili
         sofia: SOFIA
         pcto: PCTO
-        bookable: con iscrizioni
+        bookable: possibile iscriversi
       resource:
         name: Nome
         description: Descrizione
