@@ -1,6 +1,6 @@
 class EventPolicy < ActivityPolicy
   def book?
-    true
+    @user
   end
 end
 

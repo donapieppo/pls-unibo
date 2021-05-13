@@ -1,5 +1,5 @@
 class BookingPolicy < ApplicationPolicy
   def create?
-    true
+    @user
   end
 end
