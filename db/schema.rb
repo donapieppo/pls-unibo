@@ -57,7 +57,6 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.integer "academic_year", limit: 2, unsigned: true
     t.string "place"
     t.datetime "start_date"
-    t.datetime "deadline"
     t.integer "seats", limit: 2, unsigned: true
     t.integer "parent_id", unsigned: true
     t.integer "audience_id", unsigned: true
@@ -66,6 +65,8 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.boolean "sofia"
     t.boolean "pcto"
     t.boolean "bookable"
+    t.datetime "booking_end"
+    t.datetime "booking_start"
     t.boolean "atomic"
   end
 
