@@ -1,6 +1,16 @@
+<h2 class="text-center">
+  <%= @event.edition %>  
+  <%= link_to_edit_if_editable(@event) %>  
+</h2>
 <h1 class="title">
   <%= @event %>
 </h1>
+
+<div class="px-8 text-center">
+  <% @event.resources.each do |resource| %>  
+    <%= render resource %>  
+  <% end %>
+</div>
 
 
 

@@ -1,7 +1,14 @@
 <div class="pls-card">
   <div class="pls-card-title"><%= edition.name %></div>
   <div class="pls-card-content">
+    Contatti: <%= edition.contacts.map(&:name).join(', ') %><br/> 
+    Relatori: <%= edition.speakers.map(&:name).join(', ') %><br/>
     <%= edition.description %>  
+    <% edition.events.each do |event| %>  
+      <div class="inline-block p-2 border-l border-pls">
+        <%= l event.start_date %>  
+      </div>
+    <% end %>
   </div>
 </div>
 

@@ -6,15 +6,15 @@
           <%= link_to image_pack_tag('Logo_PLS_s.png'), root_path %>
         </div>
         <div class="menu-items">
-          <div class='menu-items-item'><%= link_to 'home', root_path %></div>
-          <div class='menu-items-item'><%= link_to 'presentazione', presentation_path %></div>  
-          <div class='menu-items-item'><%= link_to 'attività', projects_path %></div>  
-          <div class='menu-items-item'><%= link_to 'contatti', contacts_page_path %></div>  
-          <div class='menu-items-item'><%= link_to 'privacy', privacy_path %></div>  
+          <%= link_to 'home', root_path, class: 'menu-items-item' %>
+          <%= link_to 'presentazione', presentation_path, class: 'menu-items-item' %>
+          <%= link_to 'attività', projects_path, class: 'menu-items-item' %>
+          <%= link_to 'contatti', contacts_page_path, class: 'menu-items-item' %>
+          <%= link_to 'privacy', privacy_path, class: 'menu-items-item' %>
           <% if current_user && current_user.staff? %>  
             <div class="my-8">Admin</div>
-            <div class='menu-items-item'><%= link_to 'risorse', resources_path %></div>  
-            <div class='menu-items-item'><%= link_to 'contatti', contacts_path, class: 'm-2 px-4 py-1' %></div>
+            <%= link_to 'risorse', resources_path, class: 'menu-items-item' %>  
+            <%= link_to 'contatti', contacts_path, class: 'menu-items-item' %>
           <% end %>
         </div>
       </div>

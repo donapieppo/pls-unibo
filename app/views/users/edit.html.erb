@@ -1,5 +1,5 @@
-<div class="lg:flex">
-  <div class="max-w-6xl p-4 lg:m-auto my-8">
+<div class="lg:flex content-start">
+  <div class="max-w-6xl p-4 mx-auto my-8">
     <div class="pls-card">
       <div class="pls-card-title">Aggiorna i tuoi dati</div>
       <div class="pls-card-content">
@@ -12,12 +12,12 @@
       </div>
     </div>
   </div>
-  <div class="lg:w-1/2 p-2 ">
+  <div class="lg:w-1/2 p-2">
     <h2 class="my-8">Le tue prenotazioni</h2>
     <% @user.bookings.each do |b| %>  
-      <div>
+      <div class="my-4">
         <%= link_to b.activity.is_a?(Event) ? b.activity.edition : b.activity do %>
-          <%= render b.activity.is_a?(Event) ? b.activity.edition : b.activity %>  
+          <%= render b.activity %>  
         <% end %>
       </div>
     <% end %>

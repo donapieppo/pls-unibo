@@ -9,7 +9,6 @@ import * as ActiveStorage from "@rails/activestorage"
 require("trix")
 require("@rails/actiontext")
 
-
 Rails.start()
 ActiveStorage.start()
 

@@ -1,5 +1,5 @@
 class BookingPolicy < ApplicationPolicy
   def create?
-    @user
+    @user && @record.activity.bookable_now? 
   end
 end

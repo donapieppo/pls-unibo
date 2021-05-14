@@ -11,4 +11,9 @@ class Activity < ApplicationRecord
       throw :abort
     end
   end
+
+  def bookable_now?
+    now = Time.now
+    self.bookable && self.booking_start < now && now < self.booking_end
+  end
 end
