@@ -1,5 +1,11 @@
 <%= link_to project do %>  
   <div class="h-full my-4 text-center bg-white border border-pls-light rounded-xl p-4 px-8 hover:bg-gray-100">
+    <div class="text-xs text-center">
+      <% project.editions.select(:academic_year).order(academic_year: :desc).each do |edition| %>  
+        <% current_year_class = (edition.academic_year >= 2020) ? 'bg-pls-strong text-white' : 'bg-pls-light' %>
+        <div class="inline-block px-1 py-1 rounded <%= current_year_class %>"><%= edition.academic_year_to_s %></div>
+      <% end %>
+    </div>
     <h3 class="font-semibold py-2"><%= project.name.upcase %></h3>
     <p class=""><%= project.activity_type %> <br/><small><%= project.audience %></small></p>
     <div class="text-sm text-gray-700 text-justify mt-4">

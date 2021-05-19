@@ -1,7 +1,7 @@
 <h1 class="title">Le attività del PLS</h1>
 
 <div class="text-center my-4">
-  <%= link_to 'Nuova Attività', new_project_path, class: 'button' %>  
+  <%= link_to('Nuova Attività', new_project_path, class: 'button') if policy(:project).new? %>  
 </div>
 
 <div>
