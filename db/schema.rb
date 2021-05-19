@@ -185,8 +185,25 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.timestamp "created_at", default: -> { "current_timestamp()" }, null: false
   end
 
+  create_table "schools", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+    t.text "name"
+    t.string "code"
+    t.text "description"
+    t.string "school_type"
+    t.string "email"
+    t.string "pec_email"
+    t.string "url"
+    t.string "province"
+    t.string "municipality"
+    t.integer "cap"
+    t.text "address"
+  end
+
   create_table "users", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
     t.boolean "staff"
+    t.column "role", "enum('student','teacher','other')"
+    t.column "school", "enum('primo','secondo','univ')"
+    t.text "other_string"
     t.string "name"
     t.string "surname"
     t.string "email"

@@ -6,7 +6,17 @@
         <%= simple_form_for @user do |f| %>  
           <%= f.input :name %>
           <%= f.input :surname %>
-          <%= f.input :email %>
+          <%= f.input :email, disabled: !current_user.staff? %>
+          <div class="my-4">
+            <%= f.input :role, as: :radio_buttons, collection: [['Studente', 'student'], 
+                                                                ['Docente', 'teacher'], 
+                                                                ['Altro', 'other']] %>
+          </div>
+          <hr/>
+          <%= f.input :school, as: :radio_buttons, label: '', collection: [['Scuola secondaria I grado', 'primo'],
+                                                                           ['Scuola secondaria II grado', 'secondo'],
+                                                                           ['Università', 'univ']] %>
+          <%= f.input :other_string %>  
           <%= f.submit 'Salva' %>  
         <% end %>
       </div>
@@ -23,3 +33,27 @@
     <% end %>
   </div>
 </div>
+
+<%= javascript_tag do %>  
+  const role_inputs = document.querySelectorAll('.user_role input');
+  const school_inputs = document.querySelector('.user_school');
+  const other_input = document.querySelector('.user_other_string');
+
+  const update = () => {
+    r = document.querySelectorAll('.user_role input:checked')[0];
+    if (r && r.value == 'other') {
+      other_input.style.display = 'block';
+      school_inputs.style.display = 'none';
+    } else {
+      other_input.style.display = 'none';
+      school_inputs.style.display = 'block';
+    }
+  }
+  update();
+
+  role_inputs.forEach((r) => {
+    r.addEventListener('change', () => {
+      update();
+    });
+  });
+<% end %>

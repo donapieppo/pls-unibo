@@ -1,4 +1,6 @@
 it:
+  yes: si
+  no: no
   activerecord:
     models:
       area: Area
@@ -46,6 +48,13 @@ it:
         url: Indirizzo esterno
         document: Allegato
         credit: Credits
+      user:
+        name: Nome
+        surname: Cognome
+        student: Studente
+        role: Partecipi come
+        university: Universitario
+        other_string: Specificare
 
   time:
     am: am
