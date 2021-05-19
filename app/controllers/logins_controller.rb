@@ -74,10 +74,14 @@ class LoginsController < ApplicationController
   end
 
   def sign_in_and_redirect(user, url)
-    user.update(last_login: Time.now)
     session[:user_id] = user.id
-    # redirect_to session[:original_request] || root_path
-    redirect_to url
+    if user.last_login
+      user.update(last_login: Time.now)
+      redirect_to url
+    else
+      user.update(last_login: Time.now)
+      redirect_to myedit_users_path(first: 1)
+    end
   end
 
   def allow_if_email
