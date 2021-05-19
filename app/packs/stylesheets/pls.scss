@@ -1,0 +1,47 @@
+.button {
+  @apply bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-4 rounded;
+}
+
+.alert {
+  @apply bg-red-100 border-l-4 border-red-500 text-black p-4;
+}
+
+.info {
+  @apply bg-blue-100 border-l-4 border-blue-500 text-black p-4;
+}
+
+.success {
+  @apply bg-green-100 border-l-4 border-green-500 text-black p-4;
+}
+
+.title {
+  @apply block m-auto text-3xl sm:text-5xl lg:text-6xl leading-none font-bold text-pls tracking-tight mt-8 mb-8 text-center;
+}
+
+h1 {
+  @apply text-2xl lg:text-4xl;
+}
+h2 {
+  @apply text-xl lg:text-2xl;
+}
+h3 {
+  @apply text-lg lg:text-xl;
+}
+
+.menu-items {
+  @apply my-8 text-center;
+  a.menu-items-item {
+    @apply block uppercase text-pls border border-b-2 border-pls p-2 px-4 mt-2 font-bold hover:bg-pls hover:text-white;
+  }
+}
+
+.pls-card {
+  @apply border-2 border-pls-strong shadow-lg p-2 rounded-lg relative;
+  .pls-card-title {
+    @apply block bg-pls-light font-bold rounded border-2 border-pls-strong absolute -top-2 -left-2 p-1 px-4;
+  }
+  .pls-card-content {
+    @apply mt-8 mb-4;
+  }
+}
+

@@ -1,0 +1,40 @@
+.home-title {
+}
+
+.home-box {
+  @apply flex flex-col justify-center items-center text-center w-1/2 h-1/2 lg:h-1/4 text-white font-bold my-2;
+}
+#home-box-areas { 
+  animation: incomea 3s; 
+  @keyframes incomea {
+    0% {
+      transform: translate(-300px, 300px);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+}
+#home-box-projects { 
+  animation: incomep 3s; 
+  @keyframes incomep {
+    0% {
+      transform: translate(-400px, 0);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+}
+#home-box-students { 
+  animation: incomes 3s; 
+  @keyframes incomes {
+    0% {
+      transform: translate(-500px, -500px);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+}
+
