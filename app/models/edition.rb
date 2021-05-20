@@ -18,4 +18,8 @@ class Edition < Activity
   def academic_year_to_s
     "a.a. #{self.academic_year}/#{self.academic_year + 1}"
   end
+
+  def self.all_academic_years
+    @@all_academic_years ||= Edition.select(:academic_year).order(academic_year: :desc).group(:academic_year).map(&:academic_year)
+  end
 end

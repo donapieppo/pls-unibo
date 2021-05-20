@@ -12,8 +12,11 @@
 
   <div class="px-2 max-w-6xl m-auto my-16">
     <div class="mt-4">
-      Contatti: <%= @edition.contacts.map(&:name).join(', ') %> <br/> 
-      Relatori: <%= @edition.speakers.map(&:name).join(', ') %> <br/>  
+      <div>
+        Contatti: <%= @edition.contacts.map(&:name).join(', ') %> <br/> 
+        Relatori: <%= @edition.speakers.map(&:name).join(', ') %> <br/>  
+        Audience: <%= @edition.audience %>  
+      </div>
       <% if @edition.bookable && @edition.booking_end < Time.now %>  
         Iscrizioni: <strong><%= l @edition.booking_start %> - <%= l @edition.booking_end %></strong>
       <% end %>

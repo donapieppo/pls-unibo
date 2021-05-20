@@ -4,7 +4,6 @@
     <%= f.input :description, input_html: { cols: 80, rows: 5 } %>
     <%= f.rich_text_area :details %>
     <%= f.association :activity_type, include_blank: false %>  
-    <%= f.association :audience, include_blank: false %>  
     <%= f.input :global %>  
     <div id="areas_select">
       <%= f.association :areas, as: :check_boxes %>  

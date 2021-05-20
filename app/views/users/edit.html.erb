@@ -13,10 +13,19 @@
                                                                 ['Altro', 'other']] %>
           </div>
           <hr/>
-          <%= f.input :school, as: :radio_buttons, label: '', collection: [['Scuola secondaria I grado', 'primo'],
-                                                                           ['Scuola secondaria II grado', 'secondo'],
-                                                                           ['Università', 'univ']] %>
+          <%= f.input :school_type, as: :radio_buttons, label: '', collection: [['Scuola secondaria I grado', 'primo'], ['Scuola secondaria II grado', 'secondo'], ['Università', 'univ']] %>
+
           <%= f.input :other_string %>  
+
+          <div id="school_choose">
+            <input id="school_id" name="user[school_id]" class="border-4 rounded my-2" list="schools" />
+            <datalist id="schools" style="background-color: #ccc;">
+              <% School.select(:id, :name, :municipality).each do |s| %>  
+                <option data-value="<%= s.id %>" value="<%= s.name + " " + s.municipality %>"/>
+              <% end %>
+            </datalist><br/>
+          </div>
+
           <%= f.submit 'Salva' %>  
         <% end %>
       </div>
@@ -36,19 +45,24 @@
 
 <%= javascript_tag do %>  
   const role_inputs = document.querySelectorAll('.user_role input');
-  const school_inputs = document.querySelector('.user_school');
+  const school_inputs = document.querySelector('.user_school_type');
   const other_input = document.querySelector('.user_other_string');
+  const school_choose = document.getElementById('school_choose');
 
   const update = () => {
     r = document.querySelectorAll('.user_role input:checked')[0];
     if (r && r.value == 'other') {
       other_input.style.display = 'block';
       school_inputs.style.display = 'none';
+      school_choose.style.display = 'none';
     } else {
       other_input.style.display = 'none';
+      other_input.querySelector('textarea').value = '';
       school_inputs.style.display = 'block';
+      school_choose.style.display = 'block';
     }
   }
+
   update();
 
   role_inputs.forEach((r) => {

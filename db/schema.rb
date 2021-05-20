@@ -202,7 +202,8 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
   create_table "users", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
     t.boolean "staff"
     t.column "role", "enum('student','teacher','other')"
-    t.column "school", "enum('primo','secondo','univ')"
+    t.column "school_type", "enum('primo','secondo','univ')"
+    t.integer "school_id", unsigned: true
     t.text "other_string"
     t.string "name"
     t.string "surname"

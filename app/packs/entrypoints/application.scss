@@ -2,10 +2,10 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-$fa-font-path: '~@fortawesome/fontawesome-free/webfonts'; 
-@import '~@fortawesome/fontawesome-free/scss/fontawesome';
-@import '~@fortawesome/fontawesome-free/scss/solid';
-@import '~@fortawesome/fontawesome-free/scss/regular';
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+@import '~@fortawesome/fontawesome-free/scss/regular.scss';
 
 // @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,600,700&display=swap');
 @import url('https://rsms.me/inter/inter.css');
@@ -34,5 +34,3 @@ body {
 @import 'stylesheets/pls';
 @import 'stylesheets/forms';
 @import 'stylesheets/home_title';
-
-

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :bookings
+  belongs_to :school
 
   def cn
     "%s %s" % [self.name, self.surname]

@@ -31,5 +31,11 @@ class Project < Activity
       self.areas.map(&:name).join(', ') 
     end
   end
+
+  def editions_year_and_audience_id
+    self.editions.map do |e|
+      "#{e.academic_year}-#{e.audience_id}"
+    end.join(" ")
+  end
 end
 

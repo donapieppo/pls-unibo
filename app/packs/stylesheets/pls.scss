@@ -45,3 +45,13 @@ h3 {
   }
 }
 
+.toggable {
+  transition: all 3s;
+}
+
+
+.filters {
+  select {
+    @apply p-2 border-4 rounded-2xl;
+  }
+}

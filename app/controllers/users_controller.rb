@@ -27,7 +27,12 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params[:user].delete(:email) unless current_user.staff?
-    params[:user].permit(:name, :surname, :role, :school, :other_string)
+    permitted = [:name, :surname, :role, :school_type, :other_string]
+    if current_user.staff?
+      permitted << :email
+    else
+      params[:user].delete(:email) unless current_user.staff?
+    end
+    params[:user].permit(permitted)
   end
 end

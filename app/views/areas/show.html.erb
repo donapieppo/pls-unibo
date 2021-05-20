@@ -14,33 +14,37 @@
   </div>
 </div>
 
-<div class="text-xl">
-  <h2 class="title py-4">Le attività</h2>
-  <div class="lg:flex lg:flex-wrap">
-    <% @area.projects.includes(:activity_type, :audience).order(:name).each do |project| %>  
-      <div class="lg:w-1/2 p-2 lg:px-8 lg:py-4">
-        <%= render 'project', project: project %>  
-      </div>
+<div class="lg:flex lg:flex-wrap">
+  <div class="lg:w-2/3 text-xl">
+    <h2 class="title py-4">Le attività</h2>
+
+    <%= render partial: 'filters' %>  
+
+    <div class="lg:flex lg:flex-wrap">
+      <% @area.projects.includes(:activity_type, :audience).order(:name).each do |project| %>  
+        <div class="lg:w-1/2 p-2 lg:p-4">
+          <%= render 'project', project: project %>  
+        </div>
+      <% end %>
+    </div>
+
+    <div class="lg:flex lg:flex-wrap">
+      <% Project.where(global: true).includes(:activity_type, :audience).order(:name).each do |project| %>  
+        <div class="lg:w-1/2 p-2 lg:p-4">
+          <%= render 'project', project: project %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="lg:w-1/3 text-xl">
+    <h2 class="title py-4">Risorse</h2>
+    <% @area.resource_containers.order(:name).each do |resource_container| %>  
+      <h3><%= resource_container.name %></h3>
+      <% resource_container.resources.each do |ri| %>  
+        <div>
+          <%= render ResourceComponent.new(ri) %>
+        </div>
+      <% end %>
     <% end %>
   </div>
-
-  <h2 class="title py-4">Attività comuni</h2>
-  <div class="lg:flex lg:flex-wrap">
-    <% Project.where(global: true).includes(:activity_type, :audience).order(:name).each do |project| %>  
-      <div class="lg:w-1/2 p-2 lg:px-8 lg:py-4">
-        <%= render 'project', project: project %>
-      </div>
-    <% end %>
-  </div>
-
-  <h2 class="title py-4">Risorse</h2>
-  <% @area.resource_containers.order(:name).each do |resource_container| %>  
-    <h3><%= resource_container.name %></h3>
-    <% resource_container.resources.each do |ri| %>  
-      <div>
-        <%= render ResourceComponent.new(ri) %>
-      </div>
-    <% end %>
-  <% end %>
 </div>
-
