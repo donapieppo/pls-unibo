@@ -18,6 +18,12 @@
 
 
         <div id="school_choose">
+          <% if @user.school %>  
+            <%= render 'schools/school', school: @user.school %>  
+          <% end %>
+
+          per aggiornare la scuola iniziate a scrivere il nome nel box sotto
+
           <input id="school_id" name="user[school_name]" class="border-4 rounded my-2 w-full" list="schools" />
           <datalist id="schools" style="background-color: #ccc;">
             <% School.select(:id, :name, :municipality).each do |s| %>  
