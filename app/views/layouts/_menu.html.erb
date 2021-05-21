@@ -33,7 +33,7 @@
   <div class="mx-4">
     <% if current_user %>  
       <%= link_to logout_icon, logout_path, class: 'text-xl float-right p-1 px-2' %>
-      <%= link_to myedit_users_path do %>  
+      <%= link_to me_users_path do %>  
         <span class="rounded-full border-2 border-pls text-pls float-right font-bold py-1 px-4">
           <%= current_user.initials %>
         </span>
