@@ -45,6 +45,9 @@ class UsersController < ApplicationController
     else
       params[:user].delete(:email) unless current_user.staff?
     end
+    if params[:user][:school_type].blank? || params[:user][:role] == 'other'
+      params[:user][:school_type] = nil 
+    end
 
     params[:user].permit(permitted)
   end
