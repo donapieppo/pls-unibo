@@ -3,15 +3,12 @@ require 'json'
 JSON_FILE = "/home/rails/pls-unibo/doc/scuole.json"
 
 def ok?(str)
-  str =~ /IST PROF/ ||
-  str =~ /IST TEC/ || 
-  str =~ /ISTITUTO D'ARTE/ ||
-  str =~ /ISTITUTO MAGISTRALE/ ||
-  str =~ /ISTITUTO SUPERIORE/ ||
-  str =~ /ISTITUTO TECNICO/ ||
+  str =~ /IST / ||
+  str =~ /ISTITUTO/ ||
   str =~ /LICEO/ ||
-  str =~ /CUOLA MAGISTRALE/
+  str =~ /CUOLA MAGISTRALE/ 
 end
+
 namespace :pls do
   desc "inserisce le scuole dal json"
   task :insert_schools => :environment do
@@ -21,16 +18,16 @@ namespace :pls do
         row.each do |k, v|
           row[k] = nil if v == 'Non Disponibile' 
         end
-        School.create(name: row['miur:DENOMINAZIONESCUOLA'],
-                      code: row['miur:CODICESCUOLA'],
-                      school_type: row['miur:DESCRIZIONETIPOLOGIAGRADOISTRUZIONESCUOLA'],
-                      email: row['miur:INDIRIZZOEMAILSCUOLA'],
-                      pec_email: row['miur:INDIRIZZOPECSCUOLA'],
-                      url: row['miur:SITOWEBSCUOLA'],
-                      province: row['miur:PROVINCIA'],
-                      municipality: row['miur:DESCRIZIONECOMUNE'],
-                      cap: row['miur:CAPSCUOLA'].to_i,
-                      address: row['miur:INDIRIZZOSCUOLA'])
+        School.create!(name: row['miur:DENOMINAZIONESCUOLA'],
+                       code: row['miur:CODICESCUOLA'],
+                       school_type: row['miur:DESCRIZIONETIPOLOGIAGRADOISTRUZIONESCUOLA'],
+                       email: row['miur:INDIRIZZOEMAILSCUOLA'],
+                       pec_email: row['miur:INDIRIZZOPECSCUOLA'],
+                       url: row['miur:SITOWEBSCUOLA'],
+                       province: row['miur:PROVINCIA'],
+                       municipality: row['miur:DESCRIZIONECOMUNE'],
+                       cap: row['miur:CAPSCUOLA'].to_i,
+                       address: row['miur:INDIRIZZOSCUOLA'])
       end
     end
   end
