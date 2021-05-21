@@ -18,12 +18,12 @@
   <div class="lg:w-2/3 text-xl">
     <h2 class="title py-4">Le attività</h2>
 
-    <%= render partial: 'filters' %>  
-
     <div class="lg:flex lg:flex-wrap">
       <% @area.projects.includes(:activity_type, :audience).order(:name).each do |project| %>  
         <div class="lg:w-1/2 p-2 lg:p-4">
-          <%= render 'project', project: project %>  
+          <%= link_to project do %>  
+            <%= render 'projects/project', project: project %>  
+          <% end %>
         </div>
       <% end %>
     </div>
@@ -31,7 +31,9 @@
     <div class="lg:flex lg:flex-wrap">
       <% Project.where(global: true).includes(:activity_type, :audience).order(:name).each do |project| %>  
         <div class="lg:w-1/2 p-2 lg:p-4">
-          <%= render 'project', project: project %>
+          <%= link_to project do %>  
+            <%= render 'projects/project', project: project %>
+          <% end %>
         </div>
       <% end %>
     </div>

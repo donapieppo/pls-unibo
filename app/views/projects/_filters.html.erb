@@ -16,17 +16,17 @@
 </div>
 
 <%= javascript_tag do %>  
-  var year_selector = document.getElementById('select-year');
-  var audience_selector = document.getElementById('select-audience');
+  const year_selector = document.getElementById('select-year');
+  const audience_selector = document.getElementById('select-audience');
   var year = '';
   var audience_id = '';
   var search_string = 'xxx';
 
-  var update = () => {
+  const update = () => {
     search_string = `${year}-${audience_id}`;
     console.log(search_string);
     
-    document.querySelectorAll('.area-project').forEach ( (p) => {
+    document.querySelectorAll('.project').forEach ( (p) => {
       if (p.getAttribute('data-editions').includes(search_string)) {
         p.style.display = 'block';
       } else {
