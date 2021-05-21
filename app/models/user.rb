@@ -29,4 +29,12 @@ class User < ApplicationRecord
   def staff?
     self.staff
   end
+
+  def teacher?
+    self.role && self.role == 'teacher'
+  end
+
+  def confirmed_teacher?
+    self.role && self.role == 'teacher'
+  end
 end
