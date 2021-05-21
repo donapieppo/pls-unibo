@@ -38,7 +38,9 @@ Rails.application.routes.draw do
   end
 
   resources :events do
-    resources :bookings, only: [:index, :new, :create]
+    resources :bookings, only: [:index, :new, :create] do
+      post :new_user, on: :collection
+    end
     resources :resources, only: [:index, :new, :create]
     get  :choose_resource, on: :member
     post :add_resource, on: :member
