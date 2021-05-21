@@ -6,6 +6,20 @@
   <%= render @activity %>  
 
   <div class="my-8">
-    <%= link_to 'ISCRIVITI', [@activity, :bookings], method: :post, class: 'button' %>  
+    <%= link_to 'Iscrivimi', [@activity, :bookings], method: :post, class: 'button' %>  
   </div>
+
+  <% if policy(:booking).new_user? %>  
+    Sei registrato come docente. Puoi iscrivere i tutoi studenti fornendo nome-cognome-indirizzo email dello studente
+    <%= form_with url: [:new_user, @activity, :bookings] do |f| %>  
+      <%= f.label :name %>
+      <%= f.text_field :name %><br/>  
+      <%= f.label :surname %>
+      <%= f.text_field :surname %><br/>
+      <%= f.label :email %>
+      <%= f.text_field :email %><br/>
+      <%= f.submit "Iscrivi lo studente" %>  
+    <% end %>
+  <% end %>
+
 </div>
