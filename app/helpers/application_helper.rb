@@ -11,6 +11,10 @@ module ApplicationHelper
       nil
     end
   end
+
+  def academic_year(y)
+    "a.a. #{y}/#{y.to_i + 1}"
+  end
 end
 
 include IconHelper
