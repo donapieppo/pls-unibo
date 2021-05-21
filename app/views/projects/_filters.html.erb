@@ -3,7 +3,7 @@
   <select id="select-year">
     <option value="">mostra tutti</option>
     <% Edition.all_academic_years.each do |y| %>  
-      <option value="<%= y %>"><%= y %></option>
+      <option value="<%= y %>"><%= academic_year(y) %></option>
     <% end %>
   </select>
   Audience
@@ -20,7 +20,7 @@
   const audience_selector = document.getElementById('select-audience');
   var year = '';
   var audience_id = '';
-  var search_string = 'xxx';
+  var search_string = '2020-';
 
   const update = () => {
     search_string = `${year}-${audience_id}`;
@@ -44,4 +44,6 @@
     year = year_selector.querySelector('option:checked').value; 
     update();
   });
+
+  update();
 <% end %>
