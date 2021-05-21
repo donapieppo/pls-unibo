@@ -1,45 +1,34 @@
-<div class="lg:flex content-start">
-  <div class="max-w-6xl p-4 mx-auto my-8">
-    <div class="pls-card">
-      <div class="pls-card-title">Aggiorna i tuoi dati</div>
-      <div class="pls-card-content">
-        <%= simple_form_for @user do |f| %>  
-          <%= f.input :name %>
-          <%= f.input :surname %>
-          <%= f.input :email, disabled: !current_user.staff? %>
-          <div class="my-4">
-            <%= f.input :role, as: :radio_buttons, collection: [['Studente', 'student'], 
-                                                                ['Docente', 'teacher'], 
-                                                                ['Altro', 'other']] %>
-          </div>
-          <hr/>
-          <%= f.input :school_type, as: :radio_buttons, label: '', collection: [['Scuola secondaria I grado', 'primo'], ['Scuola secondaria II grado', 'secondo'], ['Università', 'univ']] %>
+<div class="max-w-4xl p-4 mx-auto my-8">
+  <div class="pls-card">
+    <div class="pls-card-title">Aggiorna i tuoi dati</div>
+    <div class="pls-card-content">
+      <%= simple_form_for @user do |f| %>  
+        <%= f.input :name %>
+        <%= f.input :surname %>
+        <%= f.input :email, disabled: !current_user.staff? %>
+        <div class="my-4">
+          <%= f.input :role, as: :radio_buttons, collection: [['Studente', 'student'], 
+                                                              ['Docente', 'teacher'], 
+                                                              ['Altro', 'other']] %>
+        </div>
+        <hr/>
+        <%= f.input :school_type, as: :radio_buttons, label: '', collection: [['Scuola secondaria I grado', 'primo'], ['Scuola secondaria II grado', 'secondo'], ['Università', 'univ']] %>
 
-          <%= f.input :other_string %>  
+        <%= f.input :other_string %>  
 
-          <div id="school_choose">
-            <input id="school_id" name="user[school_id]" class="border-4 rounded my-2" list="schools" />
-            <datalist id="schools" style="background-color: #ccc;">
-              <% School.select(:id, :name, :municipality).each do |s| %>  
-                <option data-value="<%= s.id %>" value="<%= s.name + " " + s.municipality %>"/>
-              <% end %>
-            </datalist><br/>
-          </div>
 
-          <%= f.submit 'Salva' %>  
-        <% end %>
-      </div>
+        <div id="school_choose">
+          <input id="school_id" name="user[school_name]" class="border-4 rounded my-2 w-full" list="schools" />
+          <datalist id="schools" style="background-color: #ccc;">
+            <% School.select(:id, :name, :municipality).each do |s| %>  
+              <option data-value="<%= s.id %>" value="<%= s.name + " -- " + s.municipality %>"/>
+            <% end %>
+          </datalist><br/>
+        </div>
+
+        <%= f.submit 'Salva' %>  
+      <% end %>
     </div>
-  </div>
-  <div class="lg:w-1/2 p-2">
-    <h2 class="my-8">Le tue prenotazioni</h2>
-    <% @user.bookings.each do |b| %>  
-      <div class="my-4">
-        <%= link_to b.activity.is_a?(Event) ? b.activity.edition : b.activity do %>
-          <%= render b.activity %>  
-        <% end %>
-      </div>
-    <% end %>
   </div>
 </div>
 
@@ -50,24 +39,24 @@
   const school_choose = document.getElementById('school_choose');
 
   const update = () => {
-    r = document.querySelectorAll('.user_role input:checked')[0];
-    if (r && r.value == 'other') {
-      other_input.style.display = 'block';
-      school_inputs.style.display = 'none';
-      school_choose.style.display = 'none';
-    } else {
-      other_input.style.display = 'none';
-      other_input.querySelector('textarea').value = '';
-      school_inputs.style.display = 'block';
-      school_choose.style.display = 'block';
-    }
+  r = document.querySelectorAll('.user_role input:checked')[0];
+  if (r && r.value == 'other') {
+  other_input.style.display = 'block';
+  school_inputs.style.display = 'none';
+  school_choose.style.display = 'none';
+  } else {
+  other_input.style.display = 'none';
+  other_input.querySelector('textarea').value = '';
+  school_inputs.style.display = 'block';
+  school_choose.style.display = 'block';
+  }
   }
 
   update();
 
   role_inputs.forEach((r) => {
-    r.addEventListener('change', () => {
-      update();
-    });
+  r.addEventListener('change', () => {
+  update();
+  });
   });
 <% end %>
