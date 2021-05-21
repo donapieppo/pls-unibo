@@ -17,7 +17,7 @@
         Relatori: <%= @edition.speakers.map(&:name).join(', ') %> <br/>  
         Audience: <%= @edition.audience %>  
       </div>
-      <% if @edition.bookable && @edition.booking_end < Time.now %>  
+      <% if @edition.bookable && @edition.booking_start && @edition.booking_end %>  
         Iscrizioni: <strong><%= l @edition.booking_start %> - <%= l @edition.booking_end %></strong>
       <% end %>
       <div>
