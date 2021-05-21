@@ -1,6 +1,13 @@
 it:
   yes: si
   no: no
+  teacher: docente
+  student: studente
+  other: ospite
+  primo: scuola secondaria I grado
+  secondo: scuola secondaria II grado
+  univ: università
+
   activerecord:
     models:
       area: Area

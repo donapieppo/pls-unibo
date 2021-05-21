@@ -4,6 +4,12 @@ class UsersController < ApplicationController
     authorize @user
   end
 
+  def me
+    @user = current_user
+    authorize @user
+    render action: :show
+  end
+
   def myedit
     @user = current_user
     authorize @user
@@ -17,10 +23,16 @@ class UsersController < ApplicationController
       @user = current_user
     end
     authorize @user
+    if school_name = params[:user].delete(:school_name)
+      name, municipality = school_name.split(" -- ")
+      if municipality
+        @user.school_id = School.where(name: name, municipality: municipality).first.id
+      end
+    end
     if @user.update(user_params)
-      redirect_to root_path, notice: 'OK'
+      redirect_to me_users_path, notice: 'I tuoi dati soono stati registrati'
     else
-      render action: :edit
+      render action: :myedit
     end
   end
 
@@ -33,6 +45,7 @@ class UsersController < ApplicationController
     else
       params[:user].delete(:email) unless current_user.staff?
     end
+
     params[:user].permit(permitted)
   end
 end

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :bookings
   resources :users do
     get :myedit, on: :collection
+    get :me, on: :collection
   end
   
   resources :projects do

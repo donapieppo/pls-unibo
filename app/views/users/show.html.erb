@@ -1,0 +1,28 @@
+<div class="lg:flex content-start">
+  <div class="max-w-6xl p-4 mx-auto my-8">
+    <div class="pls-card">
+      <div class="pls-card-title"><%= @user.cn %></div>
+      <div class="pls-card-content">
+        Sei registrato come <%= t @user.role %> (<%= t @user.school_type %>)   
+      </div>
+      <div>
+        <% if @user.school_id %>  
+          <%= @user.school %> (<%= @user.school.municipality %>)
+        <% end %>
+      </div>
+      <div class="mt-2">
+        <%= link_to 'modifica', myedit_users_path, class: 'button' %>  
+      </div>
+    </div>
+  </div>
+  <div class="lg:w-1/2 p-2">
+    <h2 class="my-8">Le tue prenotazioni</h2>
+    <% @user.bookings.each do |b| %>  
+      <div class="my-4">
+        <%= link_to b.activity.is_a?(Event) ? b.activity.edition : b.activity do %>
+          <%= render b.activity %>  
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
