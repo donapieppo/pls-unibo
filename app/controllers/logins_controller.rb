@@ -80,7 +80,7 @@ class LoginsController < ApplicationController
       redirect_to url
     else
       user.update(last_login: Time.now)
-      redirect_to myedit_users_path(first: 1)
+      redirect_to me_users_path
     end
   end
 
