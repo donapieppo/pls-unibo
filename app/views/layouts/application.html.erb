@@ -13,6 +13,9 @@
 
   <body>
     <div class="w-100 h-screen">
+      <div style="position: fixed; z-index: -1000; opacity: 0.3" class="text-pls-light">
+        <i class="fas fa-atom" style="font-size: 1000px"></i>
+      </div>
       <%= render partial: 'layouts/menu' %>  
 
       <%= render FlashMessagesComponent.new(flash: flash) %>
