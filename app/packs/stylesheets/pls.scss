@@ -1,3 +1,6 @@
+.container {
+  @apply px-4 lg:px-16 lg:mx-auto;
+}
 .button {
   @apply bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-4 rounded;
 }
