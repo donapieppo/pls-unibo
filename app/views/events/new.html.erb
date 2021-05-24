@@ -1,7 +1,10 @@
-<h1 class="title">
-  <%= @edition %>
-  <%= link_to edit_icon, [:edit, @edition] %>
-</h1>
+<div class="container">
+  <h1 class="title">
+    <%= @edition %>
+  </h1>
+  <div class="text-center">
+    <%= link_to @edition, [:edit, @edition], class: "button" %>
+  </div>
 
-<%= render 'form' %>
-
+  <%= render 'form' %>
+</div>

@@ -1,17 +1,19 @@
-<h1 class="title">Le attività del PLS</h1>
+<div class="container">
+  <h1 class="title">Le attività del PLS</h1>
 
-<div class="text-center my-4">
-  <%= link_to('Nuova Attività', new_project_path, class: 'button') if policy(:project).new? %>  
-</div>
+  <div class="text-center my-4">
+    <%= link_to('Nuova Attività', new_project_path, class: 'button') if policy(:project).new? %>  
+  </div>
 
-<%= render partial: 'filters' %>  
+  <%= render partial: 'filters' %>  
 
-<div class="lg:flex lg:flex-wrap">
-  <% @projects.each do |project| %>  
-    <div class="lg:w-1/2 p-2 lg:p-4 project" data-editions="<%= project.editions_year_and_audience_id %>">
-      <%= link_to project do %>  
-        <%= render 'project',  project: project %>  
-      <% end %>
-    </div>
-  <% end %>
+  <div class="lg:flex lg:flex-wrap">
+    <% @projects.each do |project| %>  
+      <div class="lg:w-1/2 p-2 lg:p-4 project" data-editions="<%= project.editions_year_and_audience_id %>">
+        <%= link_to project do %>  
+          <%= render 'project',  project: project %>  
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>

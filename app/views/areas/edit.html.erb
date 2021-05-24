@@ -1,7 +1,9 @@
-<h1 class="title"><%= @area %></h1>
+<div class="container">
+  <h1 class="title"><%= @area %></h1>
 
-<%= simple_form_for @area do |f| %>  
-  <%= f.input :description, input_html: { cols: 80, rows: 10, class: 'border-2' } %>
-  <%= f.association :contact %>  
-  <%= f.submit %>  
-<% end %>
+  <%= simple_form_for @area do |f| %>  
+    <%= f.input :description, input_html: { cols: 80, rows: 10, class: 'border-2' } %>
+    <%= f.association :contact %>  
+    <%= f.submit %>  
+  <% end %>
+</div>
