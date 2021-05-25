@@ -25,10 +25,6 @@
                 <i class="fas fa-chevron-right mr-2"></i> 
                 <%= event.name %> 
               <% end %>
-              <div class="float-right">
-                <%= link_to_delete event %>
-                <%= link_to clone_icon, new_event_path(from: event.id) %>
-              </div>
             </div>
           <% end %>
         </div>

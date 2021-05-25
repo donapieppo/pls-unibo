@@ -7,7 +7,25 @@ class BookingsController < ApplicationController
   end
 
   def new_user
-    raise params.inspect
+    @user = User.where(email: params[:email]).first
+
+    if @user == current_user
+      redirect_to @activity, notice: "Non puoi registare te stesso come studente."
+      return
+    end
+
+    @user ||= User.create(email: params[:email], name: params[:name], surname: params[:surname])
+    if @user
+      booking = @activity.bookings.new(user_id: @user.id, teacher_id: current_user.id)
+      authorize(booking)
+      if booking.save
+        redirect_to @activity, notice: "Registrazione salvata."
+      else
+        redirect_to @activity, alert: "NO. #{booking.errors.inspect}. #{params.inspect}"
+      end
+    else
+      raise params.inspect
+    end
   end
 
   def create

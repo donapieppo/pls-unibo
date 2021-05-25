@@ -6,14 +6,14 @@
     <%= f.input :name %>
     <%= f.input :description %>
     <%= f.input :place %>
-    <%= f.input :start_date %>
+    <%= f.input :start_date, minute_step: 10 %>
     <%= f.input :duration %>
     <%= f.input :seats %>
     <%= f.input :sofia %>
     <%= f.input :pcto %>
     <%= f.input :bookable %>  
-    <%= f.input :booking_start %>
-    <%= f.input :booking_end %>
+    <%= f.input :booking_start, minute_step: 10 %>
+    <%= f.input :booking_end, minute_step: 10 %>
     <%= f.submit %>
   <% end %>
 </div>

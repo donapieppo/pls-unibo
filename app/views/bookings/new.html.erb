@@ -1,15 +1,16 @@
 <div class="m-auto max-w-2xl px-2">
   <h1 class="title">Iscrizione</h1>
 
-  <p class="my-8">Puoi registrarti a</p>
-
   <%= render @activity %>  
 
-  <div class="my-8">
-    <%= link_to 'Iscrivimi', [@activity, :bookings], method: :post, class: 'button' %>  
-  </div>
+  <% unless @activity.booked_by?(current_user) %>  
+    <div class="my-8 text-center">
+      <%= link_to 'Iscrivimi', [@activity, :bookings], method: :post, class: 'button text-4xl' %>  
+    </div>
+  <% end %>
 
   <% if policy(:booking).new_user? %>  
+    <hr class="my-4"/>
     Sei registrato come docente. Puoi iscrivere i tutoi studenti fornendo nome-cognome-indirizzo email dello studente
     <%= form_with url: [:new_user, @activity, :bookings] do |f| %>  
       <%= f.label :name %>

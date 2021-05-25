@@ -1,5 +1,5 @@
 <% if @short %>  
-  <div class="my-4 flex flex-wrap px-2">
+  <div class="my-2 flex flex-wrap px-2">
     <% @events.each do |event| %>
       <div class="w-32 pr-4 text-center">
         <div class="bg-white texl-pls border-2 shadow-xl rounded-2xl text-sm font-bold py-2 px-4">
@@ -17,17 +17,19 @@
         </div>
       </div>
       <div class="w-full">
-        <div class="text-lg">
+        <div class="text-lg font-semibold">
           <%= link_to event.name.upcase, event %> 
         </div>
-        <div class="text-sm text-justify mt-4">
-          <%= event.description %>  
+        <div class="text-sm italic text-justify text-gray-700 mt-4">
+          <q><%= event.description %> </q>
         </div>
-        Relatori: <%= event.speakers.map(&:name).join(', ') %><br/>
+        <div class="mt-2">
+          Relatori: <%= event.speakers.map(&:name).join(', ') %><br/>
+        </div>
         <% if helpers.policy(event).book? %>  
           <%= link_to booking_icon, new_event_booking_path(event) %>  
         <% end %>
-        <%= link_to edit_icon, [:edit, event], class: "float-right" %>  
+        <%= link_to(edit_icon, [:edit, event], class: "float-right") if helpers.policy(event).edit? %>  
       </div>
     </div>
   <% end %>

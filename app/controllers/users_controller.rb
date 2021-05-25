@@ -30,7 +30,7 @@ class UsersController < ApplicationController
       end
     end
     if @user.update(user_params)
-      redirect_to me_users_path, notice: 'I tuoi dati soono stati registrati'
+      redirect_to me_users_path, notice: 'I tuoi dati sono stati registrati'
     else
       render action: :myedit
     end

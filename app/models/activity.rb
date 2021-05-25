@@ -16,4 +16,8 @@ class Activity < ApplicationRecord
     now = Time.now
     self.bookable && self.booking_start && self.booking_end && self.booking_start < now && now < self.booking_end
   end
+
+  def booked_by?(user)
+    self.bookings.where(user_id: user.id).any?
+  end
 end

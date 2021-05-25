@@ -3,8 +3,14 @@
     <%= @event %> 
   </h1>
 
+  <div class="text-center text-2xl my-2">
+    <%= link_to_delete @event %>
+    <%= link_to clone_icon, new_event_path(from: @event.id) %>
+  </div>
+
   <div class="text-center">
     in <%= link_to @event.edition.name, [:edit, @event.edition], class: 'button' %>
+
   </div>
 
   <div class="lg:flex">
