@@ -3,7 +3,11 @@ module ContactConcern
 
   def add_contact
     @what = @project || @edition || @event
-    @contact = Contact.find(params[:contact_id])
+    @contact = Contact.find_by_id(params[:contact_id])
+    if !@contact
+      redirect_to [:new, @what, :contact, as: params[:as]]
+      return
+    end
     if params[:as] == 'speaker'
       @what.speakers << @contact
     else

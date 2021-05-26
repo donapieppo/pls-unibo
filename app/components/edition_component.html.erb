@@ -15,9 +15,9 @@
       <%= simple_format @edition.description %>  
     </div>
     <div class="my-2">
-      Contatti: <%= @edition.contacts.map(&:name).join(', ') %> <br/> 
-      Relatori: <%= @edition.speakers.map(&:name).join(', ') %> <br/>  
-      Audience: <%= @edition.audience %>  
+      <%= helpers.possible_label_from_array 'Contatti', @edition.contacts %>
+      <%= helpers.possible_label_from_array 'Relatori', @edition.speakers %>
+      <%= helpers.possible_label 'Audience', @edition.audience %>
     </div>
     <% if @edition.bookable && @edition.booking_start && @edition.booking_end %>  
       Iscrizioni: <strong><%= l @edition.booking_start %> - <%= l @edition.booking_end %></strong>

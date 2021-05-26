@@ -15,6 +15,27 @@ module ApplicationHelper
   def academic_year(y)
     "a.a. #{y}/#{y.to_i + 1}"
   end
+
+  def possible_label(_label, _txt)
+    return "" if _txt.blank?
+    "#{_label}: #{_txt}"
+  end
+
+  def possible_label_from_array(_label, _arr)
+    res = ""
+    _arr.each do |item|
+      res += ', ' unless res.blank?
+      if item.respond_to?(:email)
+        res += mail_to item.email, item
+      else
+        res += link_to item, item
+      end
+    end
+    unless res.blank?
+      res= _label +  ": " + res
+    end
+    content_tag :div, res.html_safe
+  end
 end
 
 include IconHelper
