@@ -38,4 +38,8 @@ module IconHelper
   def booking_icon
     '<i class="fas fa-user-clock"></i>'.html_safe
   end
+
+  def eye_icon
+    '<i class="fas fa-eye"></i>'.html_safe
+  end
 end
