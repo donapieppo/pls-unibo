@@ -1,5 +1,6 @@
 <div class="w-3/4 lg:w-1/2 mx-auto">
-  <%= simple_form_for @contact do |f| %>  
+  <%= simple_form_for [@what, @contact] do |f| %>  
+    <input type="hidden" name="as" value="<%= @as %>"/>
     <%= f.input :name %>  
     <%= f.input :email %>  
     <%= f.input :web_page %>  

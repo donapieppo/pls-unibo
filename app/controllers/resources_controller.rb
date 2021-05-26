@@ -16,7 +16,7 @@ class ResourcesController < ApplicationController
   end
 
   def create
-    @resource = @what.resources.new(resource_params)
+    @resource = Resource.new(resource_params)
     authorize @resource
     if @resource.save
       @what.resources << @resource

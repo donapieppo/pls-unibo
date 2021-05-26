@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
     post :add_contact, on: :member
     delete :remove_contact, on: :member
+    resources :contacts, only: [:index, :new, :create]
   end
 
   resources :editions do
@@ -35,6 +36,7 @@ Rails.application.routes.draw do
 
     post :add_contact, on: :member
     delete :remove_contact, on: :member
+    resources :contacts, only: [:index, :new, :create]
   end
 
   resources :events do
@@ -48,6 +50,7 @@ Rails.application.routes.draw do
 
     post :add_contact, on: :member
     delete :remove_contact, on: :member
+    resources :contacts, only: [:index, :new, :create]
   end
 
   resources :contacts
