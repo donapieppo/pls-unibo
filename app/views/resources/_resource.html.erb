@@ -1,17 +1,22 @@
-<div>
-  <div class="font-bold">
+<div class="shadow-xl p-1 h-full bg-gray-50 rounded">
+  <div class="text-center font-bold py-2">
     <%= resource %>
     <%= link_to_edit_if_editable resource %>  
     <%= link_to_delete([:remove_resource, what, { resource_id: resource.id }]) if defined? what %>  
   </div>
-  <% if resource.video? %>  
-    <div class="embed-responsive embed-responsive-16by9 my-3" style="width: 800px">
-      <iframe class="embed-responsive-item" src="<%= resource.embed_url %>" frameborder="0"></iframe>
-    </div>
-  <% elsif resource.document && resource.document.previewable? %>  
-    <%= link_to image_tag(resource.document.preview(resize_to_limit: [250, 250])), url_for(resource.document) %>  
-  <% elsif resource.document.image? %>
-    <%= link_to image_tag(resource.document.variant(resize_to_limit: [250, 250])), url_for(resource.document) %>
-  <% end %>  
+  <div class="text-center">
+    <% if resource.video? %>  
+      <div class="embed-responsive embed-responsive-16by9 my-3">
+        <iframe class="embed-responsive-item mx-auto" src="<%= resource.embed_url %>" frameborder="0"></iframe>
+      </div>
+    <% elsif resource.document && resource.document.previewable? %>  
+      <div class="text-center">
+        <%= link_to image_tag(resource.document.preview(resize_to_limit: [250, 250])), url_for(resource.document), class: 'inline-block' %>  
+      </div>
+    <% elsif resource.document.image? %>
+      <div class="text-center">
+      <%= link_to image_tag(resource.document.variant(resize_to_limit: [250, 250])), url_for(resource.document), class: 'inline-block' %>
+      </div>
+    <% end %>  
+  </div>
 </div>
-
