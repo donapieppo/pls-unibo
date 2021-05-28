@@ -1,16 +1,22 @@
-<h1 class="title">
-  <%= @resource %>
-</h1>
+<div class="container">
+  <h1 class="title">
+    <%= @resource %>
+  </h1>
 
-<div class="lg:flex">
-  <div class="lg:w-2/3">
-    <%= render 'form', resource: @resource %>
-  </div>
-  <div class="lg:w-1/3 p-2">
-    <h2>A cosa è attaccata?</h2>
+  <div class="lg:flex">
+    <div class="lg:w-2/3">
+      <%= render 'form', resource: @resource %>
+    </div>
+    <div class="lg:w-1/3 p-2">
+      <div class="pls-card">
+        <div class="pls-card-title">A cosa è attaccata?</div>
+        <div class="pls-card-content">
 
-    <% @resource.activities.each do |activity| %>  
-      <%= link_to activity.name, activity %>  
-    <% end %>
+          <% @resource.activities.each do |activity| %>  
+            <%= link_to activity.name, activity %>  
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

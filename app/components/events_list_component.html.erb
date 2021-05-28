@@ -24,7 +24,7 @@
           <q><%= event.description %> </q>
         </div>
         <div class="mt-2">
-          Relatori: <%= event.speakers.map(&:name).join(', ') %><br/>
+          <%= helpers.possible_label_from_array 'Relatori', event.speakers %>
         </div>
         <% if helpers.policy(event).book? %>  
           <%= link_to booking_icon, new_event_booking_path(event) %>  

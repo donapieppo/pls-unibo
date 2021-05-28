@@ -3,7 +3,7 @@
     <div class="pls-card">
       <div class="pls-card-title"><%= @user.cn %></div>
       <div class="pls-card-content">
-        Sei registrato come <%= t @user.role %> (<%= t @user.school_type %>).   
+        Sei registrato come <%= t @user.role %> (<%= t(@user.school_type) if @user.school_type %><%= @user.other_string if @user.role == 'other' %>).   
       </div>
       <div>
         <% if @user.school_id %>  
