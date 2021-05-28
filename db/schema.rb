@@ -145,9 +145,11 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.integer "activity_id", unsigned: true
     t.integer "user_id", unsigned: true
     t.integer "teacher_id", unsigned: true
+    t.integer "school_id", unsigned: true
     t.datetime "created_at"
     t.boolean "confirmed"
     t.index ["activity_id"], name: "fk_book_activity"
+    t.index ["school_id"], name: "fk_book_school"
     t.index ["teacher_id"], name: "fk_book_teacher"
     t.index ["user_id"], name: "fk_book_user"
   end
@@ -233,6 +235,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
   add_foreign_key "areas_resource_containers", "areas", name: "fk_ar_area_id"
   add_foreign_key "areas_resource_containers", "resource_containers", name: "fk_ar_resource_id"
   add_foreign_key "bookings", "activities", name: "fk_book_activity"
+  add_foreign_key "bookings", "schools", name: "fk_book_school"
   add_foreign_key "bookings", "users", column: "teacher_id", name: "fk_book_teacher"
   add_foreign_key "bookings", "users", name: "fk_book_user"
   add_foreign_key "resource_containers_resources", "resource_containers", name: "fk_res_res_c_id"
