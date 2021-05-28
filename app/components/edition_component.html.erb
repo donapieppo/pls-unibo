@@ -18,7 +18,7 @@
         </div>
 
         <div class="my-8">
-          <div class="text-lg">
+          <div class="lg:text-lg">
             <%= simple_format @edition.description %>  
           </div>
           <div class="my-2">
@@ -51,7 +51,5 @@
         <%= render EventsListComponent.new(events: @events, short: @edition.atomic) %>  
       </div>
     <% end %>
-
   </div>
-</div>
 </div>
