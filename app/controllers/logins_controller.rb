@@ -23,6 +23,19 @@ class LoginsController < ApplicationController
     end
   end
 
+  # email="usrBase@testtest.unibo.it" last_name="Base" name="SSO"
+  def shibboleth
+    log_unibo_omniauth
+    parse_unibo_omniauth
+
+    if @email =~ /@unibo.it$/
+      allow_if_email
+    else
+      logger.info "Students are not allowed: #{@email} user not allowed."
+      redirect_to no_access_path and return
+    end
+  end
+
   def developer
     skip_authorization
     parse_developer_omniauth
@@ -73,6 +86,23 @@ class LoginsController < ApplicationController
     @surname = "Pluto"
   end
 
+  def parse_unibo_omniauth
+    @upn  = request.env['omniauth.auth'].uid
+    oinfo = request.env['omniauth.auth'].info
+    extra = request.env['omniauth.auth'].extra.raw_info
+
+    @idAnagraficaUnica = extra.idAnagraficaUnica.to_i
+    @idAnagraficaUnica > 0 or raise "NO idAnagraficaUnica"
+
+    @isMemberOf = extra.isMemberOf ? extra.isMemberOf.split(';') : []
+    set_memberof_session(@isMemberOf)
+
+    @email         = @upn
+    @name          = oinfo.first_name || oinfo.name
+    @surname       = oinfo.last_name
+    @nationalpin   = extra.codiceFiscale
+  end
+
   def sign_in_and_redirect(user, url)
     session[:user_id] = user.id
     if user.last_login
@@ -99,4 +129,12 @@ class LoginsController < ApplicationController
   def create_logged_user
     User.create(name: @name, surname: @surname, email: @email)
   end
+
+  def log_unibo_omniauth
+    request.env['omniauth.auth'] or return
+    logger.info("Authentication: uid   = #{request.env['omniauth.auth'].uid}")
+    logger.info("Authentication: info  = #{request.env['omniauth.auth'].info}")
+    logger.info("Authentication: extra = #{request.env['omniauth.auth'].extra}")
+  end
+
 end
