@@ -15,6 +15,10 @@
       <%= form_tag(google_login_url, method: 'post') do %>
         <input type="submit" value="Accedi" />
       <% end %>
+
+      <%= form_tag(shibboleth_login_url, method: 'post') do %>
+        <input type="submit" value="Accedi" />
+      <% end %>
     </div>
 
     <% if Rails.env.development? %>  

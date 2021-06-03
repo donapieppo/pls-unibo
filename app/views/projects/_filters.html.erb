@@ -1,18 +1,20 @@
-<div class="filters text-center p-2">
-  Anno
-  <select id="select-year">
-    <option value="">mostra tutti</option>
-    <% Edition.all_academic_years.each do |y| %>  
-      <option value="<%= y %>"><%= academic_year(y) %></option>
-    <% end %>
-  </select>
-  Audience
-  <select id="select-audience">
-    <option value="">mostra tutti</option>
-    <% Audience.order(:name).each do |a| %>  
-      <option value="<%= a.id %>"><%= a.name %></option>
-    <% end %>
-  </select>
+<div class="filters p-2">
+  <div>
+    <select id="select-year">
+      <option value="">Tutti gli anni</option>
+      <% Edition.all_academic_years.each do |y| %>  
+        <option value="<%= y %>"><%= academic_year(y) %></option>
+      <% end %>
+    </select>
+  </div>
+  <div class="mt-1">
+    <select id="select-audience">
+      <option value="">Audience generica</option>
+      <% Audience.order(:name).each do |a| %>  
+        <option value="<%= a.id %>"><%= a.name %></option>
+      <% end %>
+    </select>
+  </div>
 </div>
 
 <%= javascript_tag do %>  

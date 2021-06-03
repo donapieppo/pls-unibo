@@ -2,7 +2,7 @@
 }
 
 .home-box {
-  @apply flex flex-col justify-center items-center text-center w-1/2 h-1/2 lg:h-1/4 text-white font-bold my-2;
+  @apply flex flex-col justify-center items-center text-center w-1/2 h-1/2 lg:h-1/4 text-white font-bold my-2 py-8 shadow-2xl rounded-2xl;
 }
 #home-box-areas { 
   animation: incomea 3s; 
