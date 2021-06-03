@@ -16,6 +16,7 @@ gem "view_component", require: "view_component/engine"
 
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-shibboleth'
 gem "omniauth-rails_csrf_protection"
 gem 'pretender'
 

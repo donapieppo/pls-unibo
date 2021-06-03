@@ -9,7 +9,7 @@
 #   }
 # end
 
-CESIA_UPN = ['pietro.donatini@unibo.it']
+CESIA_UPN = ['pietro.donatini@unibo.it', 'valeria.montesi3@unibo.it']
 
 module PlsUnibo
   class Application < Rails::Application
