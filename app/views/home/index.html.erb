@@ -25,14 +25,19 @@
   <% end %>
 </div>
 
-<h2 class="text-pls text-center py-4">Partecipanti</h2>
-<% Organization.order(:name).each do |org| %>
-  <div class="pl-2 m-1">
-    <i class="far fa-arrow-alt-circle-right text-xl mr-2"></i> 
-    <%= link_to org, org.url, target: '_new' %>
-  </div>
-<% end %>
+<h2 class="text-pls text-center my-12">Partecipano</h2>
 
-<div class="p-16 text-center">
-  <%= link_to 'Mostra le attività del PLS'.html_safe, projects_path, class: 'button p-8 text-4xl' %>
+<div class="lg:max-w-3xl m-auto my-8">
+  <% Organization.order(:name).each do |org| %>
+    <div class="pl-2 m-1">
+      <i class="far fa-arrow-alt-circle-right text-xl mr-2"></i> 
+      <%= link_to org, org.url, target: '_new' %>
+    </div>
+  <% end %>
+</div>
+
+<div class="text-center my-16">
+  <%= link_to projects_path, class: 'button p-8 text-2xl' do %>
+    Mostra le attività del PLS
+  <% end %>
 </div>

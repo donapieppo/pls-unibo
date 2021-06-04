@@ -12,9 +12,13 @@ class Activity < ApplicationRecord
     end
   end
 
+  def bookable?
+    self.bookable != 'no'
+  end
+
   def bookable_now?
     now = Time.now
-    self.bookable && self.booking_start && self.booking_end && self.booking_start < now && now < self.booking_end
+    self.bookable? && self.booking_start && self.booking_end && self.booking_start < now && now < self.booking_end
   end
 
   def booked_by?(user)

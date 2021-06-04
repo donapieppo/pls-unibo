@@ -1,8 +1,10 @@
 <div class="pls-card">
-  <div class="pls-card-title"><%= edition.name %></div>
+  <div class="pls-card-title">
+    <%= edition.name %>
+  </div>
   <div class="pls-card-content">
-    <%= helpers.possible_label_from_array 'Contatti', @edition.contacts %>
-    <%= helpers.possible_label_from_array 'Relatori', @edition.speakers %>
+    <%= possible_label_from_array 'Contatti', edition.contacts %>
+    <%= possible_label_from_array 'Relatori', edition.speakers %>
     <%= edition.description %>  
     <% edition.events.each do |event| %>  
       <div class="inline-block p-2 border-l border-pls">

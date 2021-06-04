@@ -26,8 +26,11 @@
             <%= helpers.possible_label_from_array 'Relatori', @edition.speakers %>
             <%= helpers.possible_label 'Audience', @edition.audience %>
           </div>
-          <% if @edition.bookable && @edition.booking_start && @edition.booking_end %>  
+          <% if @edition.bookable? && @edition.booking_start && @edition.booking_end %>  
             Iscrizioni: <strong><%= l @edition.booking_start %> - <%= l @edition.booking_end %></strong>
+          <% end %>
+          <% if helpers.policy(@edition).book? %>  
+            <%= link_to booking_icon, new_event_booking_path(@edition) %>  
           <% end %>
           <div class="italic text-justify my-4 text-gray-600">
             <%= @edition.details %>  

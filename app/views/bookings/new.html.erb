@@ -1,11 +1,11 @@
-<div class="m-auto max-w-2xl px-2">
+<div class="container">
   <h1 class="title">Iscrizione</h1>
 
   <%= render @activity %>  
 
   <% unless @activity.booked_by?(current_user) %>  
     <div class="my-8 text-center">
-      <%= link_to 'Iscrivimi', [@activity, :bookings], method: :post, class: 'button text-4xl' %>  
+      <%= link_to 'Iscrivimi', [@activity, :bookings], method: :post, class: 'button text-2xl' %>  
     </div>
   <% end %>
 

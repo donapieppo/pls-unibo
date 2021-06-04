@@ -17,13 +17,11 @@ ActiveStorage.start()
 const images = require.context('../images', true)
 const imagePath = (name) => images(name, true)
 
+window.display_unless_no = function (what, condition_input) {
+  what.style.display = (condition_input.value == 'no') ? 'none' : 'block';
+  condition_input.addEventListener('change', () => {
+    console.log(condition_input.value);
+    booking_dates.style.display = (condition_input.value === 'no') ? 'none' : 'block';
+  });
+}
 
- 
- 
- 
- 
- 
- 
- 
- 
- 

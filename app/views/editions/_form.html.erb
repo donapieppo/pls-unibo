@@ -9,9 +9,15 @@
     <%= f.input :sofia %>
     <%= f.input :pcto %>
     <%= f.input :atomic %>
-    <%= f.input :bookable %>
-    <%= f.input :booking_start %>
-    <%= f.input :booking_end %>
+    <%= f.input :bookable, collection: [['no', 'no'], ['si', 'yes'], ['da confermare', 'to_confirm']], include_blank: false %>
+    <div id="booking_dates">
+      <%= f.input :booking_start, minute_step: 10 %>
+      <%= f.input :booking_end, minute_step: 10 %>
+    </div>
     <%= f.submit %>  
   <% end %>
 </div>
+
+<%= javascript_tag do %>  
+  display_unless_no(document.getElementById('booking_dates'), document.getElementById('edition_bookable'));
+<% end %>
