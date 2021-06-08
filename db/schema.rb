@@ -70,9 +70,20 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.boolean "atomic"
   end
 
+  create_table "activities_activities_clusters", id: false, charset: "utf8mb4", force: :cascade do |t|
+    t.integer "activities_cluster_id", null: false, unsigned: true
+    t.integer "activity_id", null: false, unsigned: true
+    t.index ["activities_cluster_id"], name: "fk_aag_cluster_id"
+    t.index ["activity_id"], name: "fk_aag_activity_id"
+  end
+
   create_table "activities_areas", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
     t.integer "activity_id", null: false, unsigned: true
     t.integer "area_id", null: false, unsigned: true
+  end
+
+  create_table "activities_clusters", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "activities_contacts", id: false, charset: "utf8mb4", force: :cascade do |t|
@@ -221,6 +232,8 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "activities_activities_clusters", "activities", name: "fk_aag_activity_id", on_delete: :cascade
+  add_foreign_key "activities_activities_clusters", "activities_clusters", name: "fk_aag_cluster_id", on_delete: :cascade
   add_foreign_key "activities_contacts", "activities", name: "fk_act_cont_activity_id"
   add_foreign_key "activities_contacts", "contacts", name: "fk_act_cont_contact_id"
   add_foreign_key "activities_resources", "activities", name: "fk_act_activity_id"
