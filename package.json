@@ -8,6 +8,7 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "^6.0.0-beta.7",
+    "@tailwindcss/forms": "^0.3.3",
     "autoprefixer": "^10.2.5",
     "css-loader": "^5.2.1",
     "mini-css-extract-plugin": "^1.4.1",
@@ -30,12 +31,6 @@
     "presets": [
       "./node_modules/@rails/webpacker/package/babel/preset.js"
     ]
-  },
-  "browserslist": [
-    "defaults"
-  ],
-  "babel": {
-    "presets": ["./node_modules/@rails/webpacker/package/babel/preset.js"]
   },
   "browserslist": [
     "defaults"
