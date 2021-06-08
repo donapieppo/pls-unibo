@@ -7,6 +7,7 @@ it:
   primo: scuola secondaria I grado
   secondo: scuola secondaria II grado
   univ: università
+  cluster: Raggruppamento
 
   activerecord:
     models:
@@ -25,6 +26,8 @@ it:
         interested_areas: Aree di interesse
       edition:
         name: Nome
+        description: Descrizione
+        audience: Rivolto a 
         academic_year: Anno accademico
         seats: Posti disponibili
         interested_areas: Aree di interesse
@@ -62,6 +65,8 @@ it:
         role: Partecipi come
         university: Universitario
         other_string: Specificare
+      cluster:
+        name: Nome
 
   time:
     am: am

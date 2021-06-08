@@ -3,6 +3,9 @@
     <%= edition.name %>
   </div>
   <div class="pls-card-content">
+    <div>
+      <%= edition.audience %>  
+    </div>
     <%= possible_label_from_array 'Contatti', edition.contacts %>
     <%= possible_label_from_array 'Relatori', edition.speakers %>
     <%= edition.description %>  

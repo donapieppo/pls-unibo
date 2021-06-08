@@ -1,10 +1,13 @@
 class Activity < ApplicationRecord
   has_and_belongs_to_many :resources
+  has_and_belongs_to_many :clusters
   has_many :bookings
 
   before_destroy :check_children
 
   validates :name, presence: true, allow_blank: false
+
+  scope :clusterable, -> { where(academic_year: 2021).order(:name) }
 
   def check_children
     if Activity.where(parent_id: self.id).count > 0 
@@ -23,5 +26,9 @@ class Activity < ApplicationRecord
 
   def booked_by?(user)
     self.bookings.where(user_id: user.id).any?
+  end
+
+  def cluster_siblings
+    self.clusters.map{|ac| ac.activities}.flatten.uniq
   end
 end

@@ -42,4 +42,8 @@ module IconHelper
   def eye_icon
     '<i class="fas fa-eye"></i>'.html_safe
   end
+
+  def exclamation_icon
+    '<i class="fas fa-exclamation-circle"></i>'.html_safe
+  end
 end

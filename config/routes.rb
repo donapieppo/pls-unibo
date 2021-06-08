@@ -65,6 +65,10 @@ Rails.application.routes.draw do
   end
   resources :resourcess, only: [:edit, :destroy]
 
+  resources :clusters
+
+  post '/search', to: 'home#search', as: :search
+
   get "/presentazione", to: "home#presentazione", as: "presentation"
   get "/contatti", to: "home#contacts", as: "contacts_page"
   get "/privacy", to: "home#privacy", as: "privacy"

@@ -13,6 +13,18 @@
     <div id="booking_dates">
       <%= f.input :booking_start, minute_step: 10 %>
       <%= f.input :booking_end, minute_step: 10 %>
+      <% siblings = @edition.cluster_siblings %>  
+      <% if siblings.any? %>  
+        <hr class="my-2"/>
+        <div>
+          <%= exclamation_icon %>  Nota: iscrizioni uniche con 
+          <ul>
+          <% siblings.each do |activity| %>
+            <li><%= link_to activity, activity %> </li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
     </div>
     <%= f.submit %>  
   <% end %>

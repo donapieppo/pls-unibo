@@ -1,0 +1,10 @@
+<div class="container">
+  <h1 class="title">Risultati ricerca</h1>
+  <div class="text-center"><%= @txt %></div>
+
+  <ul>
+    <% @activities.each do |activity| %>  
+      <li><%= link_to activity, activity %></li>
+    <% end %>
+  </ul>
+</div>

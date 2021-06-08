@@ -1,0 +1,9 @@
+<div class="container">
+  <h1 class="title">Nuovo raggruppamento di attività</h1>
+
+  <%= simple_form_for @cluster do |f| %>  
+    <%= f.association :activities, collection: @activities, as: :check_boxes, label_method: -> (x) { "#{x.name} #{x.academic_year}" } %>  
+    <%= f.submit %>  
+  <% end %>
+</div>
+

@@ -14,4 +14,9 @@ class HomeController < ApplicationController
 
   def privacy
   end
+
+  def search
+    @txt = params[:search]
+    @activities = Activity.where('name like ?', "%#{@txt}%")
+  end
 end

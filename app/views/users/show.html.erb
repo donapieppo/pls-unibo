@@ -1,28 +1,28 @@
 <div class="container my-8">
-  <div class="lg:max-w-4xl mx-auto p-4">
-    <div class="pls-card">
-      <div class="pls-card-title"><%= @user.cn %></div>
-      <div class="pls-card-content">
-        Sei registrato come <%= t @user.role %> (<%= t(@user.school_type) if @user.school_type %><%= @user.other_string if @user.role == 'other' %>).   
-      </div>
-      <div>
-        <% if @user.school_id %>  
-          <%= @user.school %> (<%= @user.school.municipality %>)
-        <% end %>
-      </div>
-      <div class="mt-4">
-        <%= link_to 'modifica i miei dati', myedit_users_path, class: 'button' %>  
-      </div>
+  <div class="pls-card">
+    <div class="pls-card-title"><%= @user.cn %></div>
+    <div class="pls-card-content">
+      Sei registrato come <%= t @user.role %> (<%= t(@user.school_type) if @user.school_type %><%= @user.other_string if @user.role == 'other' %>).   
+    </div>
+    <div>
+      <% if @user.school_id %>  
+        <%= @user.school %> (<%= @user.school.municipality %>)
+      <% end %>
+    </div>
+    <div class="mt-4">
+      <%= link_to 'modifica i miei dati', myedit_users_path, class: 'button' %>  
     </div>
   </div>
   <div class="p-2">
-    <h2 class="">Le tue prenotazioni</h2>
+    <h2 class="title">Le tue prenotazioni</h2>
     <% @user.bookings.each do |b| %>  
       <div class="my-4">
         <%= link_to b.activity.is_a?(Event) ? b.activity.edition : b.activity do %>
           <%= render b.activity %>  
         <% end %>
       </div>
+      <% end.empty? and begin  %>
+      Nessuna prenotazione attiva.
     <% end %>
   </div>
 </div>
