@@ -1,21 +1,14 @@
-<div class="relative bg-pls-light py-16">
+<div class="relative border-t-4 border-pls-light pt-16">
   <div class="container">
-    <div class="bg-pls-light text-2xl lg:text-4xl font-bold absolute -top-8 ml-8 text-pls p-4 px-8 rounded-xl tracking-wider">
+    <div class="border-4 border-pls-light bg-white text-2xl lg:text-4xl font-bold absolute -top-8 -ml-2 md:-ml-16 text-pls p-4 px-8 rounded-xl tracking-wider">
       <%= @edition.academic_year_to_s %>
     </div>
 
-    <div class="lg:flex lg:flex-wrap">
-      <div class="lg:w-2/3">
-        <h3 class="text-xl lg:text-4xl mx-4 lg:max-w-6xl"> 
+    <div class="md:flex md:flex-wrap mt-8">
+      <div class="md:w-2/3">
+        <h3 class="text-xl lg:text-4xl"> 
           <%= @edition.name %> 
         </h3>
-
-        <div>
-          <%= link_to(edit_icon, [:edit, @edition], class: 'text-xl') if helpers.policy(@edition).edit? %>  
-          <% if helpers.policy(@edition).book? && ! helpers.current_user_booked?(@edition.id) %>  
-            <%= link_to(booking_icon + ' iscriviti', [:new, @edition, :booking], class: 'text-xl') %>  
-          <% end %>
-        </div>
 
         <div class="my-8">
           <div class="lg:text-lg">
@@ -26,18 +19,14 @@
             <%= helpers.possible_label_from_array 'Relatori', @edition.speakers %>
             <%= helpers.possible_label 'Audience', @edition.audience %>
           </div>
-          <% if @edition.bookable? && @edition.booking_start && @edition.booking_end %>  
-            Iscrizioni: <strong><%= l @edition.booking_start %> - <%= l @edition.booking_end %></strong>
-          <% end %>
-          <% if helpers.policy(@edition).book? %>  
-            <%= link_to booking_icon, new_event_booking_path(@edition) %>  
-          <% end %>
+
           <div class="italic text-justify my-4 text-gray-600">
             <%= @edition.details %>  
           </div>
+          <%= render BookingAndActionsComponent.new(what: @edition) %>
         </div>
       </div>
-      <div class="lg:w-1/3">
+      <div class="md:w-1/3">
         <% if @resources.any? %>  
           <div class="my-4">
             <% @resources.each do |resource| %>
@@ -49,9 +38,10 @@
     </div>
 
     <% if @events.any? %>  
-      <div class="my-8">
-        <h3 class="text-2xl">Eventi</h3>
-        <%= render EventsListComponent.new(events: @events, short: @edition.atomic) %>  
+      <div class="my-4 border-2 rounded-xl shadow-xl bg-gray-50">
+        <h3 class="text-2xl text-center my-2">Eventi</h3>
+          <%= render EventsListComponent.new(events: @events, short: @edition.atomic) %>  
+        </div>
       </div>
     <% end %>
   </div>

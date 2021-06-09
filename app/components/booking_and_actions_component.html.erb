@@ -1,0 +1,15 @@
+<% if @what.bookable? && @what.booking_start && @what.booking_end %>  
+  <div>Iscrizioni dal <%= l @what.booking_start %> al <%= l @what.booking_end %></div>
+<% end %>
+<% if helpers.current_user_booked?(@what.id) %>
+  <div class="text-2xl text-green-500 font-bold my-4"><%= exclamation_icon %> Sei iscritto a questa edizione</div>
+<% end %>
+
+<div class="actions">
+  <% if helpers.policy(@what).edit? %>  
+    <div><%= link_to edit_icon, [:edit, @what], class: 'text-xl' %></div>
+  <% end %>
+  <% if helpers.policy(@what).book? && ! helpers.current_user_booked?(@what.id) %>  
+    <div class="my-4"><%= link_to booking_icon + ' iscriviti', [:new, @what, :booking], class: 'button' %></div>
+  <% end %>
+</div>
