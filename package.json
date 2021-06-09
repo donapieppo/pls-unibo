@@ -23,7 +23,7 @@
   },
   "version": "0.1.0",
   "devDependencies": {
-    "@webpack-cli/serve": "^1.4.0",
+    "@webpack-cli/serve": "^1.5.1",
     "webpack-cli": "^4.2.0",
     "webpack-dev-server": "^3.11.2"
   },
@@ -31,6 +31,12 @@
     "presets": [
       "./node_modules/@rails/webpacker/package/babel/preset.js"
     ]
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "babel": {
+    "presets": ["./node_modules/@rails/webpacker/package/babel/preset.js"]
   },
   "browserslist": [
     "defaults"
