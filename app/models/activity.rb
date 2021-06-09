@@ -16,7 +16,7 @@ class Activity < ApplicationRecord
   end
 
   def bookable?
-    self.bookable != 'no'
+    self.bookable && self.bookable != 'no'
   end
 
   def bookable_now?
