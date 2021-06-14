@@ -9,7 +9,7 @@
   </div>
   <div class="mt-1">
     <select id="select-audience">
-      <option value="">Audience generica</option>
+      <option value="">---</option>
       <% Audience.order(:name).each do |a| %>  
         <option value="<%= a.id %>"><%= a.name %></option>
       <% end %>

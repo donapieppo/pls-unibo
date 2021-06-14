@@ -1,15 +1,22 @@
-<h1 class="title">Contenitori di Risorse</h1>
+<div class="container">
+  <h1 class="title">Contenitori di Risorse</h1>
 
-<% @resource_containers.each do |resource_container| %>  
-  <div class="border-2 p-2 px-4 m-2">
-    <%= link_to resource_container.name, [:edit, resource_container] %> 
-    <% resource_container.resources.each do |item| %>  
-      <div class="ml-4 text-gray-600">
-        <%= resource_item_icon(item) %>  
-        <%= link_to item.name, [:edit, item] %>
+  <div class="text-center my-4">
+    <%= link_to('Aggiungi risorsa', new_resource_path, class: 'button') if policy(:resource_container).new? %>
+  </div>
+
+  <div class="flex flex-wrap flex-col md:flex-row justify-center">
+    <% @resource_containers.each do |resource_container| %>  
+      <div class="md:w-1/3 p-4">
+        <% if policy(resource_container).edit? %>  
+          <%= link_to resource_container.name, [:edit, resource_container] %> 
+        <% else %>  
+          <p><%= resource_container.name %></p>
+        <% end %>
+        <% resource_container.resources.each do |resource| %>  
+          <%= render resource %>  
+        <% end %>
       </div>
     <% end %>
   </div>
-<% end %>
-
-<%= link_to 'Aggiungi risorsa', new_resource_path, class: 'button' %>
+</div>

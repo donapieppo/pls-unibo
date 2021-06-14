@@ -2,6 +2,7 @@
   <h3 class="font-semibold py-2"><%= project.name.upcase %></h3>
   <p class=""><%= project.activity_type %></p>
   <div class="text-sm text-gray-700 text-justify mt-4">
-    <%= project.description %>  
+    <div>Organizzato da: <%= project.areas_to_s %></div>
+    <%= possible_label_from_array 'Aree di interesse', project.interested_areas %>  
   </div>
 </div>

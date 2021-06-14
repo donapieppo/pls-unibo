@@ -12,7 +12,7 @@
           <%= link_to 'home', root_path, class: 'menu-items-item' %>
           <%= link_to 'presentazione', presentation_path, class: 'menu-items-item' %>
           <%= link_to 'attività', projects_path, class: 'menu-items-item' %>
-          <%= link_to 'risorse', resources_path, class: 'menu-items-item' %>  
+          <%= link_to 'risorse', resource_containers_path, class: 'menu-items-item' %>  
           <%= link_to 'contatti', contacts_page_path, class: 'menu-items-item' %>
           <%= link_to 'privacy', privacy_path, class: 'menu-items-item' %>
           <% if current_user && current_user.staff? %>  
