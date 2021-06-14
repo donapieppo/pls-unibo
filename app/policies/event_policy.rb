@@ -1,6 +1,6 @@
 class EventPolicy < ActivityPolicy
   def book?
-    @user && @record.bookable_now? 
+    BookingPolicy.new(@user, @record.bookings.new).create?
   end
 end
 
