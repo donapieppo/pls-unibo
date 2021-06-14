@@ -66,6 +66,7 @@ it:
         university: Universitario
         other_string: Specificare
       cluster:
+        activities: Attività
         name: Nome
 
   time:
