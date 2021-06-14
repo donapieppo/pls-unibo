@@ -7,4 +7,10 @@
       <li><%= link_to activity, activity %></li>
     <% end %>
   </ul>
+
+  <ul>
+    <% @schools.each do |school| %>  
+      <li><%= link_to school, school %></li>
+    <% end %>
+  </ul>
 </div>

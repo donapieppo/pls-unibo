@@ -18,5 +18,6 @@ class HomeController < ApplicationController
   def search
     @txt = params[:search]
     @activities = Activity.where('name like ?', "%#{@txt}%")
+    @schools = School.where('name like ? or code like ?', "%#{@txt}%", "%#{@txt}%")
   end
 end
