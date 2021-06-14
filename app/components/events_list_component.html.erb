@@ -1,7 +1,7 @@
 <% if @short %>  
   <div class="my-2 flex flex-wrap px-2">
     <% @events.each do |event| %>
-      <div class="w-32 pr-4 text-center">
+      <div class="w-32 r-4 text-center">
         <div class="bg-white texl-pls border-2 shadow-xl rounded-2xl text-sm font-bold py-2 px-4">
           <%= l event.start_date %>
         </div>
@@ -10,14 +10,14 @@
   </div>
 <% else %>
   <% @events.each do |event| %>  
-    <div class="my-12 flex px-2">
-      <div class="w-32 pr-4 lg:pr-8 text-center">
-        <div class="bg-white texl-pls border-2 shadow-xl rounded-2xl text-sm font-bold py-2 px-4">
+    <div class="my-12 md:flex px-2">
+      <div class="md:w-48 md:px-8 py-4 text-center">
+        <div class="bg-pls-light texl-pls border-2 shadow-xl rounded-2xl text-sm font-bold py-2 px-4">
           <%= l event.start_date %>
         </div>
       </div>
-      <div class="w-full">
-        <div class="text-lg font-semibold">
+      <div class="md:w-full">
+        <div class="text-lg font-semibold ">
           <%= link_to event.name.upcase, event %> 
         </div>
         <div class="text-sm italic text-justify text-gray-700 mt-4">
