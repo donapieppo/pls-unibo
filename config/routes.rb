@@ -66,6 +66,7 @@ Rails.application.routes.draw do
   resources :resourcess, only: [:edit, :destroy]
 
   resources :clusters
+  resources :schools
 
   post '/search', to: 'home#search', as: :search
 
