@@ -21,13 +21,13 @@ module ApplicationHelper
     "#{_label}: #{_txt}"
   end
 
-  def possible_label_from_array(_label, _arr)
+  def possible_label_from_array(_label, _arr, with_link: true)
     res = ""
     _arr.each do |item|
       res += ', ' unless res.blank?
-      if item.respond_to?(:email)
+      if with_link && item.respond_to?(:email)
         res += mail_to item.email, item
-      else
+      elsif with_link
         res += link_to item, item
       end
     end
