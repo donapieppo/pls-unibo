@@ -12,7 +12,7 @@
                                                               ['Altro', 'other']] %>
         </div>
         <hr/>
-        <%= f.input :school_type, as: :radio_buttons, label: '', collection: [['Scuola secondaria I grado', 'primo'], ['Scuola secondaria II grado', 'secondo'], ['Università', 'univ']] %>
+        <%= f.input :school_type, as: :radio_buttons, label: '', collection: [['Scuola I grado', 'primo'], ['Scuola II grado', 'secondo'], ['Università', 'univ']] %>
 
         <%= f.input :other_string %>  
 
@@ -21,7 +21,7 @@
             <%= render 'schools/school', school: @user.school %>  
           <% end %>
 
-          per aggiornare la scuola iniziate a scrivere il nome nel box sotto
+          Nel caso di scuola I / II grado specificate la vostra scuola iniziando iniziate a scrivere il nome nel box sotto:
 
           <input id="school_id" name="user[school_name]" class="border-4 rounded my-2 w-full" list="schools" />
           <datalist id="schools" style="background-color: #ccc;">
@@ -37,6 +37,13 @@
   </div>
 </div>
 
+<div class="max-w-4xl p-4 mx-auto my-8 ">
+  <h3 class="font-bold">Privacy</h3>
+  <p class="my-2">L’Ateneo intende assicurare un trattamento corretto e trasparente dei dati personali.</p>
+  <p class="my-2">Nella sezione <a href="https://www.unibo.it/it/ateneo/privacy-e-note-legali/privacy/informativa-generale-sul-trattamento-dei-dati-personali">Privacy del Portale Unibo</a> troverai maggiori informazioni sui contesti specifici nell’ambito dei quali i tuoi dati sono trattati, dell'eventuale obbligo di fornirli, dei soggetti che possono essere destinatari dei tuoi dati e tutti i contatti utili per esercitare i diritti che la legge ti riconosce.</p>
+  <p class="my-2">Questo sito utilizza i tuoi dati solo per permettere il login (cookie di google) e invia mail solo nel caso </p>
+</div>
+
 <%= javascript_tag do %>  
   const role_inputs = document.querySelectorAll('.user_role input');
   const school_inputs = document.querySelector('.user_school_type');
@@ -44,24 +51,24 @@
   const school_choose = document.getElementById('school_choose');
 
   const update = () => {
-  r = document.querySelectorAll('.user_role input:checked')[0];
-  if (r && r.value == 'other') {
-  other_input.style.display = 'block';
-  school_inputs.style.display = 'none';
-  school_choose.style.display = 'none';
-  } else {
-  other_input.style.display = 'none';
-  other_input.querySelector('textarea').value = '';
-  school_inputs.style.display = 'block';
-  school_choose.style.display = 'block';
-  }
+    r = document.querySelectorAll('.user_role input:checked')[0];
+    if (r && r.value == 'other') {
+      other_input.style.display = 'block';
+      school_inputs.style.display = 'none';
+      school_choose.style.display = 'none';
+    } else {
+      other_input.style.display = 'none';
+      other_input.querySelector('textarea').value = '';
+      school_inputs.style.display = 'block';
+      school_choose.style.display = 'block';
+    }
   }
 
   update();
 
   role_inputs.forEach((r) => {
-  r.addEventListener('change', () => {
-  update();
-  });
+    r.addEventListener('change', () => {
+      update();
+    });
   });
 <% end %>
