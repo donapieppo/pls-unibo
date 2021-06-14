@@ -1,7 +1,7 @@
-<div class="filters p-2">
+<div class="filters text-sm">
   <div>
     <select id="select-year">
-      <option value="">Tutti gli anni</option>
+      <option value="">Mostra tutti gli anni</option>
       <% Edition.all_academic_years.each do |y| %>  
         <option value="<%= y %>"><%= academic_year(y) %></option>
       <% end %>

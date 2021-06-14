@@ -9,11 +9,13 @@
     <%= possible_label_from_array 'Contatti', edition.contacts %>
     <%= possible_label_from_array 'Relatori', edition.speakers %>
     <%= edition.description %>  
-    <% edition.events.each do |event| %>  
-      <div class="inline-block p-2 border-l border-pls">
-        <%= l event.start_date %>  
-      </div>
-    <% end %>
+    <div class="my-4">
+      <% edition.events.each do |event| %>  
+        <div class="inline-block m-2 p-2 border border-pls">
+          <%= l event.start_date %>  
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 

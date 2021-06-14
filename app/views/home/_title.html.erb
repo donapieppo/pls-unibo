@@ -10,7 +10,7 @@
       <div class="text-sm ml-16"><%= link_to '->  mostra', '#areas' %></div>
     </div>
     <div id="home-box-projects" class="home-box bg-pls-light">
-      <div>120 progetti</div>
+      <div><%= Activity.count %> progetti</div>
       <div class="text-sm ml-16"><%= link_to '->  mostra', projects_path %></div>
     </div>
     <div id="home-box-students" class="home-box bg-pls-strong">
