@@ -29,6 +29,15 @@ class Activity < ApplicationRecord
   end
 
   def cluster_siblings
-    self.clusters.map{|ac| ac.activities}.flatten.uniq
+    self.clusters.map{|c| c.activities}.flatten.uniq
+  end
+
+  def any_cluster_siblings_booked?(user)
+    (user.bookings.map(&:activity_id) & self.clusters.map(&:activity_ids).flatten).any?
+
+    #self.cluster_siblings.each do |a|
+    #  return false if e.booked_by?(user)
+    #end
+    #true
   end
 end
