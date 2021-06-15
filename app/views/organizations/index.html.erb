@@ -1,0 +1,12 @@
+<h1 class="title">I Dipartimenti</h1>
+
+<div class="lg:max-w-3xl m-auto my-8 border-2 p-16 rounded-2xl">
+  <% @organizations.order(:name).each do |org| %>
+    <div class="pl-2 m-1">
+      <i class="far fa-arrow-alt-circle-right text-xl mr-2"></i> 
+      <%= link_to org, org.url, target: '_new' %>
+    </div>
+  <% end %>
+</div>
+
+
