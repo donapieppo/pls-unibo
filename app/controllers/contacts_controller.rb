@@ -5,6 +5,9 @@ class ContactsController < ApplicationController
   def index
     authorize :contact
     @contacts = Contact.order(:name)
+    if params[:area] == '1'
+      @contacts = @contacts.left_joins(:areas).where('areas.id is not null')
+    end
   end
 
   def new
