@@ -37,5 +37,11 @@
 </div>
 
 <%= link_to projects_path do %>
-  <div class="button w-64 m-auto p-8 text-xl text-center">Mostra le attività del PLS</div>
+  <div class="button w-64 m-auto p-8 text-xl text-center">Tutte le attività</div>
+<% end %>
+<%= link_to resource_containers_path do %>
+  <div class="button w-64 m-auto p-8 text-xl text-center">Risorse disponibili</div>
+<% end %>
+<%= link_to contacts_path(area: 1) do %>
+  <div class="button w-64 m-auto p-8 text-xl text-center">Contatti</div>
 <% end %>
