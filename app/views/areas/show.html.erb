@@ -8,8 +8,8 @@
 <div class="lg:relative">
   <div class="relative lg:ml-auto -top-16 lg:right-8 lg:max-w-6xl mx-2 bg-pls-light font-light lg:text-lg lg:text-xl text-justify rounded-xl p-6 border-gray-900 border-4">
     <%= @area.description %>
-    <div class="text-sm text-right mt-4">
-      <%= @area.contact %>
+    <div class="text-sm mt-4">
+      Responsabile: <%= @area.contact %>
     </div>
   </div>
 </div>
@@ -37,6 +37,9 @@
       </div>
     <% end %>
   </div>
+
+  <h2 class="title py-2">Le risorse</h2>
+
   <div class="lg:w-1/4">
     <% @area.resource_containers.order(:name).each do |resource_container| %>  
       <h3><%= resource_container.name %></h3>
@@ -47,4 +50,7 @@
       <% end %>
     <% end %>
   </div>
+  
+  <h2 class="title py-2">I contatti</h2>
+
 </div>
