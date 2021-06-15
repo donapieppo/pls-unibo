@@ -8,8 +8,31 @@ Rails.application.routes.draw do
   get 'login',                       to: 'logins#index',  as: :login
   get 'logins/logout',               to: 'logins#logout', as: :logout
 
+  concern :contactable do
+    member do
+      post :add_contact
+      delete :remove_contact
+    end
+    resources :contacts, only: [:index, :new, :create]
+  end
+
+  concern :resourceble do
+    member do
+      get  :choose_resource
+      post :add_resource
+      delete :remove_resource
+    end
+    resources :resources, only: [:index, :new, :create]
+  end
+
+  concern :bookable do
+    resources :bookings, only: [:index, :new, :create] do
+      post :new_user, on: :collection
+    end
+  end
+
   resources :resources
-  resources :organizations
+  resources :organizations, only: [:index, :show]
   resources :areas
   resources :bookings
   resources :users do
@@ -17,52 +40,18 @@ Rails.application.routes.draw do
     get :me, on: :collection
   end
   
-  resources :projects do
-    resources :editions
-
-    post :add_contact, on: :member
-    delete :remove_contact, on: :member
-    resources :contacts, only: [:index, :new, :create]
-  end
-
-  resources :editions do
-    resources :events
-
-    resources :bookings, only: [:index, :new, :create] do
-      post :new_user, on: :collection
-    end
-    resources :resources, only: [:index, :new, :create]
-    get  :choose_resource, on: :member
-    post :add_resource, on: :member
-    delete :remove_resource, on: :member
-
-    post :add_contact, on: :member
-    delete :remove_contact, on: :member
-    resources :contacts, only: [:index, :new, :create]
-  end
-
-  resources :events do
-    resources :bookings, only: [:index, :new, :create] do
-      post :new_user, on: :collection
-    end
-    resources :resources, only: [:index, :new, :create]
-    get  :choose_resource, on: :member
-    post :add_resource, on: :member
-    delete :remove_resource, on: :member
-
-    post :add_contact, on: :member
-    delete :remove_contact, on: :member
-    resources :contacts, only: [:index, :new, :create]
-  end
-
   resources :contacts
 
-  resources :resource_containers do
-    resources :resources, only: [:index, :new, :create]
-    get  :choose_resource, on: :member
-    post :add_resource, on: :member
-    delete :remove_resource, on: :member
+  resources :projects, concerns: :contactable do
+    resources :editions
   end
+
+  resources :editions, concerns: [:resourceble, :contactable, :bookable] do
+    resources :events
+  end
+
+  resources :events, concerns: [:resourceble, :contactable, :bookable] 
+  resources :resource_containers, concerns: [:resourceble]
   resources :resourcess, only: [:edit, :destroy]
 
   resources :clusters
