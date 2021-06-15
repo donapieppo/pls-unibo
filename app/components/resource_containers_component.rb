@@ -4,7 +4,7 @@ include LinkHelper
 class ResourceContainersComponent < ViewComponent::Base
   def initialize(what:)
     @what = what
-    @resources = @what.resources
+    @resource_containers = @what.resource_containers
   end
 end
 

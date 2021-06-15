@@ -3,14 +3,14 @@
     RISORSE  
   </label>
   <div class="pls-card-content">
-    <% @resources.each do |resource| %>  
+    <% @resource_containers.each do |resource_container| %>  
       <div>
-        <%= link_to resource, [:edit, resource] %>
+        <%= link_to resource_container, [:edit, resource_container] %>
       </div>
     <% end %>
   </div>
   <div class="p-2">
-    <%= link_to 'Associa risorsa esistente', [:choose_resource, @what], class: 'button my-2' %>
+    <%= link_to 'Associa risorsa esistente', [:choose_resource_container, @what], class: 'button my-2' %>
     <%= link_to 'Nuovo allegato', url, class: 'button my-2' %>
   </div>
 </div>
