@@ -42,3 +42,4 @@ include IconHelper
 include ImageHelper
 include LinkHelper
 include ResourceHelper
+include AreaHelper
