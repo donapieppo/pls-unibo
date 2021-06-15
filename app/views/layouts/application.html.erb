@@ -17,7 +17,9 @@
       </div>
 
     <div class="flex flex-col justify-between">
-      <%= render partial: 'layouts/menu' %>  
+      <div>
+        <%= render partial: 'layouts/menu' %>  
+      </div>
 
       <div class="flex-grow">
         <%= render FlashMessagesComponent.new(flash: flash) %>
