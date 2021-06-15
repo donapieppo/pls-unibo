@@ -25,17 +25,6 @@
   <% end %>
 </div>
 
-<h2 class="text-pls text-center my-12">Partecipano</h2>
-
-<div class="lg:max-w-3xl m-auto my-8 border-2 p-16 rounded-2xl">
-  <% Organization.order(:name).each do |org| %>
-    <div class="pl-2 m-1">
-      <i class="far fa-arrow-alt-circle-right text-xl mr-2"></i> 
-      <%= link_to org, org.url, target: '_new' %>
-    </div>
-  <% end %>
-</div>
-
 <%= link_to projects_path do %>
   <div class="button w-64 m-auto p-8 text-xl text-center">Tutte le attività</div>
 <% end %>
