@@ -6,4 +6,8 @@
     <%= f.association :contact %>  
     <%= f.submit %>  
   <% end %>
+
+  <div class="mt-4">
+    <%= render ResourceContainersComponent.new(what: @area) %>
+  </div>
 </div>
