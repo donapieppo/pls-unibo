@@ -1,24 +1,31 @@
-<h1 class="title">Contatti</h1>
+<div class="container">
+  <h1 class="title">Contatti</h1>
 
-<div class="w-3/4 lg:w-1/2 mx-auto">
-  <div>
+  <% if params[:area] == '1' %>  
+    <h2 class="text-center">I docenti Unibo che si occupano del PLS</h2>
+  <% end %>
+
+  <div class="max-w-3xl">
     <% @contacts.each do |c| %>  
-      <%= link_to [:edit, c] do %>  
-        <div class="px-2 hover:bg-gray-100">
-          <%= c.name %> 
-          <div class="float-right pl-4">
-            <% if c.deletable? %>
-              <%= link_to_delete c %>
-            <% end %>
-            <%= mail_to(c.email, mail_icon) unless c.email.blank? %>
-            <%= link_to(link_icon, c.web_page) unless c.web_page.blank? %>
-          </div> 
-        </div>
-      <% end %>
-    <% end %>
-  </div>
+      <div class="p-2">
+        <%= c.name %> 
 
-  <div class="my-4">
-    <%= link_to 'Aggiungi nuovo contatto', new_contact_path, class: 'button' %>  
+        <% if params[:area] == '1' %>  
+          <div><% areas_to_s(c.areas) %></div>
+        <% end %>
+
+        <div class="float-right pl-4">
+          <% if c.deletable? %>
+            <%= link_to_delete c %>
+          <% end %>
+          <%= mail_to(c.email, mail_icon) unless c.email.blank? %>
+          <%= link_to(link_icon, c.web_page) unless c.web_page.blank? %>
+          <%= link_to_edit_if_editable(c) %>
+        </div> 
+      </div>
+    <% end %>
+    <div class="my-4">
+      <%= link_to 'Aggiungi nuovo contatto', new_contact_path, class: 'button' %>  
+    </div>
   </div>
 </div>
