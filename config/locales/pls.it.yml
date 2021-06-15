@@ -68,6 +68,11 @@ it:
       cluster:
         activities: Attività
         name: Nome
+      resource_container:
+        areas: Areee
+        name: Nome
+        description: Descrizione
+
 
   time:
     am: am
