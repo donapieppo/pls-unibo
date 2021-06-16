@@ -9,9 +9,10 @@
       </div>
     <% end %>
   </div>
-  <div class="p-2">
-    <%= link_to 'Associa risorsa esistente', [:choose_resource_container, @what], class: 'button my-2' %>
-    <%= link_to 'Nuovo allegato', url, class: 'button my-2' %>
-  </div>
+</div>
+
+<div class="info my-2">
+  Per associare un contenitore di risorse a questa attività scegliete il 
+  contenitore da <%= link_to 'questa lista', resource_containers_path, class: 'underline' %> e modificatelo.
 </div>
 
