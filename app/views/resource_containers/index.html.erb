@@ -8,18 +8,7 @@
   <div class="flex flex-wrap flex-col md:flex-row">
     <% @resource_containers.each do |resource_container| %>  
       <div class="md:w-1/3 lg:w-1/4">
-        <div class="m-2 h-full border-2 border-yellow-300">
-          <div class="text-center">
-            <%= resource_container.name %>
-            <%= link_to_edit_if_editable resource_container %> 
-            <%= link_to_delete_if_deletable resource_container %> 
-          </div>
-          <% resource_container.resources.each do |resource| %>  
-            <div>
-              <%= render resource %>  
-            </div>
-          <% end %>
-        </div>
+        <%= render resource_container, resource_container: resource_container %>  
       </div>
     <% end %>
   </div>

@@ -1,7 +1,15 @@
-<h3><%= resource_container.name %></h3>
-<% resource_container.resources.each do |resource| %>  
-  <div>
-    <%= render resource %>  
+<div class="m-2 h-full border-2 border-yellow-300">
+  <div class="text-center">
+    <div class="font-bold"><%= resource_container.name %></div>
+    <div><% areas_to_s(resource_container.areas) %></div>
+    <div>
+      <%= link_to_edit_if_editable resource_container %> 
+      <%= link_to_delete_if_deletable resource_container %> 
+    </div>
   </div>
-<% end %>
-
+  <% resource_container.resources.each do |resource| %>  
+    <div>
+      <%= render resource %>  
+    </div>
+  <% end %>
+</div>
