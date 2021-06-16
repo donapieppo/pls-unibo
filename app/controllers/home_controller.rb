@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_action :skip_authorization
 
   def index
-    @areas = Area.includes(:contact).order(:name).all
+    @areas = Area.includes(:head).order(:name).all
     authorize :home
   end
 

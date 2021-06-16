@@ -1,7 +1,22 @@
 <div class="px-4 lg:px-16 leading-8">
   <h1 class="title">Contatti</h1>
 
-  <h2 class="my-4">I docenti Unibo che si occupano del PLS</h2>
+  <div class="flex flex-wrap">
+    <div class="w-1/2 font-bold text-right px-4 mb-8">
+      Coordinatore Unibo
+    </div>
+    <div class="w-1/2 mb-8">
+      <%= mail_to 'mirella.manaresi@unibo.it', 'Mirella Manaresi' %>
+    </div>
 
-  <p>Coordinatore: Mirella Manaresi</p>
+    <% Area.order(:name).includes(:head, :contacts).each do |area| %>  
+      <div class="w-1/2 font-bold text-right px-4">
+        <%= area %> 
+      </div>
+      <div class="w-1/2">
+        <span class="text-gray-700">Referente:</span> <%= area.head %>  <br/>
+        <span class="text-gray-700">Contatti:</span> <% contacts_to_s(area.contacts) %>
+      </div>
+    <% end %>
+  </div>
 </div>
