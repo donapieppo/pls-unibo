@@ -18,10 +18,10 @@ form {
     @apply my-2 mr-2 text-sm text-gray-700;
   }
   select.select {
-    @apply w-1/2 h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow;
+    @apply w-1/2 h-10 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow;
   }
   select.datetime, select.date {
-    @apply h-10 px-2 pr-6 placeholder-gray-600 border rounded-lg appearance-none focus:shadow;
+    @apply h-10 placeholder-gray-600 border rounded-lg appearance-none focus:shadow;
   }
   input[type="file"] {
     @apply lg:col-start-3 lg:col-end-4;
