@@ -9,7 +9,7 @@
   <div class="relative lg:ml-auto -top-16 lg:right-8 lg:max-w-6xl mx-2 bg-pls-light font-light lg:text-lg lg:text-xl text-justify rounded-xl p-6 border-gray-900 border-4">
     <%= @area.description %>
     <div class="text-sm mt-4">
-      Responsabile: <%= @area.contact %>
+      Responsabile: <%= @area.head %>
     </div>
     <div>
       <%= link_to_edit_if_editable @area %>
@@ -51,7 +51,4 @@
       <%= render resource_container %>  
     <% end %>
   </div>
-  
-  <h2 class="title py-2">I contatti</h2>
-
 </div>
