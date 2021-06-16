@@ -1,6 +1,7 @@
 class Contact < ApplicationRecord
   has_many :contact_records
-  has_many :areas, foreign_key: "head_id"
+  has_many :organized_areas, foreign_key: "head_id", class_name: 'Area'
+  has_and_belongs_to_many :areas
   
   has_and_belongs_to_many :activities
   has_and_belongs_to_many :activities_as_speaker, join_table: 'activities_speakers', class_name: 'Activity'
