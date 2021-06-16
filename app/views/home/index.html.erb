@@ -25,12 +25,22 @@
   <% end %>
 </div>
 
-<%= link_to projects_path do %>
-  <div class="button w-64 m-auto p-8 text-xl text-center">Tutte le attività</div>
-<% end %>
-<%= link_to resource_containers_path do %>
-  <div class="button w-64 m-auto p-8 text-xl text-center">Risorse disponibili</div>
-<% end %>
-<%= link_to contacts_path(area: 1) do %>
-  <div class="button w-64 m-auto p-8 text-xl text-center">Contatti</div>
-<% end %>
+<div class="container">
+  <div class="md:flex mt-8">
+    <div class="md:w-1/3">
+      <%= link_to projects_path do %>
+        <div class="big-button m-4 text-xl">Tutte le attività</div>
+      <% end %>
+    </div>
+    <div class="md:w-1/3">
+      <%= link_to resource_containers_path do %>
+        <div class="big-button m-4 text-xl">Risorse disponibili</div>
+      <% end %>
+    </div>
+    <div class="md:w-1/3">
+      <%= link_to contacts_path(area: 1) do %>
+        <div class="big-button m-4 text-xl">Contatti</div>
+      <% end %>
+    </div>
+  </div>
+</div>
