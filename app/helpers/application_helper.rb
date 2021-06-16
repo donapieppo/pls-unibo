@@ -43,3 +43,4 @@ include ImageHelper
 include LinkHelper
 include ResourceHelper
 include AreaHelper
+include ContactHelper
