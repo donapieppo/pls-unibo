@@ -18,6 +18,10 @@ it:
       resource: Prodotto
 
     attributes:
+      area:
+        name: Nome
+        description: Descrizione
+        contact: Responsabile
       project:
         name: Nome
         description: Descrizione
