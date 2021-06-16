@@ -1,4 +1,10 @@
 module LinkHelper
+  def link_to_delete_if_deletable(what)
+    if policy(what).destroy?
+      link_to_delete(what)
+    end
+  end
+
   def link_to_edit_if_editable(what)
     if policy(what).edit?
       link_to(edit_icon, [:edit, what])

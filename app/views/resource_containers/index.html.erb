@@ -12,6 +12,7 @@
           <div class="text-center">
             <%= resource_container.name %>
             <%= link_to_edit_if_editable resource_container %> 
+            <%= link_to_delete_if_deletable resource_container %> 
           </div>
           <% resource_container.resources.each do |resource| %>  
             <div>

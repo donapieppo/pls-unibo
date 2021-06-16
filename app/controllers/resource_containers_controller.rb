@@ -38,7 +38,7 @@ class ResourceContainersController < ApplicationController
 
   def destroy
     @resource_container.destroy
-    redirect_to resource_containers_url, notice: "Resource was successfully destroyed." 
+    redirect_to resource_containers_path, notice: "OK."
   end
 
   private

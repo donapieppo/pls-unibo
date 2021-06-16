@@ -7,7 +7,8 @@ class Activity < ApplicationRecord
 
   validates :name, presence: true, allow_blank: false
 
-  scope :clusterable, -> { where(academic_year: 2021).order(:name) }
+  # scope :clusterable, -> { where(academic_year: 2021).order(:name) }
+  scope :clusterable, -> { order(:name) }
 
   def check_children
     if Activity.where(parent_id: self.id).count > 0 

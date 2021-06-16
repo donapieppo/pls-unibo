@@ -29,17 +29,26 @@
   <div class="md:flex mt-8">
     <div class="md:w-1/3">
       <%= link_to projects_path do %>
-        <div class="big-button m-4 text-xl">Tutte le attività</div>
+        <div class="big-button m-6 text-xl">
+          <i class="fas fa-chalkboard text-4xl mb-4"></i><br/>
+          Tutte le attività
+        </div>
       <% end %>
     </div>
     <div class="md:w-1/3">
       <%= link_to resource_containers_path do %>
-        <div class="big-button m-4 text-xl">Risorse disponibili</div>
+        <div class="big-button m-6 text-xl">
+          <i class="far fa-folder-open text-4xl mb-4"></i><br/>
+          Risorse disponibili
+        </div>
       <% end %>
     </div>
     <div class="md:w-1/3">
       <%= link_to contacts_path(area: 1) do %>
-        <div class="big-button m-4 text-xl">Contatti</div>
+        <div class="big-button m-6 text-xl">
+          <i class="far fa-address-book text-4xl mb-4"></i><br/>
+          Contatti
+        </div>
       <% end %>
     </div>
   </div>
