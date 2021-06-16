@@ -5,6 +5,10 @@
   @apply bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-4 rounded;
 }
 
+.big-button {
+  @apply bg-blue-400 hover:bg-blue-600 text-white font-bold p-8 text-center rounded-2xl;
+}
+
 .alert {
   @apply bg-red-100 border-l-4 border-red-500 text-black p-4;
 }
@@ -55,6 +59,6 @@ h3 {
 
 .filters {
   select {
-    @apply p-2 border-4 rounded-2xl text-sm;
+    @apply border-2 rounded-2xl text-sm;
   }
 }
