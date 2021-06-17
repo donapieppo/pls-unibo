@@ -1,10 +1,12 @@
 <% if @short %>  
-  Eventi:
-  <% @events.each do |event| %>
-    <div class="bg-white texl-pls border-2 shadow rounded-2xl text-sm py-2 px-4 inline mx-1">
-      <%= l event.start_date, format: :day_with_year %>
-    </div>
-  <% end %>
+  <div class="font-bold mb-2">Lista degli eventi:</div>
+  <div>
+    <% @events.each do |event| %>
+      <div class="bg-white texl-pls border-2 shadow rounded-2xl text-sm py-2 px-4 mr-1 mb-1 float-left">
+        <%= l event.start_date, format: :day_with_year %>
+      </div>
+    <% end %>
+  </div>
 <% else %>
   <div class="my-4 border-2 rounded-xl shadow-xl bg-gray-50">
     <h3 class="text-2xl text-center my-8">Eventi</h3>
