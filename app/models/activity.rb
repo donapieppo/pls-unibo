@@ -41,4 +41,8 @@ class Activity < ApplicationRecord
     #end
     #true
   end
+
+  def self.approximate_count
+    @@approximate_count ||= Activity.count.round(-1)
+  end
 end
