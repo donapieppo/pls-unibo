@@ -28,6 +28,6 @@
 
 <% @editions.each do |edition| %>  
   <div class="py-8">
-    <%= render EditionComponent.new(edition: edition, title_if_different_from: @project.name) %>
+    <%= render EditionComponent.new(edition: edition, short: true, title_if_different_from: @project.name) %>
   </div>
 <% end %>

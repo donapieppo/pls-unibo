@@ -1,33 +1,33 @@
 <% if @short %>  
-  <div class="my-2 flex flex-wrap px-2">
-    <% @events.each do |event| %>
-      <div class="w-32 r-4 text-center">
-        <div class="bg-white texl-pls border-2 shadow-xl rounded-2xl text-sm font-bold py-2 px-4">
-          <%= l event.start_date %>
+  Eventi:
+  <% @events.each do |event| %>
+    <div class="bg-white texl-pls border-2 shadow rounded-2xl text-sm py-2 px-4 inline mx-1">
+      <%= l event.start_date, format: :day_with_year %>
+    </div>
+  <% end %>
+<% else %>
+  <div class="my-4 border-2 rounded-xl shadow-xl bg-gray-50">
+    <h3 class="text-2xl text-center my-8">Eventi</h3>
+    <% @events.each do |event| %>  
+      <div class="my-12 md:flex px-2">
+        <div class="md:w-48 md:px-8 py-4 text-center">
+          <div class="bg-pls-light texl-pls border-2 shadow-xl rounded-2xl text-sm font-bold py-2 px-4">
+            <%= l event.start_date %>
+          </div>
+        </div>
+        <div class="md:w-full">
+          <div class="text-lg font-semibold ">
+            <%= link_to event.name.upcase, event %> 
+          </div>
+          <div class="text-sm italic text-justify text-gray-700 mt-4">
+            <q><%= event.description %> </q>
+          </div>
+          <div class="mt-2">
+            <%= helpers.possible_label_from_array 'Relatori', event.speakers %>
+          </div>
+          <%= render BookingAndActionsComponent.new(what: event) %>
         </div>
       </div>
     <% end %>
   </div>
-<% else %>
-  <% @events.each do |event| %>  
-    <div class="my-12 md:flex px-2">
-      <div class="md:w-48 md:px-8 py-4 text-center">
-        <div class="bg-pls-light texl-pls border-2 shadow-xl rounded-2xl text-sm font-bold py-2 px-4">
-          <%= l event.start_date %>
-        </div>
-      </div>
-      <div class="md:w-full">
-        <div class="text-lg font-semibold ">
-          <%= link_to event.name.upcase, event %> 
-        </div>
-        <div class="text-sm italic text-justify text-gray-700 mt-4">
-          <q><%= event.description %> </q>
-        </div>
-        <div class="mt-2">
-          <%= helpers.possible_label_from_array 'Relatori', event.speakers %>
-        </div>
-        <%= render BookingAndActionsComponent.new(what: event) %>
-      </div>
-    </div>
-  <% end %>
 <% end %>
