@@ -87,6 +87,7 @@ it:
       short: "%d %b %H:%M"
       day: "%A %d %B"
       hour: "%H:%M"
+      day_with_year: "%d %b %Y"
   date:
     formats:
       date_picker: ! "%d-%m-%Y"
