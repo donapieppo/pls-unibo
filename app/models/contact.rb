@@ -21,6 +21,6 @@ class Contact < ApplicationRecord
   end
 
   def deletable?
-    self.activities.empty? && self.areas.empty? && self.activities_as_speaker.empty?
+    self.activities.empty? && self.organized_areas.empty? && self.activities_as_speaker.empty?
   end
 end
