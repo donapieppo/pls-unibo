@@ -6,7 +6,7 @@
 }
 
 .big-button {
-  @apply bg-blue-400 hover:bg-blue-600 text-white font-bold p-8 text-center rounded-2xl;
+  @apply border-2 border-blue-400 bg-blue-50 hover:bg-blue-400 font-bold p-8 text-center rounded-2xl;
 }
 
 .alert {
@@ -22,7 +22,7 @@
 }
 
 .title {
-  @apply block m-auto text-3xl sm:text-5xl lg:text-6xl leading-none font-bold text-pls tracking-tight my-6 text-center;
+  @apply block m-auto text-3xl md:text-5xl leading-none font-bold text-pls tracking-tight my-6 text-center;
 }
 
 h1 {
