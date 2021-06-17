@@ -15,7 +15,7 @@
       <div class="pls-card my-4">
         <div class="pls-card-title">EDIZIONI</div>
         <div class="pls-card-content">
-          <% @editions.each do |edition| %>  
+          <% @project.editions.each do |edition| %>  
             <div class="my-1 p-2 hover:bg-gray-100">
               <%= link_to [:edit, edition] do %> 
                 <%= edition.name %> 
