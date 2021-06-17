@@ -38,6 +38,13 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def destroy
+    if @project.destroy
+      flash[:notice] = 'OK'
+    end
+    redirect_to projects_path
+  end
+
   private
 
   def set_project_and_check_permission
