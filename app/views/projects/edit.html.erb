@@ -1,6 +1,10 @@
 <div class="container">
   <h1 class="title"><%= link_to @project, @project %></h1>
 
+  <div class="text-center text-2xl my-2">
+    <%= link_to_delete_if_deletable @project %>
+  </div>
+
   <div class="lg:flex">
     <div class="lg:w-2/3 pr-4">
       <%= render partial: 'form' %>  
@@ -14,13 +18,10 @@
           <% @editions.each do |edition| %>  
             <div class="my-1 p-2 hover:bg-gray-100">
               <%= link_to [:edit, edition] do %> 
-                <span class="text-sm">
-                  <%= edition.academic_year_to_s %>
-                </span>
                 <%= edition.name %> 
               <% end %>
-              <span class="float-right mx-2">
-                <%= link_to_delete edition %>
+              <span class="float-right text-sm mx-2">
+                <%= edition.academic_year_to_s %>
               </span>
             </div>
           <% end %>

@@ -3,6 +3,10 @@
     <%= link_to @edition.name, @edition %>
   </h1>
 
+  <div class="text-center text-2xl my-2">
+    <%= link_to_delete_if_deletable @edition %>
+  </div>
+
   <div class="text-center">
     in <%= link_to @edition.project.name, [:edit, @edition.project], class: 'button' %>
   </div>
