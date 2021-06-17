@@ -6,10 +6,14 @@
   </h1>
   <div class="lg:w-1/2 flex flex-col text-xl justify-center items-center">
     <div id="home-box-areas" class="home-box bg-pls">
-      <div><strong>8</strong> aree</div>
+      <%= link_to "#areas" do %>  
+        <div><strong>8</strong> aree</div>
+      <% end %>
     </div>
     <div id="home-box-projects" class="home-box bg-pls-light">
-      <div>oltre <strong><%= Activity.approximate_count %></strong> iniziative</div>
+      <%= link_to projects_path do %>
+        <div>oltre <strong><%= Activity.approximate_count %></strong> iniziative</div>
+      <% end %>
     </div>
     <div id="home-box-students" class="home-box bg-pls-strong">
       <div>oltre <strong>120</strong> scuole coinvolte</div>
