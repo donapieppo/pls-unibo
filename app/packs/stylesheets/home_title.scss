@@ -2,10 +2,13 @@
 }
 
 .home-box {
-  @apply flex flex-col justify-center items-center text-center w-1/2 h-1/2 lg:h-1/4 text-white font-bold my-2 py-8 shadow-2xl rounded-2xl;
+  @apply flex flex-col justify-center items-center text-center font-bold my-2 py-8 shadow-2xl rounded-full text-lg md:text-xl;
+  height: 15vh;
+  width: 40vh;
 }
+
 #home-box-areas { 
-  animation: incomea 3s; 
+  animation: incomea 2s; 
   @keyframes incomea {
     0% {
       transform: translate(-300px, 300px);
@@ -16,7 +19,7 @@
   }
 }
 #home-box-projects { 
-  animation: incomep 3s; 
+  animation: incomep 2s; 
   @keyframes incomep {
     0% {
       transform: translate(-400px, 0);
@@ -27,7 +30,7 @@
   }
 }
 #home-box-students { 
-  animation: incomes 3s; 
+  animation: incomes 2s; 
   @keyframes incomes {
     0% {
       transform: translate(-500px, -500px);
