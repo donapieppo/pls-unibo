@@ -1,21 +1,19 @@
-<div class="flex flex-col lg:flex-row">
-  <h1 class="text-pls lg:w-1/2 home-title h-2/3 text-right p-8 lg:p-32 text-3xl sm:text-5xl lg:text-8xl leading-none font-bold tracking-tight leading-10">
-    <span class="">PIANO</span>
-    <span class="">LAUREE</span>
-    <span class="">SCIENTIFICHE</span>
+<div class="flex flex-col md:flex-row justify-center items-center">
+  <h1 class="md:w-1/2 text-pls font-medium h-2/3 text-center md:text-right p-4 lg:p-32 text-4xl sm:text-5xl lg:text-8xl leading-none tracking-tight leading-10">
+    PIANO LAUREE SCIENTIFICHE
   </h1>
-  <div class="lg:w-1/2 flex flex-col justify-center items-center">
-    <div id="home-box-areas" class="home-box bg-pls text-gray-100">
+  <div class="md:w-1/2 flex flex-col justify-center items-left">
+    <div id="home-box-areas" class="home-box bg-pls text-gray-100 ml-2">
       <%= link_to "#areas" do %>  
         <div><strong>8</strong> aree</div>
       <% end %>
     </div>
-    <div id="home-box-projects" class="home-box bg-pls-light text-gray-700">
+    <div id="home-box-projects" class="home-box bg-pls-light text-gray-700 ml-12 md:ml-24">
       <%= link_to projects_path do %>
         <div>oltre <strong><%= Activity.approximate_count %></strong> iniziative</div>
       <% end %>
     </div>
-    <div id="home-box-students" class="home-box bg-pls-strong text-gray-100">
+    <div id="home-box-students" class="home-box bg-pls-strong text-gray-100 ml-8 md:ml-12">
       <div>oltre <strong>120</strong> scuole coinvolte</div>
     </div>
   </div>

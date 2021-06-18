@@ -1,3 +1,6 @@
+home {
+  min-height: 100vh;
+}
 .container {
   @apply px-4 lg:px-16 lg:mx-auto;
 }
@@ -6,7 +9,7 @@
 }
 
 .big-button {
-  @apply border-2 border-blue-400 bg-blue-50 hover:bg-blue-400 font-bold p-8 text-center rounded-2xl;
+  @apply border border-pls bg-pls-light hover:bg-pls hover:text-white font-bold p-8 text-center rounded-2xl;
 }
 
 .alert {
