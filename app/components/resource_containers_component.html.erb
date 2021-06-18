@@ -1,15 +1,17 @@
-<div class="pls-card">
-  <label class="pls-card-title">
-    RISORSE  
-  </label>
-  <div class="pls-card-content">
-    <% @resource_containers.each do |resource_container| %>  
-      <div>
-        <%= link_to resource_container, [:edit, resource_container] %>
-      </div>
-    <% end %>
+<% if @resource_containers.any? %>  
+  <div class="pls-card">
+    <label class="pls-card-title">
+      RISORSE  
+    </label>
+    <div class="pls-card-content">
+      <% @resource_containers.each do |resource_container| %>  
+        <div>
+          <%= link_to resource_container, [:edit, resource_container] %>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %>
 
 <div class="info my-2">
   Per associare un contenitore di risorse a questa attività scegliete il 
