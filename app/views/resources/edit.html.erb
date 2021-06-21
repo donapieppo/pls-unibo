@@ -11,7 +11,9 @@
       <div class="pls-card">
         <div class="pls-card-title">A cosa è attaccata?</div>
         <div class="pls-card-content">
-
+          <% @resource.resource_containers.each do |rc| %>  
+            <%= link_to rc.name, rc %>  
+          <% end %>
           <% @resource.activities.each do |activity| %>  
             <%= link_to activity.name, activity %>  
           <% end %>
