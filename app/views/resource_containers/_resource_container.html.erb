@@ -1,15 +1,15 @@
-<div class="m-2 h-full border-2 border-yellow-300">
+<div class="h-full border-2 border-gray-50 p-2 shadow-xl">
   <div class="text-center">
     <div class="font-bold"><%= resource_container.name %></div>
     <div><% areas_to_s(resource_container.areas) %></div>
-    <div>
-      <%= link_to_edit_if_editable resource_container %> 
-      <%= link_to_delete_if_deletable resource_container %> 
-    </div>
   </div>
   <% resource_container.resources.each do |resource| %>  
-    <div>
+    <div class="p-4">
       <%= render resource %>  
     </div>
   <% end %>
+  <div class="text-center">
+    <%= link_to_edit_if_editable resource_container %> 
+    <%= link_to_delete_if_deletable resource_container %> 
+  </div>
 </div>
