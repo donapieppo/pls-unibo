@@ -1,22 +1,25 @@
 <div class="w-full shadow-xl p-1 h-full rounded bg-gray-50 border-2 border-gray-400">
   <div class="text-center font-bold py-2">
     <%= resource %>
-    <%= link_to_edit_if_editable resource %>  
-    <%= link_to_delete([:remove_resource, what, { resource_id: resource.id }]) if defined? what %>  
   </div>
   <div class="text-center">
     <% if resource.video? %>  
-      <div class="embed-responsive embed-responsive-16by9 my-3">
-        <iframe class="embed-responsive-item mx-auto" src="<%= resource.embed_url %>" frameborder="0"></iframe>
+      <div class="">
+        <iframe class="w-full h-full" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen src="<%= resource.embed_url %>" frameborder="0"></iframe>
+      </div>
+    <% elsif resource.document.image? %>
+      <div class="text-center">
+        <% dest = resource.url.blank? ? url_for(resource.document) : resource.url %>  
+        <%= link_to image_tag(resource.document.variant(resize_to_limit: [250, 250])), dest, class: 'inline-block' %>
       </div>
     <% elsif resource.document && resource.document.previewable? %>  
       <div class="text-center">
         <%= link_to image_tag(resource.document.preview(resize_to_limit: [250, 250])), url_for(resource.document), class: 'inline-block' %>  
       </div>
-    <% elsif resource.document.image? %>
-      <div class="text-center">
-      <%= link_to image_tag(resource.document.variant(resize_to_limit: [250, 250])), url_for(resource.document), class: 'inline-block' %>
-      </div>
     <% end %>  
+  </div>
+  <div class="text-center">
+    <%= link_to_edit_if_editable resource %>  
+    <%= link_to_delete([:remove_resource, what, { resource_id: resource.id }]) if defined? what %>  
   </div>
 </div>
