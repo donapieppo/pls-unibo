@@ -171,6 +171,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.text "description"
     t.string "email"
     t.string "web_page"
+    t.text "affiliation"
   end
 
   create_table "organizations", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
