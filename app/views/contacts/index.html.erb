@@ -9,6 +9,7 @@
     <% @contacts.each do |c| %>  
       <div class="p-1 border-b border-gray-300">
         <%= c.name %> 
+        <span class="px-4 text-gray-700 text-sm"><%= c.affiliation %></span>
 
         <% if params[:area] == '1' %>  
           <div><% areas_to_s(c.areas) %></div>
