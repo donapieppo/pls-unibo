@@ -39,9 +39,8 @@ h3 {
 }
 
 .menu-items {
-  @apply my-8 text-center;
   a.menu-items-item {
-    @apply block uppercase text-pls border border-b-2 border-pls p-2 px-4 mt-2 font-bold hover:bg-pls hover:text-white;
+    @apply block uppercase text-pls border-b-2 border-pls p-2 px-4 pt-4 font-bold hover:bg-pls hover:text-white;
   }
 }
 

@@ -1,10 +1,14 @@
-<div class="h-full border-2 border-gray-50 p-2 shadow-xl">
+<div class="h-full border-2 border-gray-200 p-2 bg-pls rounded-xl py-4">
   <div class="text-center">
-    <div class="font-bold"><%= resource_container.name %></div>
-    <div><% areas_to_s(resource_container.areas) %></div>
+    <div class="text-xl font-medium leading-6 tracking-wide text-gray-300 cursor-pointer">
+      <%= resource_container.name %>
+    </div>
+    <div class="inline-block bg-gray-200 rounded-full p-2 mt-2 mb-6 text-xs">
+      <% areas_to_s(resource_container.areas) %>
+    </div>
   </div>
   <% resource_container.resources.each do |resource| %>  
-    <div class="p-4">
+    <div class="">
       <%= render resource %>  
     </div>
   <% end %>
