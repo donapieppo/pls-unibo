@@ -46,4 +46,12 @@ module IconHelper
   def exclamation_icon
     '<i class="fas fa-exclamation-circle"></i>'.html_safe
   end
+
+  def facebook_icon
+    '<i class="fab fa-facebook-square"></i>'.html_safe
+  end
+
+  def youtube_icon
+    '<i class="fab fa-youtube"></i>'.html_safe
+  end
 end
