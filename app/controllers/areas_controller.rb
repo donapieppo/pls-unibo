@@ -1,5 +1,7 @@
 class AreasController < ApplicationController
-  before_action :set_area_and_check_permission, only: %i[ show edit update destroy ]
+  include ContactConcern
+
+  before_action :set_area_and_check_permission, only: %i[ show edit update destroy add_contact remove_contact ]
 
   def show
     @resource_containers = @area.resource_containers.includes(:resources).all
