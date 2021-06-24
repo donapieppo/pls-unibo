@@ -21,7 +21,8 @@ it:
       area:
         name: Nome
         description: Descrizione
-        contact: Responsabile
+        head: Responsabile
+        contact: Contatto
       project:
         name: Nome
         description: Descrizione
