@@ -33,7 +33,6 @@ Rails.application.routes.draw do
 
   resources :resources
   resources :organizations, only: [:index, :show]
-  resources :areas
   resources :bookings
   resources :users do
     get :myedit, on: :collection
@@ -41,6 +40,8 @@ Rails.application.routes.draw do
   end
   
   resources :contacts
+
+  resources :areas, concerns: :contactable
 
   resources :projects, concerns: :contactable do
     resources :editions
