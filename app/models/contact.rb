@@ -17,8 +17,20 @@ class Contact < ApplicationRecord
     self.contacts_records.map(&:record)
   end
 
+  def cn
+    "%s %s" % [self.name, self.surname]
+  end
+
+  def cn_militar
+    "%s, %s" % [self.surname, self.name]
+  end
+
+  def abbr
+    "%s. %s" % [self.name[0], self.surname]
+  end
+
   def to_s
-    self.name
+    cn
   end
 
   def deletable?
