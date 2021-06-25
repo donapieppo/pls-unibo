@@ -10,7 +10,7 @@ class Contact < ApplicationRecord
   has_and_belongs_to_many :editions
   has_and_belongs_to_many :events
 
-  validates :name, :email, uniqueness: { allow_blank: true }
+  validates :name, :email, uniqueness: { scope: :surname, allow_blank: true }
   validates :web_page, format: { with: URI.regexp(['http', 'https']), allow_blank: true }
 
   def records 
