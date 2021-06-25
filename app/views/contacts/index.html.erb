@@ -6,22 +6,22 @@
   <% end %>
 
   <div class="max-w-3xl">
-    <% @contacts.each do |c| %>  
+    <% @contacts.each do |contact| %>  
       <div class="p-1 border-b border-gray-300">
-        <%= c.name %> 
-        <span class="px-4 text-gray-700 text-sm"><%= c.affiliation %></span>
+        <%= contact.cn_militar %> 
+        <span class="px-4 text-gray-700 text-sm"><%= contact.affiliation %></span>
 
         <% if params[:area] == '1' %>  
-          <div><% areas_to_s(c.areas) %></div>
+          <div><% areas_to_s(contact.areas) %></div>
         <% end %>
 
         <div class="float-right pl-4">
-          <% if c.deletable? %>
-            <%= link_to_delete c %>
+          <% if contact.deletable? %>
+            <%= link_to_delete contact %>
           <% end %>
-          <%= mail_to(c.email, mail_icon) unless c.email.blank? %>
-          <%= link_to(link_icon, c.web_page) unless c.web_page.blank? %>
-          <%= link_to_edit_if_editable(c) %>
+          <%= mail_to(contact.email, mail_icon) unless contact.email.blank? %>
+          <%= link_to(link_icon, contact.web_page) unless contact.web_page.blank? %>
+          <%= link_to_edit_if_editable(contact) %>
         </div> 
       </div>
     <% end %>
