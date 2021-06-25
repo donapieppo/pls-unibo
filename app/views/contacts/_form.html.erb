@@ -2,6 +2,7 @@
   <%= simple_form_for [@what, @contact] do |f| %>  
     <input type="hidden" name="as" value="<%= @as %>"/>
     <%= f.input :name %>  
+    <%= f.input :surname %>  
     <%= f.input :email %>  
     <%= f.input :web_page %>  
     <%= f.input :affiliation %>  
