@@ -3,7 +3,9 @@ module ContactConcern
 
   def add_contact
     @what = @project || @edition || @event || @area
-    @contact = Contact.find_by_id(params[:contact_id])
+
+    surname, name = params[:contact_name].split(', ')
+    @contact = Contact.where(name: name, surname: surname).first
     if !@contact
       redirect_to [:new, @what, :contact, as: params[:as]]
       return

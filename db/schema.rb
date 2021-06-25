@@ -166,8 +166,8 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
   end
 
   create_table "contacts", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
-    t.integer "user_id", unsigned: true
     t.string "name"
+    t.string "surname"
     t.text "description"
     t.string "email"
     t.string "web_page"

@@ -63,7 +63,7 @@ class ContactsController < ApplicationController
   end
 
   def contact_params
-    params[:contact].permit(:name, :description, :email, :web_page, :affiliation)
+    params[:contact].permit(:name, :surname, :description, :email, :web_page, :affiliation)
   end
 
   def set_what
