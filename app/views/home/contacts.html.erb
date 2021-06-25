@@ -3,19 +3,22 @@
 
   <div class="flex flex-wrap">
     <div class="w-1/2 font-bold text-right px-4 mb-8">
-      Coordinatore Unibo
+      <h2 class="text-xl">Coordinatore Unibo</h2>
     </div>
-    <div class="w-1/2 mb-8">
+    <div class="w-1/2 mb-8 text-xl">
       <%= mail_to 'mirella.manaresi@unibo.it', 'Mirella Manaresi' %>
     </div>
 
-    <% Area.order(:name).includes(:head, :contacts).each do |area| %>  
+    <% Area.order(:surname, :name).includes(:head, :contacts).each do |area| %>  
       <div class="w-1/2 font-bold text-right px-4">
         <%= area %> 
       </div>
       <div class="w-1/2">
         <span class="text-gray-700">Referente:</span> <%= area.head %>  <br/>
-        <span class="text-gray-700">Contatti:</span> <% contacts_to_s(area.contacts) %>
+        <span class="text-gray-700">Contatti:</span> 
+        <% area.contacts.order(:name).each do |contact| %>
+          <span class="mx-1"><%= mail_to contact.email, contact.name, class: 'underline' %> </span>
+        <% end %>
       </div>
     <% end %>
   </div>
