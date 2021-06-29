@@ -25,8 +25,10 @@ module ApplicationHelper
     res = ""
     _arr.each do |item|
       res += ', ' unless res.blank?
-      if with_link && item.respond_to?(:email) 
-        res += item.email.blank? ? item.name : mail_to(item.email, item)
+      if item.is_a?(Contact)
+        res += render(item)
+      elsif with_link && item.respond_to?(:email) 
+        res += item.email.blank? ? item.cn : mail_to(item.email, item)
       elsif with_link
         res += link_to item, item
       end
