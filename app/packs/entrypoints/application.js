@@ -10,9 +10,7 @@ require("trix")
 require("@rails/actiontext")
 
 Rails.start()
-ActiveStorage.start()
-
-// import '../../stylesheets/application.scss';
+// ActiveStorage.start()
 
 const images = require.context('../images', true)
 const imagePath = (name) => images(name, true)
@@ -25,3 +23,24 @@ window.display_unless_no = function (what, condition_input) {
   });
 }
 
+window.show_contact = function (e) {
+  var modal = document.getElementById('main-modal');
+  var header = `<h2>${e.name} ${e.surname}`;
+  var content = `email: ${e.email} <br/>
+  Ciao <br/>
+  Ciao
+    `;
+  document.getElementById('main-modal-header').innerHTML = header;
+  document.getElementById('main-modal-body').innerHTML = content;
+  modal.style.display = 'block';
+
+  modal.addEventListener('click', () => {
+    document.getElementById('main-modal').style.display = 'none';
+  })
+
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+}
