@@ -39,7 +39,9 @@ Rails.application.routes.draw do
     get :me, on: :collection
   end
   
-  resources :contacts
+  resources :contacts do
+    delete :delete_avatar, on: :member
+  end
 
   resources :areas, concerns: :contactable
 

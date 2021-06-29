@@ -1,10 +1,10 @@
 class ContactsController < ApplicationController
   before_action :set_what, only: %i[ new create ]
-  before_action :set_activity_and_check_permission, only: %i[ edit update destroy ]
+  before_action :set_activity_and_check_permission, only: %i[ edit update destroy delete_avatar ]
 
   def index
     authorize :contact
-    @contacts = Contact.order(:name)
+    @contacts = Contact.order(:surname, :name)
     if params[:area] == '1'
       @contacts = @contacts.left_joins(:areas).where('areas.id is not null')
     end
@@ -50,6 +50,11 @@ class ContactsController < ApplicationController
     end
   end
 
+  def delete_avatar
+    @contact.avatar.purge
+    redirect_to [:edit, @contact]
+  end
+
   def destroy
     @contact.destroy
     redirect_to contacts_path
@@ -63,7 +68,7 @@ class ContactsController < ApplicationController
   end
 
   def contact_params
-    params[:contact].permit(:name, :surname, :description, :email, :web_page, :affiliation)
+    params[:contact].permit(:name, :surname, :description, :email, :web_page, :affiliation, :avatar)
   end
 
   def set_what

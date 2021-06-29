@@ -72,9 +72,11 @@ it:
         other_string: Specificare
       contact:
         name: Nome
+        surname: Cognome
         description: Descrizione
         web_page: Pagina web
         affiliation: Affiliazione
+        avatar: Immagine
       cluster:
         activities: Attività
         name: Nome
