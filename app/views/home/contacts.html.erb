@@ -9,7 +9,7 @@
       <%= mail_to 'mirella.manaresi@unibo.it', 'Mirella Manaresi' %>
     </div>
 
-    <% Area.order(:surname, :name).includes(:head, :contacts).each do |area| %>  
+    <% Area.order(:name).includes(:head, :contacts).each do |area| %>  
       <div class="w-1/2 font-bold text-right px-4">
         <%= area %> 
       </div>
@@ -17,7 +17,7 @@
         <span class="text-gray-700">Referente:</span> <%= area.head %>  <br/>
         <span class="text-gray-700">Contatti:</span> 
         <% area.contacts.order(:name).each do |contact| %>
-          <span class="mx-1"><%= mail_to contact.email, contact.name, class: 'underline' %> </span>
+          <span class="mx-1"><%= mail_to contact.email, contact.cn, class: 'underline' %> </span>
         <% end %>
       </div>
     <% end %>
