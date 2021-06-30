@@ -8,6 +8,8 @@ it:
   secondo: scuola secondaria II grado
   univ: università
   cluster: Raggruppamento
+  edition: Edizione
+  event: Evento
 
   activerecord:
     models:
@@ -64,6 +66,13 @@ it:
         document: Allegato
         credit: Credits
       user:
+        name: Nome
+        surname: Cognome
+        student: Studente
+        role: Partecipi come
+        university: Universitario
+        other_string: Specificare
+      booking:
         name: Nome
         surname: Cognome
         student: Studente

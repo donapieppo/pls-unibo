@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
   before_action :set_activity
 
   def new
-    @booking = @activity.bookings.new(user_id: current_user.id)
+    @booking = @activity.bookings.new
     authorize @booking
   end
 
@@ -29,7 +29,7 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = @activity.bookings.new(user_id: current_user.id)
+    @booking = @activity.bookings.new(booking_params)
     authorize @booking
     if @booking.save
       redirect_to @activity, notice: "Iscrizione corretta"
@@ -43,5 +43,13 @@ class BookingsController < ApplicationController
   def set_activity
     @activity_id = params[:event_id] || params[:edition_id]
     @activity = Activity.find(@activity_id)
+  end
+
+  def booking_params
+    if current_user
+      { user_id: current_user.id }
+    else
+      params[:booking].permit(:name, :surname, :role, :school_type, :other_string)
+    end
   end
 end

@@ -3,34 +3,8 @@
     <div class="pls-card-title">Aggiorna i tuoi dati</div>
     <div class="pls-card-content">
       <%= simple_form_for @user do |f| %>  
-        <%= f.input :name %>
-        <%= f.input :surname %>
         <%= f.input :email, disabled: !current_user.staff? %>
-        <div class="my-4">
-          <%= f.input :role, as: :radio_buttons, collection: [['Studente', 'student'], 
-                                                              ['Docente', 'teacher'], 
-                                                              ['Altro', 'other']] %>
-        </div>
-        <hr/>
-        <%= f.input :school_type, as: :radio_buttons, label: '', collection: [['Scuola I grado', 'primo'], ['Scuola II grado', 'secondo'], ['Università', 'univ']] %>
-
-        <%= f.input :other_string %>  
-
-        <div id="school_choose">
-          <% if @user.school %>  
-            <%= render 'schools/school', school: @user.school %>  
-          <% end %>
-
-          Nel caso di scuola I / II grado specificate la vostra scuola iniziando iniziate a scrivere il nome nel box sotto:
-
-          <input id="school_id" name="user[school_name]" class="border-4 rounded my-2 w-full" list="schools" />
-          <datalist id="schools" style="background-color: #ccc;">
-            <% School.select(:id, :name, :municipality).each do |s| %>  
-              <option data-value="<%= s.id %>" value="<%= s.name + " -- " + s.municipality %>"/>
-            <% end %>
-          </datalist><br/>
-        </div>
-
+        <%= render partial: 'users/common_to_booking', locals: { f: f }%>  
         <%= f.submit 'Salva' %>  
       <% end %>
     </div>
