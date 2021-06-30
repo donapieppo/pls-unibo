@@ -7,6 +7,8 @@ class Activity < ApplicationRecord
 
   validates :name, presence: true, allow_blank: false
 
+  scope :bookable_now, -> { where('activities.booking_start is not null and activities.booking_end is not null and activities.booking_start < NOW() and NOW() < activities.booking_end') }
+
   # scope :clusterable, -> { where(academic_year: 2021).order(:name) }
   scope :clusterable, -> { order(:name) }
 

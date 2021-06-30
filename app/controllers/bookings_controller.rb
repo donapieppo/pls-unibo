@@ -1,5 +1,10 @@
 class BookingsController < ApplicationController
-  before_action :set_activity
+  before_action :set_activity, except: :index
+
+  def index
+    @bookiable_activities = Activity.bookable_now
+    authorize :booking
+  end
 
   def new
     @booking = @activity.bookings.new

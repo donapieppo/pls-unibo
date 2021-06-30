@@ -1,4 +1,8 @@
 class BookingPolicy < ApplicationPolicy
+  def index?
+    @user && @user.staff?
+  end
+
   def create?
     return false unless @record.activity.bookable_now?
 

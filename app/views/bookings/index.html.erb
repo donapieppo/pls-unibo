@@ -1,0 +1,12 @@
+<div class="container">
+  <h1 class="title">Iscrizioni</h1>
+
+    <% @bookiable_activities.each do |a| %>  
+      <h2><%= link_to a, a %></h2>
+      <ul>
+        <% a.bookings.each do |b| %>  
+          <li><%= b.name %></li>
+        <% end %>
+      </ul>
+    <% end %>
+</div>
