@@ -5,10 +5,11 @@
   <%= f.input :role, as: :radio_buttons, collection: [['Studente', 'student'], ['Docente', 'teacher'], ['Altro', 'other']] %>
 </div>
 <hr/>
-<div class="my-2" id="school_type_inputs">
-<%= f.input :school_type, as: :radio_buttons, label: '', collection: [['Scuola I grado', 'primo'], ['Scuola II grado', 'secondo'], ['Università', 'univ']] %>
+<div class="my-2" id="school_type_div">
+  <%= f.input :school_type, as: :radio_buttons, label: '', collection: [['Scuola I grado', 'primo'], ['Scuola II grado', 'secondo'], ['Università', 'univ']] %>
+</div>
 
-<div id="other_string_input">
+<div id="other_string_div">
   <%= f.input :other_string %>  
 </div>
 
@@ -29,20 +30,20 @@
 
 <%= javascript_tag do %>  
   const role_inputs = document.querySelectorAll('#role_inputs input');
-  const school_inputs = document.querySelector('#school_type_inputs');
-  const other_input = document.querySelector('#other_string_input');
+  const school_type_div = document.getElementById('school_type_div');
+  const other_string_div = document.getElementById('other_string_div');
   const school_choose = document.getElementById('school_choose');
 
   const update = () => {
     r = document.querySelectorAll('#role_inputs input:checked')[0];
     if (r && r.value === 'other') {
-      other_input.style.display = 'block';
-      school_inputs.style.display = 'none';
+      school_type_div.style.display = 'none';
       school_choose.style.display = 'none';
+      other_string_div.style.display = 'block';
     } else {
-      other_input.style.display = 'none';
-      other_input.querySelector('textarea').value = '';
-      school_inputs.style.display = 'block';
+      other_string_div.querySelector('textarea').value = '';
+      other_string_div.style.display = 'none';
+      school_type_div.style.display = 'block';
       school_choose.style.display = 'block';
     }
   }
