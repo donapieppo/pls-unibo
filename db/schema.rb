@@ -155,6 +155,12 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.integer "school_id", unsigned: true
     t.datetime "created_at"
     t.boolean "confirmed"
+    t.string "name"
+    t.string "surname"
+    t.string "email"
+    t.column "role", "enum('student','teacher','other')"
+    t.column "school_type", "enum('primo','secondo','univ')"
+    t.text "other_string"
     t.index ["activity_id"], name: "fk_book_activity"
     t.index ["school_id"], name: "fk_book_school"
     t.index ["teacher_id"], name: "fk_book_teacher"
