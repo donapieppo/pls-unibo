@@ -1,11 +1,32 @@
 <div class="container">
   <h1 class="title">Iscrizione</h1>
 
-  <%= render @activity %>  
+  <div class="my-8">
+    <%= render @activity %>  
+  </div>
 
-  <% unless @activity.booked_by?(current_user) %>  
+  <% if current_user %>
     <div class="my-8 text-center">
-      <%= link_to 'Iscrivimi', [@activity, :bookings], method: :post, class: 'button text-2xl' %>  
+      <% if @activity.booked_by?(current_user) %>  
+        <div class="info"> Sei resitrato a questa attibità</div>
+      <% else %>
+        <%= link_to 'Iscrivimi', [@activity, :bookings], method: :post, class: 'button text-2xl' %>  
+      <% end %>
+    </div>
+  <% else %>
+    <div class="py-8 my-8 text-center">
+      <p>Per iscriverti ti consigliamo di accedere con le credenziali di Google.</p>
+      <%= link_to 'ACCEDI', login_path, class: 'my-8 big-button inline-block' %>
+    </div>
+
+    <div class="my-8 max-w-2xl text-sm mx-auto">
+      <p>Altrimenti puoi iscriverti a questa attività inserendio i dati in questo form.</p>
+      <p>Così facendo però non potrai....</p>
+      <%= simple_form_for @booking do |f| %>  
+        <%= f.input :email %>
+        <%= render partial: 'users/common_to_booking', locals: { f: f } %>  
+        <%= f.submit 'Iscrivimi' %>  
+      <% end %>
     </div>
   <% end %>
 
@@ -22,5 +43,4 @@
       <%= f.submit "Iscrivi lo studente" %>  
     <% end %>
   <% end %>
-
 </div>
