@@ -1,24 +1,29 @@
 <div class="py-8 bg-gray-100 text-gray-700 mt-8 border-t border-pls">
-  <div class="container md:flex md:flex-wrap">
-    <div class="md:w-1/2 my-2 text-center">
-      <div class="">
-        <%= form_tag search_path do %>  
-          <input class="border-2 border-gray-300 bg-white px-2 py-1 pr-1 rounded-lg text-sm focus:outline-none" type="search" name="search" placeholder="cerca"/>
-        <% end %>
-      </div> 
+  <div class="container md:flex items-stretch">
+    <div>
+      <%= form_tag search_path do %>  
+        <input class="border-2 border-gray-300 bg-white px-2 py-1 pr-1 rounded-lg text-sm focus:outline-none" type="search" name="search" placeholder="cerca"/>
+      <% end %>
+    </div>
+    <div class="flex-grow my-2 text-center">
       <div class="w-32 my-4 mx-auto">
-      <%= link_to 'https://www.pianolaureescientifiche.it/' do %>  
+        <%= link_to 'https://www.pianolaureescientifiche.it/' do %>  
           <%= image_pack_tag('media/images/Logo_PLS_s.png') %>
         <% end %>
       </div>
     </div>
-    <div class="md:w-1/2 text-xs">
+    <div class="text-center">
+      <%= render partial: 'layouts/social' %>  
+    </div>
+    <div class="text-xs border-l">
       <% Organization.order(:name).each do |org| %>
         <div class="pl-2 m-1">
           > <%= link_to org, org.url, target: '_new' %>
         </div>
       <% end %>
     </div>
+  </div>
+  <div class="container">
     <div class="mt-2 text-sm text-center w-full">
       <%= link_to image_pack_tag('media/images/unibo.gif'), 'https://www.unibo.it' %>
       ©Copyright 2021 - ALMA MATER STUDIORUM - Università di Bologna - Via Zamboni, 33 - 40126 Bologna - Partita IVA: 01131710376 

@@ -1,9 +1,11 @@
-<div class="h-full flex flex-col my-2 bg-white border border-pls-light rounded-xl p-4 hover:bg-gray-100">
+<div class="h-full flex flex-col my-2 bg-gray-100 border-l-4 border-pls rounded-r-2xl p-4 hover:bg-gray-200 hover:shadow-xl">
   <div class="flex-grow text-center">
     <h3 class="font-semibold py-2"><%= project.name.upcase %></h3>
   </div>
   <div>
-    <div class="text-center"><%= project.activity_type %></div>
+    <div class="text-center">
+      <%= project.activity_type %>
+    </div>
     <div class="text-sm text-gray-700 mt-4">
       <div>Organizzato da: <%= project.areas_to_s %></div>
       <div><%= possible_label_from_array 'Aree di interesse', project.interested_areas, with_link: false %></div>

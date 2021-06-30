@@ -1,8 +1,8 @@
 <div class="w-full overflow-hidden" 
      style="height: 60vh; background: no-repeat fixed center url(<%= asset_pack_path(area_image(@area)) %>); background-size: cover;">
-     <div class="m-2 md:m-8 text-5xl lg:text-8xl tracking-wide font-semibold text-white text-center">
-       <%= @area %>
-     </div>
+     <h1 class="m-2 md:m-8 text-5xl lg:text-8xl tracking-wide font-semibold text-white text-center">
+       <span class="px-4 bg-pls bg-opacity-80 rounded-xl"><%= @area %></span>
+     </h1>
 </div>
 
 <div class="lg:relative">
@@ -11,9 +11,7 @@
     <div class="text-sm mt-4">
       Responsabile: <%= @area.head %>
     </div>
-    <div>
-      <%= link_to_edit_if_editable @area %>
-    </div>
+    <%= link_to_edit_if_editable @area, msg: 'modifica descrizione e responsabile' %>
   </div>
 </div>
 
