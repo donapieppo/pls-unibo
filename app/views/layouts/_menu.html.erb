@@ -19,6 +19,7 @@
             <div class="mt-4 text-sm">admin</div>
             <%= link_to 'contatti', contacts_path, class: 'menu-items-item' %>
             <%= link_to 'raggruppamenti', clusters_path, class: 'menu-items-item' %>
+            <%= link_to 'prenotazioni', bookings_path, class: 'menu-items-item' %>
           <% end %>
           <%= render partial: 'layouts/social' %>  
         </div>
@@ -44,7 +45,7 @@
         </span>
       <% end %>
     <% else %>
-      <%= link_to 'accedi', login_path, class: 'float-right p-1 px-2 border ' %>
+      <%= link_to 'accedi <i class="fas fa-sign-in-alt"></i>'.html_safe, login_path, class: 'float-right p-1 px-2 border text-pls border-pls ' %>
     <% end %>
   </div>
 </div>
