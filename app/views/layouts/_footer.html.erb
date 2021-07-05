@@ -12,19 +12,20 @@
         <% end %>
       </div>
     </div>
-    <div class="text-center">
+    <div class="text-center p-8">
       <%= render partial: 'layouts/social' %>  
     </div>
-    <div class="text-xs border-l">
+    <div class="text-xs">
+      <h3>Partecipanti:</h3>
       <% Organization.order(:name).each do |org| %>
-        <div class="pl-2 m-1">
+        <div class="m-1">
           > <%= link_to org, org.url, target: '_new' %>
         </div>
       <% end %>
     </div>
   </div>
   <div class="container">
-    <div class="mt-2 text-sm text-center w-full">
+    <div class="mt-4 text-sm text-center w-full">
       <%= link_to image_pack_tag('media/images/unibo.gif'), 'https://www.unibo.it' %>
       ©Copyright 2021 - ALMA MATER STUDIORUM - Università di Bologna - Via Zamboni, 33 - 40126 Bologna - Partita IVA: 01131710376 
     </div>
