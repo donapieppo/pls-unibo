@@ -9,11 +9,7 @@
     <%= @project %>
   </h1>
 
-  <div class="text-right">
-    <%= possible_label_from_array 'Organizzato da', @project.areas %>  
-    <%= possible_label_from_array 'Contatti', @project.contacts %>  
-    <%= possible_label_from_array 'Aree di interesse', @project.interested_areas %>  
-  </div>
+  <%= render partial: 'projects/attributes', locals: { project: @project } %>  
 
   <div class="text-right">
     <%= link_to_edit_if_editable @project, msg: 'modifica i dati del progetto' %>
