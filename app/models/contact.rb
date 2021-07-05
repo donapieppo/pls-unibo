@@ -19,7 +19,7 @@ class Contact < ApplicationRecord
   end
 
   def cn
-    "%s %s" % [self.name, self.surname]
+    "%s %s" % [self.name == '-' ? '' : self.name, self.surname]
   end
 
   def cn_militar
