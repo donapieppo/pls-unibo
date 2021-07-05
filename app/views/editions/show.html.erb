@@ -3,11 +3,22 @@
     Attività del Pls
   </div>
 
-  <div class="title">
-    <%= link_to @edition.project.name, @edition.project %>  
-  </div>
+  <h1 class="title">
+    <%= link_to @edition.project.name, @edition.project %>
+  </h1>
+
+  <h2 class="title">
+    <%= @edition.academic_year_to_s %>
+    <%= link_to '<i class="fas fa-level-up-alt rounded-xl border-2 border-pls mx-4 px-4 py-2"></i>'.html_safe, @edition.project, title: 'Torna al progetto' %>  
+  </h2>
+
+  <%= render partial: 'projects/attributes', locals: { project: @edition.project } %>  
 </div>
 
 <div class="my-16">
   <%= render EditionComponent.new(edition: @edition, title_if_different_from: @edition.project.name) %>
+</div>
+
+<div class="text-center text-base mt-4">
+  <%= link_to '[torna al progetto]', @edition.project %>  
 </div>
