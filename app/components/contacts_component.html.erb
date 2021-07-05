@@ -19,7 +19,7 @@
 
     <%= simple_form_for [:add_contact, @what], method: :post, html: { id: @form_id } do |f| %>  
       <input type="hidden" name="as" value="<%= @as %>"></input>
-      <label>Cerca nome/cognome</label><br/>
+      <label>Cerca nome/cognome inizando a scrivere</label><br/>
       <input name="contact_name" class="border-4 rounded my-2" list="<%= @form_id %>_contacts" />
       <datalist id="<%= @form_id %>_contacts" style="background-color: #ccc;">
         <% Contact.order(:surname).find_each do |c| %>  
@@ -29,7 +29,9 @@
       <input type="submit" value="aggiungi"/>
     <% end %>
 
-    <%= link_to plus_icon + ' nuovo contatto', [:new, @what, :contact, as: @as], class: 'text-sm' %>  
+    <div class="mt-4">
+      <%= link_to plus_icon + ' aggiungi un nuovo contatto se non lo trovi nella lista', [:new, @what, :contact, as: @as], class: 'text-sm' %>  
+    </div>
   </div>
 </div>
 
