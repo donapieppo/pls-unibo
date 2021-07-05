@@ -1,8 +1,10 @@
 <div class="relative border-t-4 border-pls-light pt-8">
   <div class="container">
-    <div class="border-4 border-pls-light bg-white text-3xl font-bold absolute -top-8 text-pls p-4 px-8 rounded-2xl tracking-wider">
-      <%= link_to @edition.academic_year_to_s, @edition %>
-    </div>
+    <% if @short %>  
+      <div class="border-4 border-pls-light bg-white text-3xl font-bold absolute -top-8 text-pls p-4 px-8 rounded-2xl tracking-wider">
+        <%= link_to @edition.academic_year_to_s, @edition %>
+      </div>
+    <% end %>
 
     <div class="md:flex md:flex-wrap mt-8">
       <div class="md:w-2/3 lx:w-3/4">
@@ -11,12 +13,16 @@
         </h3>
 
         <div class="my-8">
-          <div class="lg:text-lg">
+          <div class="lg:text-lg my-4">
             <%= simple_format @edition.description %>  
           </div>
           <div class="my-2">
             <%= helpers.possible_label_from_array 'Contatti', @edition.contacts %>
+          </div>
+          <div class="my-2">
             <%= helpers.possible_label_from_array 'Relatori', @edition.speakers %>
+          </div>
+          <div class="my-2">
             <%= @edition.audience %>
           </div>
 
@@ -42,6 +48,12 @@
     <% if @events.any? %>  
       <div class="my-8">
         <%= render EventsListComponent.new(events: @events, short: @short || @edition.atomic) %>  
+      </div>
+    <% end %>
+
+    <% if @short %>  
+      <div class="my-2">
+        <%= link_to '<i class="far fa-arrow-alt-circle-right text-4xl"></i> dettagli'.html_safe, @edition %>
       </div>
     <% end %>
   </div>
