@@ -22,7 +22,7 @@
     <div class="my-8 max-w-2xl text-sm mx-auto">
       <p>Altrimenti puoi iscriverti a questa attività inserendio i dati in questo form.</p>
       <p>Così facendo però non potrai....</p>
-      <%= simple_form_for @booking do |f| %>  
+      <%= simple_form_for [@activity, @booking] do |f| %>  
         <%= f.input :email %>
         <%= render partial: 'users/common_to_booking', locals: { f: f } %>  
         <%= f.submit 'Iscrivimi' %>  
