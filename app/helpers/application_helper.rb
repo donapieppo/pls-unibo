@@ -21,20 +21,20 @@ module ApplicationHelper
     "#{_label}: #{_txt}"
   end
 
-  def possible_label_from_array(_label, _arr, with_link: true)
+  def possible_label_from_array(_label, _arr, with_link: true, add_class: '', separator: ' ')
     res = ""
     _arr.each do |item|
-      res += ', ' unless res.blank?
+      res += separator unless res.blank?
       if item.is_a?(Contact)
         res += render(item)
       elsif with_link && item.respond_to?(:email) 
         res += item.email.blank? ? item.cn : mail_to(item.email, item)
       elsif with_link
-        res += link_to item, item
+        res += link_to item, item, class: add_class
       end
     end
     unless res.blank?
-      res= _label +  ": " + res
+      res = _label +  ": " + res
     end
     content_tag :div, res.html_safe
   end
