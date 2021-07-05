@@ -10,6 +10,7 @@ it:
   cluster: Raggruppamento
   edition: Edizione
   event: Evento
+  contact: Contatto
 
   activerecord:
     models:
@@ -18,6 +19,7 @@ it:
       edition: Edizione
       event: Evento
       resource: Prodotto
+      contact: Contatto
 
     attributes:
       area:
