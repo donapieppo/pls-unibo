@@ -12,6 +12,10 @@ home {
   @apply text-white border-2 border-pls bg-pls-strong hover:bg-pls hover:text-white font-bold p-8 text-center rounded-2xl;
 }
 
+.big-home-button {
+  @apply flex flex-col items-center justify-center border-2 border-pls hover:bg-pls hover:text-white font-bold p-8 rounded-2xl my-6 text-xl w-full h-full;
+}
+
 .alert {
   @apply bg-red-100 border-l-4 border-red-500 text-black p-4;
 }
@@ -57,7 +61,6 @@ h3 {
 .toggable {
   transition: all 3s;
 }
-
 
 .filters {
   select {
