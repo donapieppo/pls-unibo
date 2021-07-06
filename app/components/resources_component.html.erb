@@ -1,12 +1,18 @@
-<div class="pls-card">
+<div class="pls-card text-center">
   <div class="pls-card-title">
     RISORSE
   </div>
-  <div class="pls-card-content">
-    <% @resources.each do |resource| %>  
-      <%= render resource, what: @what %>  
-    <% end %>
+  <div class="pls-card-content mx-auto max-w-sm py-4">
+    <div class="max-w-xl">
+      <% @resources.each do |resource| %>  
+        <%= render resource, what: @what %>  
+      <% end %>
+    </div>
   </div>
-  <%= link_to 'aggiungi risorsa', [:choose_resource, @what], class: 'button' %>  
-  <%= link_to 'crea nuova risorsa', [:new, @what, :resource], class: 'button' %>  
+  <div class="inline-block my-2">
+    <%= link_to 'aggiungi risorsa', [:choose_resource, @what], class: 'button' %>  
+  </div>
+  <div class="inline-block my-2">
+    <%= link_to 'crea nuova risorsa', [:new, @what, :resource], class: 'button' %>  
+  </div>
 </div>
