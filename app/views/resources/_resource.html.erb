@@ -1,8 +1,8 @@
-<div class="w-full h-full text-gray-300">
+<div class="w-full h-full text-gray-300 px-2">
   <div class="text-center w-full">
     <% if resource.video? %>  
       <div class="">
-        <iframe class="w-full h-full roundex-xl" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen src="<%= resource.embed_url %>" frameborder="0"></iframe>
+        <iframe class="w-full h-full rounded-xl" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen src="<%= resource.embed_url %>" frameborder="0"></iframe>
       </div>
     <% elsif resource.document.image? %>
       <div class="text-center w-full">
@@ -15,10 +15,10 @@
       </div>
     <% end %>  
   </div>
-  <div class="text-center py-2 text-lg font-medium leading-6 tracking-wide text-gray-300">
+  <div class="text-center py-2 text-lg font-medium leading-6 tracking-wide text-gray-900">
     <%= resource %>
   </div>
-  <div class="text-center my-2">
+  <div class="text-center text-gray-900">
     <%= link_to_edit_if_editable resource %>  
     <%= link_to_delete([:remove_resource, what, { resource_id: resource.id }]) if defined? what %>  
   </div>

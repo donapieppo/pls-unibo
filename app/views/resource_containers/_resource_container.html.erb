@@ -1,5 +1,5 @@
-<div class="h-full border-2 border-gray-200 p-2 bg-pls rounded-xl py-4">
-  <div class="text-center">
+<div class="h-full border-2 border-pls rounded-2xl my-2">
+  <div class="text-center bg-pls rounded-t-xl py-4">
     <div class="text-xl font-medium leading-6 tracking-wide text-gray-300 cursor-pointer">
       <%= resource_container.name %>
     </div>
@@ -7,12 +7,12 @@
       <%= link_to_edit_if_editable resource_container %> 
       <%= link_to_delete_if_deletable resource_container %> 
     </div>
-    <div class="inline-block bg-gray-200 rounded-full p-2 mt-2 mb-6 text-xs">
+    <div class="inline-block bg-gray-100 rounded-full p-2 m-2 text-xs">
       <% areas_to_s(resource_container.areas) %>
     </div>
   </div>
   <% resource_container.resources.each do |resource| %>  
-    <div class="border-t border-gray-500 py-4">
+    <div class="pt-4">
       <%= render resource %>  
     </div>
   <% end %>

@@ -1,17 +1,17 @@
 <div class="container">
   <h1 class="title">Iscrizioni</h1>
-
-    <% @bookiable_activities.each do |a| %>  
-      <h2><%= link_to a, a %></h2>
-      <div>
-        <%= l a.booking_start %> - <%= l a.booking_end %>    
-      </div>
-      <ul>
-        <% a.bookings.each do |b| %>  
-          <li>
-            <%= b.user %> <%= b.name %> <%= b.surname %> <%= b.role %> <%= link_to_delete b %>   
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
+  <% @bookiable_activities.each do |a| %>  
+    <h2 class=""><%= link_to a, a %></h2>
+    <div>
+      <%= l a.booking_start %> - <%= l a.booking_end %>    
+    </div>
+    <p>Elenco iscritti:</p>
+    <ul class="list-disc">
+      <% a.bookings.order(:created_at).each do |b| %>  
+        <li>
+          <small><%= l b.created_at %></small> <%= b.user %> <%= b.name %> <%= b.surname %> <%= b.role %> (<%= b.email %>) <%= link_to_delete b %> <%= link_to(edit_icon, [:edit, b.user]) if b.user %>     
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 </div>

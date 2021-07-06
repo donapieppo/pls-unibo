@@ -3,9 +3,9 @@
 
   <div class="my-8 mx-auto lg:flex lg:flex-wrap">
     <% @resources.each do |resource| %>  
-      <div class="lg:w-1/3 xl:w-1/4 border-2 p-4 bg-pls">
-        <div class="text-4xl">
-          <%= link_to plus_icon, [:add_resource, @what, {resource_id: resource.id}], method: :post %>  
+      <div class="lg:w-1/3 xl:w-1/4 border-2 p-4 border-pls">
+        <div class="text-xl text-center mb-4">
+          <%= link_to plus_icon + ' aggiungi questa risorsa', [:add_resource, @what, {resource_id: resource.id}], method: :post %>  
         </div>
         <div class="text-center">
           <%= render resource %>  
