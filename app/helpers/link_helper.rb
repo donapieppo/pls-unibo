@@ -5,9 +5,9 @@ module LinkHelper
     end
   end
 
-  def link_to_edit_if_editable(what, msg: '')
+  def link_to_edit_if_editable(what, msg: '', add_class: 'my-2 inline-block text-base')
     if policy(what).edit?
-      content_tag(:div, class: 'my-2 inline-block button text-base') do 
+      content_tag(:div, class: add_class) do 
         link_to(edit_icon + content_tag(:span, msg, class: 'ml-2 text-sm'), [:edit, what])
       end
     end
