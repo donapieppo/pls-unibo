@@ -1,8 +1,10 @@
 <div class="container">
   <h1 class="title">Nuovo raggruppamento di attività</h1>
 
-  <%= simple_form_for @cluster do |f| %>  
-    <%= f.input :name %>  
-    <%= f.submit %>  
-  <% end %>
+  <div class="w-64 mx-auto">
+    <%= simple_form_for @cluster do |f| %>  
+      <%= f.input :name %>  
+      <%= f.submit %>  
+    <% end %>
+  </div>
 </div>
