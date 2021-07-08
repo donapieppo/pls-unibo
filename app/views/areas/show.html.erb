@@ -18,8 +18,6 @@
 <div class="container">
   <h2 class="title py-2">Le attività</h2>
 
-  <%= render partial: 'projects/filters' %>  
-
   <div class="lg:flex lg:flex-wrap">
     <% @area.projects.includes(:activity_type, :audience).order(:name).each do |project| %>  
       <div class="lg:w-1/3 p-2 lg:p-4 project" data-editions="<%= project.editions_year_and_audience_id %>">
