@@ -1,51 +1,48 @@
-<div class="filters">
-  <div>
-    <select id="select-year">
-      <option value="">Mostra tutti gli anni</option>
+<div id="filter-toggler">
+  <a href="javascript:void(0);" onclick="toggle_filters();">Filtri <i class="fas fa-tasks"></i></a>
+</div>
+<div id="filters" class="hidden">
+  <div class="lg:flex w-full">
+    <div id="years" class="my-2 p-4 border-r-2">
+      <p>Anno accademico</p>
       <% Edition.all_academic_years.each do |y| %>  
-        <option value="<%= y %>"><%= academic_year(y) %></option>
+        <input type="checkbox" id="yr_<%= y %>" name="years" value="<%= y %>"/>
+        <label for="yr_<%= y %>"> <%= academic_year(y) %></label> <br/>
       <% end %>
-    </select>
-  </div>
-  <div class="mt-2">
-    <select id="select-audience">
-      <option value="">---</option>
+    </div>
+    <div id="areas" class="my-2 p-4 border-r-2">
+      <p>Area</p>
+      <% Area.order(:name).each do |a| %>  
+        <input type="checkbox" id="ar_<%= a.id %>" name="areas" value="<%= a.id %>"/>
+        <label for="ar_<%= a.id %>"><%= a.name %> </label> <br/>
+      <% end %>
+    </div>
+    <div id="audiences" class="flex-grow my-2 p-4 border-r-2">
+      <p>Rivolto a</p>
       <% Audience.order(:name).each do |a| %>  
-        <option value="<%= a.id %>"><%= a.name %></option>
+        <input type="checkbox" id="au_<%= a.id %>" name="audiences" value="<%= a.id %>"/>
+        <label for="au_<%= a.id %>"><%= a.name %> </label> <br/>
       <% end %>
-    </select>
+    </div>
+    <div id="activity_types" class="my-2 p-4">
+      <p>Tipologia</p>
+      <% ActivityType.order(:name).each do |a| %>  
+        <input type="checkbox" id="at_<%= a.id %>" name="activity_types" value="<%= a.id %>"/>
+        <label for="at_<%= a.id %>"><%= a.name %> </label> <br/>
+      <% end %>
+    </div>
+  </div>
+  <div class="text-center">
+    <a href="javascript:void(0);" onclick="toggle_filters();" class="button">OK</a>
   </div>
 </div>
 
 <%= javascript_tag do %>  
-  const year_selector = document.getElementById('select-year');
-  const audience_selector = document.getElementById('select-audience');
-  var year = '';
-  var audience_id = '';
-  var search_string = '2020-';
+  function toggle_filters() {
+    document.getElementById("filters").classList.toggle("hidden");
+  }
+<% end %>
 
-  const update = () => {
-    search_string = `${year}-${audience_id}`;
-    console.log(search_string);
-    
-    document.querySelectorAll('.project').forEach ( (p) => {
-      if (p.getAttribute('data-editions').includes(search_string)) {
-        p.style.display = 'block';
-      } else {
-        p.style.display = 'none';
-      }
-    });
-  };
-
-  audience_selector.addEventListener('change', () => {
-    audience_id = audience_selector.querySelector('option:checked').value;
-    update();
-  });
-
-  year_selector.addEventListener('change', () => {
-    year = year_selector.querySelector('option:checked').value; 
-    update();
-  });
-
-  update();
+<%= javascript_tag do %>  
+  <%= render 'projects/filters.js' %>  
 <% end %>
