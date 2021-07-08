@@ -25,6 +25,35 @@
   <% end %>
 </div>
 
+<div class="container my-16 md:my-32">
+  <div class="sm:grid sm:grid-cols-3 sm:gap-2 place-content-stretch my-16">
+    <div class="">
+      <%= link_to projects_path do %>
+        <div class="big-home-button">
+          <div><i class="fas fa-chalkboard text-4xl"></i></div>
+          <div>Tutte le attività</div>
+        </div>
+      <% end %>
+    </div>
+    <div class="">
+      <%= link_to resource_containers_path do %>
+        <div class="big-home-button">
+          <div><i class="far fa-folder-open text-4xl"></i></div>
+          <div>Risorse disponibili</div>
+        </div>
+      <% end %>
+    </div>
+    <div class="">
+      <%= link_to contacts_page_path do %>
+        <div class="big-home-button">
+          <div><i class="far fa-address-book text-4xl"></i></div>
+          <div>Contatti</div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 <div class="container text-xl">
   <div class="md:flex my-16 ">
     <div class="md:w-1/3 flex items-center justify-center">
@@ -50,38 +79,10 @@
     </div>
     <div class="md:w-2/3">
       <div class="my-8 xl:my-16 md:text-right p-8 text-pls">
-    <p>Le attività del PLS sono rivolte a docenti e studenti di scuola secondaria superiore.</p>
-    <p>Le modalità di partecipazione variano leggermente per le diverse attività, ma, ad eccezione degli eventi di presentazione, l'iscrizione richiesta è obbligatoria, le modalità di iscrizione sono riportate in dettaglio nelle pagine di ogni area.</p>
+        <p>Le attività del PLS sono rivolte a docenti e studenti di scuola secondaria superiore.</p>
+        <p>Le modalità di partecipazione variano leggermente per le diverse attività, ma, ad eccezione degli eventi di presentazione, l'iscrizione richiesta è obbligatoria, le modalità di iscrizione sono riportate in dettaglio nelle pagine di ogni area.</p>
       </div>
     </div>
   </div>
 </div>
 
-  <div class="container">
-    <div class="sm:grid sm:grid-cols-3 sm:gap-2 place-content-stretch my-16">
-      <div class="">
-        <%= link_to projects_path do %>
-          <div class="big-home-button">
-            <div><i class="fas fa-chalkboard text-4xl"></i></div>
-            <div>Tutte le attività</div>
-          </div>
-        <% end %>
-      </div>
-      <div class="">
-        <%= link_to resource_containers_path do %>
-          <div class="big-home-button">
-            <div><i class="far fa-folder-open text-4xl"></i></div>
-            <div>Risorse disponibili</div>
-          </div>
-        <% end %>
-      </div>
-      <div class="">
-        <%= link_to contacts_page_path do %>
-          <div class="big-home-button">
-            <div><i class="far fa-address-book text-4xl"></i></div>
-            <div>Contatti</div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
