@@ -2,7 +2,8 @@
   <div class="font-bold mb-2">Lista degli eventi:</div>
   <div>
     <% @events.each do |event| %>
-      <div class="border-pls text-pls border-2 text-sm py-2 px-4 mr-1 mb-1 inline-block">
+      <div class="relative border-pls text-pls border-2 text-sm py-2 px-4 mr-1 mb-1 inline-block font-mono">
+        <%= calendar_icon %>
         <%= l event.start_date, format: :day_with_year %>
       </div>
     <% end %>

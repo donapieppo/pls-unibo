@@ -54,4 +54,8 @@ module IconHelper
   def youtube_icon
     '<i class="fab fa-youtube"></i>'.html_safe
   end
+
+  def calendar_icon
+    '<i class="far fa-calendar"></i>'.html_safe
+  end
 end
