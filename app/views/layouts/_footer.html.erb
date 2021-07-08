@@ -5,18 +5,18 @@
         <input class="border-2 border-gray-300 bg-white px-2 py-1 pr-1 rounded-lg text-sm focus:outline-none" type="search" name="search" placeholder="cerca"/>
       <% end %>
     </div>
-    <div class="flex-grow my-2 text-center">
-      <div class="w-32 my-4 mx-auto">
+    <div class="flex-grow text-center">
+      <div class="w-32 mx-auto">
         <%= link_to 'https://www.pianolaureescientifiche.it/' do %>  
           <%= image_pack_tag('media/images/Logo_PLS_s.png') %>
         <% end %>
       </div>
-    </div>
-    <div class="text-center p-8">
-      <%= render partial: 'layouts/social' %>  
+      <div class="my-8">
+        <%= render partial: 'layouts/social' %>  
+      </div>
     </div>
     <div class="text-xs">
-      <h3>Partecipanti:</h3>
+      <h3 class="mb-4">Partecipanti:</h3>
       <% Organization.order(:name).each do |org| %>
         <div class="m-1">
           > <%= link_to org, org.url, target: '_new' %>
@@ -25,7 +25,7 @@
     </div>
   </div>
   <div class="container">
-    <div class="mt-4 text-sm text-center w-full">
+    <div class="mt-2 text-sm text-center w-full">
       <%= link_to image_pack_tag('media/images/unibo.gif'), 'https://www.unibo.it' %>
       ©Copyright 2021 - ALMA MATER STUDIORUM - Università di Bologna - Via Zamboni, 33 - 40126 Bologna - Partita IVA: 01131710376 
     </div>
