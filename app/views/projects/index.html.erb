@@ -5,7 +5,7 @@
     <%= link_to('Nuova Attività', new_project_path, class: 'button') if policy(:project).new? %>  
   </div>
 
-    <div class="bg-gray-100 p-4">
+    <div class="p-4">
       <%= render partial: 'filters' %>  
     </div>
 
@@ -13,7 +13,7 @@
     <% @projects.each do |project| %>  
       <div class="lg:w-1/2 p-2 lg:p-4 project" data-years="<%= project.editions.map(&:academic_year) %>" 
                                                data-audiences="<%= project.audience_id ? [project.audience_id] : [] %>" 
-                                               data-areas="<%= project.area_ids %>" 
+                                               data-areas="<%= project.area_ids + project.interested_area_ids %>" 
                                                data-activity_types="<%= project.parent_id ? [project.parent_id] : [] %>">
         <%= link_to project do %>  
           <%= render 'project',  project: project %>  
