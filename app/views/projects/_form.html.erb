@@ -4,7 +4,7 @@
     <%= f.input :description, input_html: { cols: 80, rows: 5 } %>
     <%= f.rich_text_area :details %>
     <%= f.association :activity_type, include_blank: false %>  
-    <%= f.input :global %>  
+    <%= f.input :global, input_html: { id: 'activity_global' } %>  
     <div id="areas_select">
       <%= f.association :areas, as: :check_boxes %>  
     </div>
@@ -14,12 +14,12 @@
 </div>
 
 <%= javascript_tag do %>  
-  glb = document.getElementById('activity_global');
-  area_form = document.getElementById('areas_select');
-  area_form.style.display = glb.checked ? 'none': 'block';
+  var global = document.getElementById('activity_global');
+  var area_form = document.getElementById('areas_select');
+  area_form.style.display = global.checked ? 'none': 'block';
 
-  glb.addEventListener('click', function() {
-    area_form.style.display = glb.checked ? 'none': 'block';
+  global.addEventListener('click', function() {
+    area_form.style.display = global.checked ? 'none': 'block';
   });
 <% end %>
 
