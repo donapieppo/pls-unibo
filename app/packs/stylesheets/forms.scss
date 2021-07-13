@@ -1,33 +1,28 @@
 form {
-  label, span.hint {
-    @apply text-sm font-medium text-gray-600 my-1;
+  label, span.hint, legend {
+    @apply text-sm text-gray-700 mt-4 mb-2;
   }
   label.string, label.text, label.select, label.integer, label.file, legend {
     @apply block;
   }
-  input[type="text"], input.string, input.numeric {
-    @apply w-full h-8 px-2 text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow;
+  input[type="text"], input.string, input.numeric, textarea {
+    @apply w-full text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow;
   }
   input.numeric {
     @apply w-24;
   }
-  textarea {
-    @apply w-full text-sm px-3 py-2 text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow;
-  }
   input[type=checkbox], input[type=radio] {
-    @apply my-2 mr-2 text-sm text-gray-700;
+    @apply my-1 mr-2 text-gray-700;
   }
   select.select {
-    @apply w-1/2 h-10 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow;
+    @apply w-2/3 placeholder-gray-600 border rounded-lg appearance-none focus:shadow;
   }
   select.datetime, select.date {
     @apply h-10 placeholder-gray-600 border rounded-lg appearance-none focus:shadow;
   }
-  input[type="file"] {
-    @apply lg:col-start-3 lg:col-end-4;
-  }
+
   input[type="submit"] {
-    @apply bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-4 my-2 rounded;
+    @apply bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-4 my-2 rounded cursor-pointer;
   }
   
   .is-invalid {
@@ -36,5 +31,13 @@ form {
   .invalid-feedback {
     @apply text-sm text-red-500 my-2 pl-2; 
   }
+}
+
+trix-toolbar {
+  @apply mt-8;
+}
+trix-editor > div {
+  @apply mt-8;
+  font-size: 16px;
 }
 
