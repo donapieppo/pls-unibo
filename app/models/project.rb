@@ -8,8 +8,6 @@ class Project < Activity
   has_many :editions, foreign_key: 'parent_id'        # parent_id is in editions
   belongs_to :activity_type, foreign_key: 'parent_id' # parent_id is here
 
-  belongs_to :audience
-
   validates :name, uniqueness: {}
 
   before_save :global_and_areas_relation
@@ -37,5 +35,9 @@ class Project < Activity
       "#{e.academic_year}-#{e.audience_id}"
     end.join(" ")
   end
-end
 
+  def editions_audience_ids
+    self.editions.map(&:audience_id)
+  end
+
+end
