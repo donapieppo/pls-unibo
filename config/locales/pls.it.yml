@@ -33,6 +33,8 @@ it:
         date: Organizzatori
         areas: Aree
         interested_areas: Aree di interesse
+        activity_type: Tipologia
+        global: Attività comune a tutte le aree
       edition:
         name: Nome
         description: Descrizione
