@@ -7,7 +7,7 @@
 
   <div class="max-w-3xl">
     <% @contacts.each do |contact| %>  
-      <div class="p-1 border-b border-gray-300">
+      <div class="p-2 border-b border-gray-300">
         <%= contact.cn_militar %> 
         <span class="px-4 text-gray-700 text-sm"><%= contact.affiliation %></span>
 
@@ -16,11 +16,11 @@
         <% end %>
 
         <div class="float-right pl-4">
+          <%= mail_to(contact.email, mail_icon) unless contact.email.blank? %>
+          <%= link_to(link_icon, contact.web_page) unless contact.web_page.blank? %>
           <% if contact.deletable? %>
             <%= link_to_delete contact %>
           <% end %>
-          <%= mail_to(contact.email, mail_icon) unless contact.email.blank? %>
-          <%= link_to(link_icon, contact.web_page) unless contact.web_page.blank? %>
           <%= link_to_edit_if_editable(contact) %>
         </div> 
       </div>
