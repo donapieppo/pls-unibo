@@ -5,9 +5,9 @@
     <%= link_to('Nuova Attività', new_project_path, class: 'button') if policy(:project).new? %>  
   </div>
 
-    <div class="p-4">
-      <%= render partial: 'filters' %>  
-    </div>
+  <div class="p-4">
+    <%= render partial: 'filters' %>  
+  </div>
 
   <div class="lg:flex lg:flex-wrap">
     <% @projects.each do |project| %>  
@@ -15,9 +15,9 @@
                                                data-audiences="<%= project.editions_audience_ids %>" 
                                                data-areas="<%= project.area_ids + project.interested_area_ids %>" 
                                                data-activity_types="<%= project.parent_id ? [project.parent_id] : [] %>">
-        <%= link_to project do %>  
-          <%= render 'project',  project: project %>  
-        <% end %>
+                                               <%= link_to project do %>  
+                                                 <%= render 'project',  project: project %>  
+                                               <% end %>
       </div>
     <% end %>
   </div>
