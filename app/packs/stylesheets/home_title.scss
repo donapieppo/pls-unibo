@@ -3,6 +3,19 @@
   height: 200px;
   width: 200px;
 }
+#home-box-areas {
+  @apply bg-pls text-gray-100;
+}
+#home-box-projects {
+  @apply bg-pls-light text-gray-700;
+  margin-top: -30px;
+  margin-left: -60px;
+}
+#home-box-students {
+  @apply bg-pls-strong text-gray-100;
+  margin-top: -60px;
+  margin-left: 60px;
+}
 
 #home-box-areas { 
   animation: incomea 2s; 

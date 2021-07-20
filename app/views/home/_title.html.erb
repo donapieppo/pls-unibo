@@ -2,18 +2,18 @@
   <h1 class="md:w-1/2 text-pls font-medium h-2/3 text-center md:text-right p-4 lg:p-32 text-4xl sm:text-5xl xl:text-6xl 2xl:text-8xl tracking-tight">
     PIANO<br/> LAUREE <br/> SCIENTIFICHE 
   </h1>
-  <div class="md:w-1/2 flex flex-col justify-center items-left md:border-l pl-4 lg:pl-32 my-4">
-    <div id="home-box-areas" class="home-box bg-pls text-gray-100">
+  <div class="md:w-1/2 flex flex-col justify-center items-left pl-4 lg:pl-32 my-4">
+    <div id="home-box-areas" class="home-box">
       <%= link_to "#areas" do %>  
         <div><span class="home-box-number text-4xl px-2">8</span> aree</div>
       <% end %>
     </div>
-    <div id="home-box-projects" class="home-box bg-pls-light text-gray-700 ml-16">
+    <div id="home-box-projects" class="home-box">
       <%= link_to projects_path do %>
         <div>oltre <span class="home-box-number text-4xl px-2"><%= Activity.approximate_count %></span> iniziative</div>
       <% end %>
     </div>
-    <div id="home-box-students" class="home-box bg-pls-strong text-gray-100 ml-8">
+    <div id="home-box-students" class="home-box">
       <div>oltre <span class="home-box-number text-4xl px-2">120</span> scuole coinvolte</div>
     </div>
   </div>
