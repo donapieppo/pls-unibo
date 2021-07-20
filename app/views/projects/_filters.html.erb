@@ -34,14 +34,19 @@
   </div>
   <div class="text-center">
     <a href="javascript:void(0);" onclick="toggle_filters();" class="button">OK</a>
+    <a href="javascript:void(0);" onclick="clear_filters();" class="underline">Pulisci filtri</a>
   </div>
 </div>
 
 <div id="noresults" style="display: none" class="alert my-4">
-  Non sono registrate attività che soddisfino ai criteri selzionati.
+  Non sono registrate attività che soddisfino ai criteri selezionati.
 </div>
 
 <%= javascript_tag do %>  
+  function clear_filters() {
+    document.querySelectorAll("#filters input[type='checkbox']").forEach((x) => x.checked = false);
+    hide_projects_not_selected();
+  }
   function toggle_filters() {
     document.getElementById("filters").classList.toggle("hidden");
   }
