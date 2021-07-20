@@ -66,4 +66,8 @@ Rails.application.routes.draw do
   get "/contatti", to: "home#contacts", as: "contacts_page"
   get "/privacy", to: "home#privacy", as: "privacy"
   root "home#index"
+
+  Area.find_each do |a|
+    get "/#{a.slug}", to: "areas#show", id: a.id
+  end
 end

@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
 
   create_table "areas", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
+    t.string "slug"
     t.text "payoff"
     t.text "description"
     t.text "notice"
