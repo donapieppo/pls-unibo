@@ -5,16 +5,16 @@
   <div class="md:w-1/2 flex flex-col justify-center items-left">
     <div id="home-box-areas" class="home-box bg-pls text-gray-100 ml-2">
       <%= link_to "#areas" do %>  
-        <div><strong>8</strong> aree</div>
+        <div><span class="home-box-number text-4xl px-2">8</span> aree</div>
       <% end %>
     </div>
     <div id="home-box-projects" class="home-box bg-pls-light text-gray-700 ml-12 md:ml-24">
       <%= link_to projects_path do %>
-        <div>oltre <strong><%= Activity.approximate_count %></strong> iniziative</div>
+        <div>oltre <span class="home-box-number text-4xl px-2"><%= Activity.approximate_count %></span> iniziative</div>
       <% end %>
     </div>
     <div id="home-box-students" class="home-box bg-pls-strong text-gray-100 ml-8 md:ml-12">
-      <div>oltre <strong>120</strong> scuole coinvolte</div>
+      <div>oltre <span class="home-box-number text-4xl px-2">120</span> scuole coinvolte</div>
     </div>
   </div>
 </div>
