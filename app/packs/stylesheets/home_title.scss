@@ -1,8 +1,7 @@
 .home-box {
-  @apply flex flex-col justify-center items-center text-center px-8 -my-2 py-16 shadow-2xl rounded-full text-lg lg:text-xl;
-  height: 15vh;
-  width: 70%;
-  max-width: 450px;
+  @apply flex flex-col justify-center items-center text-center px-8 -my-4 py-16 shadow-2xl rounded-full text-lg lg:text-xl;
+  height: 200px;
+  width: 200px;
 }
 
 #home-box-areas { 
