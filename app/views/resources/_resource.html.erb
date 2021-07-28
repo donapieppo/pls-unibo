@@ -16,7 +16,11 @@
     <% end %>  
   </div>
   <div class="text-center py-2 text-lg font-medium leading-6 tracking-wide text-gray-900">
-    <%= resource %>
+    <% if resource.url.blank? %>  
+      <%= resource.name %>
+    <% else %>
+      <%= link_icon %>  <%= link_to resource.name, resource.url %>
+    <% end %>
   </div>
   <div class="text-center text-gray-900">
     <%= link_to_edit_if_editable resource %>  
