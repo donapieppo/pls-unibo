@@ -4,24 +4,28 @@
     <%= link_to_edit_if_editable(@event) %>  
   </h2>
 
-  <h1 class="title">
-    <%= @event %>
-  </h1>
+  <div class="md:flex my-6">
+    <div class="md:w-1/2">
+      <%= render @event %>
 
-  <div class="text-4xl text-center">
-    <% if @event.booked_by?(current_user) %>
-      HAI PRENOTATO
-    <% end %>
-  </div>
+      <% if current_user %>  
+        <div class="text-4xl text-center">
+          <% if @event.booked_by?(current_user) %>
+            HAI PRENOTATO
+          <% end %>
+        </div>
 
-  <% @event.bookings.by_teacher(current_user).each do |booking| %>  
-    <p>Hai prenotato per <%= booking.user %></p>
-  <% end %>
-
-  <% current_user %>  
-  <div class="px-8 text-center">
-    <% @event.resources.each do |resource| %>  
-      <%= render resource %>  
-    <% end %>
+        <% @event.bookings.by_teacher(current_user).each do |booking| %>  
+          <p>Hai prenotato per <%= booking.user %></p>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="md:w-1/2">
+      <div class="px-8 text-center md:max-w-xl m-auto">
+        <% @event.resources.each do |resource| %>  
+          <%= render resource %>  
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
