@@ -90,9 +90,6 @@ class LoginsController < ApplicationController
     @idAnagraficaUnica = extra.idAnagraficaUnica.to_i
     @idAnagraficaUnica > 0 or raise "NO idAnagraficaUnica"
 
-    @isMemberOf = extra.isMemberOf ? extra.isMemberOf.split(';') : []
-    set_memberof_session(@isMemberOf)
-
     @email         = @upn
     @name          = oinfo.first_name || oinfo.name
     @surname       = oinfo.last_name
