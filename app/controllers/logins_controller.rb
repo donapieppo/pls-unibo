@@ -118,7 +118,7 @@ class LoginsController < ApplicationController
       user = ::User.create!(h)
     end
     logger.info "Authentication: allow_and_create as #{user.inspect}"
-    sign_in_and_redirect user
+    sign_in_and_redirect user, root_path
   end
 
   def create_logged_user
