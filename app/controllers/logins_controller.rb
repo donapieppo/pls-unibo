@@ -27,7 +27,7 @@ class LoginsController < ApplicationController
     parse_unibo_omniauth
 
     if @email =~ /@unibo.it$/
-      allow_if_email
+      allow_and_create
     else
       logger.info "Students are not allowed: #{@email} user not allowed."
       redirect_to no_access_path and return
@@ -106,19 +106,24 @@ class LoginsController < ApplicationController
     end
   end
 
-  def allow_if_email
-    user = @idAnagraficaUnica ? User.where(id: @idAnagraficaUnica).first : User.where(email: @email).first
-    if user
-      logger.info "Authentication: allow_if_email as #{user.inspect} with groups #{session[:isMemberOf].inspect}"
-      user.update_attributes(name: @name, surname: @surname)
-      sign_in_and_redirect user
-    else
-      logger.info "User #{@email} not allowed"
-      redirect_to no_access_path
+  def allow_and_create
+    user = @idAnagraficaUnica ? ::User.where(id: @idAnagraficaUnica).first : ::User.where(email: @email).first
+    if ! user
+      logger.info "Authentication: User #{@email} to be CREATED"
+      h = {id:      @idAnagraficaUnica || 0,
+           upn:     @email,
+           email:   @email,
+           name:    @name, 
+           surname: @surname }
+      h[:nationalpin] = @nationalpin if ::User.column_names.include?('nationalpin')
+      user = ::User.create!(h)
     end
+    logger.info "Authentication: allow_and_create as #{user.inspect}"
+    sign_in_and_redirect user
   end
 
   def create_logged_user
+    logger.info "Authentication: User #{@email} to be CREATED"
     User.create(name: @name, surname: @surname, email: @email)
   end
 
