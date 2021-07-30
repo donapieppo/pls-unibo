@@ -1,16 +1,14 @@
 class LoginsController < ApplicationController
-  #skip_before_action :verify_authenticity_token, only: :developer  
+  before_action :skip_authorization
   skip_before_action :force_sso_user, raise: false
 
   def index
-    skip_authorization
     @no_container = true
     # render layout: nil
   end
 
   # env['omniauth.auth'].info = {email, name, last_name}
   def google_oauth2
-    skip_authorization
     parse_google_omniauth
     user = User.where(email: @email).first
     if ! user
@@ -37,7 +35,6 @@ class LoginsController < ApplicationController
   end
 
   def developer
-    skip_authorization
     parse_developer_omniauth
     check_developer!
     user = User.where(email: @email).first
@@ -60,7 +57,6 @@ class LoginsController < ApplicationController
   end
 
   def logout
-    skip_authorization
     session[:user_id] = nil
     reset_session
     # logger.info("after logout we redirect to params[:return] = #{params[:return]}")
@@ -105,11 +101,10 @@ class LoginsController < ApplicationController
 
   def sign_in_and_redirect(user, url)
     session[:user_id] = user.id
+    user.update(last_login: Time.now)
     if user.last_login
-      user.update(last_login: Time.now)
       redirect_to url
     else
-      user.update(last_login: Time.now)
       redirect_to myedit_users_path
     end
   end
@@ -137,4 +132,6 @@ class LoginsController < ApplicationController
     logger.info("Authentication: extra = #{request.env['omniauth.auth'].extra}")
   end
 
+  def no_access
+  end
 end
