@@ -111,7 +111,6 @@ class LoginsController < ApplicationController
     if ! user
       logger.info "Authentication: User #{@email} to be CREATED"
       h = {id:      @idAnagraficaUnica || 0,
-           upn:     @email,
            email:   @email,
            name:    @name, 
            surname: @surname }
