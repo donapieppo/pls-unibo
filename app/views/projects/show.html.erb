@@ -1,9 +1,7 @@
 <div class="container">
-  <h2 class="py-8">
-    <span class="px-4 py-2 text-pls">
-      <%= @project.activity_type.name.upcase %>  
-    </span>
-  </h2>
+  <div class="text-center text-2xl mt-4">
+    <%= @project.activity_type.name.upcase %>  
+  </div>
 
   <h1 class="title">
     <%= @project %>
@@ -15,7 +13,7 @@
     <%= link_to_edit_if_editable @project, msg: 'modifica i dati del progetto' %>
   </div>
 
-  <div class="my-8 max-w-5xl">
+  <div class="my-4 max-w-5xl">
     <%= simple_format @project.description %>  
   </div>
 
@@ -25,7 +23,12 @@
 </div>
 
 <% @editions.each do |edition| %>  
-  <div class="py-8">
-    <%= render EditionComponent.new(edition: edition, short: true, title_if_different_from: @project.name) %>
+  <div class="relative border-t-4 border-pls-light pt-8 mt-16">
+    <div class="container">
+      <div class="border-4 border-pls-light bg-white text-3xl font-bold absolute -top-8 text-pls p-4 px-8 rounded-2xl tracking-wider">
+        <%= link_to edition.academic_year_to_s, edition %>
+      </div>
+      <%= render EditionComponent.new(edition: edition, short: true, title_if_different_from: @project.name) %>
+    </div>
   </div>
 <% end %>

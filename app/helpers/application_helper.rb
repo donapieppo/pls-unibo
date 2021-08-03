@@ -34,9 +34,9 @@ module ApplicationHelper
       end
     end
     unless res.blank?
-      res = _label +  ": " + res
+      res = "<strong>" + _label +  "</strong>: " + res
     end
-    content_tag :div, res.html_safe
+    content_tag :div, res.html_safe, class: 'my-4' unless res.blank?
   end
 end
 

@@ -1,60 +1,59 @@
-<div class="relative border-t-4 border-pls-light pt-8">
-  <div class="container">
-    <% if @short %>  
-      <div class="border-4 border-pls-light bg-white text-3xl font-bold absolute -top-8 text-pls p-4 px-8 rounded-2xl tracking-wider">
-        <%= link_to @edition.academic_year_to_s, @edition %>
-      </div>
+<div class="md:flex md:flex-wrap mt-4">
+  <div class="md:w-2/3 lx:w-3/4">
+    <% unless @skip_title %>  
+      <h3 class="mt-4 text-xl lg:text-3xl"> 
+        <%= link_to(@edition.name, @edition) %> 
+      </h3>
     <% end %>
 
-    <div class="md:flex md:flex-wrap mt-8">
-      <div class="md:w-2/3 lx:w-3/4">
-        <h3 class="text-xl lg:text-3xl"> 
-          <%= link_to(@edition.name, @edition) if @edition.name != @title_if_different_from %> 
-        </h3>
+    <div class="my-8">
+      <div class="lg:text-lg my-4">
+        <%= simple_format @edition.description %>  
+      </div>
+      <div class="my-2">
+        <%= helpers.possible_label_from_array 'Contatti', @edition.contacts %>
+      </div>
+      <div class="my-2">
+        <%= helpers.possible_label_from_array 'Relatori', @edition.speakers %>
+      </div>
+      <div class="my-2">
+        <%= @edition.audience %>
+      </div>
 
-        <div class="my-8">
-          <div class="lg:text-lg my-4">
-            <%= simple_format @edition.description %>  
-          </div>
-          <div class="my-2">
-            <%= helpers.possible_label_from_array 'Contatti', @edition.contacts %>
-          </div>
-          <div class="my-2">
-            <%= helpers.possible_label_from_array 'Relatori', @edition.speakers %>
-          </div>
-          <div class="my-2">
-            <%= @edition.audience %>
-          </div>
-
-          <% unless @short %>  
-            <div class="italic text-justify my-4 text-gray-600">
-              <%= @edition.details %>  
-            </div>
-            <%= render BookingAndActionsComponent.new(what: @edition) %>
-          <% end %>
+      <% unless @short %>  
+        <div class="italic text-justify my-4 text-gray-600">
+          <%= @edition.details %>  
         </div>
-      </div>
-      <div class="md:w-1/3 xl:w-1/4 pl-4">
-        <% if @resources.any? %>  
-          <div class="mx-auto border-2 border-pls rounded-xl py-4">
-            <% @resources.each do |resource| %>
-              <%= render resource %>  
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+        <%= render BookingAndActionsComponent.new(what: @edition) %>
+      <% end %>
     </div>
-
-    <% if @events.any? %>  
-      <div class="my-8">
-        <%= render EventsListComponent.new(events: @events, short: @short || @edition.atomic) %>  
-      </div>
+  </div>
+  <div class="md:w-1/3 xl:w-1/4 pl-4">
+    <% if @edition.google_map %>  
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d22766.713035343888!2d11.355912!3d44.497963!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xdd7d8fb6030e9945!2sDepartment%20of%20Mathematics%20-%20University%20of%20Bologna!5e0!3m2!1sen!2sit!4v1627989633268!5m2!1sen!2sit" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" class="border-2 border-pls shadow-2xl"></iframe>
     <% end %>
-
-    <% if @short %>  
-      <div class="my-2 text-right text-2xl text-pls">
-        <%= link_to 'dettagli <i class="far fa-arrow-alt-circle-right"></i>'.html_safe, @edition %>
+    <% if @resources.any? %>  
+      <div class="mx-auto border-2 border-pls rounded-xl py-4">
+        <% @resources.each do |resource| %>
+          <%= render resource %>  
+        <% end %>
       </div>
     <% end %>
   </div>
 </div>
+
+<% if @events.any? %>  
+  <% if @events.size > 1 %>  
+    <div class="my-8">
+      <%= render EventsListComponent.new(events: @events, short: @short || @edition.atomic) %>  
+    </div>
+  <% else %>
+    <%= render @events.first %>  
+  <% end %>
+<% end %>
+
+<% if @short %>  
+  <div class="my-8 text-right text-2xl text-pls">
+    <%= link_to 'dettagli <i class="far fa-arrow-alt-circle-right"></i>'.html_safe, @edition %>
+  </div>
+<% end %>

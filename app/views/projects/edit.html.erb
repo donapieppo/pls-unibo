@@ -15,14 +15,16 @@
       <div class="pls-card my-4">
         <div class="pls-card-title">EDIZIONI</div>
         <div class="pls-card-content">
-          <% @project.editions.each do |edition| %>  
-            <div class="my-1 p-2 hover:bg-gray-100">
-              <%= link_to [:edit, edition] do %> 
-                <%= edition.name %> 
+          <% @project.editions.order('academic_year desc').each do |edition| %>  
+            <div class="hover:bg-yellow-100 p-1">
+              <%= link_to [:edit, edition] do %>
+                <div class="text-sm mt-2 text-gray-700">
+                  <%= edition.academic_year_to_s %>
+                </div>
+                <div class="">
+                  <%= edition.name %> 
+                </div>
               <% end %>
-              <span class="float-right text-sm mx-2">
-                <%= edition.academic_year_to_s %>
-              </span>
             </div>
           <% end %>
         </div>

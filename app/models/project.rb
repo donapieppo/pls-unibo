@@ -39,5 +39,4 @@ class Project < Activity
   def editions_audience_ids
     self.editions.map(&:audience_id)
   end
-
 end
