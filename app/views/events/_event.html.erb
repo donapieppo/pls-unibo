@@ -17,6 +17,9 @@
         <%= speaker %>
       </div>
     <% end %>
+    <% if event.google_map %>  
+      <%= raw event.google_map %>
+    <% end %>
   </div>
 </div>
 
