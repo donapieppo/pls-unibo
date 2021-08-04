@@ -1,15 +1,15 @@
-<div class="px-4 lg:px-16 leading-8">
+<div class="px-4 lg:px-16">
   <h1 class="title">Contatti</h1>
 
   <div class="flex flex-wrap">
     <div class="w-1/3 font-bold text-right px-4 mb-8">
-      <h2 class="text-xl">Coordinatore Unibo</h2>
+      Coordinatore Unibo
     </div>
-    <div class="w-2/3 mb-8 text-xl">
+    <div class="w-2/3 mb-8">
       <%= mail_to 'mirella.manaresi@unibo.it', 'Mirella Manaresi' %>
     </div>
 
-    <% Area.order(:name).includes(:head, :contacts).each do |area| %>  
+    <% Area.order(:name).includes(:head).each do |area| %>  
       <div class="w-1/3 font-bold text-right px-4 mb-2">
         <%= area %> 
       </div>
@@ -17,7 +17,7 @@
         <div><span class="text-gray-700">Referente:</span> <%= area.head %></div>
         <div>
           <span class="text-gray-700">Contatti:</span> 
-          <% area.contacts.order(:name).each do |contact| %>
+          <% area.contacts.order(:surname, :name).each do |contact| %>
             <span class="mx-1"><%= mail_to contact.email, contact.cn, class: 'underline' %> </span>
           <% end %>
         </div>
