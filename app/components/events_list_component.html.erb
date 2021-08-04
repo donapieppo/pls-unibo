@@ -13,7 +13,7 @@
     <h3 class="text-2xl text-center my-4">Eventi</h3>
     <% @events.each do |event| %>  
       <div class="my-8 md:flex px-2">
-        <div class="md:w-48 md:px-8 py-4 text-center">
+        <div class="md:w-40 md:px-8 py-4 text-center">
           <div class="text-pls border-pls border-2 shadow-xl text-sm font-bold py-2 px-4">
             <%= l event.start_date %>
           </div>
@@ -23,12 +23,19 @@
             <%= link_to event.name.upcase, event %> 
           </div>
           <div class="text-sm italic text-justify text-gray-700 mt-4">
-            <q><%= event.description %> </q>
+            <q><%= event.description %></q>
           </div>
           <div class="mt-2">
             <%= helpers.possible_label_from_array 'Relatori', event.speakers %>
           </div>
           <%= render BookingAndActionsComponent.new(what: event) %>
+          <% if @with_image %>  
+            <% event.resources.each do |r| %>  
+              <% if r.image? %>  
+                <%= image_tag(r.document.variant(resize_to_limit: [350, 350])) %>  
+              <% end %>
+            <% end %>
+          <% end %>
         </div>
       </div>
     <% end %>
