@@ -15,7 +15,7 @@ class Resource < ApplicationRecord
   end
 
   def image?
-    false
+    self.document.image?
   end
 
   def embed_url
