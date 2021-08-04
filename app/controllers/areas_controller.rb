@@ -4,6 +4,8 @@ class AreasController < ApplicationController
   before_action :set_area_and_check_permission, only: %i[ show edit update destroy add_contact remove_contact ]
 
   def show
+    @this_area_projects = @area.projects.includes(:editions, :activity_type).order(:name)
+    @common_projects = Project.where(global: true).includes(:editions, :activity_type).order(:name)
     @resource_containers = @area.resource_containers.includes(:resources).all
   end
 
