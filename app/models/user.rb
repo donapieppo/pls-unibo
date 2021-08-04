@@ -37,4 +37,8 @@ class User < ApplicationRecord
   def confirmed_teacher?
     self.role && self.role == 'teacher'
   end
+
+  def unibo?
+    self.email =~ /\A\w+\.?\w+@unibo.it\z/
+  end
 end
