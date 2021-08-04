@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.text "description"
     t.integer "academic_year", limit: 2, unsigned: true
     t.string "place"
-    t.string "google_map"
+    t.text "google_map"
     t.datetime "start_date"
     t.integer "seats", limit: 2, unsigned: true
     t.integer "parent_id", unsigned: true
