@@ -23,7 +23,7 @@
       <div class="pls-card my-4">
         <div class="pls-card-title">EVENTI</div>
         <div class="pls-card-content">
-          <% @edition.events.each do |event| %>  
+          <% @edition.events.order('start_date desc').each do |event| %>  
             <div class="py-1 hover:bg-gray-100">
               <%= link_to [:edit, event] do %> 
                 <i class="fas fa-chevron-right mr-2"></i> 
