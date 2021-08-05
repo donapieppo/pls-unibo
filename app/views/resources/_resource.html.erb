@@ -1,29 +1,31 @@
-<div class="w-full h-full text-gray-300 px-2">
-  <div class="text-center w-full">
-    <% if resource.video? %>  
-      <div class="">
-        <iframe class="w-full h-full rounded-xl" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen src="<%= resource.embed_url %>" frameborder="0"></iframe>
-      </div>
-    <% elsif resource.document.image? %>
-      <div class="text-center w-full">
-        <% dest = resource.url.blank? ? url_for(resource.document) : resource.url %>  
-        <%= link_to image_tag(resource.document.variant(resize_to_limit: [350, 350]), class: 'w-full rounded-lg rounded-b-none'), dest, class: 'w-full' %>
-      </div>
-    <% elsif resource.document && resource.document.previewable? %>  
-      <div class="text-center w-full">
-        <%= link_to image_tag(resource.document.preview(resize_to_limit: [350, 350]), class: 'w-full rounded-lg rounded-b-none'), url_for(resource.document), class: 'w-full' %>  
-      </div>
-    <% end %>  
+<% if resource.video? %>  
+  <div class="mx-auto py-4 pl-2 w-full h-full">
+    <iframe class="w-full h-full" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen src="<%= resource.embed_url %>" frameborder="0"></iframe>
   </div>
-  <div class="text-center py-2 text-lg font-medium leading-6 tracking-wide text-gray-900">
-    <% if resource.url.blank? %>  
-      <%= resource.name %>
-    <% else %>
-      <%= link_icon %>  <%= link_to resource.name, resource.url %>
-    <% end %>
+<% else %>
+  <div class="mx-auto py-4 pl-2 w-full text-gray-300">
+    <div class="text-center w-full">
+      <% if resource.document.image? %>
+        <div class="text-center w-full">
+          <% dest = resource.url.blank? ? url_for(resource.document) : resource.url %>  
+          <%= link_to image_tag(resource.document.variant(resize_to_limit: [350, 350]), class: 'w-full rounded-lg rounded-b-none'), dest, class: 'w-full' %>
+        </div>
+      <% elsif resource.document && resource.document.previewable? %>  
+        <div class="text-center w-full">
+          <%= link_to image_tag(resource.document.preview(resize_to_limit: [350, 350]), class: 'w-full rounded-lg rounded-b-none'), url_for(resource.document), class: 'w-full' %>  
+        </div>
+      <% end %>  
+    </div>
+    <div class="text-center py-2 text-lg font-medium leading-6 tracking-wide text-gray-900">
+      <% if resource.url.blank? %>  
+        <%= resource.name %>
+      <% else %>
+        <%= link_icon %> <%= link_to resource.name, resource.url %>
+      <% end %>
+    </div>
+    <div class="text-center text-gray-900">
+      <%= link_to_edit_if_editable resource %>  
+      <%= link_to_delete([:remove_resource, what, { resource_id: resource.id }]) if defined? what %>  
+    </div>
   </div>
-  <div class="text-center text-gray-900">
-    <%= link_to_edit_if_editable resource %>  
-    <%= link_to_delete([:remove_resource, what, { resource_id: resource.id }]) if defined? what %>  
-  </div>
-</div>
+<% end %>
