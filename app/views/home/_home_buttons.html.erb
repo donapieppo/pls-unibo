@@ -1,0 +1,44 @@
+<div id="home-buttons" class="container my-8 md:my-16">
+
+  <h2 class="title mt-16 md:mt-24">Le attività</h2>
+
+  <div class="sm:grid sm:grid-cols-3 sm:gap-8 place-content-stretch my-16">
+    <div class="">
+      <%= link_to projects_path(on: 1) do %>
+        <div class="big-home-button">
+          <div><i class="fas fa-play text-4xl mb-4"></i></div>
+          <div>Attività in corso</div>
+        </div>
+      <% end %>
+    </div>
+    <div class="">
+      <%= link_to projects_path do %>
+        <div class="big-home-button">
+          <div><i class="fas fa-chalkboard text-4xl mb-4"></i></div>
+          <div>Tutte le attività</div>
+        </div>
+      <% end %>
+    </div>
+    <div class="">
+      <%= link_to projects_path do %>
+        <div class="big-home-button">
+          <div><i class="far fa-folder-open text-4xl mb-4"></i></div>
+          <div>Iscrizioni aperte</div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <h2 class="title mt-16 md:mt-24">Le risorse</h2>
+
+  <div class="text-center my-16">
+    <div class="">
+      <%= link_to resource_containers_path do %>
+        <div class="big-home-button">
+          <div><i class="far fa-folder-open text-4xl mb-4"></i></div>
+          <div>Le risorse disponibili</div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
