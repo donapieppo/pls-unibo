@@ -1,6 +1,6 @@
 <div class="container my-8">
   <div class="pls-card">
-    <div class="pls-card-title"><%= @user.cn %></div>
+    <div class="pls-card-title"><%= @user.cn %> (<%= @user.email %>)</div>
     <div class="pls-card-content">
       Sei registrato come <%= t @user.role %> (<%= t(@user.school_type) if @user.school_type %><%= @user.other_string if @user.role == 'other' %>).   
     </div>
