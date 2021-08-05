@@ -52,7 +52,7 @@ Rails.application.routes.draw do
 
   resources :areas, concerns: :contactable
 
-  resources :projects, concerns: :contactable do
+  resources :projects, concerns: [:resourceble, :contactable] do
     resources :editions
   end
 
