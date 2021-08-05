@@ -1,17 +1,19 @@
-<h1 class="title">
-  <%= @resource_container %> <br/>
-</h1>
+<div class="container">
+  <h1 class="title">
+    <%= @resource_container %> <br/>
+  </h1>
 
-<div class="text-center">
-  in <%= @resource_container.areas_to_s %>
-</div>
-
-<div class="lg:flex">
-  <div class="lg:w-2/3">
-    <%= render 'form', resource_container: @resource_container %>
+  <div class="text-center">
+    in <%= @resource_container.areas_to_s %>
   </div>
 
-  <div class="lg:w-1/3 p-8 lg:p-2">
-    <%= render ResourcesComponent.new(what: @resource_container) %>
+  <div class="lg:flex">
+    <div class="lg:w-2/3">
+      <%= render 'form', resource_container: @resource_container %>
+    </div>
+
+    <div class="lg:w-1/3 p-8 lg:p-2">
+      <%= render ResourcesComponent.new(what: @resource_container) %>
+    </div>
   </div>
 </div>
