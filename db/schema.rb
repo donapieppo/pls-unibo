@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.integer "seats", limit: 2, unsigned: true
     t.integer "parent_id", unsigned: true
     t.integer "audience_id", unsigned: true
+    t.integer "organization_id", unsigned: true
     t.boolean "global"
     t.integer "duration", limit: 2, unsigned: true
     t.boolean "sofia"
