@@ -5,7 +5,7 @@ home {
   min-height: 100vh;
 }
 .container {
-  @apply px-4 lg:px-16 lg:mx-auto;
+  @apply px-2 lg:px-16 lg:mx-auto;
 }
 .button {
   @apply bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-4 rounded;
@@ -52,12 +52,12 @@ h3 {
 }
 
 .pls-card {
-  @apply border-2 border-pls-strong shadow-lg p-2 rounded-lg relative;
+  @apply border-2 border-pls-strong shadow-lg p-2 py-4 rounded-lg relative;
   .pls-card-title {
-    @apply block bg-pls-light font-bold rounded border-2 border-pls-strong absolute -top-2 -left-2 p-1 px-4;
+    @apply block border-2 border-pls-strong bg-white rounded font-bold border-2 border-pls-strong absolute -top-4 -left-2 p-1 px-4;
   }
   .pls-card-content {
-    @apply mt-8 mb-4;
+    @apply mt-4 mb-4;
   }
 }
 

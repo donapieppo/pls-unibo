@@ -15,6 +15,10 @@ module IconHelper
     '<i class="fas fa-edit ml-2"></i>'.html_safe
   end
 
+  def download_icon
+    '<i class="fas fa-download"></i>'.html_safe
+  end
+
   def document_icon
     '<i class="far fa-file-alt"></i>'.html_safe
   end

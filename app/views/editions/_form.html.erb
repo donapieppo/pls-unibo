@@ -1,4 +1,4 @@
-<div class="m-6">
+<div class="p-2">
   <%= simple_form_for [@project, @edition] do |f| %>  
     <%= f.input :academic_year, collection: (2016...2022).to_a.reverse, include_blank: false %>
     <%= f.input :name %>  

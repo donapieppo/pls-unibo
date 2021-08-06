@@ -10,14 +10,14 @@
   <%= render partial: 'projects/attributes', locals: { project: @project } %>  
 
   <div class="text-right">
-    <%= link_to_edit_if_editable @project, msg: 'modifica i dati del progetto' %>
+    <%= link_to_edit_if_editable @project, msg: 'Modifica i dati del progetto' %>
   </div>
 
-  <div class="my-4 max-w-5xl">
+  <div class="my-4 max-w-5xl text-lg">
     <%= simple_format @project.description %>  
   </div>
 
-  <div class="my-8 max-w-5xl text-gray-700 text-justify">
+  <div class="my-8 max-w-5xl text-gray-900 text-justify">
     <%= @project.details %>  
   </div>
 </div>

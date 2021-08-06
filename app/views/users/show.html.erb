@@ -1,4 +1,4 @@
-<div class="container my-8">
+<div class="container my-16">
   <div class="pls-card">
     <div class="pls-card-title"><%= @user.cn %> (<%= @user.email %>)</div>
     <div class="pls-card-content">
@@ -16,13 +16,16 @@
   <div class="p-2">
     <h2 class="title">Le tue prenotazioni</h2>
     <% @user.bookings.each do |b| %>  
-      <div class="my-4">
+      <div class="my-4 bg-pls-light border-l-4 border-pls p-4">
         <%= link_to b.activity.is_a?(Event) ? b.activity.edition : b.activity do %>
-          <%= render b.activity %>  
+          <%= b.activity %>  
         <% end %>
+        <div>
+          <%= link_to "[Cancella questa iscrizione]", booking_path(b), method: :delete %>  
+        </div>
       </div>
       <% end.empty? and begin  %>
-      Nessuna prenotazione attiva.
+      <div class="alert">Nessuna prenotazione.</div>
     <% end %>
   </div>
 </div>

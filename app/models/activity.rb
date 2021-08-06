@@ -22,6 +22,10 @@ class Activity < ApplicationRecord
     self.bookable && self.bookable != 'no'
   end
 
+  def booking_to_confirm?
+    self.bookable && self.bookable == 'to_confirm'
+  end
+
   def bookable_now?
     now = Time.now
     self.bookable? && self.booking_start && self.booking_end && self.booking_start < now && now < self.booking_end

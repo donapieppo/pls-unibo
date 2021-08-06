@@ -1,13 +1,24 @@
-<% if @what.bookable? && @what.booking_start && @what.booking_end %>  
-  <div>Iscrizioni dal <%= l @what.booking_start, format: :day_with_year %> al <%= l @what.booking_end, format: :day_with_year %></div>
-<% end %>
-<% if helpers.current_user_booked?(@what.id) %>
-  <div class="text-2xl text-green-500 font-bold my-4"><%= exclamation_icon %> Sei iscritto a questa edizione</div>
-<% end %>
-
-<div class="actions">
-  <%= helpers.link_to_edit_if_editable @what, msg: 'modifica' %>
-  <% if helpers.policy(@what).book? && ! helpers.current_user_booked?(@what.id) %>  
-    <div class="my-4"><%= link_to booking_icon + ' iscriviti', [:new, @what, :booking], class: 'button' %></div>
+<div class="bg-pls-light p-4 border-l-4 border-pls">
+  <% if @what.bookable? && @what.booking_start && @what.booking_end %>  
+    <div>Iscrizioni dal <%= l @what.booking_start, format: :day_with_year %> al <%= l @what.booking_end, format: :day_with_year %></div>
   <% end %>
+  <% if helpers.current_user_booked?(@what.id) %>
+    <div class="text-2xl text-green-500 font-bold my-4">
+      <%= exclamation_icon %> Sei iscritto a questa edizione <br/>
+      <%= link_to "Cancella l'iscrizione", booking_path(@what.bookings.where(user: helpers.current_user).first), method: :delete %>  
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <% if helpers.policy(@what).book? && ! helpers.current_user_booked?(@what.id) %>  
+      <div class="my-4">
+        <% txt = @what.booking_to_confirm? ? ' prenota' : ' iscriviti' %>  
+        <%= link_to booking_icon + txt, [:new, @what, :booking], class: 'button' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="my-2">
+  <%= helpers.link_to_edit_if_editable @what, msg: 'Modifica i dati' %>
 </div>

@@ -1,4 +1,4 @@
-<div class="">
+<div class="p-2">
   <%= simple_form_for @project do |f| %>  
     <%= f.input :name %>  
     <%= f.input :description, input_html: { cols: 80, rows: 5 } %>
@@ -15,6 +15,9 @@
         <%= f.association :interested_areas, as: :check_boxes %>  
       </div>
     </div>
+    <% if false %>  
+      <%= f.association :organization %>  
+    <% end %>
     <%= f.submit %>  
   <% end %>
 </div>

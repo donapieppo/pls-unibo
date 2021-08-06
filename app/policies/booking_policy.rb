@@ -16,4 +16,8 @@ class BookingPolicy < ApplicationPolicy
   def new_user?
     @user && @user.confirmed_teacher?
   end
+
+  def destroy?
+    @user && @user.id == @record.user_id
+  end
 end
