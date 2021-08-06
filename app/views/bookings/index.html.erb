@@ -1,17 +1,33 @@
 <div class="container">
-  <h1 class="title">Iscrizioni</h1>
+  <h1 class="title">Le iscrizioni</h1>
   <% @bookiable_activities.each do |a| %>  
-    <h2 class=""><%= link_to a, a %></h2>
-    <div>
-      <%= l a.booking_start %> - <%= l a.booking_end %>    
+    <div class="pls-card my-8">
+      <div class="pls-card-title">
+        <%= l a.booking_start %> - <%= l a.booking_end %>    
+      </div>
+      <div class="pls-card-content">
+        <div>
+          <%= link_to a, a %>
+        </div>
+        <p>Elenco iscritti:</p>
+        <ul class="list-disc pl-8">
+          <% a.bookings.order(:created_at).each do |b| %>  
+            <li>
+              <small><%= l b.created_at %></small>
+              <% if b.user %>  
+                <span class="font-bold text-green-700 underline"><%= link_to b.user, [:edit, b.user] %></span>     
+              <% else %>
+                <%= b.name %> <%= b.surname %>
+              <% end %>
+              <%= b.role %> 
+              <%= b.school_type %>  
+              <%= b.school %>  
+              (<%= mail_to b.email %>) 
+              <%= link_to_delete b %> 
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
-    <p>Elenco iscritti:</p>
-    <ul class="list-disc">
-      <% a.bookings.order(:created_at).each do |b| %>  
-        <li>
-          <small><%= l b.created_at %></small> <%= b.user %> <%= b.name %> <%= b.surname %> <%= b.role %> (<%= b.email %>) <%= link_to_delete b %> <%= link_to(edit_icon, [:edit, b.user]) if b.user %>     
-        </li>
-      <% end %>
-    </ul>
   <% end %>
 </div>

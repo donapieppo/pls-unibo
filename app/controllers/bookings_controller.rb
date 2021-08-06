@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_activity, except: :index
+  before_action :set_activity, except: [:index, :destroy]
 
   def index
     @bookiable_activities = Activity.bookable_now
@@ -41,6 +41,13 @@ class BookingsController < ApplicationController
     else
       render action: :new
     end
+  end
+
+  def destroy
+    @booking = current_user.bookings.find(params[:id])
+    authorize @booking
+    @booking.delete
+    redirect_to @booking.activity
   end
 
   private
