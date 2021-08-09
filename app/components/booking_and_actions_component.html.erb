@@ -1,22 +1,33 @@
-<div class="bg-pls-light p-4 border-l-4 border-pls">
-  <% if @what.bookable? && @what.booking_start && @what.booking_end %>  
-    <div>Iscrizioni dal <%= l @what.booking_start, format: :day_with_year %> al <%= l @what.booking_end, format: :day_with_year %></div>
-  <% end %>
-  <% if helpers.current_user_booked?(@what.id) %>
-    <div class="text-2xl text-green-500 font-bold my-4">
-      <%= exclamation_icon %> Sei iscritto a questa edizione <br/>
-      <%= link_to "Cancella l'iscrizione", booking_path(@what.bookings.where(user: helpers.current_user).first), method: :delete %>  
-    </div>
-  <% end %>
+<% if @what.bookable? && @what.booking_start && @what.booking_end %>  
+  <div class="my-4 font-bold">
+    Iscrizioni dal <%= l @what.booking_start, format: :day_with_year %> al <%= l @what.booking_end, format: :day_with_year %>
+  </div>
+<% end %>
+<% if @booking %>
+  <div class="text-2xl text-green-500 font-bold my-4">
+    <%= exclamation_icon %> 
+    <%= @booking.confirmed ? 'Hai fatto richiesta di iscrizione per' : 'Sei prenotato a' %> questa edizione.
+  </div>
+  <div>
+    <%= link_to "Cancella l'iscrizione", booking_path(@booking), method: :delete, class: 'button' %>  
+  </div>
+<% end %>
 
-  <div class="actions">
-    <% if helpers.policy(@what).book? && ! helpers.current_user_booked?(@what.id) %>  
+<div class="actions">
+  <% if helpers.policy(@what).book? && ! @booking %>  
+    <div class="bg-pls-light p-4 border-l-4 border-pls">
+      <% if @what.booking_to_confirm? %>  
+        <div>
+          Puoi fare richiesta di partecipazione usando il pulsante sotto.<br/> 
+          Ricerverai ulteriori informazioni al tuo indirizzo email <%= @user.email if @user %>.
+        </div>
+      <% end %>
       <div class="my-4">
         <% txt = @what.booking_to_confirm? ? ' prenota' : ' iscriviti' %>  
         <%= link_to booking_icon + txt, [:new, @what, :booking], class: 'button' %>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
 
 <div class="my-2">
