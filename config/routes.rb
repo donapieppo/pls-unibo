@@ -40,7 +40,9 @@ Rails.application.routes.draw do
 
   resources :resources
   resources :organizations, only: [:index, :show]
-  resources :bookings
+  resources :bookings do
+    post :confirm, on: :member
+  end
   resources :users do
     get :myedit, on: :collection
     get :me, on: :collection

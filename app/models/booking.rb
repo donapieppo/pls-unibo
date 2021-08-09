@@ -25,4 +25,13 @@ class Booking < ApplicationRecord
   def confirm_if_activity_not_to_confirm
     self.confirmed = ! self.activity.booking_to_confirm?
   end
+
+  def confirmed?
+    !! self.confirmed
+  end
+
+  def confirm
+    self.confirmed = true
+    self.save!
+  end
 end

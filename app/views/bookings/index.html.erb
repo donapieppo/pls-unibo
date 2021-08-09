@@ -1,9 +1,12 @@
 <div class="container">
   <h1 class="title">Le iscrizioni</h1>
-  <% @bookiable_activities.each do |a| %>  
+  <% @booked_activities.each do |a| %>  
+    <% booking_to_confirm = a.booking_to_confirm? %>  
     <div class="pls-card my-8">
       <div class="pls-card-title">
         <%= l a.booking_start %> - <%= l a.booking_end %>    
+        <%= '<small>(prenotazioni da confermare)</small>'.html_safe if booking_to_confirm %>  
+        <%= link_to_edit_if_editable a %>  
       </div>
       <div class="pls-card-content">
         <div>
@@ -24,6 +27,11 @@
               <%= b.school %>  
               (<%= mail_to b.email %>) 
               <%= link_to_delete b %> 
+              <% if booking_to_confirm && ! b.confirmed? %>  
+                <%= link_to 'conferma', confirm_booking_path(b), method: :post %>  
+              <% else %>
+                confermata
+              <% end %>
             </li>
           <% end %>
         </ul>

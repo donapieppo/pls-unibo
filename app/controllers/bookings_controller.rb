@@ -1,8 +1,8 @@
 class BookingsController < ApplicationController
-  before_action :set_activity, except: [:index, :destroy]
+  before_action :set_activity, except: [:index, :confirm, :destroy]
 
   def index
-    @bookiable_activities = Activity.bookable_now
+    @booked_activities = Activity.order('start_date desc').find(Booking.select(:activity_id).map(&:activity_id))
     authorize :booking
   end
 
@@ -41,6 +41,15 @@ class BookingsController < ApplicationController
     else
       render action: :new
     end
+  end
+
+  def confirm
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    if @booking.confirm
+      flash[:notice] = "Iscrizione confermata."
+    end
+    redirect_to bookings_path
   end
 
   def destroy
