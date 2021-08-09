@@ -5,7 +5,15 @@ class ProjectsController < ApplicationController
 
   def index
     authorize :project
-    @projects = Project.includes(:editions, :activity_type).order(:name)
+    if params[:on] == '1'
+      @on = true
+      @projects = Project.includes(:editions, :activity_type).order(:name).find(Edition.on_going_project_ids)
+    elsif params[:bookable] == '1'
+      @bookable_now = true
+      @projects = Project.includes(:editions, :activity_type).order(:name).find(Edition.bookable_project_ids)
+    else
+      @projects = Project.includes(:editions, :activity_type).order(:name)
+    end
   end
 
   def show
