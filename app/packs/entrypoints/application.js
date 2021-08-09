@@ -30,8 +30,8 @@ window.show_contact = function (e) {
   <div>
     <div class="my-2">${e.affiliation}</div>
     <div class="my-4">
-    <div>email: <a href="mailto:${e.email}">${e.email}</a></div>
-    <div>web: <a href="${e.web_page}">${e.web_page}</a></div>
+    <div><a href="mailto:${e.email}">${e.email}</a></div>
+    <div><a href="${e.web_page}">${e.web_page}</a></div>
     <div class="my-4 ml-4 italic text-gray-700">${e.description}</div>
   </div>
     `;
