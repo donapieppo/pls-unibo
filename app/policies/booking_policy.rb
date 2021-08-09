@@ -9,7 +9,7 @@ class BookingPolicy < ApplicationPolicy
     if @user
       ! @record.activity.any_cluster_siblings_booked?(@user)
     else
-      true
+      false
     end
   end
 
