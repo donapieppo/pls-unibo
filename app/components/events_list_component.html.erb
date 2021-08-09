@@ -28,7 +28,7 @@
           <div class="mt-2">
             <%= helpers.possible_label_from_array 'Relatori', event.speakers %>
           </div>
-          <%= render BookingAndActionsComponent.new(what: event) %>
+          <%= render BookingAndActionsComponent.new(what: event, user: current_user) %>
           <% if @with_image %>  
             <% event.resources.each do |r| %>  
               <% if r.image? %>  
