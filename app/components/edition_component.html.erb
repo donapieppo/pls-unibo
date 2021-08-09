@@ -21,7 +21,7 @@
       </div>
 
       <% unless @short %>  
-        <div class="italic text-justify my-4 text-gray-600">
+        <div class="italic text-justify my-4 text-gray-700">
           <%= @edition.details %>  
         </div>
         <%= render BookingAndActionsComponent.new(what: @edition, user: helpers.current_user) %>
