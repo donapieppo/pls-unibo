@@ -1,18 +1,23 @@
 <div class="container">
-  <h1 class="title">Le attività del PLS</h1>
   <% if @on %>  
-    <h2 class="text-center">in corso</h2>
+    <h1 class="title">Le attività del PLS in corso</h1>
   <% elsif @bookable_now %>  
-    <h2 class="text-center">prenotabili</h2>
+    <h1 class="title">Le attività del PLS prenotabili</h1>
+  <% else %>
+    <h1 class="title">Le attività del PLS</h1>
   <% end %>
 
   <div class="text-center my-4">
     <%= link_to('Nuova Attività', new_project_path, class: 'button') if policy(:project).new? %>  
   </div>
 
-  <div class="p-4">
-    <%= render partial: 'filters' %>  
-  </div>
+  <% if (@on || @bookable_now) %>  
+    <%= link_to 'Vedi tutte le attività del PLS', projects_path %>  
+  <% else %>
+    <div class="p-4">
+      <%= render partial: 'filters' %>  
+    </div>
+  <% end %>
 
   <div class="lg:flex lg:flex-wrap">
     <% @projects.each do |project| %>  
