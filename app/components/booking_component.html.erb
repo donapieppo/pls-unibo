@@ -8,7 +8,7 @@
     <%= exclamation_icon %> 
     <%= @booking.confirmed ? 'Hai fatto richiesta di iscrizione per' : 'Sei prenotato a' %> questa edizione.
   </div>
-  <div>
+  <div class="my-4">
     <%= link_to "Cancella l'iscrizione", booking_path(@booking), method: :delete, class: 'button' %>  
   </div>
 <% end %>
@@ -30,6 +30,3 @@
   <% end %>
 </div>
 
-<div class="my-2">
-  <%= helpers.link_to_edit_if_editable @what, msg: 'Modifica i dati' %>
-</div>

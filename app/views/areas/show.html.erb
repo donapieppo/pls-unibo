@@ -11,7 +11,9 @@
     <div class="text-sm mt-4">
       Responsabile: <%= @area.head %>
     </div>
-    <%= link_to_edit_if_editable @area, msg: 'modifica descrizione e responsabile' %>
+    <div class="text-right">
+      <%= link_to_edit_if_editable @area, msg: 'modifica descrizione e responsabile' %>
+    </div>
   </div>
 </div>
 

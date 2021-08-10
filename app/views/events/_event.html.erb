@@ -21,5 +21,8 @@
       <%= raw event.google_map %>
     <% end %>
   </div>
+  <div class="mt-4 text-right">
+    <%= link_to_edit_if_editable event, msg: 'Modifica i dati' %>
+  </div>
 </div>
 
