@@ -1,6 +1,9 @@
 <% if @what.bookable? && @what.booking_start && @what.booking_end %>  
   <div class="my-4 font-bold">
-    Iscrizioni dal <%= l @what.booking_start, format: :day_with_year %> al <%= l @what.booking_end, format: :day_with_year %>
+    Iscrizioni aperte dal <%= l @what.booking_start, format: :day_with_year %> al <%= l @what.booking_end, format: :day_with_year %>
+  </div>
+  <div class="italic">
+    Per iscriversi occorre essere loggati. LINK ALLA PAGINA DI LOGIN vlr
   </div>
 <% end %>
 <% if @booking %>

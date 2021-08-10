@@ -3,7 +3,7 @@
     <%= image_pack_tag 'media/images/Logo_PLS_s.png', style: "width: 200px; margin: auto" %>
 
     <div class="my-4">
-    Puoi usare il tuo account Google per <br/>
+    Puoi usare il tuo account Google o Unibo per <br/>
     accedere alle pagine del PLS Unibo e 
     <ul class="my-2 p-2 list-inside rounded-xl">
       <li>iscriverti,</li>
@@ -17,9 +17,14 @@
       <% end %>
 
       <%= form_tag(shibboleth_login_url, method: 'post') do %>
-        <input type="submit" value="Accedi in Unibo" />
+        <input type="submit" value="Accedi con Unibo" />
       <% end %>
     </div>
+
+    <div>
+      Sono account Google validi anche gli account scolastici che usano Google Classroom.<br/>
+      Sono account Unibo validi sia gli @unibo che gli @studio.unibo.
+   </div>
 
     <% if Rails.env.development? %>  
       <div class="text-center">
