@@ -70,7 +70,7 @@ class BookingsController < ApplicationController
     if current_user
       { user_id: current_user.id }
     else
-      params[:booking].permit(:name, :surname, :role, :school_type, :other_string)
+      params[:booking].permit(:name, :surname, :role, :school_type, :other_string, :notes)
     end
   end
 end

@@ -33,7 +33,8 @@
 
   <% if policy(:booking).new_user? %>  
     <hr class="my-4"/>
-    Sei registrato come docente. Puoi iscrivere i tutoi studenti fornendo nome-cognome-indirizzo email dello studente
+    Sei registrato come docente.<br/>
+    Puoi iscrivere i tuoi studenti fornendo nome, cognome e email dello studente.
     <%= form_with url: [:new_user, @activity, :bookings] do |f| %>  
       <%= f.label :name %>
       <%= f.text_field :name %><br/>  
@@ -41,6 +42,8 @@
       <%= f.text_field :surname %><br/>
       <%= f.label :email %>
       <%= f.text_field :email %><br/>
+      <%= f.label :notes %>
+      <%= f.text_field :notes %><br/>
       <%= f.submit "Iscrivi lo studente" %>  
     <% end %>
   <% end %>

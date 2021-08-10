@@ -164,6 +164,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.column "role", "enum('student','teacher','other')"
     t.column "school_type", "enum('primo','secondo','univ')"
     t.text "other_string"
+    t.text "notes"
     t.index ["activity_id"], name: "fk_book_activity"
     t.index ["school_id"], name: "fk_book_school"
     t.index ["teacher_id"], name: "fk_book_teacher"
