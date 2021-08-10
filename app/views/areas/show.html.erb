@@ -32,7 +32,9 @@
     <% end %>
   </div>
 
-  <p class="m-4">Attività comuni:</p>
+  <% if @common_projects.any? %>  
+    <h3 class="title my-8">Le attività comuni</h3>
+  <% end %>
 
   <div class="lg:flex lg:flex-wrap">
     <% @common_projects.each do |project| %>  
