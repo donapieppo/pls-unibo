@@ -3,7 +3,7 @@
     Iscrizioni aperte dal <%= l @what.booking_start, format: :day_with_year %> al <%= l @what.booking_end, format: :day_with_year %>
   </div>
   <div class="italic">
-    Per iscriversi occorre essere loggati. LINK ALLA PAGINA DI LOGIN vlr
+    Per iscriversi occorre essere loggati. <%= link_to 'Accedi', login_path, class: 'underline' %>.
   </div>
 <% end %>
 <% if @user_booking %>
