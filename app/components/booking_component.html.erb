@@ -19,12 +19,15 @@
       <% if @what.booking_to_confirm? %>  
         <div>
           Puoi fare richiesta di partecipazione usando il pulsante sotto.<br/> 
-          Ricerverai ulteriori informazioni al tuo indirizzo email <%= @user.email if @user %>.
+          In seguito riceverai ulteriori informazioni al tuo indirizzo email <%= @user.email if @user %>.
         </div>
       <% end %>
       <div class="my-4">
         <% txt = @what.booking_to_confirm? ? ' prenota' : ' iscriviti' %>  
         <%= link_to booking_icon + txt, [:new, @what, :booking], class: 'button' %>
+      </div>
+      <div>
+        Nota: controlla le tue iscrizioni e prenotazioni per attività PLS TO DO LINK A SCHEDA UTENTE! vlr
       </div>
     </div>
   <% end %>
