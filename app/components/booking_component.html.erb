@@ -3,18 +3,18 @@
     Iscrizioni dal <%= l @what.booking_start, format: :day_with_year %> al <%= l @what.booking_end, format: :day_with_year %>
   </div>
 <% end %>
-<% if @booking %>
+<% if @user_booking %>
   <div class="text-2xl text-green-500 font-bold my-4">
     <%= exclamation_icon %> 
-    <%= @booking.confirmed ? 'Hai fatto richiesta di iscrizione per' : 'Sei prenotato a' %> questa edizione.
+    <%= @user_booking.confirmed ? 'Hai fatto richiesta di iscrizione per' : 'Sei prenotato a' %> questa edizione.
   </div>
   <div class="my-4">
-    <%= link_to "Cancella l'iscrizione", booking_path(@booking), method: :delete, class: 'button' %>  
+    <%= link_to "Cancella l'iscrizione", booking_path(@user_booking), method: :delete, class: 'button' %>  
   </div>
 <% end %>
 
 <div class="actions">
-  <% if helpers.policy(@what).book? && ! @booking %>  
+  <% if ! @user_booking && helpers.policy(@what).book? %>  
     <div class="bg-pls-light p-4 border-l-4 border-pls">
       <% if @what.booking_to_confirm? %>  
         <div>
