@@ -32,8 +32,8 @@ class Edition < Activity
   end
 
   def self.bookable_project_ids
-    from_events = ActiveRecord::Base.connection.execute("select distinct(a1.parent_id) from activities as a1 left join activities as a2 on a1.id = a2.parent_id where a1.type='Edition' and a2.type='Event' and a2.booking_start < NOW() and a2.booking_end > NOW()").map(&:first)
-    from_edition = ActiveRecord::Base.connection.execute("select distinct(parent_id) from activities where type='Edition' and booking_start < NOW() and booking_end > NOW()").map(&:first)
+    from_events = ActiveRecord::Base.connection.execute("select distinct(a1.parent_id) from activities as a1 left join activities as a2 on a1.id = a2.parent_id where a1.type='Edition' and a2.type='Event' and a2.bookable != 'no' and a2.booking_start < NOW() and a2.booking_end > NOW()").map(&:first)
+    from_edition = ActiveRecord::Base.connection.execute("select distinct(parent_id) from activities where type='Edition' and bookable != 'no' and booking_start < NOW() and booking_end > NOW()").map(&:first)
     (from_events + from_edition).uniq
   end
 end
