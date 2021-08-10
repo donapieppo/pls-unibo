@@ -6,13 +6,13 @@
   <div class="mx-auto p-2 w-full text-gray-300">
     <div class="text-center w-full">
       <% if resource.document.image? %>
-        <div class="text-center w-full">
+        <div class="text-center w-full border-2 border-pls">
           <% dest = resource.url.blank? ? url_for(resource.document) : resource.url %>  
-          <%= link_to image_tag(resource.document.variant(resize_to_limit: [350, 350]), class: 'w-full rounded-lg rounded-b-none'), dest, class: 'w-full' %>
+          <%= link_to image_tag(resource.document.variant(resize_to_limit: [350, 350]), class: 'w-full'), dest %>
         </div>
       <% elsif defined?(with_preview) && resource.document && resource.document.previewable? %>  
-        <div class="text-center w-full">
-          <%= link_to image_tag(resource.document.preview(resize_to_limit: [350, 350]), class: 'w-full rounded-lg rounded-b-none'), url_for(resource.document), class: 'w-full' %>  
+        <div class="text-center w-full border-2 border-pls">
+          <%= link_to image_tag(resource.document.preview(resize_to_limit: [350, 350]), class: 'w-full'), url_for(resource.document) %>  
         </div>
       <% end %>  
     </div>
