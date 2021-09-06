@@ -12,7 +12,7 @@
   </div>
 
   <% if (@on || @bookable_now) %>  
-    <%= link_to 'Vedi tutte le attività del PLS', projects_path %>  
+    <%= link_to 'Vedi tutte le attività del PLS', projects_path, class: 'underline' %>  
   <% else %>
     <div class="p-4">
       <%= render partial: 'filters' %>  
