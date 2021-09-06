@@ -4,6 +4,9 @@ class LoginsController < ApplicationController
 
   def index
     @no_container = true
+    if params[:for]
+      session[:activity_asked] = params[:for].to_i
+    end
     # render layout: nil
   end
 
@@ -100,6 +103,10 @@ class LoginsController < ApplicationController
     session[:user_id] = user.id
     user.update(last_login: Time.now)
     if user.last_login
+      if session[:activity_asked]
+        url = Activity.find(session[:activity_asked])
+        session.delete(:activity_asked)
+      end
       redirect_to url
     else
       redirect_to myedit_users_path
