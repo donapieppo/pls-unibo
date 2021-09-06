@@ -1,15 +1,23 @@
 <% if @what.bookable? && @what.booking_start && @what.booking_end %>  
-  <div class="my-4 font-bold">
+  <div class="my-4 font-bold text-green-900">
     Iscrizioni aperte dal <%= l @what.booking_start, format: :day_with_year %> al <%= l @what.booking_end, format: :day_with_year %>
   </div>
-  <div class="italic">
-    Per iscriversi occorre essere loggati. <%= link_to 'Accedi', login_path, class: 'underline' %>.
-  </div>
+  <% unless helpers.current_user %>  
+    <div class="italic">
+      Per iscriversi occorre essere loggati. <%= link_to 'Accedi', login_path(for: @what.id), class: 'underline' %>.<br/>
+    </div>
+    <div class="text-yellow-500">
+      Nel caso ci si volesse iscrivere senza utilizzare un account è possibile scrivere una mail all'indirizzo
+      <%= mail_to 'dipmat-supportoweb@unibo.it' %> specificando nome, cognome, scuola e l'attivitá a cui ci si vuole
+      iscrivere.
+    </div>
+  <% end %>
 <% end %>
 <% if @user_booking %>
   <div class="text-2xl text-green-500 font-bold my-4">
     <%= exclamation_icon %> 
-    <%= @user_booking.confirmed ? 'Hai fatto richiesta di iscrizione per' : 'Sei prenotato a' %> questa edizione.
+    <%= @user_booking.confirmed ? 'Hai fatto richiesta di iscrizione per' : 'Sei prenotato a' %> questa edizione con
+    codice &ldquo;<%= @user_booking.nonce %>&rdquo;.
   </div>
   <div class="my-4">
     <%= link_to "Cancella l'iscrizione", booking_path(@user_booking), method: :delete, class: 'button' %>  
@@ -30,7 +38,7 @@
         <%= link_to booking_icon + txt, [:new, @what, :booking], class: 'button' %>
       </div>
       <div>
-        Nota: controlla le tue iscrizioni e prenotazioni per attività PLS TO DO LINK A SCHEDA UTENTE! vlr
+        Nota: <%= link_to "controlla le tue iscrizioni e prenotazioni per attività PLS", me_users_path, class: "underline" %>.
       </div>
     </div>
   <% end %>
