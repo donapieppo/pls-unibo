@@ -25,7 +25,10 @@ window.display_unless_no = function (what, condition_input) {
 
 window.show_contact = function (e) {
   var modal = document.getElementById('main-modal');
-  var header = `<h2 class="my-2">${e.name} ${e.surname}</h2><hr/>`;
+  var header = `
+  <div class="float-right text-weight-bold text-2xl">x</div>
+  <h2 class="my-2">${e.name} ${e.surname}</h2><hr/>
+    `;
   var content = `
   <div>
     <div class="my-2">${e.affiliation}</div>
