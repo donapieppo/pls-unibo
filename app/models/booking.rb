@@ -9,6 +9,7 @@ class Booking < ApplicationRecord
 
   before_create :copy_params_from_user,
                 :confirm_if_activity_not_to_confirm
+  after_create :create_nonce
 
   def copy_params_from_user
     if u = self.user
@@ -34,4 +35,18 @@ class Booking < ApplicationRecord
     self.confirmed = true
     self.save!
   end
+
+  private 
+
+  def create_nonce
+    loop do
+      n = rand(99999)
+      if ! Booking.find_by nonce: n
+        self.nonce = n
+        self.save
+        break
+      end
+    end
+  end
+
 end
