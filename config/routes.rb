@@ -74,6 +74,9 @@ Rails.application.routes.draw do
   get "/presentazione", to: "home#presentazione", as: "presentation"
   get "/contatti", to: "home#contacts", as: "contacts_page"
   get "/privacy", to: "home#privacy", as: "privacy"
+
+  get '/workshop21', to: "pages#workshop21"
+
   root "home#index"
 
   Area.find_each do |a|
