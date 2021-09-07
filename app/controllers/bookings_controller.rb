@@ -2,7 +2,11 @@ class BookingsController < ApplicationController
   before_action :set_activity, except: [:index, :confirm, :destroy]
 
   def index
-    @booked_activities = Activity.order('start_date desc').find(Booking.select(:activity_id).map(&:activity_id))
+    if params[:activity_id]
+      @booked_activities = [Activity.find(params[:activity_id])]
+    else
+      @booked_activities = Activity.order('start_date desc').find(Booking.select(:activity_id).map(&:activity_id))
+    end
     authorize :booking
   end
 
