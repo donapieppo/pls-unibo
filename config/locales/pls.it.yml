@@ -84,6 +84,7 @@ it:
         role: Partecipi come
         university: Universitario
         other_string: Specificare
+        notes: Note facoltative
       contact:
         name: Nome
         surname: Cognome
