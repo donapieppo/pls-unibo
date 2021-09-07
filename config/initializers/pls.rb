@@ -9,6 +9,7 @@
 #   }
 # end
 
+CURRENT_ACADEMIC_YEAR = 2021
 CESIA_UPN = ['pietro.donatini@unibo.it', 'valeria.montesi3@unibo.it']
 
 module PlsUnibo

@@ -36,4 +36,9 @@ class Edition < Activity
     from_edition = ActiveRecord::Base.connection.execute("select distinct(parent_id) from activities where type='Edition' and bookable != 'no' and booking_start < NOW() and booking_end > NOW()").map(&:first)
     (from_events + from_edition).uniq
   end
+
+  def over?
+    self.academic_year < CURRENT_ACADEMIC_YEAR
+    # Date.parse("#{self.academic_year + 1}/07/31") < Date.today
+  end
 end
