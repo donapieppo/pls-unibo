@@ -36,13 +36,13 @@
     Sei registrato come docente.<br/>
     Puoi iscrivere i tuoi studenti fornendo nome, cognome e email dello studente.
     <%= form_with url: [:new_user, @activity, :bookings] do |f| %>  
-      <%= f.label :name %>
+      <%= f.label :name, 'Nome' %>
       <%= f.text_field :name %><br/>  
-      <%= f.label :surname %>
+      <%= f.label :surname, 'Cognome' %>
       <%= f.text_field :surname %><br/>
       <%= f.label :email %>
       <%= f.text_field :email %><br/>
-      <%= f.label :notes %>
+      <%= f.label :notes, 'Note facoltative' %>
       <%= f.text_field :notes %><br/>
       <%= f.submit "Iscrivi lo studente" %>  
     <% end %>
