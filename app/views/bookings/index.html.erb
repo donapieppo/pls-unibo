@@ -5,10 +5,10 @@
     <div class="pls-card my-8">
       <div class="pls-card-title">
         <%= l a.booking_start %> - <%= l a.booking_end %>    
-        <%= '<small>(prenotazioni da confermare)</small>'.html_safe if booking_to_confirm %>  
         <%= link_to_edit_if_editable a %>  
       </div>
       <div class="pls-card-content">
+        <%= '<small>(prenotazioni da confermare)</small>'.html_safe if booking_to_confirm %>  
         <div>
           <%= link_to a, a %>
         </div>
@@ -16,6 +16,7 @@
         <ul class="list-disc pl-8">
           <% a.bookings.order(:created_at).each do |b| %>  
             <li>
+              <span class="font-mono"><%= b.nonce ? b.nonce : '-----' %></span> 
               <small><%= l b.created_at %></small>
               <% if b.user %>  
                 <span class="font-bold text-green-700 underline"><%= link_to b.user, [:edit, b.user] %></span>     
@@ -28,14 +29,15 @@
               (<%= mail_to b.email %>) 
               <%= link_to_delete b %> 
               <% if booking_to_confirm && ! b.confirmed? %>  
-                <%= link_to 'conferma', confirm_booking_path(b), method: :post %>  
+                <%= link_to '<i class="far fa-check-circle"></i> conferma'.html_safe, confirm_booking_path(b), method: :post, class: 'underline' %>  
               <% else %>
-                confermata
+                <span class="text-green-500"><i class="fas fa-check-circle"></i> confermata</span>
               <% end %>
             </li>
           <% end %>
         </ul>
       </div>
+      <%= link_to 'scarica elenco', bookings_path(activity_id: a.id) %>  
     </div>
   <% end %>
 </div>
