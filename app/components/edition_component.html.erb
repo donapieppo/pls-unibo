@@ -1,8 +1,8 @@
-<div class="my-4 text-right">
+<div class="my-2 text-right">
   <%= helpers.link_to_edit_if_editable @edition, msg: 'Modifica i dati' %>
 </div>
 
-<div class="md:flex md:flex-wrap mt-4">
+<div class="md:flex md:flex-wrap mt-2">
   <div class="md:w-2/3 xl:w-3/4">
     <% unless @skip_title %>  
       <h3 class="mt-4 text-xl lg:text-3xl"> 
@@ -25,7 +25,9 @@
         <%= helpers.possible_label_from_array 'Relatori', @edition.speakers %>
       </div>
 
-      <% unless @short %>  
+      <% if @short %>  
+        <%= render BookingComponent.new(what: @edition, user: helpers.current_user, short: true) %>
+      <% else %>  
         <div class="italic text-justify my-4 text-gray-700">
           <%= @edition.details %>  
         </div>
@@ -43,13 +45,9 @@
 </div>
 
 <% if @events.any? %>  
-  <% if @events.size > 1 %>  
-    <div class="my-8">
-      <%= render EventsListComponent.new(events: @events, short: @short || @edition.atomic, with_image: @with_image) %>  
-    </div>
-  <% else %>
-    <%= render @events.first %>  
-  <% end %>
+  <div class="my-4">
+    <%= render EventsListComponent.new(events: @events, short: @short || @edition.atomic, with_image: @with_image) %>  
+  </div>
 <% end %>
 
 <% if @short %>  
