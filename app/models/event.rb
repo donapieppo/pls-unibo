@@ -9,4 +9,8 @@ class Event < Activity
   def to_s
     self.name
   end
+
+  def over?
+    self.start_date < Date.tomorrow
+  end
 end
