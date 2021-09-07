@@ -40,7 +40,7 @@ class Booking < ApplicationRecord
 
   def create_nonce
     loop do
-      n = rand(99999)
+      n = rand(10001..99999)
       if ! Booking.find_by nonce: n
         self.nonce = n
         self.save
