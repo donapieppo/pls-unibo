@@ -13,6 +13,7 @@
     </div>
   <% end %>
 <% end %>
+
 <% if @user_booking %>
   <div class="text-2xl text-green-500 font-bold my-4">
     <%= exclamation_icon %> 
@@ -25,7 +26,7 @@
 <% end %>
 
 <div class="actions">
-  <% if ! @user_booking && helpers.policy(@what).book? %>  
+  <% if ! @short && ! @user_booking && helpers.policy(@what).book? %>  
     <div class="bg-pls-light p-4 border-l-4 border-pls">
       <% if @what.booking_to_confirm? %>  
         <div>
