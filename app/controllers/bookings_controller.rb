@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  prepend_before_action :check_captcha, :check_privacy_policy, only: [:acreate] 
+  #prepend_before_action :check_captcha, :check_privacy_policy, only: [:acreate] 
   before_action :set_activity, except: [:index, :confirm, :destroy]
 
   def index
@@ -16,6 +16,7 @@ class BookingsController < ApplicationController
     authorize @booking
   end
 
+  # anonymous
   def anew
     @booking = @activity.bookings.new
     authorize @booking
@@ -53,19 +54,24 @@ class BookingsController < ApplicationController
     end
   end
 
+  # anonymous
   def acreate
-    @user = User.where(email: params[:email]).first
-    @user ||= User.create(email: params[:email], name: params[:name], surname: params[:surname])
-    if @user
-      booking = @activity.bookings.new(user_id: @user.id)
-      authorize(booking)
-      if booking.save
-        redirect_to @activity, notice: "Registrazione salvata."
+    if verify_recaptcha
+      @user = User.where(email: params[:email]).first
+      @user ||= User.create(email: params[:email], name: params[:name], surname: params[:surname])
+      if @user
+        booking = @activity.bookings.new(user_id: @user.id)
+        authorize(booking)
+        if booking.save
+          redirect_to @activity, notice: "Registrazione salvata."
+        else
+          redirect_to @activity, alert: "NO. #{booking.errors.inspect}. #{params.inspect}"
+        end
       else
-        redirect_to @activity, alert: "NO. #{booking.errors.inspect}. #{params.inspect}"
+        raise params.inspect
       end
     else
-      raise params.inspect
+      redirect_to root_path, alert: "Verifica di google non corretta"
     end
   end
 
