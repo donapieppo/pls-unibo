@@ -18,10 +18,18 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def destroy?
-    @user && @user.id == @record.user_id
+    @user && (@user.id == @record.user_id || @user.id == @record.teacher_id)
   end
 
   def confirm?
     @user && @user.staff?
+  end
+
+  def anew?
+    acreate?
+  end
+
+  def acreate?
+    true
   end
 end
