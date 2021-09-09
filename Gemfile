@@ -20,6 +20,8 @@ gem 'omniauth-shibboleth'
 gem "omniauth-rails_csrf_protection"
 gem 'pretender'
 
+gem "recaptcha"
+
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
 
