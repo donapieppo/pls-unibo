@@ -1,4 +1,8 @@
 class UserPolicy < ApplicationPolicy
+  def index
+    @user && @user.master_of_universe?
+  end
+
   def show?
     @user && ((@user == @record) || @user.staff?)
   end
