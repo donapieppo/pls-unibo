@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  def index
+    authorize :user
+    @users = User.order(:surname, :name).all
+  end
+
   def show 
     @user = User.find(params[:id])
     authorize @user

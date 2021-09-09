@@ -27,5 +27,8 @@
       <% end.empty? and begin  %>
       <div class="alert">Nessuna prenotazione.</div>
     <% end %>
+    <% Booking.where(teacher_id: @user.id) do |b| %>  
+      <li><%= b %></li>
+    <% end %>
   </div>
 </div>

@@ -1,0 +1,9 @@
+<h1 class="title">Utenti</h1>
+
+<div class="container">
+  <ul>
+    <% @users.each do |u| %>  
+      <li><%= link_to u, [:edit, u] %> (<%= u.role %>)</li>
+    <% end %>
+  </ul>
+</div>
