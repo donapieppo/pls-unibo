@@ -3,7 +3,7 @@
     Iscrizioni aperte dal <%= l @what.booking_start, format: :day_with_year %> al <%= l @what.booking_end, format: :day_with_year %>
   </div>
 
-  Per iscriversi <%= link_to 'iscriviti', [:anew, @what, :bookings] %>. 
+  <%= link_to 'ISCRIVITI', [:anew, @what, :bookings], class: 'button' %> 
 
   <%# <% unless @user %1> %>  
   <%#   <div class="italic"> %>
