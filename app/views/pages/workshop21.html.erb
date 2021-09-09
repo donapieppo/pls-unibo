@@ -1,16 +1,21 @@
-<div class="container">
-  <div class="text-center text-2xl mt-4">
-    WORKSHOP ANNUALE
+<div id="page-header" style="background-image: url(<%= asset_pack_path 'media/images/workshop21.png' %>)">
+  <div class="text-center text-white text-4xl md:text-6xl pt-8 h-48">
+    <%= @edition.name %><br/>
+    <span class="text-xl">16 ott 2021</span>
   </div>
 
-  <h1 class="title">
-    <%= @edition.name %> <br/>
-  </h1>
+  <div class="h-24 md:h-48 md:mt-48">
+    <h1 class="font-bold text-2xl tracking-tight my-6 text-center text-pls">
+      WORKSHOP ANNUALE
+    </h1>
 
-  <h2 class="title">
-    <%= @edition.academic_year_to_s %>
-  </h2>
+    <h2 class="font-bold text-2xl tracking-tight my-6 text-center text-pls">
+      <%= @edition.academic_year_to_s %>
+    </h2>
+  </div>
+</div>
 
+<div class="container">
   <%= render partial: 'projects/attributes', locals: { project: @edition.project } %>  
 </div>
 
