@@ -41,4 +41,8 @@ class User < ApplicationRecord
   def unibo?
     self.email =~ /\A\w+\.?\w+@unibo.it\z/
   end
+
+  def master_of_universe?
+    CESIA_UPN.include?(self.upn)
+  end
 end
