@@ -2,16 +2,19 @@
   <div class="my-4 font-bold text-green-900">
     Iscrizioni aperte dal <%= l @what.booking_start, format: :day_with_year %> al <%= l @what.booking_end, format: :day_with_year %>
   </div>
-  <% unless helpers.current_user %>  
-    <div class="italic">
-      Per iscriversi occorre essere loggati. <%= link_to 'Accedi', login_path(for: @what.id), class: 'underline' %>.<br/>
-    </div>
-    <div class="text-yellow-500">
-      Nel caso ci si volesse iscrivere senza utilizzare un account è possibile scrivere una mail all'indirizzo
-      <%= mail_to 'dipmat-supportoweb@unibo.it' %> specificando nome, cognome, scuola e l'attivitá a cui ci si vuole
-      iscrivere.
-    </div>
-  <% end %>
+
+  Per iscriversi <%= link_to 'iscriviti', [:anew, @what, :bookings] %>. 
+
+  <%# <% unless @user %1> %>  
+  <%#   <div class="italic"> %>
+  <%#     Per iscriversi occorre essere loggati. <%= link_to 'Accedi', login_path(for: @what.id), class: 'underline' %1>.<br/> %>
+  <%#   </div> %>
+  <%#   <div class="text-yellow-500"> %>
+  <%#     Nel caso ci si volesse iscrivere senza utilizzare un account è possibile scrivere una mail all'indirizzo %>
+  <%#     <%= mail_to 'dipmat-supportoweb@unibo.it' %1> specificando nome, cognome, scuola e l'attivitá a cui ci si vuole %>
+  <%#     iscrivere. %>
+  <%#   </div> %>
+  <%# <% end %1> %>
 <% end %>
 
 <% if @user_booking %>
@@ -20,28 +23,37 @@
     <%= @user_booking.confirmed ? 'Hai fatto richiesta di iscrizione per' : 'Sei prenotato a' %> questa edizione con
     codice &ldquo;<%= @user_booking.nonce %>&rdquo;.
   </div>
-  <div class="my-4">
-    <%= link_to "Cancella l'iscrizione", booking_path(@user_booking), method: :delete, class: 'button' %>  
-  </div>
 <% end %>
 
 <div class="actions">
-  <% if ! @short && ! @user_booking && helpers.policy(@what).book? %>  
-    <div class="bg-pls-light p-4 border-l-4 border-pls">
-      <% if @what.booking_to_confirm? %>  
-        <div>
-          Puoi fare richiesta di partecipazione usando il pulsante sotto.<br/> 
-          In seguito riceverai ulteriori informazioni al tuo indirizzo email <%= @user.email if @user %>.
-        </div>
-      <% end %>
+  <% if ! @short && helpers.policy(@what).book? %>  
+    <% if @user_booking %>  
       <div class="my-4">
-        <% txt = @what.booking_to_confirm? ? ' prenota' : ' iscriviti' %>  
-        <%= link_to booking_icon + txt, [:new, @what, :booking], class: 'button' %>
+        <%= link_to "Cancella l'iscrizione", booking_path(@user_booking), method: :delete, class: 'button-danger' %>  
       </div>
-      <div>
-        Nota: <%= link_to "controlla le tue iscrizioni e prenotazioni per attività PLS", me_users_path, class: "underline" %>.
+    <% else %>
+      <div class="bg-pls-light p-4 border-l-4 border-pls">
+        <% if @what.booking_to_confirm? %>  
+          <div>
+            Puoi fare richiesta di partecipazione
+            usando il pulsante sotto.<br/> 
+            In seguito riceverai ulteriori informazioni al tuo indirizzo email <%= @user.email if @user %>.
+          </div>
+        <% end %>
+        <div class="my-4">
+          <% txt = @what.booking_to_confirm? ? ' prenota' : ' iscriviti' %>  
+          <%= link_to booking_icon + txt, [:new, @what, :booking], class: 'button' %>
+        </div>
+        <div>
+          Nota: <%= link_to "controlla le tue iscrizioni e prenotazioni per attività PLS", me_users_path, class: "underline" %>.
+        </div>
       </div>
-    </div>
+    <% end %>
+    <% if @user.teacher? %> 
+      <div class="my-4">
+        <%= link_to "Prenota i tuoi studenti", [:new, @what, :booking], class: 'button' %>
+      </div>
+    <% end %>
   <% end %>
 </div>
 

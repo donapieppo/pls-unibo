@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   concern :bookable do
     resources :bookings, only: [:index, :new, :create] do
       post :new_user, on: :collection
+      get :anew, on: :collection
+      post :acreate, on: :collection
     end
   end
 

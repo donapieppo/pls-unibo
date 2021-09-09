@@ -1,0 +1,20 @@
+<div class="container">
+  <h1 class="title">Iscrizione</h1>
+
+  <div class="my-8">
+    <h2 class="text-center"><%= @activity %></h2>
+  </div>
+
+  <%= form_with url: [:acreate, @activity, :bookings] do |f| %>  
+    <%= recaptcha_tags %>
+    <%= f.label :name, 'Nome' %>
+    <%= f.text_field :name %><br/>  
+    <%= f.label :surname, 'Cognome' %>
+    <%= f.text_field :surname %><br/>
+    <%= f.label :email %>
+    <%= f.text_field :email %><br/>
+    <%= f.label :notes, 'Note facoltative' %>
+    <%= f.text_field :notes %><br/>
+    <%= f.submit "Iscrivi lo studente" %>  
+  <% end %>
+</div>
