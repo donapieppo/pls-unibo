@@ -20,6 +20,7 @@ class BookingsController < ApplicationController
   def anew
     @booking = @activity.bookings.new
     authorize @booking
+    render layout: 'pages'
   end
 
   def new_user
