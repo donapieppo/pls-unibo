@@ -4,6 +4,7 @@ class Booking < ApplicationRecord
   belongs_to :school
 
   validates :user_id, uniqueness: { scope: [:activity_id], message: "Prenotazione già presente." }
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Formato della mail non corretto", allow_nil: true }
 
   scope :by_teacher, -> (u_id) { where(teacher_id: u_id) }
 
