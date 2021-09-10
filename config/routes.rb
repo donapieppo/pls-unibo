@@ -77,7 +77,7 @@ Rails.application.routes.draw do
   get "/contatti", to: "home#contacts", as: "contacts_page"
   get "/privacy", to: "home#privacy", as: "privacy"
 
-  get '/workshop21', to: "pages#workshop21"
+  get '/workshop21', to: "pages#workshop21", as: :workshop21
 
   root "home#index"
 
