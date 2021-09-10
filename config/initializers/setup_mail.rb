@@ -1,7 +1,7 @@
 class DevelopmentMailInterceptor  
   def self.delivering_email(message)  
     if Rails.env.development?
-      Rails.logger.info("modify recipient mail")
+      Rails.logger.info("Development env: modify recipient mail to interceptor_mails: #{Rails.configuration.interceptor_mails}")
       message.subject = "[to :#{message.to} cc:#{message.cc} bcc:#{message.bcc}] #{message.subject}"
       message.to  = Rails.configuration.interceptor_mails
       message.cc  = nil
