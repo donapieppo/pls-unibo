@@ -23,6 +23,8 @@ module PlsUnibo
     config.on_line_repayment_deadline_1 = 5  # 5 giorni prima della giunta
     config.on_line_repayment_deadline_2 = 10 # 10 fra la giunta e inizio del seminario
 
+    config.host = 'dm.unibo.it'
+    config.interceptor_mails = 'donatini@dm.unibo.it'
     config.default_from    = 'PLS <notifica.inviodlist.08218@unibo.it>'
     config.reply_to        = 'dipmat-supportoweb@unibo.it'
   end
