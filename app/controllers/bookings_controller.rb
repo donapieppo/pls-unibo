@@ -57,22 +57,25 @@ class BookingsController < ApplicationController
 
   # anonymous
   def acreate
-    if verify_recaptcha
+    if Rails.env.development? || verify_recaptcha
       @user = User.where(email: params[:email]).first
       @user ||= User.create(email: params[:email], name: params[:name], surname: params[:surname])
       if @user
         booking = @activity.bookings.new(user_id: @user.id)
         authorize(booking)
         if booking.save
-          redirect_to @activity, notice: "Registrazione salvata."
+          raise BookingMailer.notify_registration(booking).inspect
+          BookingMailer.notify_registration(booking).deliver_now
+          redirect_to workshop21_path, notice: "Registrazione salvata."
         else
-          redirect_to @activity, alert: "NO. #{booking.errors.inspect}. #{params.inspect}"
+          redirect_to workshop21_path, alert: "NO. #{booking.errors.inspect}. #{params.inspect}."
         end
       else
         raise params.inspect
       end
     else
-      redirect_to root_path, alert: "Verifica di google non corretta"
+      skip_authorization
+      redirect_to workshop21_path, alert: "Verifica di google non corretta."
     end
   end
 
