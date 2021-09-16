@@ -35,7 +35,7 @@ it:
         interested_areas: Aree di interesse
         activity_type: Tipologia
         global: Attività comune a tutte le aree
-        organizartion: Dipartimento che organizza
+        organization: Dipartimento che organizza
       edition:
         name: Nome
         description: Descrizione
