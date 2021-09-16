@@ -11,9 +11,6 @@ class DevelopmentMailInterceptor
         message.bcc = message.bcc ? [message.bcc] : []
       end
     end
-    if Rails.configuration.message_footer && ! Rails.configuration.message_footer.blank?
-      message.body = message.body.to_s + "\n ------------------- \n" + Rails.configuration.message_footer
-    end
   end  
 end  
 
