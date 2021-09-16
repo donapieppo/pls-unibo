@@ -1,4 +1,6 @@
-<div class="h-full flex flex-col my-2 bg-gray-100 border-t-4 border-pls rounded p-4 hover:bg-pls-light hover:shadow-xl">
+<% border_color = project.current_year? ? 'border-pls-light' : 'border-gray-200' %>  
+
+<div class="h-full flex flex-col my-2 bg-gray-100 border-t-4 <%= border_color %> rounded p-4 hover:bg-pls-light hover:shadow-xl">
   <div class="flex-grow text-center">
     <%= project.activity_type %>
     <h3 class="font-semibold py-2"><%= project.name.upcase %></h3>
@@ -6,6 +8,9 @@
   <div>
     <div class="text-sm text-gray-700 mt-4">
       <div>Organizzato da: <%= project.areas_to_s %></div>
+      <% if project.organization_id %>  
+        <div><%= project.organization %></div>
+      <% end %>
       <div><%= possible_label_from_array 'Aree di interesse', project.interested_areas, with_link: false %></div>
       <div><%= project_academic_years_to_s(project) %></div>  
     </div>
