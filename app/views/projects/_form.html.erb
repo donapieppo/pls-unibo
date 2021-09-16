@@ -15,8 +15,8 @@
         <%= f.association :interested_areas, as: :check_boxes %>  
       </div>
     </div>
-    <% if false %>  
-      <%= f.association :organization %>  
+    <% if true %>  
+      <%= f.association :organization, hint: 'Opzionale. Utile solo per distinguere le due chimiche.' %>  
     <% end %>
     <%= f.submit %>  
   <% end %>
