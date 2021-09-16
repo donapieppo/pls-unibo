@@ -67,4 +67,8 @@ h3 {
 .toggable {
   transition: all 3s;
 }
+.badge {
+  @apply px-2 rounded-xl text-pls bg-pls-light;
+}
+
 
