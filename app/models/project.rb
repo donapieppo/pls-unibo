@@ -13,8 +13,6 @@ class Project < Activity
 
   before_save :global_and_areas_relation
 
-  attr_accessor :cache_years
-
   def global_and_areas_relation
     if self.global
       self.areas = []
@@ -33,8 +31,16 @@ class Project < Activity
     end
   end
 
-  def edition_years
-    @cache_years ||= self.editions.order(:academic_year).map(&:academic_year)
+  def current_year?
+    self.cache_years.last == CURRENT_ACADEMIC_YEAR
+  end
+
+  def cache_years
+    if @_cache_years 
+      @_cache_years
+    else
+      @_cache_years = self.editions.order(:academic_year).map(&:academic_year)
+    end
   end
 
   def editions_audience_ids
