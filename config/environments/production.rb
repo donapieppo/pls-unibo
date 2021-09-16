@@ -120,6 +120,7 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
+    address:        'mail.unibo.it',
     port:           587,
     user_name:      ENV['UNIBO_SMTP_USERNAME'],
     password:       ENV['UNIBO_SMTP_PASSWORD'],
