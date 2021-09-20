@@ -78,6 +78,7 @@ Rails.application.routes.draw do
   get "/privacy", to: "home#privacy", as: "privacy"
 
   get '/workshop21', to: "pages#workshop21", as: :workshop21
+  get '/scienza_al_cinema', to: "pages#scienza_al_cinema", as: :scienza_al_cinema
 
   root "home#index"
 
