@@ -32,4 +32,8 @@ class BookingPolicy < ApplicationPolicy
   def acreate?
     true
   end
+
+  def thankyou?
+    true
+  end
 end
