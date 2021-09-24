@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
   #prepend_before_action :check_captcha, :check_privacy_policy, only: [:acreate] 
-  before_action :set_activity, except: [:index, :confirm, :destroy]
+  before_action :set_activity, except: %i(index thankyou confirm destroy)
+  before_action :set_booking_and_check_permission, only: %i(thankyou confirm, destroy)
 
   def index
     if params[:activity_id]
@@ -56,22 +57,38 @@ class BookingsController < ApplicationController
   end
 
   # anonymous
+  # "booking"=>{"email"=>"donapieppo@yahoo.it", "name"=>"Pietro", "surname"=>"Donatini", "role"=>"teacher", "school_type"=>"secondo", "other_string"=>""}, "user"=>{"school_name"=>"GAUDENZIO FERRARI . MOMO -- MOMO"}
   def acreate
     if Rails.env.development? || verify_recaptcha
-      @user = User.where(email: params[:email]).first
-      @user ||= User.create(email: params[:email], name: params[:name], surname: params[:surname])
-      if @user
-        booking = @activity.bookings.new(user_id: @user.id)
-        authorize(booking)
-        if booking.save
-          raise BookingMailer.notify_registration(booking).inspect
-          BookingMailer.notify_registration(booking).deliver_now
-          redirect_to workshop21_path, notice: "Registrazione salvata."
+      email = params[:booking].delete :email
+
+      @user = User.where(email: email).first
+      @user ||= User.create(email: email,
+                            name: params[:booking][:name], 
+                            surname: params[:booking][:surname])
+
+      if @user && @user.bookings.where(activity_id: @activity.id).any?
+        skip_authorization
+        redirect_to workshop21_path, alert: "Indirizzo email già registrato per questo evento in precedenza."
+      elsif @user
+        @booking = @activity.bookings.new(booking_params)
+        @booking.user_id = @user.id
+
+        if params[:user] && params[:user][:school_name]
+          name, municipality = params[:user][:school_name].split(" -- ")
+          if municipality
+            @booking.school_id = School.where(name: name, municipality: municipality).first.id
+          end
+        end
+        authorize(@booking)
+        if @booking.save
+          BookingMailer.notify_registration(@booking).deliver_now
+          redirect_to thankyou_booking_path(@booking)
         else
-          redirect_to workshop21_path, alert: "NO. #{booking.errors.inspect}. #{params.inspect}."
+          render action: :anew
         end
       else
-        raise params.inspect
+        render action: :anew
       end
     else
       skip_authorization
@@ -79,9 +96,10 @@ class BookingsController < ApplicationController
     end
   end
 
+  def thankyou
+  end
+
   def confirm
-    @booking = Booking.find(params[:id])
-    authorize @booking
     if @booking.confirm
       flash[:notice] = "Iscrizione confermata."
     end
@@ -89,8 +107,6 @@ class BookingsController < ApplicationController
   end
 
   def destroy
-    @booking = Booking.find(params[:id])
-    authorize @booking
     if @booking.destroy
       flash[:notice] = "Prenotazione cancellata"
     else
@@ -101,6 +117,11 @@ class BookingsController < ApplicationController
 
   private
 
+  def set_booking_and_check_permission
+    @booking = Booking.find(params[:id])
+    authorize @booking
+  end
+
   def set_activity
     @activity_id = params[:event_id] || params[:edition_id]
     @activity = Activity.find(@activity_id)
@@ -110,7 +131,7 @@ class BookingsController < ApplicationController
     if current_user
       { user_id: current_user.id }
     else
-      params[:booking].permit(:name, :surname, :role, :school_type, :other_string, :notes)
+      params[:booking].permit(:name, :surname, :role, :school_type, :other_string, :notes, :online)
     end
   end
 

@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   resources :resources
   resources :organizations, only: [:index, :show]
   resources :bookings do
+    get :thankyou, on: :member
     post :confirm, on: :member
   end
   resources :users do
@@ -55,6 +56,8 @@ Rails.application.routes.draw do
   end
 
   resources :areas, concerns: :contactable
+
+  resources :contributions
 
   resources :projects, concerns: [:resourceble, :contactable] do
     resources :editions

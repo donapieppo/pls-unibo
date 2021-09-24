@@ -3,18 +3,20 @@
 
   <div class="my-8">
     <h2 class="text-center"><%= @activity %></h2>
+    <div class="my-2 text-lg text-pls font-semibold">
+      <%= @activity.audience %>
+    </div>
   </div>
 
-  <%= form_with url: [:acreate, @activity, :bookings] do |f| %>  
-    <%= recaptcha_tags %>
-    <%= f.label :name, 'Nome' %>
-    <%= f.text_field :name %><br/>  
-    <%= f.label :surname, 'Cognome' %>
-    <%= f.text_field :surname %><br/>
-    <%= f.label :email %>
-    <%= f.text_field :email %><br/>
-    <%= f.label :notes, 'Note eventuali' %>
-    <%= f.text_field :notes %><br/>
+  <%= simple_form_for [:acreate, @activity, @booking] do |f| %>
+    <%= f.error_notification %>
+    <div class="m-2">
+      <%= recaptcha_tags %>
+    </div>
+
+    <%= f.input :online %>
+    <%= f.input :email %>
+    <%= render partial: 'users/common_to_booking', locals: { f: f } %>  
     <%= f.submit "Iscriviti" %>  
   <% end %>
 </div>
