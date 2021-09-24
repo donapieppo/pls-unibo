@@ -156,6 +156,8 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.integer "user_id", unsigned: true
     t.integer "teacher_id", unsigned: true
     t.integer "school_id", unsigned: true
+    t.boolean "online"
+    t.integer "nonce"
     t.datetime "created_at"
     t.boolean "confirmed"
     t.string "name"
@@ -165,7 +167,6 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.column "school_type", "enum('primo','secondo','univ')"
     t.text "other_string"
     t.text "notes"
-    t.integer "nonce"
     t.index ["activity_id"], name: "fk_book_activity"
     t.index ["school_id"], name: "fk_book_school"
     t.index ["teacher_id"], name: "fk_book_teacher"
@@ -182,7 +183,19 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.text "description"
     t.string "email"
     t.string "web_page"
+    t.string "twitter"
+    t.string "facebook"
     t.text "affiliation"
+  end
+
+  create_table "contributions", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+    t.integer "activity_id", unsigned: true
+    t.integer "contact_id", unsigned: true
+    t.text "name"
+    t.text "description"
+    t.string "url"
+    t.index ["activity_id"], name: "fk_contributions_activity_id"
+    t.index ["contact_id"], name: "fk_contributions_contact_id"
   end
 
   create_table "organizations", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
@@ -263,6 +276,8 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
   add_foreign_key "bookings", "schools", name: "fk_book_school"
   add_foreign_key "bookings", "users", column: "teacher_id", name: "fk_book_teacher"
   add_foreign_key "bookings", "users", name: "fk_book_user"
+  add_foreign_key "contributions", "activities", name: "fk_contributions_activity_id"
+  add_foreign_key "contributions", "contacts", name: "fk_contributions_contact_id"
   add_foreign_key "resource_containers_resources", "resource_containers", name: "fk_res_res_c_id"
   add_foreign_key "resource_containers_resources", "resources", name: "fk_res_res_id"
 end
