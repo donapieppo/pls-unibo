@@ -18,6 +18,7 @@
             <li>
               <span class="font-mono"><%= b.nonce ? b.nonce : '-----' %></span> 
               <small><%= l b.created_at %></small>
+              <%= b.seats %> <%= b.seats > 1 ? 'posti' : 'posto' %> per  
               <% if b.user %>  
                 <span class="font-bold text-green-700 underline"><%= link_to b.user, [:edit, b.user] %></span>     
               <% else %>

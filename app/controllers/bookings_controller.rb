@@ -14,12 +14,18 @@ class BookingsController < ApplicationController
 
   def new
     @booking = @activity.bookings.new
+    if @activity.seats.to_i > 0
+      @free_seats = @activity.seats - @activity.bookings.count
+    end
     authorize @booking
   end
 
   # anonymous
   def anew
     @booking = @activity.bookings.new
+    if @activity.seats.to_i > 0
+      @free_seats = @activity.seats - @activity.bookings.count
+    end
     authorize @booking
     render layout: 'pages'
   end
@@ -127,11 +133,19 @@ class BookingsController < ApplicationController
     @activity = Activity.find(@activity_id)
   end
 
+  # only teacher can book more than one
   def booking_params
+    unless params[:booking][:role] && params[:booking][:role] == 'teacher'
+      params[:booking][:seats] = 1
+    end
+    # if current user the model adds user data
     if current_user
-      { user_id: current_user.id }
+      { user_id: current_user.id, 
+        notes: params[:booking][:notes],
+        online: params[:booking][:online],
+        seats: params[:booking][:seats] }
     else
-      params[:booking].permit(:name, :surname, :role, :school_type, :other_string, :notes, :online)
+      params[:booking].permit(:name, :surname, :role, :school_type, :other_string, :notes, :online, :seats)
     end
   end
 

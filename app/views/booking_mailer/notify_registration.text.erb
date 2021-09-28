@@ -1,4 +1,25 @@
-Notifica Iscrizione 
+Riepilogo dati inseriti relativi alla prenotazione
+dell'evento PLS <%= @activity.name %>:
 
+---------------------
+Nome: <%= @booking.name %>
+Cognome: <%= @booking.surname %>
 
-  
+<% if @booking.role == 'teacher' %>  
+Insegnante presso <%= @booking.school %>  
+<% end %>
+
+Numero posti prenotati: <%= @booking.seats %>
+--------------------
+
+Si richiede cortesemente ai docenti delle classi che parteciperanno all'evento "Scienza al femminile" di invitare studenti e studentesse alla compilazione del seguente questionario entro il 10 ottobre:
+
+https://forms.office.com/Pages/ResponsePage.aspx?id=auLPL2K7sEax4yj52gxF_VFmgNoaKsVMrDyCTapHJ0tUN0lGQ0wwRjRXNVRHMlNWN0Y3UkFWUkRXOC4u 
+
+Il questionario, elaborato dall'Osservatorio di genere sulla ricerca e l'università dell'Ateneo Federico II di Napoli, verrà utilizzato per coinvolgere gli studenti e studentesse in un dibattito sulle carriere scientifiche e le questioni di genere nella scienza.
+
+La compilazione del questionario richiede circa 20/25 minuti.
+
+Cordiali saluti
+
+Gli organizzatori.

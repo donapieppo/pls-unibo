@@ -3,6 +3,7 @@
 
   <div class="my-8">
     <h2 class="text-center"><%= @activity %></h2>
+    <h3><%= @free_seats ? "#{@free_seats} posti disponibili" : "" %>  </h3>
   </div>
 
   <% txt_action = @activity.booking_to_confirm? ? ' Prenotami' : ' Iscrivimi' %>  
