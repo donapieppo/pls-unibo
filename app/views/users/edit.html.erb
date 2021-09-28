@@ -11,12 +11,7 @@
   </div>
 </div>
 
-<div class="max-w-4xl p-4 mx-auto my-8 ">
-  <h3 class="font-bold">Privacy</h3>
-  <p class="my-2">L’Ateneo intende assicurare un trattamento corretto e trasparente dei dati personali.</p>
-  <p class="my-2">Nella sezione <a href="https://www.unibo.it/it/ateneo/privacy-e-note-legali/privacy/informativa-generale-sul-trattamento-dei-dati-personali">Privacy del Portale Unibo</a> troverai maggiori informazioni sui contesti specifici nell’ambito dei quali i tuoi dati sono trattati, dell'eventuale obbligo di fornirli, dei soggetti che possono essere destinatari dei tuoi dati e tutti i contatti utili per esercitare i diritti che la legge ti riconosce.</p>
-  <p class="my-2">Questo sito utilizza i tuoi dati solo per permettere il login (cookie di google) e invia mail solo nel caso </p>
-</div>
+<%= render 'layouts/privacy' %>  
 
 <%= javascript_tag do %>  
   const role_inputs = document.querySelectorAll('.user_role input');
