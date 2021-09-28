@@ -158,6 +158,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.integer "school_id", unsigned: true
     t.boolean "online"
     t.integer "nonce"
+    t.integer "seats"
     t.datetime "created_at"
     t.boolean "confirmed"
     t.string "name"
