@@ -28,23 +28,35 @@
   </datalist><br/>
 </div>
 
+<% if @booking %>  
+  <div id="seats">
+    <%= f.input :seats %>  
+  </div>
+<% end %>
+
 <%= javascript_tag do %>  
   const role_inputs = document.querySelectorAll('#role_inputs input');
   const school_type_div = document.getElementById('school_type_div');
   const other_string_div = document.getElementById('other_string_div');
   const school_choose = document.getElementById('school_choose');
+  const seats = document.getElementById('seats');
 
   const update = () => {
     r = document.querySelectorAll('#role_inputs input:checked')[0];
+    seats.style.display = 'none';
     if (r && r.value === 'other') {
       school_type_div.style.display = 'none';
       school_choose.style.display = 'none';
+      seats.style.display = 'none';
       other_string_div.style.display = 'block';
     } else {
       other_string_div.querySelector('textarea').value = '';
       other_string_div.style.display = 'none';
       school_type_div.style.display = 'block';
       school_choose.style.display = 'block';
+      if (r && r.value === 'teacher') {
+        seats.style.display = 'block';
+      }
     }
   }
 
