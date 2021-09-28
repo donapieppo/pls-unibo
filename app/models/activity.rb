@@ -39,6 +39,12 @@ class Activity < ApplicationRecord
     self.clusters.map{|c| c.activities}.flatten.uniq
   end
 
+  def free_seats
+    if self.seats.to_i > 0
+      self.seats - self.bookings.sum(:seats)
+    end
+  end
+
   def any_cluster_siblings_booked?(user)
     (user.bookings.map(&:activity_id) & self.clusters.map(&:activity_ids).flatten).any?
 

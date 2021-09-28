@@ -68,10 +68,19 @@ class BookingsController < ApplicationController
     if Rails.env.development? || verify_recaptcha
       email = params[:booking].delete :email
 
+     if params[:user] && params[:user][:school_name]
+       name, municipality = params[:user][:school_name].split(" -- ")
+       if municipality
+         @school_id = School.where(name: name, municipality: municipality).first.id
+        end
+      end
+
       @user = User.where(email: email).first
       @user ||= User.create(email: email,
                             name: params[:booking][:name], 
-                            surname: params[:booking][:surname])
+                            surname: params[:booking][:surname],
+                            school_id: @school_id,
+                            role: params[:booking][:role])
 
       if @user && @user.bookings.where(activity_id: @activity.id).any?
         skip_authorization
@@ -80,12 +89,6 @@ class BookingsController < ApplicationController
         @booking = @activity.bookings.new(booking_params)
         @booking.user_id = @user.id
 
-        if params[:user] && params[:user][:school_name]
-          name, municipality = params[:user][:school_name].split(" -- ")
-          if municipality
-            @booking.school_id = School.where(name: name, municipality: municipality).first.id
-          end
-        end
         authorize(@booking)
         if @booking.save
           BookingMailer.notify_registration(@booking).deliver_now
@@ -137,6 +140,9 @@ class BookingsController < ApplicationController
   def booking_params
     unless params[:booking][:role] && params[:booking][:role] == 'teacher'
       params[:booking][:seats] = 1
+    end
+    if params[:booking][:online] == "1"
+      params[:booking][:seats] = 0
     end
     # if current user the model adds user data
     if current_user
