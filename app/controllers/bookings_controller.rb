@@ -106,6 +106,7 @@ class BookingsController < ApplicationController
   end
 
   def thankyou
+    render layout: 'pages'
   end
 
   def confirm
