@@ -1,8 +1,11 @@
 form {
-  label, span.hint, legend {
+  span.hint {
+    @apply block text-sm text-gray-700;
+  }
+  label, legend {
     @apply text-sm text-gray-700 mt-4 mb-2;
   }
-  label.string, label.text, label.select, label.integer, label.file, legend {
+  label.string, label.text, label.select, label.integer, label.file, label.radio_buttons, legend {
     @apply block;
   }
   input[type="text"], input.string, input.numeric, textarea {
@@ -10,6 +13,9 @@ form {
   }
   input.numeric {
     @apply w-24;
+  }
+  span.radio {
+    @apply block;
   }
   input[type=checkbox], input[type=radio] {
     @apply my-1 mr-2 text-gray-700;
@@ -30,6 +36,12 @@ form {
   }
   .invalid-feedback {
     @apply text-sm text-red-500 my-2 pl-2; 
+  }
+  span.error {
+    @apply font-bold text-red-500;
+  }
+  .error_notification {
+    @apply bg-red-100 border-l-4 border-red-500 text-black p-4;
   }
 }
 
