@@ -18,7 +18,9 @@
     <%= render 'schools/school', school: @user.school %>  
   <% end %>
 
-  Nel caso di scuola I / II grado specificate la vostra scuola iniziando iniziate a scrivere il nome nel box sotto:
+  <label>
+    Nel caso di scuola I / II grado specificate la vostra scuola iniziando iniziate a scrivere il nome nel box sotto:
+  </label>
 
   <input id="school_id" name="user[school_name]" class="border-4 rounded my-2 w-full" list="schools" />
   <datalist id="schools" style="background-color: #ccc;">
