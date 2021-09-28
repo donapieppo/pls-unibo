@@ -86,6 +86,7 @@ it:
         university: Universitario
         other_string: Specificare
         notes: Note facoltative
+        seats: Posti da prenotare
       contact:
         name: Nome
         surname: Cognome
@@ -101,6 +102,10 @@ it:
         name: Nome
         description: Descrizione
 
+  simple_form:
+    hints:
+      booking:
+        seats: Se si intende partecipare in presenza con i propri studenti indicare il numero totale di partecipanti (studenti + accompagnatori)
 
   time:
     am: am
