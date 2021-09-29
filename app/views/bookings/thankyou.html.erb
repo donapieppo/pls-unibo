@@ -1,14 +1,19 @@
 <div class="container">
   <h1 class="title">
-    Registrazione effettuata correttamente.
+    Iscrizione effettuata correttamente
   </h1>
 
-  <p>
-  Ti sei registrato a "<%= @booking.activity %>".
-  </p>
-  <p>
-  Le comunicazioni su questo evento verranno inviate a <%= @booking.email %>.
-  </p>
+  <div class="text-center text-xl">
+    <p>
+    Ti sei registrato a "<%= @booking.activity %>".
+    </p>
+    <p>
+    Le comunicazioni su questo evento verranno inviate a <br/> <%= @booking.email %>.
+    </p>
+    <p class="my-4">
+    <%= link_to "Torna alla pagina dell'attività", workshop21_path, class: 'underline' %>   
+    </p>  
+  </div>
 </div>
 
 
