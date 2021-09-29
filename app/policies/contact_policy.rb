@@ -3,6 +3,10 @@ class ContactPolicy < ApplicationPolicy
     true
   end
 
+  def show?
+    true
+  end
+
   def delete_avatar?
     edit?
   end

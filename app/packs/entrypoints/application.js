@@ -23,32 +23,3 @@ window.display_unless_no = function (what, condition_input) {
   });
 }
 
-window.show_contact = function (e) {
-  var modal = document.getElementById('main-modal');
-  var header = `
-  <div class="float-right text-weight-bold text-2xl">x</div>
-  <h2 class="my-2">${e.name} ${e.surname}</h2><hr/>
-    `;
-  var content = `
-  <div>
-    <div class="my-2">${e.affiliation}</div>
-    <div class="my-4">
-    <div><a href="mailto:${e.email}">${e.email}</a></div>
-    <div><a href="${e.web_page}">${e.web_page}</a></div>
-    <div class="my-4 ml-4 italic text-gray-700">${e.description}</div>
-  </div>
-    `;
-  document.getElementById('main-modal-header').innerHTML = header;
-  document.getElementById('main-modal-body').innerHTML = content;
-  modal.style.display = 'block';
-
-  modal.addEventListener('click', () => {
-    document.getElementById('main-modal').style.display = 'none';
-  })
-
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-}

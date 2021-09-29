@@ -1,12 +1,19 @@
 class ContactsController < ApplicationController
   before_action :set_what, only: %i[ new create ]
-  before_action :set_activity_and_check_permission, only: %i[ edit update destroy delete_avatar ]
+  before_action :set_contact_and_check_permission, only: %i[ show edit update destroy delete_avatar ]
 
   def index
     authorize :contact
     @contacts = Contact.order(:surname, :name)
     if params[:area] == '1'
       @contacts = @contacts.left_joins(:areas).where('areas.id is not null')
+    end
+  end
+
+  def show
+    respond_to do |format|
+      format.js
+      format.html { render layout: false }
     end
   end
 
@@ -62,7 +69,7 @@ class ContactsController < ApplicationController
 
   private
 
-  def set_activity_and_check_permission
+  def set_contact_and_check_permission
     @contact = Contact.find(params[:id])
     authorize @contact
   end
