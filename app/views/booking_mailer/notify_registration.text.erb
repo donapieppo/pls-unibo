@@ -6,12 +6,12 @@ https://www.dm.unibo.it/pls_workshop21
 ---------------------
 Nome: <%= @booking.name %>
 Cognome: <%= @booking.surname %>
-
-<% if @booking.role == 'teacher' %>  
-Insegnante presso <%= @booking.school %>  
-<% end %>
-
+<% if @booking.role == 'teacher' %>Insegnante presso <%= @booking.school %><% end %>
+<% if @booking.online %>
+Partecipazione in remoto
+<% else %>
 Numero posti prenotati: <%= @booking.seats %>
+<% end %>
 --------------------
 
 Si richiede cortesemente ai docenti delle classi che parteciperanno 
