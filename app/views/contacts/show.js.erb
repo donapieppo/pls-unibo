@@ -1,11 +1,8 @@
 var modal = document.getElementById('main-modal');
 
-var header = `
-  <div class="float-right text-weight-bold text-3xl cursor-pointer">x</div>
-  <h2 class="my-2"><%= @contact.name %> <%= @contact.surname %></h2><hr/>
-    `;
-
 var content = `
+  <h2 class="my-2"><%= @contact.name %> <%= @contact.surname %></h2>
+  <hr/>
   <div class="md:flex">
     <div class="pr-4">
       <% if @contact.avatar.attached? %>
@@ -16,13 +13,12 @@ var content = `
       <div class="mt-4 italic text-gray-700"><%= @contact.description %></div>
       <div class="my-2"><%= @contact.affiliation %></div>
       <div class="my-4">
-      <div><%= mail_to @contact.email %></div>
-      <div><%= link_to @contact.web_page %></div>
+      <div><%= mail_to @contact.email, @contact.email %></div>
+      <div><%= link_to @contact.web_page, @contact.web_page, target: 'new' %></div>
     </div>
   </div>
-    `;
+ `;
 
-document.getElementById('main-modal-header').innerHTML = header;
 document.getElementById('main-modal-body').innerHTML = content;
 modal.style.display = 'block';
 
