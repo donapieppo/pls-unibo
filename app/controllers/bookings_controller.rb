@@ -34,7 +34,7 @@ class BookingsController < ApplicationController
     @user = User.where(email: params[:email]).first
 
     if @user == current_user
-      redirect_to @activity, notice: "Non puoi registare te stesso come studente."
+      redirect_to @activity, notice: "non puoi registare te stesso come studente."
       return
     end
 
@@ -66,27 +66,26 @@ class BookingsController < ApplicationController
   # "booking"=>{"email"=>"donapieppo@yahoo.it", "name"=>"Pietro", "surname"=>"Donatini", "role"=>"teacher", "school_type"=>"secondo", "other_string"=>""}, "user"=>{"school_name"=>"GAUDENZIO FERRARI . MOMO -- MOMO"}
   def acreate
     if Rails.env.development? || verify_recaptcha
-      email = params[:booking].delete :email
-
-     if params[:user] && params[:user][:school_name]
-       name, municipality = params[:user][:school_name].split(" -- ")
-       if municipality
-         @school_id = School.where(name: name, municipality: municipality).first.id
+      if params[:user] && params[:user][:school_name]
+        name, municipality = params[:user][:school_name].split(" -- ")
+        if municipality
+          @school_id = School.where(name: name, municipality: municipality).first.id
         end
       end
 
-      @user = User.where(email: email).first
-      @user ||= User.create(email: email,
+      @user = User.where(email: params[:booking][:email]).first
+      @user ||= User.create(email: params[:booking][:email],
                             name: params[:booking][:name], 
                             surname: params[:booking][:surname],
                             school_id: @school_id,
                             role: params[:booking][:role])
 
-      if @user && @user.bookings.where(activity_id: @activity.id).any?
+      @booking = @activity.bookings.new(booking_params)
+
+      if @user.valid? && @activity.booked_by?(@user)
         skip_authorization
         redirect_to workshop21_path, alert: "Indirizzo email già registrato per questo evento in precedenza."
-      elsif @user
-        @booking = @activity.bookings.new(booking_params)
+      elsif @user.valid?
         @booking.user_id = @user.id
 
         authorize(@booking)
@@ -97,6 +96,8 @@ class BookingsController < ApplicationController
           render action: :anew
         end
       else
+        logger.info("User creation not valid")
+        skip_authorization
         render action: :anew
       end
     else
@@ -152,7 +153,8 @@ class BookingsController < ApplicationController
         online: params[:booking][:online],
         seats: params[:booking][:seats] }
     else
-      params[:booking].permit(:name, :surname, :role, :school_type, :other_string, :notes, :online, :seats)
+      logger.info("No current user")
+      params[:booking].permit(:email, :name, :surname, :role, :school_type, :other_string, :notes, :online, :seats)
     end
   end
 
