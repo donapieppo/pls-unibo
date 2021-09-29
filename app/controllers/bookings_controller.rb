@@ -96,6 +96,7 @@ class BookingsController < ApplicationController
           render action: :anew
         end
       else
+        @booking.validate
         logger.info("User creation not valid")
         skip_authorization
         render action: :anew
