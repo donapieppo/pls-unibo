@@ -9,15 +9,18 @@
     <%= render FreeSeatComponent.new(activity: @activity) %>
   </div>
 
-  <%= simple_form_for [:acreate, @activity, @booking] do |f| %>
-    <%= f.error_notification %>
-    <div class="m-2">
-      <%= recaptcha_tags %>
-    </div>
+  <% unless @free_seats && @free_seats < 1 %>  
+    <%= simple_form_for [:acreate, @activity, @booking] do |f| %>
+      <%= f.error_notification %>
+      <%= f.input :online %>
+      <%= f.input :email %>
+      <%= render partial: 'users/common_to_booking', locals: { f: f } %>  
 
-    <%= f.input :online %>
-    <%= f.input :email %>
-    <%= render partial: 'users/common_to_booking', locals: { f: f } %>  
-    <%= f.submit "Iscriviti" %>  
+      <div class="m-2">
+        <%= recaptcha_tags %>
+      </div>
+
+      <%= f.submit "Iscriviti" %>  
+    <% end %>
   <% end %>
 </div>
