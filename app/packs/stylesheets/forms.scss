@@ -1,21 +1,18 @@
 form {
-  span.hint, span.checkbox {
-    @apply block text-sm text-gray-700;
+  span.radio, span.checkbox, span.hint, label.string, label.text, label.select, label.integer, label.file, label.radio_buttons, label.check_boxes, legend {
+    @apply block;
+  }
+  span.hint {
+    @apply text-sm text-gray-700;
   }
   label, legend {
     @apply text-sm text-gray-700 mt-4 mb-2;
-  }
-  label.string, label.text, label.select, label.integer, label.file, label.radio_buttons, label.check_boxes, legend {
-    @apply block;
   }
   input[type="text"], input.string, input.numeric, textarea {
     @apply w-full text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow;
   }
   input.numeric {
     @apply w-24;
-  }
-  span.radio {
-    @apply block;
   }
   input[type=checkbox], input[type=radio] {
     @apply my-1 mr-2 text-gray-700;
@@ -30,7 +27,7 @@ form {
   input[type="submit"] {
     @apply bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-4 my-2 rounded cursor-pointer;
   }
-  
+
   .is-invalid {
     @apply border-2 border-red-500;
   }
