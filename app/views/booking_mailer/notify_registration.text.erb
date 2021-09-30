@@ -6,7 +6,7 @@ https://www.dm.unibo.it/pls_workshop21
 ---------------------
 Nome: <%= @booking.name %>
 Cognome: <%= @booking.surname %>
-<% if @booking.role == 'teacher' %>Insegnante presso <%= @booking.school %><% end %>
+<% if @booking.role == 'teacher' && @booking.school_id %>Insegnante presso <%= @booking.school %><% end %>
 <% if @booking.online %>
 Partecipazione in remoto
 <% else %>
