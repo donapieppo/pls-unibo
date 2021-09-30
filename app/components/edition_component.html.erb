@@ -28,7 +28,7 @@
       <% if @short %>  
         <%= render BookingComponent.new(what: @edition, user: helpers.current_user, short: true) %>
       <% else %>  
-        <div class="italic text-justify my-4 text-gray-700">
+        <div class="my-4 text-gray-700">
           <%= @edition.details %>  
         </div>
         <div class="my-4">

@@ -1,11 +1,11 @@
 form {
-  span.hint {
+  span.hint, span.checkbox {
     @apply block text-sm text-gray-700;
   }
   label, legend {
     @apply text-sm text-gray-700 mt-4 mb-2;
   }
-  label.string, label.text, label.select, label.integer, label.file, label.radio_buttons, legend {
+  label.string, label.text, label.select, label.integer, label.file, label.radio_buttons, label.check_boxes, legend {
     @apply block;
   }
   input[type="text"], input.string, input.numeric, textarea {
