@@ -16,9 +16,11 @@
       <%= f.input :email %>
       <%= render partial: 'users/common_to_booking', locals: { f: f } %>  
 
-      <div class="m-2">
-        <%= recaptcha_tags %>
-      </div>
+      <% unless Rails.env.development? %>
+        <div class="m-2">
+          <%= recaptcha_tags %>
+        </div>
+      <% end %>
 
       <%= f.submit "Iscriviti" %>  
     <% end %>
