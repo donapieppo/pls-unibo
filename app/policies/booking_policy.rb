@@ -18,7 +18,7 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def destroy?
-    @user && (@user.id == @record.user_id || @user.id == @record.teacher_id)
+    @user && (@user.id == @record.user_id || @user.id == @record.teacher_id || @user.staff?)
   end
 
   def confirm?
