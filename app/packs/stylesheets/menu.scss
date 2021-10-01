@@ -1,0 +1,58 @@
+.header{
+  height: 4rem;
+}
+
+.navbar {
+  @apply sticky top-0 w-full flex flex-row items-center justify-center;
+  //display: flex;
+  //justify-content: space-between;
+  //align-items: center;
+  //padding: 1rem 1.5rem;
+}
+
+#modal-opener {
+  @apply block ml-8 cursor-pointer;
+  border: none;
+  text-decoration: none;
+}
+
+#modal-opener.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+#modal-opener.active .bar:nth-child(1) {
+  transform: translateY(14px) rotate(45deg);
+}
+
+// 14 = 6+8 height + margin
+#modal-opener.active .bar:nth-child(3) {
+  transform: translateY(-14px) rotate(-45deg);
+}
+
+.bar {
+  @apply block ml-8 bg-blue-900;
+  width: 32px;
+  height: 6px;
+  margin: 8px auto;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+#modal-menu {
+  z-index: 10;
+  position: fixed;
+  left: -100%;
+  top: 4rem;
+  flex-direction: column;
+  text-align: center;
+  transition: all 0.6s ease-in-out;
+  width: 100%;
+}
+
+#modal-menu.active {
+  left: 0;
+}
+
+
+// Thanx to 
+// https://dev.to/devggaurav/let-s-build-a-responsive-navbar-and-hamburger-menu-using-html-css-and-javascript-4gci

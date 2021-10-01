@@ -7,3 +7,16 @@
  }
 }
 
+dl {
+  margin: 4px;
+  dt {
+    font-weight: bold;
+  }
+  dd {
+    margin-left: 8px;
+  }
+}
+
+ol {
+  list-style-type: upper-roman;
+}
