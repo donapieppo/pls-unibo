@@ -13,6 +13,7 @@ class HomeController < ApplicationController
   end
 
   def privacy
+    render layout: 'pages'
   end
 
   def search
