@@ -1,63 +1,66 @@
-<div id="modal-menu" style="display: none" class="ease-linear transition-all duration-500">
-  <div class="min-h-screen overflow-x-hidden fixed inset-0 z-50 outline-none focus:outline-none ease-linear transition-all duration-500">
-    <div class="min-h-screen relative float-left w-full lg:w-1/3 bg-white border-r-4 border-eden-strong ">
-      <div class="absolute text-4xl ml-4 px-4 py-2 text-blue-900" onclick="toggle_menu();">
-        <i class="fas fa-times"></i>
-      </div>
-      <div class="min-h-full flex flex-col items-center py-4">
-        <div class="w-1/2 md:w-1/3 text-center">
-          <%= link_to image_pack_tag('media/images/Logo_PLS_s.png'), root_path %>
-        </div>
-    <div class="my-4">
-      <%= form_tag search_path do %>  
-        <input class="border-2 border-gray-300 bg-white px-2 py-1 pr-1 rounded-lg text-sm focus:outline-none" type="search" name="search" placeholder="cerca"/>
+<header class="header border-b border-pls py-2 bg-gray-100">
+  <nav role="navigation" class="navbar">
+    <div role="button" tabindex="0" id="modal-opener">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <div class="flex-grow px-4 text-center">
+      <%= link_to 'PLS', root_path, class: "margin-auto text-xl lg:text-2xl px-4 py-2 font-light text-blue-900 border-2 border-blue-900 font-bold tracking-widest rounded-2xl" %>
+    </div>
+    <div class="mx-4">
+      <% if current_user %>  
+        <%= link_to logout_icon, logout_path, class: 'text-xl float-right p-1 px-2' %>
+        <%= link_to me_users_path do %>  
+          <span class="rounded-full border-2 border-pls text-pls float-right font-bold py-1 px-4">
+            <%= current_user.initials %>
+          </span>
+        <% end %>
+      <% else %>
+        <%= link_to 'accedi <i class="fas fa-sign-in-alt"></i>'.html_safe, login_path, class: 'float-right p-1 px-2 border text-pls border-pls ' %>
       <% end %>
     </div>
-        <div class="menu-items my-4 text-center">
-          <%= link_to 'home', root_path, class: 'menu-items-item' %>
-          <%= link_to 'presentazione', presentation_path, class: 'menu-items-item' %>
-          <%= link_to 'attività', projects_path, class: 'menu-items-item' %>
-          <%= link_to 'risorse', resource_containers_path, class: 'menu-items-item' %>  
-          <%= link_to 'contatti', contacts_page_path, class: 'menu-items-item' %>
-          <%= link_to 'privacy', privacy_path, class: 'menu-items-item' %>
-          <% if current_user && current_user.staff? %>  
-            <div class="mt-4 text-sm">admin</div>
-            <%= link_to 'contatti', contacts_path, class: 'menu-items-item' %>
-            <%= link_to 'raggruppamenti', clusters_path, class: 'menu-items-item' %>
-            <%= link_to 'prenotazioni', bookings_path, class: 'menu-items-item' %>
-          <% end %>
-          <%= render partial: 'layouts/social' %>  
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="opacity-30 fixed inset-0 z-40 bg-black"></div>
-</div>
+  </nav>
+</header>
 
-<div class="sticky top-0 w-full flex flex-row items-center justify-center border-b border-pls py-2 bg-gray-100">
-  <div class="text-4xl ml-4 px-4 py-2 text-blue-900">
-    <a href="javascript:void(0);" id="modal-opener" onclick="toggle_menu();"><i class="fas fa-bars"></i></a>
-  </div>
-  <div class="flex-grow px-4 text-center">
-    <%= link_to 'PLS', root_path, class: "margin-auto text-xl lg:text-2xl px-4 py-2 font-light text-blue-900 border-2 border-blue-900 font-bold tracking-widest rounded-2xl" %>
-  </div>
-  <div class="mx-4">
-    <% if current_user %>  
-      <%= link_to logout_icon, logout_path, class: 'text-xl float-right p-1 px-2' %>
-      <%= link_to me_users_path do %>  
-        <span class="rounded-full border-2 border-pls text-pls float-right font-bold py-1 px-4">
-          <%= current_user.initials %>
-        </span>
-      <% end %>
-    <% else %>
-      <%= link_to 'accedi <i class="fas fa-sign-in-alt"></i>'.html_safe, login_path, class: 'float-right p-1 px-2 border text-pls border-pls ' %>
-    <% end %>
+<div id="modal-menu">
+  <div role="navigation" class="min-h-screen relative w-full lg:w-1/3 bg-gray-100 border-r-4 border-eden-strong">
+    <div class="min-h-full flex flex-col items-center py-4">
+      <div class="w-1/2 md:w-1/3 text-center">
+        <%= link_to image_pack_tag('media/images/Logo_PLS_s.png'), root_path %>
+      </div>
+      <div class="my-4">
+        <%= form_tag search_path do %>  
+          <input class="border-2 border-gray-300 bg-white px-2 py-1 pr-1 rounded-lg text-sm focus:outline-none" type="search" name="search" placeholder="cerca"/>
+        <% end %>
+      </div>
+      <div class="menu-items my-4 text-center">
+        <%= link_to 'home', root_path, class: 'menu-items-item' %>
+        <%= link_to 'presentazione', presentation_path, class: 'menu-items-item' %>
+        <%= link_to 'attività', projects_path, class: 'menu-items-item' %>
+        <%= link_to 'risorse', resource_containers_path, class: 'menu-items-item' %>  
+        <%= link_to 'contatti', contacts_page_path, class: 'menu-items-item' %>
+        <%= link_to 'privacy', privacy_path, class: 'menu-items-item' %>
+        <% if current_user && current_user.staff? %>  
+          <div class="mt-4 text-sm">admin</div>
+          <%= link_to 'contatti', contacts_path, class: 'menu-items-item' %>
+          <%= link_to 'raggruppamenti', clusters_path, class: 'menu-items-item' %>
+          <%= link_to 'prenotazioni', bookings_path, class: 'menu-items-item' %>
+        <% end %>
+        <%= render partial: 'layouts/social' %>  
+      </div>
+    </div>
   </div>
 </div>
 
 <%= javascript_tag do %>  
+  const modalOpener = document.querySelector("#modal-opener");
+  const modalMenu = document.querySelector("#modal-menu");
+
+  modalOpener.addEventListener("click", toggle_menu);
+
   function toggle_menu() {
-    var modal = document.getElementById("modal-menu");
-    modal.style.display = (modal.style.display == 'none') ? 'block' : 'none';
+    modalMenu.classList.toggle("active");
+    modalOpener.classList.toggle("active");
   }
 <% end %>
