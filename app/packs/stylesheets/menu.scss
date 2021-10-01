@@ -3,7 +3,8 @@
 }
 
 .navbar {
-  @apply sticky top-0 w-full flex flex-row items-center justify-center;
+  @apply top-0 w-full flex flex-row items-center justify-center;
+  // @apply sticky top-0 w-full flex flex-row items-center justify-center;
   //display: flex;
   //justify-content: space-between;
   //align-items: center;
