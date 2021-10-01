@@ -10,11 +10,19 @@
   </div>
 
   <% unless @free_seats && @free_seats < 1 %>  
-    <%= simple_form_for [:acreate, @activity, @booking] do |f| %>
+    <%= simple_form_for [:acreate, @activity, @booking], html: { onsubmit: "return checkForm(this)", novalidate: false  } do |f| %>
       <%= f.error_notification %>
       <%= f.input :online %>
       <%= f.input :email %>
       <%= render partial: 'users/common_to_booking', locals: { f: f } %>  
+      <div>
+        <label>Informativa sulla privacy</label>
+      </div>
+      <div>
+        <input name="privacy" required="required" type="checkbox"></input>
+        <label>Dichiaro di avere letto <%= link_to "l'informativa sulla privacy", privacy_path, class: 'underline', target: 'new' %>
+        e acconsento a essere iscritto alla mailing list per le finalità e nei modi di cui al punto II dell'informativa.</label>
+      </div>
 
       <% unless Rails.env.development? %>
         <div class="m-2">
@@ -26,3 +34,15 @@
     <% end %>
   <% end %>
 </div>
+
+<%= javascript_tag do %>  
+function checkForm(form)
+  {
+    if(!form.privacy.checked) {
+      alert("Si prega di accettare l'informativa sulla privacy");
+      form.privacy.focus();
+      return false;
+    }
+    return true;
+  }
+<% end %>
