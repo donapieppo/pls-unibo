@@ -50,7 +50,7 @@ h3 {
 
 .menu-items {
   a.menu-items-item {
-    @apply block uppercase text-pls border-b-2 border-pls p-2 px-4 pt-4 font-bold hover:bg-pls hover:text-white;
+    @apply block uppercase text-pls border-b border-pls p-1 md:p-2 px-4 font-bold hover:bg-pls hover:text-white;
   }
 }
 
