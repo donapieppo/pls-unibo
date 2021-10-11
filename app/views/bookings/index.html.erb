@@ -1,16 +1,24 @@
 <div class="container">
   <h1 class="title">Le iscrizioni</h1>
   <% @booked_activities.each do |a| %>  
+    <% activity_online_mails = []; activity_in_presence_mails = [] %>  
     <% booking_to_confirm = a.booking_to_confirm? %>  
     <div class="pls-card my-8">
       <div class="pls-card-title">
-        <%= l a.booking_start %> - <%= l a.booking_end %>    
+        <%= link_to a.name.upcase, a %>
         <%= link_to_edit_if_editable a %>  
       </div>
       <div class="pls-card-content">
-        <%= '<small>(prenotazioni da confermare)</small>'.html_safe if booking_to_confirm %>  
         <div>
-          <%= link_to a, a %>
+          <%= l a.booking_start, format: :short %> - <%= l a.booking_end, format: :short %>
+        </div>
+        <div>
+          <%= '<strong>Attività con prenotazioni da confermare</strong>'.html_safe if booking_to_confirm %>  
+        </div>
+        <div>
+          Posti totali: <strong><%= a.seats %></strong><br/>
+          Posti prentati: <strong><%= a.bookings.in_presence.sum(:seats) %></strong> <br/> 
+          Prenotazioni online: <strong><%= a.bookings.online.count(:seats) %></strong>
         </div>
         <p>Elenco iscritti:</p>
         <ul class="list-disc pl-8">
@@ -18,7 +26,13 @@
             <li>
               <span class="font-mono"><%= b.nonce ? b.nonce : '-----' %></span> 
               <small><%= l b.created_at %></small>
-              <%= b.seats %> <%= b.seats > 1 ? 'posti' : 'posto' %> per  
+              <% if b.online %>  
+                <% activity_online_mails << b.email %>  
+                <span class="text-yellow-500">online</span>
+              <% else %>
+                <% activity_in_presence_mails << b.email %>  
+                <strong><%= b.seats %></strong> <%= b.seats == 1 ? 'posto' : 'posti' %> per  
+              <% end %>
               <% if b.user %>  
                 <span class="font-bold text-green-700 underline"><%= link_to b.user, [:edit, b.user] %></span>     
               <% else %>
@@ -37,6 +51,12 @@
             </li>
           <% end %>
         </ul>
+      </div>
+      <div class="info text-sm my-2">
+        <strong>Indirizzi partecipanti in presenza:</strong> <%= activity_in_presence_mails.join(', ') %>  
+      </div>
+      <div class="info text-sm my-2">
+        <strong>Indirizzi partecipanti online:</strong> <%= activity_online_mails.join(', ') %>  
       </div>
       <%= link_to 'scarica elenco', bookings_path(activity_id: a.id) %>  
     </div>
