@@ -18,6 +18,8 @@ class Booking < ApplicationRecord
   validates_with BookingSeatsValidator 
 
   scope :by_teacher, -> (u_id) { where(teacher_id: u_id) }
+  scope :in_presence, -> { where(online: false) }
+  scope :online, -> { where(online: true) }
 
   before_create :copy_params_from_user,
                 :confirm_if_activity_not_to_confirm
