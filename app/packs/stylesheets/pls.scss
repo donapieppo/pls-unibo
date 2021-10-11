@@ -71,4 +71,10 @@ h3 {
   @apply px-2 rounded-xl text-pls bg-pls-light;
 }
 
+.presentation {
+  @apply p-2 relative border-t-4 border-pls-light pt-8;
+  .presentation-title {
+    @apply border-4 border-pls-light bg-white font-bold absolute -top-8 -ml-2 md:-ml-16 text-pls p-2 md:px-8 rounded-2xl tracking-wider;
+  }
+}
 
