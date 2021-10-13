@@ -15,11 +15,19 @@ Rails.start()
 const images = require.context('../images', true)
 const imagePath = (name) => images(name, true)
 
-window.display_unless_no = function (what, condition_input) {
-  what.style.display = (condition_input.value == 'no') ? 'none' : 'block';
+window.display_unless = function (txt, what, condition_input) {
+  what.style.display = (condition_input.value == txt) ? 'none' : 'block';
   condition_input.addEventListener('change', () => {
     console.log(condition_input.value);
-    booking_dates.style.display = (condition_input.value === 'no') ? 'none' : 'block';
+    what.style.display = (condition_input.value === txt) ? 'none' : 'block';
+  });
+}
+
+window.display_if = function (txt, what, condition_input) {
+  what.style.display = (condition_input.value == txt) ? 'block' : 'none';
+  condition_input.addEventListener('change', () => {
+    console.log(condition_input.value);
+    what.style.display = (condition_input.value === txt) ? 'block' : 'none';
   });
 }
 
