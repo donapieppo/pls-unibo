@@ -48,6 +48,7 @@ it:
         pcto: PCTO
         atomic: Eventi non separabili
         bookable: Possibile iscriversi
+        booking_url: Indirizzo web esterno per la prenotazione
         booking_start: Data inizio iscrizioni
         booking_end: Data fine iscrizioni
       event:
@@ -60,6 +61,7 @@ it:
         sofia: SOFIA
         pcto: PCTO
         bookable: Possibile iscriversi
+        booking_url: Indirizzo web esterno per la prenotazione
         booking_start: Data inizio iscrizioni
         booking_end: Data fine iscrizioni
       resource:
@@ -107,6 +109,11 @@ it:
     hints:
       booking:
         seats: Se si intende partecipare in presenza con i propri studenti indicare il numero totale di partecipanti (studenti + accompagnatori)
+    placeholders:
+      edition:
+        booking_url: https://
+      event:
+        booking_url: https://
 
   time:
     am: am
