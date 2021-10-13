@@ -60,7 +60,8 @@ class EventsController < ApplicationController
     authorize @event
   end
 
+  # Fixme booking_url only if external
   def event_params
-    params[:event].permit(:name, :description, :academic_year, :place, :google_map, :start_date, :duration, :seats, :sofia, :pcto, :bookable, :booking_start, :booking_end)
+    params[:event].permit(:name, :description, :academic_year, :place, :google_map, :start_date, :duration, :seats, :sofia, :pcto, :bookable, :booking_url, :booking_start, :booking_end)
   end
 end

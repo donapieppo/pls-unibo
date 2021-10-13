@@ -5,11 +5,19 @@
     <%= f.input :description, input_html: { cols: 80, rows: 5 } %>
     <%= f.rich_text_area :details %>
     <%= f.association :audience, include_blank: false %>  
+
     <%= f.input :seats %>
-    <%= f.input :sofia %>
-    <%= f.input :pcto %>
+
+    <div class="my-2">
+      <%= f.input :sofia %>
+      <%= f.input :pcto %>
+    </div>
+
     <%= f.input :atomic %>
-    <%= f.input :bookable, collection: [['no', 'no'], ['si', 'yes'], ['da confermare', 'to_confirm']], include_blank: false %>
+    <%= f.input :bookable, collection: [['no', 'no'], ['si', 'yes'], ['da confermare', 'to_confirm'], ['esterne', 'external']], include_blank: false %>
+    <div id="booking_url">
+      <%= f.input :booking_url %>
+    </div>
     <div id="booking_dates">
       <%= f.input :booking_start, minute_step: 10 %>
       <%= f.input :booking_end, minute_step: 10 %>
@@ -31,5 +39,8 @@
 </div>
 
 <%= javascript_tag do %>  
-  display_unless_no(document.getElementById('booking_dates'), document.getElementById('edition_bookable'));
+  document.addEventListener('DOMContentLoaded', (event) => {
+    display_unless('no', document.getElementById('booking_dates'), document.getElementById('edition_bookable'));
+    display_if('external', document.getElementById('booking_url'), document.getElementById('edition_bookable'));
+  });
 <% end %>

@@ -9,10 +9,17 @@
     <%= f.input :google_map %>
     <%= f.input :start_date, minute_step: 10 %>
     <%= f.input :duration %>
+
     <%= f.input :seats %>
+    <div class="my-2">
     <%= f.input :sofia %>
     <%= f.input :pcto %>
-    <%= f.input :bookable, collection: [['no', 'no'], ['si', 'yes'], ['da confermare', 'to_confirm']], include_blank: false %>
+    </div>
+
+    <%= f.input :bookable, collection: [['no', 'no'], ['si', 'yes'], ['da confermare', 'to_confirm'], ['esterne', 'external']], include_blank: false %>
+    <div id="booking_url">
+      <%= f.input :booking_url %>
+    </div>
     <div id="booking_dates">
       <%= f.input :booking_start, minute_step: 10 %>
       <%= f.input :booking_end, minute_step: 10 %>
@@ -22,5 +29,6 @@
 </div>
 
 <%= javascript_tag do %>  
-  display_unless_no(document.getElementById('booking_dates'), document.getElementById('event_bookable'));
+  display_unless('no', document.getElementById('booking_dates'), document.getElementById('event_bookable'));
+  display_if('external', document.getElementById('booking_url'), document.getElementById('event_bookable'));
 <% end %>
