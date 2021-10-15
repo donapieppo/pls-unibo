@@ -66,7 +66,8 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.integer "duration", limit: 2, unsigned: true
     t.boolean "sofia"
     t.boolean "pcto"
-    t.column "bookable", "enum('no','yes','to_confirm')"
+    t.column "bookable", "enum('no','yes','to_confirm','external')"
+    t.text "booking_url"
     t.datetime "booking_end"
     t.datetime "booking_start"
     t.boolean "atomic"
