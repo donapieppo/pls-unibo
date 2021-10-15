@@ -58,7 +58,7 @@
       <div class="info text-sm my-2">
         <strong>Indirizzi partecipanti online:</strong> <%= activity_online_mails.join(', ') %>  
       </div>
-      <%= link_to 'scarica elenco', bookings_path(activity_id: a.id) %>  
+      <%= link_to 'scarica elenco', bookings_path(activity_id: a.id, format: :csv) %>  
     </div>
   <% end %>
 </div>
