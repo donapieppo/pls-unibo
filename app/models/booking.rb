@@ -1,3 +1,5 @@
+require 'csv'
+
 class BookingSeatsValidator < ActiveModel::Validator
   def validate(record)
     activity = record.activity
@@ -48,6 +50,15 @@ class Booking < ApplicationRecord
   def confirm
     self.confirmed = true
     self.save!
+  end
+
+  def self.to_csv(_activity)
+    CSV.generate(headers: true) do |csv|
+      csv << ['posto', 'nome', 'online', 'ruolo', 'scuola', 'email']
+      _activity.bookings.each do |b|
+        csv << [b.seats, b.user.cn_militar, b.online ? 'online' : '', b.role, b.school, b.user.email]
+      end
+    end
   end
 
   private 

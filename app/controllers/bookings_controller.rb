@@ -10,6 +10,10 @@ class BookingsController < ApplicationController
       @booked_activities = Activity.order('start_date desc').find(Booking.select(:activity_id).map(&:activity_id))
     end
     authorize :booking
+    respond_to do |format|
+      format.html
+      format.csv { send_data Booking.to_csv(@booked_activities.first), filename: "prenotazioni.csv" }
+    end
   end
 
   def new
