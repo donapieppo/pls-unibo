@@ -9,6 +9,8 @@ class BookingComponent < ViewComponent::Base
       return ""
     end
     @user_booking = @user ? what.bookings.where(user_id: @user.id).first : nil
+    @general_bookable = @what.bookable? && @what.booking_start && @what.booking_end
+    @bookable = @what.bookable_now?
   end
 end
 

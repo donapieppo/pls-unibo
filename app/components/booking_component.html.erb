@@ -1,9 +1,9 @@
-<% if @what.bookable? && @what.booking_start && @what.booking_end %>  
+<% if @general_bookable %>  
   <div class="my-4 font-bold text-green-900">
     Iscrizioni aperte dal <%= l @what.booking_start, format: :day_with_year %> al <%= l @what.booking_end, format: :day_with_year %>
   </div>
 
-  <% if @what.bookable_now? %>  
+  <% if @bookable %>  
     <%= link_to 'ISCRIVITI', [:anew, @what, :bookings], class: 'button' %> 
   <% end %>
 
