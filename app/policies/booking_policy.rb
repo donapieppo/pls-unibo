@@ -30,7 +30,7 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def acreate?
-    true
+    @record.activity.bookable_now?
   end
 
   def thankyou?
