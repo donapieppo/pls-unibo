@@ -1,5 +1,5 @@
 class ClustersController < ApplicationController
-  before_action :set_cluster_and_authorize, only: [:edit, :update, :destroy]
+  before_action :set_cluster_and_authorize, only: [:show, :edit, :update, :destroy]
 
   def index
     @clusters = Cluster.order(:name).all
@@ -19,6 +19,9 @@ class ClustersController < ApplicationController
     else
       render action: :new
     end
+  end
+
+  def show
   end
 
   def edit

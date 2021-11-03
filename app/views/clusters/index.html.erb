@@ -1,8 +1,8 @@
 <div class="container">
-  <h1 class="title">Ragguppamenti</h1>
+  <h1 class="title">Raggruppamenti</h1>
 
   <% @clusters.each do |ac| %>  
-    <div><%= link_to ac, [:edit, ac] %> <%= link_to_delete cluster_path(ac) %>   </div>
+    <div><%= link_to ac, ac %> <%= link_to_edit_if_editable ac %>  <%= link_to_delete cluster_path(ac) %>   </div>
   <% end %>
 
   <div class="my-4">
