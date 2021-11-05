@@ -3,7 +3,7 @@
     <div class="font-bold mb-2">Lista degli eventi:</div>
     <div>
       <% @events.each do |event| %>
-        <div class="relative border-pls text-pls border-l-2 text-sm py-2 px-4 mr-1 mb-1 inline-block font-mono">
+        <div class="text-sm px-4 mr-1 mb-1 font-mono">
           <%= calendar_icon %>
           <%= l event.start_date, format: :day_with_year %>
         </div>
