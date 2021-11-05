@@ -12,6 +12,18 @@
 CURRENT_ACADEMIC_YEAR = 2021
 CESIA_UPN = ['pietro.donatini@unibo.it', 'valeria.montesi3@unibo.it']
 
+ACCROCCHIO_VECCHIO_SITO  = [
+  "", 
+  "http://www.pls.unibo.it/it/biologia-e-biotecnologie", 
+  "http://www.pls.unibo.it/it/chimica",
+  "http://www.pls.unibo.it/it/fisica",
+  "http://www.pls.unibo.it/it/geologia", 
+  "http://www.pls.unibo.it/it/informatica",
+  "http://www.pls.unibo.it/it/matematica", 
+  "http://www.pls.unibo.it/it/scienze-naturali-ambientali",
+  "http://www.pls.unibo.it/it/statistica"
+]
+
 module PlsUnibo
   class Application < Rails::Application
     config.domain_name = 'dm.unibo.it'
@@ -25,8 +37,8 @@ module PlsUnibo
 
     config.host = 'dm.unibo.it'
     config.interceptor_mails = 'donatini@dm.unibo.it'
-    config.default_from    = 'PLS <notifica.inviodlist.08218@unibo.it>'
-    config.reply_to        = 'dipmat-supportoweb@unibo.it'
+    config.default_from      = 'Organizzazione PLS <notifica.inviodlist.08218@unibo.it>'
+    config.reply_to          = 'dipmat-supportoweb@unibo.it'
   end
 end
 

@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.datetime "booking_end"
     t.datetime "booking_start"
     t.boolean "atomic"
+    t.boolean "visible", default: false
   end
 
   create_table "activities_areas", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|

@@ -1,25 +1,29 @@
 <div id="areas" class="md:flex md:flex-wrap">
   <% areas.each do |area| %>  
-    <%= link_to area do %>  
-      <div class="md:w-1/2 lg:w-1/3 xl:w-1/4 px-4">
-        <%= link_to area do %>
-          <div class="relative border border-gray-700 shadow rounded-xl p-2 my-6 h-72 hover:shadow-xl" 
-               style="background: no-repeat center url(<%= asset_pack_path(area_image(area)) %>); background-size: cover; ">
-               <div class="absolute -bottom-2 -right-2 bg-white rounded-xl p-4 px-8 border border-gray-700 shadow-2xl text-right">
-                 <h2 class="inline align-text-bottom text-2xl text-pls">
-                   <%= area.name %>
-                 </h2>
-                 <div class="mt-1 text-sm">
-                   Responsabile: <%= area.head %> 
-                 </div>
-               </div>
-               <div class="absolute rounded-full p-4 -top-2 -left-2 bg-white border border-gray-700 text-pls-strong">
-                 <%= area_icon(area, size: 30) %>
-               </div>
-          </div>
-        <% end %>
-      </div>
+    <% if [1,2,3,4,5,7,9].include?(area.id) %>  
+      <% url = ACCROCCHIO_VECCHIO_SITO[area.id] %>  
+    <% else %>
+      <% url = area_path(area) %>  
     <% end %>
+
+    <div class="md:w-1/2 lg:w-1/3 xl:w-1/4 px-4">
+      <%= link_to url do %>  
+        <div class="relative border border-gray-700 shadow rounded-xl p-2 my-6 h-72 hover:shadow-xl" 
+             style="background: no-repeat center url(<%= asset_pack_path(area_image(area)) %>); background-size: cover; ">
+             <div class="absolute -bottom-2 -right-2 bg-white rounded-xl p-4 px-8 border border-gray-700 shadow-2xl text-right">
+               <h2 class="inline align-text-bottom text-2xl text-pls">
+                 <%= area.name %>
+               </h2>
+               <div class="mt-1 text-sm">
+                 Responsabile: <%= area.head %> 
+               </div>
+             </div>
+             <div class="absolute rounded-full p-4 -top-2 -left-2 bg-white border border-gray-700 text-pls-strong">
+               <%= area_icon(area, size: 30) %>
+             </div>
+        </div>
+      <% end %>
+    </div>
   <% end %>
 </div>
 

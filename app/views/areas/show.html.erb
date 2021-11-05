@@ -20,6 +20,15 @@
 <div class="container">
   <h2 class="title py-2">Le attività</h2>
 
+  <% unless current_user && current_user.staff? %>  
+    <div class="my-8">
+      Altre informazioni per le attività 2021/2022 per l'area <strong><%= @area %></strong> sono disponibili alla pagina <br/>
+      <div class="text-center my-8">
+        <%= link_to ACCROCCHIO_VECCHIO_SITO[@area.id], ACCROCCHIO_VECCHIO_SITO[@area.id], class: 'button' %>
+      </div>
+    </div>
+  <% end %>
+
   <% if policy(:project).new? %>  
     <div class="text-right">
       <%= link_to 'Aggiungi nuova attività', new_project_path, class: 'button' %>

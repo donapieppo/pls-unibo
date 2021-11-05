@@ -5,14 +5,16 @@ class ProjectsController < ApplicationController
 
   def index
     authorize :project
+    @projects = Project.includes(:editions, :activity_type).order(:name)
     if params[:on] == '1'
       @on = true
-      @projects = Project.includes(:editions, :activity_type).order(:name).find(Edition.on_going_project_ids)
+      @projects = @projects.find(Edition.on_going_project_ids)
     elsif params[:bookable] == '1'
       @bookable_now = true
-      @projects = Project.includes(:editions, :activity_type).order(:name).find(Edition.bookable_project_ids)
-    else
-      @projects = Project.includes(:editions, :activity_type).order(:name)
+      @projects = @projects.find(Edition.bookable_project_ids)
+    end
+    unless current_user && current_user.staff?
+      @projects = @projects.where('activities.global = 1 or activities.visible = 1')
     end
   end
 
