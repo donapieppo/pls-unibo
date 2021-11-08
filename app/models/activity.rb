@@ -9,8 +9,7 @@ class Activity < ApplicationRecord
 
   scope :bookable_now, -> { where('activities.booking_start is not null and activities.booking_end is not null and activities.booking_start < NOW() and NOW() < activities.booking_end') }
 
-  # scope :clusterable, -> { where(academic_year: 2021).order(:name) }
-  scope :clusterable, -> { order(:name) }
+  scope :clusterable, -> (year) { where(academic_year: year).order(:name) }
   scope :visible, -> { where('activities.visible = 1') }
 
   def check_children
