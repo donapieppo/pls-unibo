@@ -29,7 +29,8 @@ class ClustersController < ApplicationController
   end
 
   def update
-    @cluster.update(activity_ids: params[:cluster][:activity_ids])
+    @cluster.update(activity_ids: params[:cluster][:activity_ids],
+                    name: params[:cluster][:name])
     redirect_to clusters_path
   end
 
