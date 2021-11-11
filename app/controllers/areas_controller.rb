@@ -26,7 +26,8 @@ class AreasController < ApplicationController
   private
 
   def set_area_and_check_permission
-    @area = Area.find_by_slug!(params[:slug])
+    # @area = Area.find_by_slug!(params[:slug])
+    @area = Area.find(params[:id])
     authorize @area
   end
 

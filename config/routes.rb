@@ -80,11 +80,14 @@ Rails.application.routes.draw do
 
   root "home#index"
 
-  # AREA SLUG
-  get '/:slug', to: "areas#show", as: :area, param: :slug
-  resources :areas, concerns: :contactable, except: [:show]
 
   # PAGES
   get '/workshop21', to: "pages#workshop21", as: :workshop21
   get '/scienza_al_cinema', to: "pages#scienza_al_cinema", as: :scienza_al_cinema
+
+  resources :areas, concerns: :contactable
+
+  Area.find_each do |a|
+    get "/#{a.slug}", to: "areas#show", id: a.id
+  end
 end

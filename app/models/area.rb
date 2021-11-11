@@ -15,8 +15,8 @@ class Area < ApplicationRecord
     self.name
   end
 
-  def to_param
-    #return the string of the slug stored in our database
-    self.slug
-  end
+  #def to_param
+  #  #return the string of the slug stored in our database
+  #  self.slug
+  #end
 end
