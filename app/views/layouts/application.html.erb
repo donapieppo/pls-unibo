@@ -16,11 +16,12 @@
       <%= image_pack_tag 'media/images/Logo_PLS_bg.png' %>  
     </div>
 
+    <div>
+      <%= render partial: 'layouts/menu' %>  
+      <%= render partial: 'layouts/modal' %>  
+    </div>
+
     <div class="flex flex-col justify-between h-screen">
-      <div>
-        <%= render partial: 'layouts/menu' %>  
-        <%= render partial: 'layouts/modal' %>  
-      </div>
 
       <div class="flex-grow">
         <%= render FlashMessagesComponent.new(flash: flash) %>
