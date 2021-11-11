@@ -40,6 +40,10 @@ module ApplicationHelper
     end
     content_tag :div, res.html_safe, class: 'my-4' unless res.blank?
   end
+
+  def area_root(area)
+    "/#{area.slug}"
+  end
 end
 
 include IconHelper
