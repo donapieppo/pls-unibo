@@ -25,7 +25,9 @@ module ApplicationHelper
     res = ""
     _arr.each do |item|
       res += separator unless res.blank?
-      if item.is_a?(Contact)
+      if item.is_a?(Area)
+        res += link_to item, "/#{item.slug}", class: add_class
+      elsif item.is_a?(Contact)
         res += render(item)
       elsif with_link && item.respond_to?(:email) 
         res += item.email.blank? ? item.cn : mail_to(item.email, item)
