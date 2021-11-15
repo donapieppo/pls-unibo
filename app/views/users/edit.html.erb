@@ -13,31 +13,3 @@
 
 <%= render 'layouts/privacy' %>  
 
-<%= javascript_tag do %>  
-  const role_inputs = document.querySelectorAll('.user_role input');
-  const school_inputs = document.querySelector('.user_school_type');
-  const other_input = document.querySelector('.user_other_string');
-  const school_choose = document.getElementById('school_choose');
-
-  const update = () => {
-    r = document.querySelectorAll('.user_role input:checked')[0];
-    if (r && r.value == 'other') {
-      other_input.style.display = 'block';
-      school_inputs.style.display = 'none';
-      school_choose.style.display = 'none';
-    } else {
-      other_input.style.display = 'none';
-      other_input.querySelector('textarea').value = '';
-      school_inputs.style.display = 'block';
-      school_choose.style.display = 'block';
-    }
-  }
-
-  update();
-
-  role_inputs.forEach((r) => {
-    r.addEventListener('change', () => {
-      update();
-    });
-  });
-<% end %>
