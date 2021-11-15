@@ -22,4 +22,12 @@ class UserPolicy < ApplicationPolicy
   def myedit?
     @user
   end
+
+  def forget_form?
+    forget?
+  end
+
+  def forget?
+    @user
+  end
 end

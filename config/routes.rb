@@ -49,6 +49,8 @@ Rails.application.routes.draw do
   resources :users do
     get :myedit, on: :collection
     get :me, on: :collection
+    get :forget_form, on: :collection
+    post :forget, on: :collection
   end
   
   resources :contacts do
