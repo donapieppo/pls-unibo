@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Scuole</h1>
+
+  <table class="table">
+    <% @schools.each do |school| %>  
+      <tr>
+        <td><%= school.id %></td>
+        <th><%= school.name %></th>
+        <td><%= school.code %></td>
+        <td><%= school.school_type %></td>
+        <td><%= link_to school.web_url, school.web_url, target: "_new" %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
