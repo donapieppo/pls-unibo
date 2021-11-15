@@ -1,0 +1,17 @@
+<div class="container">
+  <h1 class="title">Richiesta di cancellazione del proprio account</h1>
+
+  <p>
+  Gentile <%= @user %>,
+  </p>
+
+  <p>
+  da questa pagina è possibile cancellare il proprio account PLS
+  </p>
+
+  <div class="text-center my-8">
+  <%= form_with url: forget_users_path do |f| %>  
+    <%= f.submit "ELIMINA IL MIO ACCOUNT"%>  
+  <% end %>
+  </div>
+</div>

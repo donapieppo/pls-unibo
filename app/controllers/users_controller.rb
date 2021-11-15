@@ -46,6 +46,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def forget_form
+    authorize :user
+    @user = current_user
+    if @user
+    end
+  end
+
+  def forget
+    authorize :user
+    @user = current_user
+    if @user
+    end
+    redirect_to logout_path
+  end
+
   private
 
   def user_params

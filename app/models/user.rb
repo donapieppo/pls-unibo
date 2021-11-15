@@ -40,8 +40,12 @@ class User < ApplicationRecord
     self.role && self.role == 'teacher'
   end
 
-  def unibo?
+  def unibo_account?
     self.email =~ /\A\w+\.?\w+@unibo.it\z/
+  end
+
+  def google_account?
+    self.email =~ /\A\w+@gmail.com\z/
   end
 
   def master_of_universe?
