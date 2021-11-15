@@ -45,18 +45,22 @@
 
   const update = () => {
     r = document.querySelectorAll('#role_inputs input:checked')[0];
-    seats.style.display = 'none';
+    if (seats) {
+      seats.style.display = 'none';
+    }
     if (r && r.value === 'other') {
       school_type_div.style.display = 'none';
       school_choose.style.display = 'none';
-      seats.style.display = 'none';
+      if (seats) {
+        seats.style.display = 'none';
+      }
       other_string_div.style.display = 'block';
     } else {
       other_string_div.querySelector('textarea').value = '';
       other_string_div.style.display = 'none';
       school_type_div.style.display = 'block';
       school_choose.style.display = 'block';
-      if (r && r.value === 'teacher') {
+      if (r && r.value === 'teacher' && seats) {
         seats.style.display = 'block';
       }
     }
