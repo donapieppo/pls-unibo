@@ -33,7 +33,7 @@ it:
         description: Descrizione
         date: Organizzatori
         areas: Aree
-        interested_areas: Aree di interesse
+        interested_areas: Altre aree di interesse
         activity_type: Tipologia
         global: Attività comune a tutte le aree
         organization: Dipartimento che organizza
@@ -46,7 +46,7 @@ it:
         interested_areas: Aree di interesse
         sofia: SOFIA
         pcto: PCTO
-        atomic: Eventi non separabili
+        atomic: Eventi non separabili (l'attività è fruibile solo completa e non per singoli eventi)
         bookable: Possibile iscriversi
         booking_url: Indirizzo web esterno per la prenotazione
         booking_start: Data inizio iscrizioni
