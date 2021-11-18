@@ -3,7 +3,7 @@
     <iframe class="w-full" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen src="<%= resource.embed_url %>" frameborder="0"></iframe>
   </div>
 <% else %>
-  <div class="mx-auto p-2 w-full text-gray-300">
+  <div class="mx-auto w-full text-gray-300 px-2">
     <div class="text-center w-full">
       <% if resource.document.image? %>
         <div class="text-center w-full border-2 border-pls">
@@ -16,8 +16,8 @@
         </div>
       <% end %>  
     </div>
-    <div class="text-center text-lg font-medium leading-6 tracking-wide text-gray-900">
-      <span class="text-xl mr-2"><%= resource.url.blank? ? document_icon : link_icon %></span>
+    <div class="text-left font-medium text-gray-900">
+      <span class="mr-2"><%= resource.url.blank? ? document_icon : link_icon %></span>
       <span class="underline"><%= link_to resource.name, resource.url.blank? ? url_for(resource.document) : resource.url %></span>
     </div>
     <div class="text-center text-gray-900">
