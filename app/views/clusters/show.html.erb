@@ -1,10 +1,14 @@
 <div class="container">
   <h1 class="title"><%= @cluster.name %></h1>
 
+  <% i = 1 %>  
   <% @cluster.activities.each do |activity| %>  
-    <div>
-      <%= link_to activity, activity %>  
-    </div>
+    <%= link_to activity do %>
+      <div class="hover:bg-gray-100 rounded py-2 px-2">
+        <span class="rounded-full border border-pls-strong text-pls-strong px-2"><%= i %></span> &nbsp; <%= activity %>
+      </div>
+    <% end %>
+    <% i += 1 %>  
   <% end %>
 </div>
 
