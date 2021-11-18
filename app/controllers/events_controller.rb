@@ -62,6 +62,10 @@ class EventsController < ApplicationController
 
   # Fixme booking_url only if external
   def event_params
-    params[:event].permit(:name, :description, :academic_year, :place, :google_map, :start_date, :duration, :seats, :sofia, :pcto, :bookable, :booking_url, :booking_start, :booking_end)
+    h = [:name, :description, :academic_year, :place, :google_map, :start_date, :duration, :seats, :sofia, :pcto]
+    unless @event.edition.atomic
+      h += [:bookable, :booking_url, :booking_start, :booking_end]
+    end
+    params[:event].permit(h)
   end
 end
