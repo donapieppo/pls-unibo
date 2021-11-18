@@ -15,6 +15,12 @@
   </h2>
 
   <%= render partial: 'projects/attributes', locals: { project: @edition.project } %>  
+
+  <% if c = @edition.clusters.first %>  
+    <div class="text-right">
+      <%= link_to c, c, add_class: 'badge' %>  
+    </div>
+  <% end %>
 </div>
 
 <div class="container my-4">
