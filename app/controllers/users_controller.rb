@@ -49,7 +49,8 @@ class UsersController < ApplicationController
   def forget_form
     authorize :user
     @user = current_user
-    if @user
+    if ! @user
+      redirect_to root_path
     end
   end
 
@@ -57,6 +58,7 @@ class UsersController < ApplicationController
     authorize :user
     @user = current_user
     if @user
+      @user.update(name: "#{@user.id}Name", surname: "#{user.id}Surname", email: "#{user.id}@pls_unibo.it")
     end
     redirect_to logout_path
   end
