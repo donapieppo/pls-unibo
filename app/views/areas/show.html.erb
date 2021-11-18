@@ -24,13 +24,13 @@
     <div class="my-8">
       Altre informazioni per le attività 2021/2022 per l'area <strong><%= @area %></strong> sono disponibili alla pagina <br/>
       <div class="text-center my-8">
-        <%= link_to ACCROCCHIO_VECCHIO_SITO[@area.id], ACCROCCHIO_VECCHIO_SITO[@area.id], class: 'button' %>
+        <%= link_to ACCROCCHIO_VECCHIO_SITO[@area.id], ACCROCCHIO_VECCHIO_SITO[@area.id], class: 'underline text-xl' %>
       </div>
     </div>
   <% end %>
 
   <% if policy(:project).new? %>  
-    <div class="text-right">
+    <div class="text-center my-4">
       <%= link_to 'Aggiungi nuova attività', new_project_path, class: 'button' %>
     </div>
   <% end %>
