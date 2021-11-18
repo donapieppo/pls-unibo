@@ -21,12 +21,16 @@ module ApplicationHelper
     "#{_label}: #{_txt}"
   end
 
-  def possible_label_from_array(_label, _arr, with_link: true, add_class: '', separator: ' ')
+  def possible_label_from_array(_label, _arr, with_link: true, add_class: '', separator: ' ', margins: 'my-4')
     res = ""
     _arr.each do |item|
       res += separator unless res.blank?
       if item.is_a?(Area)
-        res += link_to item, area_root(item), class: add_class
+        if with_link
+          res += link_to item, area_root(item), class: add_class
+        else
+          res += item.to_s
+        end
       elsif item.is_a?(Contact)
         res += render(item)
       elsif with_link && item.respond_to?(:email) 
@@ -38,7 +42,7 @@ module ApplicationHelper
     unless res.blank?
       res = "<strong>" + _label +  "</strong>: " + res
     end
-    content_tag :div, res.html_safe, class: 'my-4' unless res.blank?
+    content_tag :div, res.html_safe, class: margins unless res.blank?
   end
 
   def area_root(area)
