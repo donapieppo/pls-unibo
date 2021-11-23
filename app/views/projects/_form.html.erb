@@ -12,11 +12,12 @@
         <%= f.association :areas, as: :check_boxes %>  
       </div>
       <div class="md:w-1/2">
-        <%= f.association :interested_areas, as: :check_boxes %>  
+        <%= f.association :interested_areas, as: :check_boxes, hint: "Se l'attività è di interesse per altre aree oltre che per l'area organizzatrice." %>  
       </div>
     </div>
     <% if true %>  
-      <%= f.association :organization, hint: 'Opzionale. Utile solo per distinguere le due chimiche.' %>  
+      <%= f.association :organization, label: "Nel caso delle chimiche è possibile indicare il Dipartimento che organizza",
+                                       hint: '<strong>Opzionale</strong>. Utile solo per distinguere le due chimiche.'.html_safe %>  
     <% end %>
     <%= f.submit %>  
   <% end %>
