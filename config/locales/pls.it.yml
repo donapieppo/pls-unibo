@@ -98,8 +98,11 @@ it:
         affiliation: Affiliazione
         avatar: Immagine
       cluster:
+        slug: Abbreviazione
         activities: Attività
         name: Nome
+        description: Descrizione
+        max_bookable_activities: Numero massimo di attività a cui è possibile iscriversi
       resource_container:
         areas: Areee
         name: Nome
