@@ -5,7 +5,14 @@
   <% @cluster.activities.each do |activity| %>  
     <%= link_to activity do %>
       <div class="hover:bg-gray-100 rounded py-2 px-2">
-        <span class="rounded-full border border-pls-strong text-pls-strong px-2"><%= i %></span> &nbsp; <%= activity %>
+        <span class="rounded-full border border-pls-strong text-pls-strong px-2"><%= i %></span>
+        <span class="font-semibold"><%= activity %></span>
+        <% if activity.seats.to_i > 0 %>  
+          [<%= activity.seats %> posti]
+        <% end %>
+        <% activity.events.each do |event| %>  
+          (<%= l event.start_date %>)
+        <% end %>
       </div>
     <% end %>
     <% i += 1 %>  
