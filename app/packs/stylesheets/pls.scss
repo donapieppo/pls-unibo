@@ -78,3 +78,14 @@ h3 {
   }
 }
 
+.input-google-login {
+  background-color: #fff; 
+  height: 46px; 
+  width: 191px; 
+  background-image: url("../images/google/btn_google_signin_light_normal_web.png");
+}
+
+.filtered {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
