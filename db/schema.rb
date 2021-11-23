@@ -177,7 +177,10 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
   end
 
   create_table "clusters", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+    t.string "slug"
     t.string "name"
+    t.text "description"
+    t.integer "max_bookable_activities"
   end
 
   create_table "contacts", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|

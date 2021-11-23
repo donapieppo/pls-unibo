@@ -1,5 +1,6 @@
 <div class="container">
   <h1 class="title"><%= @cluster.name %></h1>
+  <div class="info my-2"><%= @cluster.description %></div>
 
   <% i = 1 %>  
   <% @cluster.activities.each do |activity| %>  

@@ -30,8 +30,7 @@ class ClustersController < ApplicationController
   end
 
   def update
-    @cluster.update(activity_ids: params[:cluster][:activity_ids],
-                    name: params[:cluster][:name])
+    @cluster.update(cluster_params)
     redirect_to clusters_path
   end
 
@@ -45,5 +44,18 @@ class ClustersController < ApplicationController
   def set_cluster_and_authorize
     @cluster = Cluster.find(params[:id])
     authorize @cluster
+  end
+
+  def cluster_params
+    #raise params[:cluster].inspect
+    if params[:cluster][:limited_activities_checkbox]
+      params[:cluster].delete(:limited_activities_checkbox)
+      if params[:cluster][:max_bookable_activities].to_i < 1
+        params[:cluster][:max_bookable_activities] = nil
+      end
+    else
+      params[:cluster][:max_bookable_activities] = nil
+    end
+    params[:cluster].permit(:slug, :name, :description, :max_bookable_activities, activity_ids: [])
   end
 end
