@@ -10,13 +10,13 @@
     <%= f.input :start_date, minute_step: 10 %>
     <%= f.input :duration %>
 
-    <%= f.input :seats %>
-    <div class="my-2">
-      <%= f.input :sofia %>
-      <%= f.input :pcto %>
-    </div>
-
     <% unless @edition && @edition.atomic %>  
+      <%= f.input :seats %>
+      <div class="my-2">
+        <%= f.input :sofia %>
+        <%= f.input :pcto %>
+      </div>
+
       <%= f.input :bookable, collection: [['no', 'no'], ['si', 'yes'], ['da confermare', 'to_confirm'], ['esterne', 'external']], include_blank: false %>
       <div id="booking_url">
         <%= f.input :booking_url %>
