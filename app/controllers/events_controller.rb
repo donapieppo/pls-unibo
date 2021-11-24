@@ -39,6 +39,7 @@ class EventsController < ApplicationController
   end
 
   def update
+    @edition = @event.edition
     if @event.update(event_params)
       redirect_to [:edit, @event], notice: 'OK'
     else
@@ -63,7 +64,7 @@ class EventsController < ApplicationController
   # Fixme booking_url only if external
   def event_params
     h = [:name, :description, :academic_year, :place, :google_map, :start_date, :duration, :seats, :sofia, :pcto]
-    unless @event && @event.edition.atomic
+    unless @editon && @edition.atomic
       h += [:bookable, :booking_url, :booking_start, :booking_end]
     end
     params[:event].permit(h)
