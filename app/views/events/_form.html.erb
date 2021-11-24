@@ -16,7 +16,7 @@
       <%= f.input :pcto %>
     </div>
 
-    <% unless @edition.atomic %>  
+    <% unless @edition && @edition.atomic %>  
       <%= f.input :bookable, collection: [['no', 'no'], ['si', 'yes'], ['da confermare', 'to_confirm'], ['esterne', 'external']], include_blank: false %>
       <div id="booking_url">
         <%= f.input :booking_url %>
