@@ -3,7 +3,7 @@
   <div class="border-l-4 border-pls my-2 p-4 "><%= simple_format @cluster.description %></div>
 
   <% i = 1 %>  
-  <% @cluster.activities.each do |activity| %>  
+  <% @cluster.activities.order(:name).each do |activity| %>  
     <%= link_to activity do %>
       <div class="hover:bg-gray-100 rounded py-2 px-2">
         <span class="rounded-full border border-pls-strong text-pls-strong px-2"><%= i %></span>
