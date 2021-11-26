@@ -61,6 +61,12 @@
   left: 0;
 }
 
+.menu-items {
+  a.menu-items-item {
+    @apply block uppercase text-pls border-b border-pls p-1 md:p-2 px-4 font-bold hover:bg-pls hover:text-white;
+  }
+}
+
 
 // Thanx to 
 // https://dev.to/devggaurav/let-s-build-a-responsive-navbar-and-hamburger-menu-using-html-css-and-javascript-4gci
