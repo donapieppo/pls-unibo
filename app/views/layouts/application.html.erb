@@ -12,23 +12,24 @@
   </head>
 
   <body>
-    <div style="position: fixed; top: 24px; z-index: -1000; opacity: 0.35; width: 150%" >
+    <div style="position: fixed; top: 80px; z-index: -1000; opacity: 0.50" >
       <%= image_pack_tag 'media/images/Logo_PLS_bg.png' %>  
     </div>
 
-    <div>
-      <%= render partial: 'layouts/menu' %>  
-      <%= render partial: 'layouts/modal' %>  
-    </div>
+    <div class="flex flex-col justify-between min-h-screen">
+      <div class="flex-none">
+        <%= render partial: 'layouts/menu' %>  
+        <%= render partial: 'layouts/modal' %>  
+      </div>
 
-    <div class="flex flex-col justify-between h-screen">
-
-      <div class="flex-grow">
+      <div class="min-h-screen">
         <%= render FlashMessagesComponent.new(flash: flash) %>
         <%= yield %>
       </div>
 
-      <%= render partial: 'layouts/footer' %>  
+      <div class="flex-none">
+        <%= render partial: 'layouts/footer' %>  
+      </div>
     </div>
   </body>
 </html>
