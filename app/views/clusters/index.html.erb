@@ -1,11 +1,13 @@
 <div class="container">
   <h1 class="title">Raggruppamenti</h1>
 
-  <% @clusters.each do |ac| %>  
-    <div class="text-lg my-2"><%= link_to ac, ac %> <%= link_to_edit_if_editable ac %>  <%= link_to_delete cluster_path(ac) %></div>
-  <% end %>
+  <div class="mt-16">
+    <% @clusters.each do |ac| %>  
+      <div class="text-lg my-2"><%= link_to ac, ac %> <%= link_to_edit_if_editable ac %>  <%= link_to_delete cluster_path(ac) %></div>
+    <% end %>
+  </div>
 
-  <div class="my-4">
+  <div class="mt-16">
     <%= link_to 'Nuovo raggruppamento di attività' , new_cluster_path, class: 'button' %>  
   </div>
 </div>
