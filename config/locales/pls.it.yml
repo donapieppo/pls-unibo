@@ -38,6 +38,7 @@ it:
         global: Attività comune a tutte le aree
         organization: Dipartimento che organizza
       edition:
+        hidden: Nascondi l'attività
         name: Nome
         description: Descrizione
         audience: Rivolto a 
@@ -47,6 +48,8 @@ it:
         sofia: SOFIA
         pcto: PCTO
         atomic: Eventi non separabili (l'attività è fruibile solo completa e non per singoli eventi)
+        in_presence: Si può partecipare in presenza
+        online: Si può partecipare on-line
         bookable: Possibile iscriversi
         booking_url: Indirizzo web esterno per la prenotazione
         booking_start: Data inizio iscrizioni
@@ -60,6 +63,8 @@ it:
         seats: Posti disponibili
         sofia: SOFIA
         pcto: PCTO
+        in_presence: Si può partecipare in presenza
+        online: Si può partecipare on-line
         bookable: Possibile iscriversi
         booking_url: Indirizzo web esterno per la prenotazione
         booking_start: Data inizio iscrizioni
