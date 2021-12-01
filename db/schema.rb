@@ -66,12 +66,14 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.integer "duration", limit: 2, unsigned: true
     t.boolean "sofia"
     t.boolean "pcto"
+    t.boolean "in_presence"
+    t.boolean "online"
     t.column "bookable", "enum('no','yes','to_confirm','external')"
     t.text "booking_url"
     t.datetime "booking_end"
     t.datetime "booking_start"
     t.boolean "atomic"
-    t.boolean "visible", default: false
+    t.boolean "hidden"
   end
 
   create_table "activities_areas", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
