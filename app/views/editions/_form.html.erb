@@ -1,5 +1,6 @@
 <div class="p-2">
   <%= simple_form_for [@project, @edition] do |f| %>  
+    <%= f.input :hidden, as: :boolean %>  
     <%= f.input :academic_year, collection: (2016...2022).to_a.reverse, include_blank: false %>
     <%= f.input :name %>  
     <%= f.input :description, input_html: { cols: 80, rows: 5 } %>
@@ -14,6 +15,8 @@
     </div>
 
     <%= f.input :atomic %>
+    <%= f.input :in_presence %>
+    <%= f.input :online %>
     <%= f.input :bookable, collection: [['no', 'no'], ['si', 'yes'], ['da confermare', 'to_confirm'], ['esterne', 'external']], include_blank: false %>
     <div id="booking_url">
       <%= f.input :booking_url, hint: "In caso di sofia https://sofia.istruzione.it/"  %>
