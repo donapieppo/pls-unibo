@@ -7,10 +7,10 @@ class Activity < ApplicationRecord
 
   validates :name, presence: true, allow_blank: false
 
-  scope :bookable_now, -> { where('activities.booking_start is not null and activities.booking_end is not null and activities.booking_start < NOW() and NOW() < activities.booking_end') }
+  scope :bookable_now, -> { where('activities.booking_start is not null and activities.booking_end is not null and activities.booking_start <= NOW() and NOW() <= activities.booking_end') }
 
   scope :clusterable, -> (year) { where(academic_year: year).order(:name) }
-  scope :visible, -> { where('activities.visible = 1') }
+  scope :visible, -> { where.not('activities.hidden = 1') }
 
   def check_children
     if Activity.where(parent_id: self.id).count > 0 
@@ -26,9 +26,15 @@ class Activity < ApplicationRecord
     self.bookable && self.bookable == 'to_confirm'
   end
 
-  def bookable_now?
+  def now_in_bookable_interval?
     now = Time.now
-    self.bookable? && self.booking_start && self.booking_end && self.booking_start < now && now < self.booking_end
+    self.booking_start && self.booking_end && self.booking_start < now && now < self.booking_end
+  end
+
+  # FIXME 
+  # unite with scope :bookable_now
+  def bookable_now?
+    self.bookable? && self.now_in_bookable_interval? && free_seats > 0
   end
 
   def booked_by?(user)
@@ -40,14 +46,15 @@ class Activity < ApplicationRecord
   end
 
   def free_seats
-    if self.seats.to_i > 0
-      self.seats - self.bookings.sum(:seats)
-    end
+    @free_seats_cache ||= (self.seats.to_i > 0) ? (self.seats - self.bookings.sum(:seats)) : 0
+  end
+
+  def cluster_siblings_booked_activity_ids(user)
+    user.bookings.map(&:activity_id) & self.clusters.map(&:activity_ids).flatten
   end
 
   def any_cluster_siblings_booked?(user)
-    (user.bookings.map(&:activity_id) & self.clusters.map(&:activity_ids).flatten).any?
-
+    cluster_siblings_booked_activity_ids(user).any?
     #self.cluster_siblings.each do |a|
     #  return false if e.booked_by?(user)
     #end

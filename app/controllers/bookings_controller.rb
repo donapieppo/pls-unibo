@@ -17,10 +17,8 @@ class BookingsController < ApplicationController
   end
 
   def new
+    @free_seats = @activity.free_seats
     @booking = @activity.bookings.new
-    if @activity.seats.to_i > 0
-      @free_seats = @activity.seats - @activity.bookings.count
-    end
     authorize @booking
   end
 
