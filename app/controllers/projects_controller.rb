@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
       @projects = @projects.where(id: Edition.bookable_project_ids)
     end
     unless current_user && current_user.staff?
-      @projects = @projects.where('activities.global = 1 or activities.visible = 1')
+      @projects = @projects.where('activities.global = 1 or activities.hidden != 1')
     end
   end
 
