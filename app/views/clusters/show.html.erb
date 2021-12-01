@@ -1,19 +1,25 @@
 <div class="container">
   <h1 class="title"><%= @cluster.name %></h1>
-  <div class="border-l-4 border-pls my-2 p-4 "><%= simple_format @cluster.description %></div>
+  <div class="border-l-4 border-pls my-2 p-4 ">
+    <%= simple_format @cluster.description %>
+  </div>
 
   <% i = 1 %>  
   <% @cluster.activities.order(:name).each do |activity| %>  
     <%= link_to activity do %>
-      <div class="hover:bg-gray-100 rounded py-2 px-2">
-        <span class="rounded-full border border-pls-strong text-pls-strong px-2"><%= i %></span>
-        <span class="font-semibold"><%= activity %></span>
-        <% if activity.seats.to_i > 0 %>  
-          [<%= activity.seats %> posti]
-        <% end %>
-        <% activity.events.each do |event| %>  
-          (<%= l event.start_date %>)
-        <% end %>
+      <div class="flex hover:bg-gray-50 rounded-xl py-2 px-2">
+        <div class="w-16 text-xl text-center font-bold text-pls-strong px-2">
+          <%= i %>
+        </div>
+        <div class="flex-grow">
+          <span class="font-semibold"><%= activity %></span>
+          <% if activity.seats.to_i > 0 %>  
+            [<%= activity.seats %> posti]
+          <% end %><br/>
+          <% activity.events.each do |event| %>  
+            <span class="text-gray-900 pr-4"><%= l event.start_date %></span>
+          <% end %>
+        </div>
       </div>
     <% end %>
     <% i += 1 %>  
