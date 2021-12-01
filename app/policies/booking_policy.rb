@@ -7,12 +7,13 @@ class BookingPolicy < ApplicationPolicy
     return false unless @record.activity.bookable_now?
 
     if @user
-      ! @record.activity.any_cluster_siblings_booked?(@user)
+      @user.teacher? || ! @record.activity.any_cluster_siblings_booked?(@user)
     else
       false
     end
   end
 
+  # teachers can add students
   def new_user?
     @user && @user.confirmed_teacher?
   end
