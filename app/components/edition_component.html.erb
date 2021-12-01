@@ -26,13 +26,13 @@
       </div>
 
       <% if @short %>  
-        <%= render BookingComponent.new(what: @edition, user: helpers.current_user, short: true) %>
+        <%= render BookingComponent.new(@edition.bookings.new, helpers.current_user, short: true) %>
       <% else %>  
         <div class="my-4 text-gray-700">
           <%= @edition.details %>  
         </div>
         <div class="my-4">
-          <%= render BookingComponent.new(what: @edition, user: helpers.current_user) %>
+          <%= render BookingComponent.new(@edition.bookings.new, helpers.current_user) %>
         </div>
       <% end %>
     </div>
