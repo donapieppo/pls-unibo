@@ -23,12 +23,15 @@ class Booking < ApplicationRecord
   scope :in_presence, -> { where(online: false) }
   scope :online, -> { where(online: true) }
 
-  before_create :copy_params_from_user,
-                :confirm_if_activity_not_to_confirm
+  before_validation :copy_params_from_user,
+                    :confirm_if_activity_not_to_confirm
   after_create :create_nonce
 
   def copy_params_from_user
-    if u = self.user
+    # if self.user_id && ! self.user
+    #   self.user = User.find(self.user_id)
+    # end
+    if u = self.user 
       self.email = u.email
       self.name = u.name
       self.surname = u.surname

@@ -1,39 +1,47 @@
 <% if @general_bookable %>  
-  <div class="my-4 font-bold text-green-900">
+  <div class="my-4 font-bold text-green-700">
     Iscrizioni aperte dal <%= l @what.booking_start, format: :day_with_year %> al <%= l @what.booking_end, format: :day_with_year %>
   </div>
 
-  <% if @bookable %>  
-    <%= link_to 'ISCRIVITI', [:anew, @what, :bookings], class: 'button' %> 
+  <% unless @user %>  
+    <div class="italic">
+      Per iscriversi occorre essere loggati. <%= link_to 'Accedi', login_path(for: @what.id), class: 'underline' %>.<br/>
+    </div>
+    <div class="text-yellow-500">
+      Nel caso ci si volesse iscrivere senza utilizzare un account è possibile scrivere una mail all'indirizzo
+      <%= mail_to 'dipmat-supportoweb@unibo.it' %> specificando nome, cognome, scuola e l'attivitá a cui ci si vuole
+      iscrivere.
+    </div>
   <% end %>
-
-  <%# <% unless @user %1> %>  
-  <%#   <div class="italic"> %>
-  <%#     Per iscriversi occorre essere loggati. <%= link_to 'Accedi', login_path(for: @what.id), class: 'underline' %1>.<br/> %>
-  <%#   </div> %>
-  <%#   <div class="text-yellow-500"> %>
-  <%#     Nel caso ci si volesse iscrivere senza utilizzare un account è possibile scrivere una mail all'indirizzo %>
-  <%#     <%= mail_to 'dipmat-supportoweb@unibo.it' %1> specificando nome, cognome, scuola e l'attivitá a cui ci si vuole %>
-  <%#     iscrivere. %>
-  <%#   </div> %>
-  <%# <% end %1> %>
 <% end %>
 
 <% if @user_booking %>
-  <div class="text-2xl text-green-500 font-bold my-4">
+  <!-- manage booking -->
+  <div class="text-xl text-green-700 font-bold my-4">
     <%= exclamation_icon %> 
-    <%= @user_booking.confirmed ? 'Hai fatto richiesta di iscrizione per' : 'Sei prenotato a' %> questa edizione con
-    codice &ldquo;<%= @user_booking.nonce %>&rdquo;.
+    <%= @user_booking.confirmed ? 'Hai fatto richiesta di iscrizione per' : 'Sei prenotato a' %>
+    questa edizione con codice &ldquo;<%= @user_booking.nonce %>&rdquo;.
+    <% if @user_booking.online %>  
+      <br/><small>Hai fatto richiesta per partecipare on line.</small>
+    <% end %>
   </div>
-<% end %>
 
-<div class="actions">
-  <% if ! @short && helpers.policy(@what).book? %>  
-    <% if @user_booking %>  
-      <div class="my-4">
-        <%= link_to "Cancella l'iscrizione", booking_path(@user_booking), method: :delete, class: 'button-danger' %>  
-      </div>
-    <% else %>
+  <div class="my-4">
+    <%= link_to "Cancella l'iscrizione", booking_path(@user_booking), method: :delete, class: 'button-danger' %>  
+  </div>
+<% elsif @user_sibling_booking_activity %>
+  <div class="text-xl text-green-700 font-bold my-4">  
+    Sei iscritto all'attività 
+    &ldquo;<span class="underline"><%= link_to @user_sibling_booking_activity, @user_sibling_booking_activity %>&rdquo;</span>
+    dello stesso gruppo. 
+  </div>
+<% elsif @what.seats.to_i > 0 && @free_seats < 1 %>
+  <div class="text-2xl text-red-500 font-bold my-4">  
+    Non sono più disponibili posti.
+  </div>
+<% else %>
+  <div class="actions">
+    <% if @bookable %>  
       <div class="bg-pls-light p-4 border-l-4 border-pls">
         <% if @what.booking_to_confirm? %>  
           <div>
@@ -51,11 +59,11 @@
         </div>
       </div>
     <% end %>
-    <% if @user.teacher? %> 
-      <div class="my-4">
-        <%= link_to "Prenota i tuoi studenti", [:new, @what, :booking], class: 'button' %>
-      </div>
-    <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>
 
+<% if @user.teacher? && @bookable %> 
+  <div class="my-4">
+    <%= link_to "Prenota i tuoi studenti", [:new, @what, :booking], class: 'button' %>
+  </div>
+<% end %>

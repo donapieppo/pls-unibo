@@ -3,52 +3,60 @@
 
   <div class="my-8">
     <h2 class="text-center"><%= @activity %></h2>
-    <h3><%= @free_seats ? "#{@free_seats} posti disponibili" : "" %>  </h3>
+  </div>
+  <div>
+    <span class="bg-pls-light p-2 px-4 rounded-2xl"><%= @free_seats ? "#{@free_seats} posti disponibili" : "" %></span>
   </div>
 
   <% txt_action = @activity.booking_to_confirm? ? ' Prenotami' : ' Iscrivimi' %>  
 
   <% if current_user %>
-    <div class="my-8 text-center">
+    <div class="my-8">
       <% if @activity.booked_by?(current_user) %>  
-        <div class="info"> Sei registrato a questa attività.</div>
+        <div class="info">Sei registrato a questa attività.</div>
       <% else %>
-        <%= link_to txt_action, [@activity, :bookings], method: :post, class: 'button text-2xl' %>  
+        <%= simple_form_for [@activity, @booking] do |f| %>  
+          <%= f.error_notification %>
+          <%= f.input :online %>
+          <%= f.input :notes %>  
+          <%= f.submit txt_action %>  
+        <% end %>
       <% end %>
     </div>
   <% else %>
     <div class="py-8 my-8 text-center">
-      <p>Per iscriverti ti consigliamo di accedere con le credenziali di Google.</p>
+      <p>Per iscriverti è necessario accedere con le credenziali di Google.</p>
       <%= link_to 'ACCEDI', login_path, class: 'my-8 big-button inline-block' %>
     </div>
 
     <div class="my-8 max-w-2xl mx-auto">
-      <p>Altrimenti puoi iscriverti a questa attività inserendo i dati in questo form.</p>
-      <p>Così facendo però non potrai....</p>
-      <%= simple_form_for [@activity, @booking] do |f| %>  
-        <%= f.input :email %>
-        <%= render partial: 'users/common_to_booking', locals: { f: f } %>  
-        <%= f.submit txt_action %>  
-      <% end %>
-    </div>
-  <% end %>
+      <p>Altrimenti puoi iscriverti a questa attività scrivedo una mail a ...</p>
+      <%# <p>inserendo i dati in questo form.</p> %>
+      <%# <p>Così facendo però non potrai....</p> %>
+      <%# <%= simple_form_for [@activity, @booking] do |f| %1> %>  
+      <%#   <%= f.input :email %1> %>
+      <%#   <%= render partial: 'users/common_to_booking', locals: { f: f } %1> %>  
+      <%#   <%= f.submit txt_action %1> %>  
+      <%# <% end %1> %>
+  </div>
+<% end %>
 
-  <% if policy(:booking).new_user? %>  
-    <%= render partial: 'students_list' %>  
+<% if policy(:booking).new_user? %>  
+  <%= render partial: 'students_list' %>  
 
-    <hr class="my-4"/>
-    Sei registrato come docente.<br/>
-    Puoi iscrivere i tuoi studenti fornendo nome, cognome e email dello studente.
-    <%= form_with url: [:new_user, @activity, :bookings] do |f| %>  
-      <%= f.label :name, 'Nome' %>
-      <%= f.text_field :name %><br/>  
-      <%= f.label :surname, 'Cognome' %>
-      <%= f.text_field :surname %><br/>
-      <%= f.label :email %>
-      <%= f.text_field :email %><br/>
-      <%= f.label :notes, 'Note facoltative' %>
-      <%= f.text_field :notes %><br/>
-      <%= f.submit "Iscrivi lo studente" %>  
-    <% end %>
+  <hr class="my-4"/>
+  Sei registrato come docente.<br/>
+  Puoi iscrivere i tuoi studenti fornendo nome, cognome e email dello studente.
+  <%= form_with url: [:new_user, @activity, :bookings] do |f| %>  
+    <%= f.label :name, 'Nome' %>
+    <%= f.text_field :name %><br/>  
+    <%= f.label :surname, 'Cognome' %>
+    <%= f.text_field :surname %><br/>
+    <%= f.label :email %>
+    <%= f.text_field :email %><br/>
+    <%= f.label :notes, 'Note facoltative' %>
+    <%= f.text_field :notes %><br/>
+    <%= f.submit "Iscrivi lo studente" %>  
   <% end %>
+<% end %>
 </div>
