@@ -29,6 +29,7 @@ it:
         head: Responsabile
         contact: Contatto
       project:
+        hidden: Nascondi l'attività
         name: Nome
         description: Descrizione
         date: Organizzatori
@@ -38,7 +39,7 @@ it:
         global: Attività comune a tutte le aree
         organization: Dipartimento che organizza
       edition:
-        hidden: Nascondi l'attività
+        hidden: Nascondi l'edizione
         name: Nome
         description: Descrizione
         audience: Rivolto a 
