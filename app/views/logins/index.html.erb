@@ -4,30 +4,36 @@
 
     <div class="my-8">
       Puoi usare il tuo account Google o Unibo per <br/>
-      accedere alle pagine del PLS Unibo <br/>e iscriverti alle attività.
+      accedere alle pagine del PLS Unibo <br/>
+      e iscriverti alle attività.
     </div>
 
     <div class="text-center">
       <%= form_tag(google_login_url, method: 'post') do %>
         <input type="submit" value="" class="input-google-login" />
       <% end %>
-      <div class="text-gray-500">
-        Sono account Google validi anche gli account scolastici che usano <br/>Google Classroom.<br/>
+      <div class="text-gray-500 px-2 mb-2">
+        Sono account Google validi anche <br/>
+        gli account scolastici che usano <br/> 
+        Google Classroom.
       </div>
 
       <%= form_tag(shibboleth_login_url, method: 'post') do %>
         <input type="submit" value="Accedi in Unibo" />
       <% end %>
-      <div class="text-gray-500">
-        Sono account Unibo validi sia gli account <i>@unibo</i> 
-        che gli account <i>@studio.unibo</i>.
+      <div class="text-gray-500 px-2">
+        Sono account Unibo validi sia gli account <br/>
+        <i>@unibo</i> <br/>
+        che gli account <br/>
+        <i>@studio.unibo</i>.
       </div>
     </div>
 
-    <hr/>
+    <hr class="my-2"/>
 
     <p class="info my-4 text-muted">
-      Continuando, accetti i Termini di servizio del piano PLS e dichiari di aver letto le nostre <%= link_to 'Norme sulla privacy', privacy_path %>
+    Continuando, accetti i Termini di servizio del piano PLS e dichiari 
+    di aver letto le nostre <%= link_to 'Norme sulla privacy', privacy_path, class: 'underline' %>
     </p>
 
 
