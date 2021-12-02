@@ -1,5 +1,6 @@
 <div class="m-6">
   <%= simple_form_for [@edition, @event] do |f| %>
+    <%= f.input :hidden %>  
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
