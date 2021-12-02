@@ -19,7 +19,10 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @editions = @project.editions.order('academic_year desc, name').with_rich_text_details.all
+    @editions = @project.editions.order('academic_year desc, name').with_rich_text_details
+    unless current_user && current_user.staff?
+      @editions = @editions.visible
+    end
   end
 
   def new
@@ -64,6 +67,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params[:project].permit(:name, :description, :details, :audience_id, :parent_id, :organization_id, :global, interested_area_ids: [], area_ids: [])
+    params[:project].permit(:hidden, :name, :description, :details, :audience_id, :parent_id, :organization_id, :global, interested_area_ids: [], area_ids: [])
   end
 end
