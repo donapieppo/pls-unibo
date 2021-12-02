@@ -4,10 +4,6 @@ class BookingComponent < ViewComponent::Base
   def initialize(booking, user, short: false)
     @booking = booking
     @what = @booking.activity
-    if @what.over?
-      render plain: ""
-      return
-    end
 
     @general_bookable = @what.bookable? && @what.booking_start && @what.booking_end
     @bookable = BookingPolicy.new(user, @booking).create?
@@ -17,5 +13,9 @@ class BookingComponent < ViewComponent::Base
     @user_booking = @user ? @what.bookings.where(user_id: @user.id).first : nil
     @user_sibling_booking_activity_id = @user ? @what.cluster_siblings_booked_activity_ids(@user).first : nil
     @user_sibling_booking_activity = Activity.find(@user_sibling_booking_activity_id) if @user_sibling_booking_activity_id
+  end
+
+  def render?
+    ! @what.over?
   end
 end
