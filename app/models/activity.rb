@@ -64,4 +64,8 @@ class Activity < ApplicationRecord
   def self.approximate_count
     @@approximate_count ||= Activity.count.round(-1)
   end
+
+  def visible?
+    ! self.hidden
+  end
 end
