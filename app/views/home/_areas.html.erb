@@ -1,4 +1,4 @@
-<div id="areas" class="md:flex md:flex-wrap md:px-16 min-h-screen">
+<div id="areas" class="md:flex md:flex-wrap md:px-16">
   <% areas.each do |area| %>  
     <% if (! current_user) && [1,2,3,4,5,7,9].include?(area.id) %>  
       <% url = ACCROCCHIO_VECCHIO_SITO[area.id] %>  
