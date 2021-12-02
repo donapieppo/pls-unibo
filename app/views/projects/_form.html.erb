@@ -1,5 +1,6 @@
 <div class="p-2">
   <%= simple_form_for @project do |f| %>  
+    <%= f.input :hidden %>  
     <%= f.input :name %>  
     <%= f.input :description, input_html: { cols: 80, rows: 5 } %>
     <%= f.rich_text_area :details %>
