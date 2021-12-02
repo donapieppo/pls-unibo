@@ -6,6 +6,9 @@ class EventsController < ApplicationController
   def index
     authorize :event
     @events = Event.order(:name)
+    unless current_user && current_user.staff?
+      @events = @events.where('activities.hidden != 1')
+    end
   end
 
   def show
@@ -63,7 +66,7 @@ class EventsController < ApplicationController
 
   # Fixme booking_url only if external
   def event_params
-    h = [:name, :description, :academic_year, :place, :google_map, :start_date, :duration]
+    h = [:hidden, :name, :description, :academic_year, :place, :google_map, :start_date, :duration]
     unless @editon && @edition.atomic
       h += [:seats, :sofia, :pcto, :bookable, :booking_url, :booking_start, :booking_end]
     end
