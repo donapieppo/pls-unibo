@@ -62,7 +62,7 @@
   </div>
 <% end %>
 
-<% if @user.teacher? && @bookable %> 
+<% if @user && @user.teacher? && @bookable %> 
   <div class="my-4">
     <%= link_to "Prenota i tuoi studenti", [:new, @what, :booking], class: 'button' %>
   </div>
