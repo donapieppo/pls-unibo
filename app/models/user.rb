@@ -45,7 +45,7 @@ class User < ApplicationRecord
   end
 
   def google_account?
-    self.email =~ /\A\w+@gmail.com\z/
+    self.email =~ /\A.+@gmail.com\z/
   end
 
   def master_of_universe?
