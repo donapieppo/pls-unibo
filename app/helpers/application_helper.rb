@@ -5,6 +5,8 @@ module ApplicationHelper
   end
 
   def current_user
+    # session[:user_id] = User.where("name > 's'").first.id
+    # session[:user_id] = User.last.id
     if session[:user_id]
       @current_user ||= User.find(session[:user_id])
     else
