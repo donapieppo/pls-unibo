@@ -7,8 +7,8 @@
   dei soggetti che possono essere destinatari dei tuoi dati e tutti i contatti utili per esercitare i diritti che la legge ti riconosce.</p>
   <% if current_user.google_account? %>  
     <p class="my-2">Questo sito utilizza i tuoi dati solo per permettere il login (cookie di google) e invia mail solo per segnalazioni relative agli eventi a cui siete iscritti.</p>
-    <p class="info">In qualsiasi momento è possibile richiedere la <strong>cancellazione dei propri dati</strong> 
-    (nome, cognome, email google, scuola) attraverso <%= link_to "questo form", forget_form_users_path, class: 'underline' %>.
+    <p class="info">In qualsiasi momento è possibile richiedere la <strong class="text-red-600">cancellazione dei propri dati</strong> 
+    (nome, cognome, email google, scuola) visitando <%= link_to "questa pagina", forget_form_users_path, class: 'underline' %>.
     </p>
   <% end %>
 </div>
