@@ -17,7 +17,9 @@
       <% else %>
         <%= simple_form_for [@activity, @booking] do |f| %>  
           <%= f.error_notification %>
-          <%= f.input :online %>
+          <% if @activity.on_and_off_line? %>  
+            <%= f.input :online %>
+          <% end %>
           <%= f.input :notes %>  
           <%= f.submit txt_action %>  
         <% end %>
