@@ -68,4 +68,8 @@ class Activity < ApplicationRecord
   def visible?
     ! self.hidden
   end
+
+  def on_and_off_line?
+    self.online && self.in_presence
+  end
 end
