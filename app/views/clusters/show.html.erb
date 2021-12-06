@@ -16,6 +16,9 @@
           <% if activity.seats.to_i > 0 %>  
             [<%= activity.seats %> posti]
           <% end %><br/>
+          <div>
+            <%= activity.description %>  
+          </div>
           <% activity.events.each do |event| %>  
             <span class="text-gray-900 pr-4"><%= l event.start_date %></span>
           <% end %>
