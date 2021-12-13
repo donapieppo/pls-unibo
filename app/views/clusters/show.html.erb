@@ -7,7 +7,7 @@
   <% i = 1 %>  
   <% @cluster.activities.order(:name).each do |activity| %>  
     <%= link_to activity do %>
-      <div class="flex hover:bg-gray-50 rounded-xl py-2 px-2">
+      <div class="flex hover:bg-gray-200 rounded-xl py-2 px-2">
         <div class="w-16 text-xl text-center font-bold text-pls-strong px-2">
           <%= i %>
         </div>
@@ -15,13 +15,25 @@
           <span class="font-semibold"><%= activity %></span>
           <% if activity.seats.to_i > 0 %>  
             [<%= activity.seats %> posti]
-          <% end %><br/>
+          <% end %>
+
           <div>
             <%= activity.description %>  
           </div>
-          <% activity.events.each do |event| %>  
-            <span class="text-gray-900 pr-4"><%= l event.start_date %></span>
-          <% end %>
+
+          <div>
+            <i class="fas fa-chalkboard-teacher fa-fw mr-2"></i>
+            <% activity.speakers.each do |speaker| %>  
+              <span class="text-gray-900 pr-4"><%= speaker %></span>
+            <% end %>
+          </div>
+
+          <div>
+            <i class="far fa-calendar fa-fw mr-2"></i>
+            <% activity.events.each do |event| %>  
+              <span class="text-gray-900 pr-4"><%= l event.start_date %></span>
+            <% end %>
+          </div>
         </div>
       </div>
     <% end %>
