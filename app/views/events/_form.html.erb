@@ -33,6 +33,8 @@
 </div>
 
 <%= javascript_tag do %>  
-  display_unless('no', document.getElementById('booking_dates'), document.getElementById('event_bookable'));
-  display_if('external', document.getElementById('booking_url'), document.getElementById('event_bookable'));
+  document.addEventListener('DOMContentLoaded', (event) => {
+    display_unless('no', document.getElementById('booking_dates'), document.getElementById('event_bookable'));
+    display_if('external', document.getElementById('booking_url'), document.getElementById('event_bookable'));
+  });
 <% end %>
