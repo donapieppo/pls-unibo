@@ -42,13 +42,17 @@ module ApplicationHelper
       end
     end
     unless res.blank?
-      res = "<strong>" + _label +  "</strong>: " + res
+      res = "<span class='text-gray-700'>" + _label +  "</span>: " + res
     end
     content_tag :div, res.html_safe, class: margins unless res.blank?
   end
 
   def area_root(area)
     "/#{area.slug}"
+  end
+
+  def sofia_link(a)
+    a.sofia ? link_to('iscrizioni disponibili su S.O.F.I.A.', SOFIA_LINK) : ''
   end
 end
 
