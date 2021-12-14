@@ -62,4 +62,8 @@ module IconHelper
   def calendar_icon
     '<i class="far fa-calendar"></i>'.html_safe
   end
+
+  def clock_icon
+    '<i class="far fa-clock"></i>'.html_safe
+  end
 end
