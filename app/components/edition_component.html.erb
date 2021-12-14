@@ -11,7 +11,21 @@
     <% end %>
 
     <div class="my-2 text-lg text-pls font-semibold">
-      <%= @edition.audience %>
+      <div><i class="fas fa-users fa-fw mr-2"></i><%= @edition.audience %></div>
+      <% if @edition.online %>  
+        <div><i class="fas fa-network-wired fa-fw mr-2"></i>Fruibile online</div>
+      <% end %>
+      <% if @edition.in_presence %>  
+        <div><i class="fas fa-chair fa-fw mr-2"></i>Fruibile in presenza</div>
+      <% end %>
+      <div>
+        <% if @edition.sofia %>  
+          <i class="far fa-star fa-fw mr-2"></i>SOFIA
+        <% end %>
+        <% if @edition.pcto %>  
+          <i class="far fa-star fa-fw mr-2"></i>PCTO
+        <% end %>
+      </div>
     </div>
 
     <div class="my-8">
