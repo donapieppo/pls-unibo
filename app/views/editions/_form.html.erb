@@ -19,7 +19,7 @@
     <%= f.input :online %>
     <%= f.input :bookable, collection: [['no', 'no'], ['si', 'yes'], ['da confermare', 'to_confirm'], ['esterne', 'external']], include_blank: false %>
     <div id="booking_url">
-      <%= f.input :booking_url, hint: "In caso di sofia https://sofia.istruzione.it/"  %>
+      <%= f.input :booking_url, hint: "In caso di sofia #{SOFIA_LINK}" %>
     </div>
     <div id="booking_dates">
       <%= f.input :booking_start, minute_step: 10 %>
