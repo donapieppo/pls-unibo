@@ -16,6 +16,7 @@ class Booking < ApplicationRecord
 
   validates :user_id, uniqueness: { scope: [:activity_id], message: "Prenotazione già presente." }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Formato della mail non corretto" }
+  validates :teacher_email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Formato della mail del docente non corretto" }
   validates :name, :surname, presence: { allow_blank: false }
   validates_with BookingSeatsValidator 
 
@@ -39,6 +40,8 @@ class Booking < ApplicationRecord
       self.school_type = u.school_type
       self.school = u.school
       self.other_string = u.other_string
+      self.school_pec = u.school_pec
+      self.school_city = u.school_city
     end
   end
 
@@ -62,6 +65,19 @@ class Booking < ApplicationRecord
         csv << [b.seats, b.user.cn_militar, b.online ? 'online' : '', b.role, b.school, b.user.email]
       end
     end
+  end
+
+  def missing_user_data?
+    user = self.user
+    if user.role.blank? || user.name.blank? || user.surname.blank?
+      return true
+    end
+    if user.student?
+      if user.school_id.blank? || user.school_city.blank? || user.school_pec.blank?
+        return true
+      end
+    end
+    false
   end
 
   private 
