@@ -11,7 +11,7 @@
     <div class="py-1"><i class="far fa-clock fa-fw mr-2"></i><%= l @event.start_date, format: :hour %></div>
     <div class="py-1">
       <% if @event.sofia %>  
-        <i class="far fa-star fa-fw mr-2"></i>SOFIA
+        <i class="far fa-star fa-fw mr-2"></i><%= helpers.sofia_link %>
       <% end %>
       <% if @event.pcto %>  
         <i class="far fa-star fa-fw mr-2"></i>PCTO
