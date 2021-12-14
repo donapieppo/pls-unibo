@@ -32,10 +32,15 @@ class User < ApplicationRecord
     self.staff
   end
 
+  def student?
+    self.role && self.role == 'student'
+  end
+
   def teacher?
     self.role && self.role == 'teacher'
   end
 
+  # FIXME TODO
   def confirmed_teacher?
     self.role && self.role == 'teacher'
   end
