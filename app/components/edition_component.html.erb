@@ -20,8 +20,8 @@
       <% end %>
       <div>
         <% if @edition.sofia %>  
-          <i class="far fa-star fa-fw mr-2"></i>SOFIA
-        <% end %>
+          <i class="far fa-star fa-fw mr-2"></i><%= helpers.sofia_link(@edition) %>
+      <% end %>
         <% if @edition.pcto %>  
           <i class="far fa-star fa-fw mr-2"></i>PCTO
         <% end %>
