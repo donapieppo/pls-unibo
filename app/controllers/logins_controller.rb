@@ -29,7 +29,7 @@ class LoginsController < ApplicationController
     log_unibo_omniauth
     parse_unibo_omniauth
 
-    if @email =~ /@(studio.)?unibo.it\z/ 
+    if @email =~ /@(studio\.)?unibo.it\z/ 
       allow_and_create
     else
       logger.info "Students are not allowed: #{@email} user not allowed."
