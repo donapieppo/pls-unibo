@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def index
     authorize :user
-    @users = User.order(:surname, :name).all
+    @users = User.order(:surname, :name).includes(:school).all
   end
 
   def show 
@@ -35,8 +35,9 @@ class UsersController < ApplicationController
     authorize @user
     if school_name = params[:user].delete(:school_name)
       name, municipality = school_name.split(" -- ")
-      if municipality
-        @user.school_id = School.where(name: name, municipality: municipality).first.id
+      school = School.where(name: name, municipality: municipality).first
+      if municipality && school
+        @user.school_id = school.id
       end
     end
     if @user.update(user_params)
