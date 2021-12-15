@@ -38,12 +38,18 @@
               <% else %>
                 <%= b.name %> <%= b.surname %>
               <% end %>
+              <small>(<%= mail_to b.email %>)</small>
               <%= b.role %> 
+              <%= b.grade %> anno 
+              <strong>scuola:</strong> 
               <%= b.school_type %>  
               <%= b.school %>  
-              (<%= mail_to b.email %>) 
               <%= b.school_city %>
-              <%= b.school_pec %>  
+              <small>(<%= b.school_pec %>)</small> <br/>
+              <strong>docente:</strong>
+              <%= b.teacher_name %>  
+              <%= b.teacher_surname %>  
+              <small>(<%= b.teacher_email %>)</small>
               <%= link_to_delete b %> 
               <% if booking_to_confirm && ! b.confirmed? %>  
                 <%= link_to '<i class="far fa-check-circle"></i> conferma'.html_safe, confirm_booking_path(b), method: :post, class: 'underline' %>  
