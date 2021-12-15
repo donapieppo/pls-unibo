@@ -87,6 +87,8 @@ it:
         role: Partecipi come
         university: Universitario
         other_string: Specificare
+        school_city: Città della scuola
+        school_pec: Indirizzo mail PEC della scuola
       booking:
         online: Voglio partecipare in remoto
         name: Nome
@@ -97,6 +99,10 @@ it:
         other_string: Specificare
         notes: Note facoltative
         seats: Posti da prenotare
+        teacher_name: Nome del docente
+        teacher_surname: Cognome del docente
+        teacher_email: Indirizzo email del docente
+        grade: Classe
       contact:
         name: Nome
         surname: Cognome
