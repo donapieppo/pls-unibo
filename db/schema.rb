@@ -66,8 +66,8 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.integer "duration", limit: 2, unsigned: true
     t.boolean "sofia"
     t.boolean "pcto"
-    t.boolean "in_presence"
     t.boolean "online"
+    t.boolean "in_presence"
     t.column "bookable", "enum('no','yes','to_confirm','external')"
     t.text "booking_url"
     t.datetime "booking_end"
@@ -160,7 +160,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.integer "user_id", unsigned: true
     t.integer "teacher_id", unsigned: true
     t.integer "school_id", unsigned: true
-    t.boolean "online"
+    t.boolean "online", default: false
     t.integer "nonce"
     t.integer "seats"
     t.datetime "created_at"
@@ -170,6 +170,12 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.string "email"
     t.column "role", "enum('student','teacher','other')"
     t.column "school_type", "enum('primo','secondo','univ')"
+    t.integer "grade", unsigned: true
+    t.string "teacher_name"
+    t.string "teacher_surname"
+    t.string "teacher_email"
+    t.string "school_city"
+    t.string "school_pec"
     t.text "other_string"
     t.text "notes"
     t.index ["activity_id"], name: "fk_book_activity"
@@ -252,6 +258,8 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.column "role", "enum('student','teacher','other')"
     t.column "school_type", "enum('primo','secondo','univ')"
     t.integer "school_id", unsigned: true
+    t.string "school_city"
+    t.string "school_pec"
     t.text "other_string"
     t.string "name"
     t.string "surname"
