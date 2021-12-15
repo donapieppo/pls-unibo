@@ -9,8 +9,8 @@
     </div>
     <div class="text-yellow-500">
       Nel caso ci si volesse iscrivere senza utilizzare un account è possibile scrivere una mail all'indirizzo
-      <%= mail_to 'dipmat-supportoweb@unibo.it' %> specificando nome, cognome, scuola e l'attivitá a cui ci si vuole
-      iscrivere.
+      <%= mail_to 'dipmat-supportoweb@unibo.it' %> specificando 
+      nome, cognome, scuola e l'attivitá a cui ci si vuole iscrivere.
     </div>
   <% end %>
 <% end %>
@@ -35,8 +35,12 @@
     &ldquo;<span class="underline"><%= link_to @user_sibling_booking_activity, @user_sibling_booking_activity %>&rdquo;</span>
     dello stesso gruppo. 
   </div>
-<% elsif @what.seats.to_i > 0 && @free_seats < 1 %>
-  <div class="text-2xl text-red-500 font-bold my-4">  
+<% elsif @free_seats < 1 %>
+  <div class="text-xl text-red-500 font-bold my-4">  
+    <span class="fa-stack">
+      <i class="fas fa-chair fa-stack-1x"></i>
+      <i class="fas fa-ban fa-stack-2x" style="color:Tomato"></i>
+    </span>
     Posti esauriti.
   </div>
 <% else %>
