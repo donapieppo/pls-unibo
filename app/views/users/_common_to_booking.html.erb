@@ -27,7 +27,10 @@
     <% School.select(:id, :name, :municipality).each do |s| %>  
       <option data-value="<%= s.id %>" value="<%= s.name + " -- " + s.municipality %>"/>
     <% end %>
-  </datalist><br/>
+  </datalist>
+
+  <%= f.input :school_city %>  
+  <%= f.input :school_pec %>  
 </div>
 
 <% if @booking %>  
