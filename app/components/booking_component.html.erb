@@ -46,6 +46,9 @@
 <% else %>
   <div class="actions">
     <% if @bookable %>  
+      <div class="my-2">
+        [<%= @what.free_seats %> posti liberi su <%= @what.seats %>]
+      </div>
       <div class="bg-pls-light p-4 border-l-4 border-pls">
         <% if @what.booking_to_confirm? %>  
           <div>
@@ -59,7 +62,7 @@
           <%= link_to booking_icon + txt, [:new, @what, :booking], class: 'button' %>
         </div>
         <div>
-          Nota: <%= link_to "controlla le tue iscrizioni e prenotazioni per attività PLS", me_users_path, class: "underline" %>.
+          <%= link_to "Controlla le tue iscrizioni e prenotazioni per attività PLS", me_users_path, class: "underline" %>.
         </div>
       </div>
     <% end %>
