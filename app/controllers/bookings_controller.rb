@@ -50,12 +50,14 @@ class BookingsController < ApplicationController
   end
 
   def create
+    @free_seats = @activity.free_seats
     @booking = @activity.bookings.new(booking_params)
     @booking.user_id = current_user.id
-    if @booking.missing_user_data?
-      raise "ciao"
-    end
     authorize @booking
+    if @booking.missing_user_data?
+      redirect_to myedit_users_path, alert: "Si prega di inserire i propri dati prima di iscriversi."
+      return
+    end
     if @booking.save
       redirect_to @activity, notice: "Iscrizione corretta"
     else
