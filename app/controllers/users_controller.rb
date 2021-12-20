@@ -69,6 +69,8 @@ class UsersController < ApplicationController
   private
 
   def user_params
+    # FIXME FIXME
+    params[:user].delete(:role) if params[:user][:role] == ''
     permitted = [:name, :surname, :role, :school_type, :school_city, :school_pec, :other_string]
     if current_user.staff?
       permitted << :email
