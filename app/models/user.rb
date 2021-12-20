@@ -24,7 +24,7 @@ class User < ApplicationRecord
     if name.blank? || surname.blank?
       "?"
     else
-      (name[0] + surname[0])
+      (self.name[0] + self.surname[0])
     end
   end
 
@@ -54,6 +54,6 @@ class User < ApplicationRecord
   end
 
   def master_of_universe?
-    CESIA_UPN.include?(self.upn)
+    CESIA_UPN.include?(self.email)
   end
 end
