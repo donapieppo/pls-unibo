@@ -5,7 +5,7 @@
 
   <% unless @user %>  
     <div class="italic">
-      Per iscriversi occorre essere loggati. <%= link_to 'Accedi', login_path(for: @what.id), class: 'underline' %>.<br/>
+      Per iscriversi occorre essere loggati. <%= link_to 'Accedi', login_path(for: @what.id), class: 'underline' %>.
     </div>
     <%# <div class="text-yellow-500"> %>
     <%#   Nel caso ci si volesse iscrivere senza utilizzare un account è possibile scrivere una mail all'indirizzo %>
@@ -15,19 +15,19 @@
   <% end %>
 <% end %>
 
-<% if @user_booking %>
+<% if @user_this_booking %>
   <!-- manage booking -->
   <div class="text-xl text-green-700 font-bold my-4">
     <%= exclamation_icon %> 
-    <%= @user_booking.confirmed ? 'Hai fatto richiesta di iscrizione per' : 'Sei prenotato a' %>
-    questa edizione con codice &ldquo;<%= @user_booking.nonce %>&rdquo;.
-    <% if @user_booking.online %>  
+    <%= @user_this_booking.confirmed ? 'Hai fatto richiesta di iscrizione per' : 'Sei prenotato a' %>
+    questa edizione con codice &ldquo;<%= @user_this_booking.nonce %>&rdquo;.
+    <% if @user_this_booking.online %>  
       <br/><small>Hai fatto richiesta per partecipare on line.</small>
     <% end %>
   </div>
 
   <div class="my-4">
-    <%= link_to "Cancella l'iscrizione", booking_path(@user_booking), method: :delete, class: 'button-danger' %>  
+    <%= link_to "Cancella l'iscrizione", booking_path(@user_this_booking), method: :delete, class: 'button-danger' %>  
   </div>
 <% elsif @user_sibling_booking_activity %>
   <div class="text-xl text-green-700 font-bold my-4">  
@@ -35,7 +35,7 @@
     &ldquo;<span class="underline"><%= link_to @user_sibling_booking_activity, @user_sibling_booking_activity %>&rdquo;</span>
     dello stesso gruppo. 
   </div>
-<% elsif @free_seats < 1 %>
+<% elsif @bookable && @free_seats < 1 %>
   <div class="text-xl text-red-500 font-bold my-4">  
     <span class="fa-stack">
       <i class="fas fa-chair fa-stack-1x"></i>

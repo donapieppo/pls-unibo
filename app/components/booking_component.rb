@@ -10,7 +10,7 @@ class BookingComponent < ViewComponent::Base
     @free_seats = @what.free_seats
 
     @user = user
-    @user_booking = @user ? @what.bookings.where(user_id: @user.id).first : nil
+    @user_this_booking = @user ? @what.bookings.where(user_id: @user.id).first : nil
     @user_sibling_booking_activity_id = @user ? @what.cluster_siblings_booked_activity_ids(@user).first : nil
     @user_sibling_booking_activity = Activity.find(@user_sibling_booking_activity_id) if @user_sibling_booking_activity_id
   end
