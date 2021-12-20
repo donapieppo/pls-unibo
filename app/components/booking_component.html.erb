@@ -35,7 +35,7 @@
     &ldquo;<span class="underline"><%= link_to @user_sibling_booking_activity, @user_sibling_booking_activity %>&rdquo;</span>
     dello stesso gruppo. 
   </div>
-<% elsif @bookable && @free_seats < 1 %>
+<% elsif @bookable_by_user && @free_seats < 1 %>
   <div class="text-xl text-red-500 font-bold my-4">  
     <span class="fa-stack">
       <i class="fas fa-chair fa-stack-1x"></i>
@@ -45,7 +45,7 @@
   </div>
 <% else %>
   <div class="actions">
-    <% if @bookable %>  
+    <% if @bookable_by_user %>  
       <div class="my-2">
         [<%= @what.free_seats %> posti liberi su <%= @what.seats %>]
       </div>
