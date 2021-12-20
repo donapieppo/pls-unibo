@@ -16,7 +16,10 @@ class Booking < ApplicationRecord
 
   validates :user_id, uniqueness: { scope: [:activity_id], message: "Prenotazione già presente." }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Formato della mail non corretto" }
-  validates :teacher_email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Formato della mail del docente non corretto" }
+
+  validates :teacher_name, :teacher_surname, presence: { allow_blank: false }, if: -> { user.student? }
+  validates :teacher_email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Formato della mail del docente non corretto" }, if: -> { user.student? }
+
   validates :name, :surname, presence: { allow_blank: false }
   validates_with BookingSeatsValidator 
 
