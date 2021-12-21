@@ -7,6 +7,8 @@ class Edition < Activity
   belongs_to :project, foreign_key: 'parent_id'
   has_many :events, foreign_key: 'parent_id'
 
+  scope :this_academic_year, -> { where(academic_year: CURRENT_ACADEMIC_YEAR) }
+
   belongs_to :audience
 
   validates :academic_year, presence: true
@@ -17,6 +19,11 @@ class Edition < Activity
 
   def academic_year_to_s
     "a.a. #{self.academic_year}/#{self.academic_year + 1}"
+  end
+
+  def over?
+    self.academic_year < CURRENT_ACADEMIC_YEAR
+    # Date.parse("#{self.academic_year + 1}/07/31") < Date.today
   end
 
   def self.all_academic_years
@@ -37,8 +44,7 @@ class Edition < Activity
     (from_events + from_edition).uniq
   end
 
-  def over?
-    self.academic_year < CURRENT_ACADEMIC_YEAR
-    # Date.parse("#{self.academic_year + 1}/07/31") < Date.today
+  def self.this_academic_year_project_ids
+    self.this_academic_year.map(&:parent_id)
   end
 end
