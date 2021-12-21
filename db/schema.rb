@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.string "name"
     t.text "description"
     t.integer "academic_year", limit: 2, unsigned: true
+    t.boolean "in_evidence", default: false
     t.string "place"
     t.text "google_map"
     t.datetime "start_date"
