@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
     @projects = Project.includes(:editions, :activity_type).order(:name)
     if params[:on] == '1'
       @on = true
-      @projects = @projects.where(id: Edition.on_going_project_ids)
+      @projects = @projects.where(id: Edition.this_academic_year_project_ids)
     elsif params[:bookable] == '1'
       @bookable_now = true
       @projects = @projects.where(id: Edition.bookable_project_ids)
