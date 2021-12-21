@@ -1,6 +1,6 @@
 <div class="container">
   <% if @on %>  
-    <h1 class="title">Le attività in corso</h1>
+    <h1 class="title">Le attività dell'anno corrente</h1>
   <% elsif @bookable_now %>  
     <h1 class="title">Le attività prenotabili</h1>
   <% else %>
@@ -18,11 +18,11 @@
 
   <% if (@on || @bookable_now) %>  
     <%= link_to 'Vedi tutte le attività del PLS', projects_path, class: 'underline' %>  
-  <% else %>
-    <div class="p-4">
-      <%= render partial: 'filters' %>  
-    </div>
   <% end %>
+
+  <div class="p-4">
+    <%= render partial: 'filters' %>  
+  </div>
 
   <div class="lg:flex lg:flex-wrap">
     <% @projects.each do |project| %>  
