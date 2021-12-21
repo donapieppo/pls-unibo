@@ -1,10 +1,21 @@
 class ApplicationController < ActionController::Base
-  include ApplicationHelper
+  helper_method :current_user
 
   before_action :log_current_user
   after_action :verify_authorized
 
   include Pundit
+
+  def current_user
+    # session[:user_id] = User.where("name > 'm' and id>100").first.id
+    if session[:user_id]
+      @current_user ||= User.find(session[:user_id])
+    else
+      nil
+    end
+  end
+
+  impersonates :user
 
   private 
 

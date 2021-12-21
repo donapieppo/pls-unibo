@@ -1,17 +1,7 @@
 module ApplicationHelper
   def current_user_booked?(id)
-    @booked_activity_ids ||= @current_user ? @current_user.bookings.map(&:activity_id) : []
+    @booked_activity_ids ||= current_user ? current_user.bookings.map(&:activity_id) : []
     @booked_activity_ids.include?(id)
-  end
-
-  def current_user
-    # session[:user_id] = User.where("name > 's'").first.id
-    # session[:user_id] = User.last.id
-    if session[:user_id]
-      @current_user ||= User.find(session[:user_id])
-    else
-      nil
-    end
   end
 
   def academic_year(y)
