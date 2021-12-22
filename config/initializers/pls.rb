@@ -24,6 +24,8 @@ ACCROCCHIO_VECCHIO_SITO  = [
   "http://www.pls.unibo.it/it/statistica"
 ]
 
+SOFIA_LINK = 'https://sofia.istruzione.it/'
+
 module PlsUnibo
   class Application < Rails::Application
     config.domain_name = 'dm.unibo.it'
@@ -39,6 +41,9 @@ module PlsUnibo
     config.interceptor_mails = 'donatini@dm.unibo.it'
     config.default_from      = 'Organizzazione PLS <notifica.inviodlist.08218@unibo.it>'
     config.reply_to          = 'dipmat-supportoweb@unibo.it'
+
+    config.impersonate_admins = CESIA_UPN
+    config.main_impersonations = []
   end
 end
 
