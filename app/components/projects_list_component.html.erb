@@ -14,7 +14,12 @@
          <%= link_to project do %>  
            <% border_color = project.current_year? ? 'border-pls-light' : 'border-gray-200' %>  
 
-           <div class="h-full flex flex-col my-2 bg-gray-100 border-t-4 <%= border_color %> rounded p-4 hover:bg-pls-light hover:shadow-xl">
+           <div class="relative h-full flex flex-col my-2 bg-gray-100 border-t-4 <%= border_color %> rounded p-4 hover:bg-pls-light hover:shadow-xl">
+             <% if @in_evidence %>  
+               <div class="absolute -top-4 -left-2 border-4 bg-gray-100 text-pls-strong border-pls-light rounded-xl text-2xl p-1">
+                 <i class="far fa-star"></i>
+               </div>
+             <% end %>
              <div class="flex-grow text-center">
                <%= project.activity_type %>
                <h3 class="font-semibold"><%= project.name.upcase %></h3>
