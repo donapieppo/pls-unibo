@@ -42,7 +42,7 @@ class ClustersController < ApplicationController
   private 
 
   def set_cluster_and_authorize
-    @cluster = Cluster.find(params[:id])
+    @cluster = Cluster.includes(activities: :contacts).find(params[:id])
     authorize @cluster
   end
 
