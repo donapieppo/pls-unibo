@@ -44,6 +44,6 @@
   Non sono registrate attività che soddisfino ai criteri selezionati.
 </div>
 
-  <%= javascript_tag do %>  
-    <%= render 'projects/filters.js' %>  
-  <% end %>
+<%= javascript_tag do %>  
+  <%= render partial: 'projects/filters', formats: :js %>  
+<% end %>
