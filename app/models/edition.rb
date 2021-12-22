@@ -8,6 +8,7 @@ class Edition < Activity
   has_many :events, foreign_key: 'parent_id'
 
   scope :this_academic_year, -> { where(academic_year: CURRENT_ACADEMIC_YEAR) }
+  scope :in_evidence, -> { where(in_evidence: 1) }
 
   belongs_to :audience
 
@@ -46,5 +47,9 @@ class Edition < Activity
 
   def self.this_academic_year_project_ids
     self.this_academic_year.map(&:parent_id)
+  end
+
+  def self.in_evidence_project_ids
+    self.in_evidence.map(&:parent_id)
   end
 end
