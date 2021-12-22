@@ -13,8 +13,6 @@ class Project < Activity
 
   before_save :global_and_areas_relation
 
-  scope :in_evidence, -> { where('in_evidence = 1') }
-
   def global_and_areas_relation
     if self.global
       self.areas = []
