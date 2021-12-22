@@ -1,4 +1,5 @@
 class LoginsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :developer  
   before_action :skip_authorization
   skip_before_action :force_sso_user, raise: false
 
