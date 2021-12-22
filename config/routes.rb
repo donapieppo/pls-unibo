@@ -15,6 +15,10 @@ Rails.application.routes.draw do
 
   get "logins/no_access", to: 'logins#no_access', as: :no_access
 
+  get 'who_impersonate',     to: 'impersonations#who_impersonate',    as: :who_impersonate
+  post 'impersonate/:id',    to: 'impersonations#impersonate',        as: :impersonate
+  post 'stop_impersonating', to: 'impersonations#stop_impersonating', as: :stop_impersonating
+
   concern :contactable do
     member do
       post :add_contact
@@ -52,7 +56,7 @@ Rails.application.routes.draw do
     get :forget_form, on: :collection
     post :forget, on: :collection
   end
-  
+
   resources :contacts do
     delete :delete_avatar, on: :member
   end
