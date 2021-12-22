@@ -19,7 +19,7 @@ module ApplicationHelper
       res += separator unless res.blank?
       if item.is_a?(Area)
         if with_link
-          res += link_to item, area_root(item), class: add_class
+          res += link_to item.to_s, area_root(item), class: add_class
         else
           res += item.to_s
         end
@@ -28,7 +28,7 @@ module ApplicationHelper
       elsif with_link && item.respond_to?(:email) 
         res += item.email.blank? ? item.cn : mail_to(item.email, item)
       elsif with_link
-        res += link_to item, item, class: add_class
+        res += link_to item.to_s, item, class: add_class
       end
     end
     unless res.blank?

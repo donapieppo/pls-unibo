@@ -1,7 +1,7 @@
 <div class="container">
   <h1 class="title"><%= @event.name %></h1>
   <h2 class="text-center">
-    in <%= link_to @event.edition, @event.edition %>  
+    in <%= link_to @event.edition.to_s, @event.edition %>  
   <%= link_to_edit_if_editable(@event) %>  
   </h2>
 

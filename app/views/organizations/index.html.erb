@@ -4,7 +4,7 @@
   <% @organizations.order(:name).each do |org| %>
     <div class="pl-2 m-1">
       <i class="far fa-arrow-alt-circle-right text-xl mr-2"></i> 
-      <%= link_to org, org.url, target: '_new' %>
+      <%= link_to org.to_s, org.url, target: '_new' %>
     </div>
   <% end %>
 </div>

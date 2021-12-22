@@ -3,7 +3,7 @@
 
   <div class="mt-16">
     <% @clusters.each do |ac| %>  
-      <div class="text-lg my-2"><%= link_to ac, ac %> <%= link_to_edit_if_editable ac %>  <%= link_to_delete cluster_path(ac) %></div>
+      <div class="text-lg my-2"><%= link_to ac.to_s, ac %> <%= link_to_edit_if_editable ac %>  <%= link_to_delete cluster_path(ac) %></div>
     <% end %>
   </div>
 

@@ -34,7 +34,7 @@
                 <strong><%= b.seats %></strong> <%= b.seats == 1 ? 'posto' : 'posti' %> per  
               <% end %>
               <% if b.user %>  
-                <span class="font-bold text-green-700 underline"><%= link_to b.user, [:edit, b.user] %></span>     
+                <span class="font-bold text-green-700 underline"><%= link_to b.user.to_s, [:edit, b.user] %></span>     
               <% else %>
                 <%= b.name %> <%= b.surname %>
               <% end %>

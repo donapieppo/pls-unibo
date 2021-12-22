@@ -4,7 +4,7 @@
   <table>
     <% @users.each do |u| %>  
       <tr>
-        <th><%= link_to u, [:edit, u] %></th>
+        <th><%= link_to u.to_s, [:edit, u] %></th>
         <td><%= u.role %></td>
         <td><%= u.email %></td>
         <td><%= u.school %></td>
