@@ -3,29 +3,31 @@
 </div>
 <div id="filters" class="hidden bg-gray-50 border border-gray-500 py-4">
   <div class="lg:flex w-full">
-    <div id="years" class="my-2 p-4 border-r-2">
-      <p>Anno accademico</p>
+    <div id="years" class="p-4 border-r-2">
+      <h4 class="text-base font-bold text-pls-strong pb-2">Anno accademico</h4>
       <% Edition.all_academic_years.each do |y| %>  
         <input type="checkbox" id="yr_<%= y %>" name="years" value="<%= y %>"/>
         <label for="yr_<%= y %>"> <%= academic_year(y) %></label> <br/>
       <% end %>
     </div>
-    <div id="areas" class="my-2 p-4 border-r-2">
-      <p>Area</p>
-      <% Area.order(:name).each do |a| %>  
-        <input type="checkbox" id="ar_<%= a.id %>" name="areas" value="<%= a.id %>"/>
-        <label for="ar_<%= a.id %>"><%= a.name %> </label> <br/>
-      <% end %>
-    </div>
-    <div id="audiences" class="flex-grow my-2 p-4 border-r-2">
-      <p>Rivolto a</p>
+    <% unless defined?(no_area_filter) && no_area_filter %>  
+      <div id="areas" class="p-4 border-r-2">
+        <h4 class="text-base font-bold text-pls-strong pb-2">Area</h4>
+        <% Area.order(:name).each do |a| %>  
+          <input type="checkbox" id="ar_<%= a.id %>" name="areas" value="<%= a.id %>"/>
+          <label for="ar_<%= a.id %>"><%= a.name %> </label> <br/>
+        <% end %>
+      </div>
+    <% end %>
+    <div id="audiences" class="flex-grow p-4 border-r-2">
+      <h4 class="text-base font-bold text-pls-strong pb-2">Rivolto a</h4>
       <% Audience.order(:name).each do |a| %>  
         <input type="checkbox" id="au_<%= a.id %>" name="audiences" value="<%= a.id %>"/>
         <label for="au_<%= a.id %>"><%= a.name %> </label> <br/>
       <% end %>
     </div>
-    <div id="activity_types" class="my-2 p-4">
-      <p>Tipologia</p>
+    <div id="activity_types" class="p-4">
+      <h4 class="text-base font-bold text-pls-strong pb-2">Tipologia</h4>
       <% ActivityType.order(:name).each do |a| %>  
         <input type="checkbox" id="at_<%= a.id %>" name="activity_types" value="<%= a.id %>"/>
         <label for="at_<%= a.id %>"><%= a.name %> </label> <br/>
@@ -34,7 +36,7 @@
   </div>
   <div class="text-center">
     <a href="javascript:void(0);" onclick="toggle_filters();" class="button">OK</a>
-    <a href="javascript:void(0);" onclick="clear_filters();" class="underline">Pulisci filtri</a>
+    <a href="javascript:void(0);" onclick="clear_filters();" class="mx-2 underline">Pulisci filtri</a>
   </div>
 </div>
 
@@ -42,16 +44,6 @@
   Non sono registrate attività che soddisfino ai criteri selezionati.
 </div>
 
-<%= javascript_tag do %>  
-  function clear_filters() {
-    document.querySelectorAll("#filters input[type='checkbox']").forEach((x) => x.checked = false);
-    hide_projects_not_selected();
-  }
-  function toggle_filters() {
-    document.getElementById("filters").classList.toggle("hidden");
-  }
-<% end %>
-
-<%= javascript_tag do %>  
-  <%= render 'projects/filters.js' %>  
-<% end %>
+  <%= javascript_tag do %>  
+    <%= render 'projects/filters.js' %>  
+  <% end %>
