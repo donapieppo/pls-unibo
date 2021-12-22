@@ -40,6 +40,7 @@ it:
         organization: Dipartimento che organizza
       edition:
         hidden: Nascondi l'edizione
+        in_evidence: In evidenza
         name: Nome
         description: Descrizione
         audience: Rivolto a 
@@ -123,6 +124,8 @@ it:
 
   simple_form:
     hints:
+      edition:
+        in_evidence: Si selezioni per mettere in evidenza questa edizione nella pagina dell'area.
       booking:
         seats: Se si intende partecipare in presenza con i propri studenti indicare il numero totale di partecipanti (studenti + accompagnatori)
     placeholders:
