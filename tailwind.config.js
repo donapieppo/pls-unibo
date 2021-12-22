@@ -1,6 +1,5 @@
-module.exports = {
-  purge: ['./app/views/**/*.erb','./app/packs/stylesheets/*.scss','./app/components/*.erb',],
-  darkMode: false, // or 'media' or 'class'
+module.exports = { 
+  content: ["./app/views/**/*.erb", "./app/assets/stylesheets/*.css", "./app/components/*.erb"],
   theme: {
     extend: {
       colors: {
@@ -12,10 +11,7 @@ module.exports = {
       }
     }
   },
-  variants: {
-    extend: {},
-  },
   plugins: [
     require('@tailwindcss/forms'),
-  ],
+  ],  
 }

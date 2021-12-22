@@ -1,9 +1,6 @@
 .header{
-  // @apply border-b border-pls py-2 bg-gray-100;
   background-color: rgb(250, 250, 250);
-
   @apply py-4;
-
   .header-title {
     @apply flex-grow text-center;
     a {
@@ -33,7 +30,6 @@
   transform: translateY(14px) rotate(45deg);
 }
 
-// 14 = 6+8 height + margin
 #modal-opener.active .bar:nth-child(3) {
   transform: translateY(-14px) rotate(-45deg);
 }
@@ -66,7 +62,3 @@
     @apply block uppercase text-pls border-b border-pls p-1 md:p-2 px-4 font-bold hover:bg-pls hover:text-white;
   }
 }
-
-
-// Thanx to 
-// https://dev.to/devggaurav/let-s-build-a-responsive-navbar-and-hamburger-menu-using-html-css-and-javascript-4gci

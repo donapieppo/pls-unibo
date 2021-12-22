@@ -4,11 +4,11 @@
 #
 # To use the locales, use `I18n.t`:
 #
-#     I18n.t 'hello'
+#     I18n.t "hello"
 #
 # In views, this is aliased to just `t`:
 #
-#     <%= t('hello') %>
+#     <%= t("hello") %>
 #
 # To use a different locale, set it with `I18n.locale`:
 #
@@ -24,27 +24,10 @@
 # Instead, surround them with single quotes.
 #
 # en:
-#   'true': 'foo'
+#   "true": "foo"
 #
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
   hello: "Hello world"
-#  time:
-#    pm: pm
-#    am: am
-#    formats:
-#      default: ! '%d %b ore %H:%M'
-#      long:    ! '%d %B %Y %H:%M'
-#      short:   ! '%d %b %H:%M'
-#      date_picker: ! "%d/%m/%Y"
-#      datetime_html5: ! "%Y-%m-%d"
-#      date_html5: ! "%Y-%m-%d"
-#      hour_picker: "%H"
-#      min_picker: "%M"
-#      datetime_picker: "%d/%m/%Y %H:%M"
-#      with_day_name: '%A %d %B %Y ore %H:%M'
-
-
-

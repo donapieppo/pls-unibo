@@ -1,7 +1,6 @@
 #home-first {
   @apply flex flex-col md:flex-row justify-center items-center min-h-screen;
   @apply md:-mt-8;
-  // @apply border border-black;
 }
 #home-first-left {
   @apply mt-0 md:w-1/2 text-center md:text-right ; 
@@ -9,12 +8,10 @@
   h1 {
     @apply text-pls font-medium text-4xl sm:text-5xl xl:text-6xl 2xl:text-8xl tracking-tight;
   }
-  //@apply border border-black;
 }
 #home-first-right {
   @apply md:w-1/2 text-center;
   @apply md:pl-8;
-  //@apply border border-black;
 }
 
 .home-box {
@@ -26,17 +23,17 @@
 }
 #home-box-areas {
   @apply bg-pls text-gray-100;
-  margin-top: -25px; // -(200/2 + 125)
+  margin-top: -25px; 
   margin-left: 100px;
 }
 #home-box-projects {
   @apply bg-pls-light text-gray-700;
-  margin-top:  -75px; // 200/2
+  margin-top:  -75px; 
   margin-left: 0;
 }
 #home-box-students {
   @apply bg-pls-strong text-gray-100;
-  margin-top:  -75px; // - (200/2 - 125)
+  margin-top:  -75px; 
   margin-left: 100px;
 }
 .home-box-number {
@@ -76,4 +73,3 @@
     }
   }
 }
-
