@@ -11,6 +11,7 @@ class Activity < ApplicationRecord
 
   scope :clusterable, -> (year) { where(academic_year: year).order(:name) }
   scope :visible, -> { where.not('activities.hidden = 1') }
+  scope :future, -> { where('start_date >= NOW()') }
 
   def check_children
     if Activity.where(parent_id: self.id).count > 0 
