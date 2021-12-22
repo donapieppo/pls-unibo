@@ -14,7 +14,7 @@
         <%= area %> 
       </div>
       <div class="w-2/3 mb-2">
-        <div><span class="text-gray-700">Referente:</span> <%= area.head %></div>
+        <div><span class="text-gray-700">Coordinatore:</span> <%= area.head %></div>
         <div>
           <span class="text-gray-700">Contatti:</span> 
           <% area.contacts.order(:surname, :name).each do |contact| %>
