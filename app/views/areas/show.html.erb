@@ -18,7 +18,18 @@
 </div>
 
 <div class="container">
-  <h2 class="title py-2">Le attività</h2>
+  <% if policy(:project).new? %>  
+    <div class="text-center my-4">
+      <%= link_to 'Aggiungi nuova attività', new_project_path, class: 'button' %>
+    </div>
+  <% end %>
+
+  <% if @this_area_evidence.any? %>  
+    <h2 class="title py-2">In evidenza</h2>
+    <%= render ProjectsListComponent.new(@this_area_evidence, no_filter: true, in_evidence: true) %>
+  <% end %>
+
+  <h2 class="title py-2">Tutte le attività di <%= @area %></h2>
 
   <% unless current_user && current_user.staff? %>  
     <div class="my-8">
@@ -29,27 +40,12 @@
     </div>
   <% end %>
 
-  <% if policy(:project).new? %>  
-    <div class="text-center my-4">
-      <%= link_to 'Aggiungi nuova attività', new_project_path, class: 'button' %>
-    </div>
-  <% end %>
-
-  <div class="lg:flex lg:flex-wrap">
-    <% @this_area_projects.each do |project| %>  
-      <%= render 'projects/project_box', project: project %>
-    <% end %>
-  </div>
+  <%= render ProjectsListComponent.new(@this_area_projects, no_area_filter: true) %>  
 
   <% if @common_projects.any? %>  
-    <h3 class="title my-8">Le attività comuni</h3>
+    <h3 class="title my-16">Le attività comuni</h3>
+    <%= render ProjectsListComponent.new(@common_projects, no_filter: true) %>
   <% end %>
-
-  <div class="lg:flex lg:flex-wrap">
-    <% @common_projects.each do |project| %>  
-      <%= render 'projects/project_box', project: project %>  
-    <% end %>
-  </div>
 
   <% if @resource_containers.any? %>  
     <h2 class="title py-2">Le risorse</h2>
