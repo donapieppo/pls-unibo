@@ -1,5 +1,5 @@
 class UserPolicy < ApplicationPolicy
-  def index
+  def index?
     @user && @user.master_of_universe?
   end
 
