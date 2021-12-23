@@ -20,20 +20,5 @@
     <%= link_to 'Vedi tutte le attività del PLS', projects_path, class: 'underline' %>  
   <% end %>
 
-  <div class="p-4">
-    <%= render partial: 'filters' %>  
-  </div>
-
-  <div class="lg:flex lg:flex-wrap">
-    <% @projects.each do |project| %>  
-      <div class="lg:w-1/2 p-2 lg:p-4 project" data-years="<%= project.cache_years %>" 
-                                               data-audiences="<%= project.editions_audience_ids %>" 
-                                               data-areas="<%= project.area_ids + project.interested_area_ids %>" 
-                                               data-activity_types="<%= project.parent_id ? [project.parent_id] : [] %>">
-                                               <%= link_to project do %>  
-                                                 <%= render 'project',  project: project %>  
-                                               <% end %>
-      </div>
-    <% end %>
-  </div>
+  <%= render ProjectsListComponent.new(@projects) %>
 </div>
