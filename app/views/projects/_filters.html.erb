@@ -3,13 +3,15 @@
 </div>
 <div id="filters" class="hidden bg-gray-50 border border-gray-500 py-4">
   <div class="lg:flex w-full">
-    <div id="years" class="p-4 border-r-2">
-      <h4 class="text-base font-bold text-pls-strong pb-2">Anno accademico</h4>
-      <% Edition.all_academic_years.each do |y| %>  
-        <input type="checkbox" id="yr_<%= y %>" name="years" value="<%= y %>"/>
-        <label for="yr_<%= y %>"> <%= academic_year(y) %></label> <br/>
-      <% end %>
-    </div>
+    <% unless defined?(no_year_filter) && no_year_filter %>
+      <div id="years" class="p-4 border-r-2">
+        <h4 class="text-base font-bold text-pls-strong pb-2">Anno accademico</h4>
+        <% Edition.all_academic_years.each do |y| %>  
+          <input type="checkbox" id="yr_<%= y %>" name="years" value="<%= y %>"/>
+          <label for="yr_<%= y %>"> <%= academic_year(y) %></label> <br/>
+        <% end %>
+      </div>
+    <% end %>
     <% unless defined?(no_area_filter) && no_area_filter %>  
       <div id="areas" class="p-4 border-r-2">
         <h4 class="text-base font-bold text-pls-strong pb-2">Area</h4>
