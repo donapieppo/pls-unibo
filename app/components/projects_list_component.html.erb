@@ -1,22 +1,24 @@
 <% unless @no_filter %>  
   <div class="p-4">
-    <%= render partial: 'projects/filters', locals: { no_area_filter: @no_area_filter } %>  
+    <%= render partial: 'projects/filters', locals: { no_year_filter: @no_year_filter, no_area_filter: @no_area_filter } %>  
   </div>
 <% end %>
 
 <div class="lg:flex lg:flex-wrap">
   <% @projects.each do |project| %>  
-    <div class="lg:w-1/2 p-2 lg:p-4 project" 
+    <% current_year = project.current_year? %>  
+    <% border_color = current_year ? 'border-pls-light' : 'border-gray-200' %>  
+    <% opacity = current_year ? '' : 'opacity-60' %>  
+    <div class="lg:w-1/2 p-2 lg:p-4 project <%= opacity %>  " 
          data-years="<%= project.cache_years %>" 
          data-audiences="<%= project.editions_audience_ids %>" 
          data-areas="<%= project.area_ids + project.interested_area_ids %>" 
          data-activity_types="<%= project.parent_id ? [project.parent_id] : [] %>">
          <%= link_to project do %>  
-           <% border_color = project.current_year? ? 'border-pls-light' : 'border-gray-200' %>  
 
            <div class="relative h-full flex flex-col my-2 bg-gray-100 border-t-4 <%= border_color %> rounded p-4 hover:bg-pls-light hover:shadow-xl">
              <% if @in_evidence %>  
-               <div class="absolute -top-4 -left-2 border-4 bg-gray-100 text-pls-strong border-pls-light rounded-xl text-2xl p-1">
+               <div class="absolute -top-4 -left-2 bg-gray-100 text-pls-strong border-4 border-pls-light rounded-xl text-2xl p-1">
                  <i class="far fa-star"></i>
                </div>
              <% end %>
