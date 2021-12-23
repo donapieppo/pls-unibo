@@ -10,7 +10,8 @@
 
     <div class="text-center">
       <%= form_tag(google_login_url, method: 'post') do %>
-        <input type="submit" value="" class="input-google-login" />
+        <input type="submit" value="" class="input-google-login" 
+               style="background-image: url(<%= image_path("google/btn_google_signin_light_normal_web.png") %>)"/>
       <% end %>
       <div class="text-gray-500 px-2 mb-2">
         Sono account Google validi anche <br/>
