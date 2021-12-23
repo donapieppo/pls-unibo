@@ -9,7 +9,7 @@
     <% current_year = project.current_year? %>  
     <% border_color = current_year ? 'border-pls-light' : 'border-gray-200' %>  
     <% opacity = current_year ? '' : 'opacity-60' %>  
-    <div class="lg:w-1/2 p-2 lg:p-4 project <%= opacity %>  " 
+    <div class="lg:w-1/2 p-2 lg:p-4 project <%= opacity %>" 
          data-years="<%= project.cache_years %>" 
          data-audiences="<%= project.editions_audience_ids %>" 
          data-areas="<%= project.area_ids + project.interested_area_ids %>" 
