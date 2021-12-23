@@ -131,7 +131,8 @@ class LoginsController < ApplicationController
 
   def create_logged_user
     logger.info "Authentication: User #{@email} to be CREATED"
-    User.create(name: @name, surname: @surname, email: @email)
+    logger.info "name: #{@name}, surname: #{@surname}, email: #{@email}"
+    User.create!(name: @name, surname: @surname, email: @email)
   end
 
   def log_unibo_omniauth
