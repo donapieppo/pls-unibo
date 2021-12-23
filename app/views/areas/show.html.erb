@@ -40,7 +40,7 @@
     </div>
   <% end %>
 
-  <%= render ProjectsListComponent.new(@this_area_projects, no_area_filter: true) %>  
+  <%= render ProjectsListComponent.new(@this_area_projects, no_year_filter: true, no_area_filter: true) %>  
 
   <% if @common_projects.any? %>  
     <h3 class="title my-16">Le attività comuni</h3>
