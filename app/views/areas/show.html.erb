@@ -29,7 +29,7 @@
     <%= render ProjectsListComponent.new(@this_area_evidence, no_filter: true, in_evidence: true) %>
   <% end %>
 
-  <h2 class="title py-2">Tutte le attività di <%= @area %><br/><%= academic_year(CURRENT_ACADEMIC_YEAR) %></h2>
+  <h2 class="title py-2">Tutte le attività <%= academic_year(CURRENT_ACADEMIC_YEAR) %></h2>
 
   <% unless current_user && current_user.staff? %>  
     <div class="my-8">
