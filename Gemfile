@@ -8,6 +8,7 @@ gem "sprockets-rails"
 gem "mysql2", "~> 0.5"
 gem "puma", "~> 5.0"
 
+gem "importmap-rails"
 gem "jsbundling-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
