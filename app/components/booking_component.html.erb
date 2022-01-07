@@ -2,16 +2,25 @@
   <div class="my-4 font-bold text-green-700">
     Iscrizioni aperte dal <%= l @what.booking_start %> al <%= l @what.booking_end %>
   </div>
+  <% if @free_seats < 1 %>
+    <div class="text-lg text-red-500 font-bold my-4">  
+      <span class="fa-stack">
+        <i class="fas fa-chair fa-stack-1x"></i>
+        <i class="fas fa-ban fa-stack-2x" style="color:Tomato"></i>
+      </span>
+      Posti esauriti.
+    </div>
+  <% end %>
 
   <% unless @user %>  
     <div class="italic">
       Per iscriversi occorre essere loggati. <%= link_to 'Accedi', login_path(for: @what.id), class: 'underline' %>.
     </div>
     <%# <div class="text-yellow-500"> %>
-    <%#   Nel caso ci si volesse iscrivere senza utilizzare un account è possibile scrivere una mail all'indirizzo %>
-    <%#   <%= mail_to 'dipmat-supportoweb@unibo.it' %1> specificando %> 
-    <%#   nome, cognome, scuola e l'attivitá a cui ci si vuole iscrivere. %>
-    <%# </div> %>
+      <%#   Nel caso ci si volesse iscrivere senza utilizzare un account è possibile scrivere una mail all'indirizzo %>
+      <%#   <%= mail_to 'dipmat-supportoweb@unibo.it' %1> specificando %> 
+      <%#   nome, cognome, scuola e l'attivitá a cui ci si vuole iscrivere. %>
+      <%# </div> %>
   <% end %>
 <% end %>
 
@@ -34,14 +43,6 @@
     Sei iscritto all'attività 
     &ldquo;<span class="underline"><%= link_to @user_sibling_booking_activity.to_s, @user_sibling_booking_activity %>&rdquo;</span>
     dello stesso gruppo. 
-  </div>
-<% elsif @bookable_by_user && @free_seats < 1 %>
-  <div class="text-xl text-red-500 font-bold my-4">  
-    <span class="fa-stack">
-      <i class="fas fa-chair fa-stack-1x"></i>
-      <i class="fas fa-ban fa-stack-2x" style="color:Tomato"></i>
-    </span>
-    Posti esauriti.
   </div>
 <% else %>
   <div class="actions">
@@ -70,7 +71,7 @@
 <% end %>
 
 <%# <% if @user && @user.teacher? && @bookable %1> %> 
-<%#   <div class="my-4"> %>
-<%#     <%= link_to "Prenota i tuoi studenti", [:new, @what, :booking], class: 'button' %1> %>
-<%#   </div> %>
-<%# <% end %1> %>
+  <%#   <div class="my-4"> %>
+    <%#     <%= link_to "Prenota i tuoi studenti", [:new, @what, :booking], class: 'button' %1> %>
+    <%#   </div> %>
+  <%# <% end %1> %>
