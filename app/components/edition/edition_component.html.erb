@@ -11,21 +11,12 @@
     <% end %>
 
     <div class="my-2 text-lg text-pls font-semibold">
-      <div><i class="fas fa-users fa-fw mr-2"></i><%= @edition.audience %></div>
-      <% if @edition.online %>  
-        <div><i class="fas fa-network-wired fa-fw mr-2"></i>Fruibile online</div>
-      <% end %>
-      <% if @edition.in_presence %>  
-        <div><i class="fas fa-chair fa-fw mr-2"></i>Fruibile in presenza</div>
-      <% end %>
       <div>
-        <% if @edition.sofia %>  
-          <i class="far fa-star fa-fw mr-2"></i><%= helpers.sofia_link(@edition) %>
-      <% end %>
-        <% if @edition.pcto %>  
-          <i class="far fa-star fa-fw mr-2"></i>PCTO
-        <% end %>
+        <i class="fas fa-users fa-fw mr-2"></i>
+        <%= @edition.audience %>
       </div>
+      <%= render Activity::DateAndPlaceComponent.new(activity: @edition) %>  
+      <%= render Activity::Extra.new(activity: @edition) %>  
     </div>
 
     <div class="my-8">
@@ -40,13 +31,13 @@
       </div>
 
       <% if @short %>  
-        <%= render BookingComponent.new(@edition.bookings.new, helpers.current_user, short: true) %>
+        <%= render Booking::BookingComponent.new(@edition.bookings.new, helpers.current_user, short: true) %>
       <% else %>  
         <div class="my-4 text-gray-700">
           <%= @edition.details %>  
         </div>
         <div class="my-4">
-          <%= render BookingComponent.new(@edition.bookings.new, helpers.current_user) %>
+          <%= render Booking::BookingComponent.new(@edition.bookings.new, helpers.current_user) %>
         </div>
       <% end %>
     </div>
@@ -59,9 +50,14 @@
 </div>
 
 <% unless @short || @events.empty? %>  
-  <div class="my-4">
-    <%= render EventsListComponent.new(events: @events, short: @short || @edition.atomic, with_image: @with_image) %>  
-  </div>
+  <% if @events.size == 1 %>  
+    <hr class="my-16"/>
+    <%= render Event::EventComponent.new(event: @events.first, current_user: @current_user, no_edition: true, heading: :h2) %>
+  <% else %>
+    <div class="my-4">
+      <%= render Event::ListComponent.new(events: @events, short: @short || @edition.atomic, with_image: @with_image) %>  
+    </div>
+  <% end %>
 <% end %>
 
 <% if @short %>  

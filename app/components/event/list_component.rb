@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class EventsListComponent < ViewComponent::Base
+class Event::ListComponent < ViewComponent::Base
   def initialize(events:, short: false, with_image: false)
     @events = events
     @short = short

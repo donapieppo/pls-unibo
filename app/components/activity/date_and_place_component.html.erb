@@ -1,0 +1,30 @@
+<div class="date_and_place text-lg">
+  <% if @activity.start_date %>  
+    <div class="py-1">
+      <i class="far fa-calendar fa-fw mr-2"></i>
+      <%= l @activity.start_date, format: :day %>
+      <i class="far fa-clock fa-fw mx-2"></i>
+      <%= l @activity.start_date, format: :hour %>
+    </div>
+  <% end %>
+
+  <% if @activity.online %>  
+    <div class="py-1">
+      <i class="fas fa-network-wired fa-fw mr-2"></i>
+      Fruibile online 
+      <% unless @activity.access_url.blank? %>
+        <%= link_to "al link <i class=\"fas fa-external-link-alt fa-fw mr-2\"></i>".html_safe, @activity.access_url, class: 'underline' %>  
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @activity.in_presence %>  
+    <div class="py-1">
+      <i class="fas fa-chair fa-fw mr-2"></i>
+      In presenza presso <%= @activity.place %>
+    <% unless @activity.google_map.blank? %>  
+      <%= link_to 'vedi su google map <i class="fas fa-map fa-fw mr-2"></i>'.html_safe, @activity.google_map, class: 'underline' %>  
+    <% end %>
+    </div>
+  <% end %>
+</div>

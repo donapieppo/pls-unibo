@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BookingComponent < ViewComponent::Base
+class Booking::BookingComponent < ViewComponent::Base
   def initialize(booking, user, short: false)
     @booking = booking
     @user = user
