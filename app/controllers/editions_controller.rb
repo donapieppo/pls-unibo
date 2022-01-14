@@ -60,6 +60,6 @@ class EditionsController < ApplicationController
 
   # Fixme booking_url only if external
   def edition_params
-    params[:edition].permit(:hidden, :in_evidence, :online, :name, :description, :details, :academic_year, :audience_id, :seats, :sofia, :pcto, :bookable, :booking_url, :booking_start, :booking_end, :atomic)
+    params[:edition].permit(:hidden, :in_evidence, :in_presence, :online, :name, :description, :details, :academic_year, :audience_id, :seats, :sofia, :pcto, :bookable, :booking_url, :booking_start, :booking_end, :atomic)
   end
 end

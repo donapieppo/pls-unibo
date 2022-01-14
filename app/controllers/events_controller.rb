@@ -66,7 +66,7 @@ class EventsController < ApplicationController
 
   # Fixme booking_url only if external
   def event_params
-    h = [:hidden, :name, :description, :academic_year, :place, :google_map, :start_date, :duration]
+    h = [:hidden, :name, :description, :in_presence, :online, :academic_year, :place, :google_map, :access_url, :start_date, :duration]
     unless @editon && @edition.atomic
       h += [:seats, :sofia, :pcto, :bookable, :booking_url, :booking_start, :booking_end]
     end
