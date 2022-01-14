@@ -24,7 +24,7 @@
 </div>
 
 <div class="container my-4">
-  <%= render EditionComponent.new(edition: @edition, skip_title: true, with_image: true) %>
+  <%= render Edition::EditionComponent.new(edition: @edition, current_user: @current_user, skip_title: true, with_image: true) %>
 </div>
 
 <div class="text-center text-base mt-4">

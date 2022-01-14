@@ -6,7 +6,7 @@
     <div class="my-2 text-lg text-pls font-semibold">
       <%= @activity.audience %>
     </div>
-    <%= render FreeSeatComponent.new(activity: @activity) %>
+    <%= render Activity::FreeSeatComponent.new(activity: @activity) %>
   </div>
 
   <% unless @free_seats && @free_seats < 1 %>  

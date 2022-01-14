@@ -23,7 +23,7 @@
       </div>
 
       <div class="flex-grow">
-        <%= render FlashMessagesComponent.new(flash: flash) %>
+        <%= render FlashMessage::FlashMessagesComponent.new(flash: flash) %>
         <%= yield %>
       </div>
 
