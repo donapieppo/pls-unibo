@@ -1,5 +1,5 @@
 form {
-  span.radio, span.checkbox, span.hint, label.string, label.text, label.email, label.select, label.integer, label.file, label.radio_buttons, label.check_boxes, label.datetime, legend {
+  span.radio, span.checkbox, span.hint, label.string, label.text, label.email, label.select, label.integer, label.file, label.radio_buttons, label.check_boxes, label.datetime, label.boolean, legend {
     @apply block;
   }
   span.hint {
