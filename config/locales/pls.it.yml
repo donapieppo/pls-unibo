@@ -52,6 +52,7 @@ it:
         atomic: Eventi non separabili (l'attività è fruibile solo completa e non per singoli eventi)
         in_presence: Si può partecipare in presenza
         online: Si può partecipare on-line
+        access_url: Indirizzo per accedere
         bookable: Possibile iscriversi
         booking_url: Indirizzo web esterno per la prenotazione
         booking_start: Data inizio iscrizioni
@@ -68,6 +69,7 @@ it:
         pcto: PCTO
         in_presence: Si può partecipare in presenza
         online: Si può partecipare on-line
+        access_url: Indirizzo per accedere
         bookable: Possibile iscriversi
         booking_url: Indirizzo web esterno per la prenotazione
         booking_start: Data inizio iscrizioni
