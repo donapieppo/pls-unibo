@@ -43,6 +43,7 @@ it:
         in_evidence: In evidenza
         name: Nome
         description: Descrizione
+        place: Dove si svolge
         audience: Rivolto a 
         academic_year: Anno accademico
         seats: Posti disponibili
