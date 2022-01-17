@@ -1,72 +1,34 @@
 <div class="container">
   <h1 class="title">Le iscrizioni</h1>
-  <% @booked_activities.each do |a| %>  
-    <% activity_online_mails = []; activity_in_presence_mails = [] %>  
-    <% booking_to_confirm = a.booking_to_confirm? %>  
-    <div class="pls-card my-8">
-      <div class="pls-card-title">
-        <%= link_to a.name.upcase, a %>
-        <%= link_to_edit_if_editable a %>  
-      </div>
-      <div class="pls-card-content">
-        <div>
-          <%= l a.booking_start, format: :short %> - <%= l a.booking_end, format: :short %>
+  <% @booked_activities.each do |activity| %>  
+    <div class="my-8">
+      <div class="pls-card">
+        <div class="pls-card-title">
+          <%= link_to activity.name.upcase, activity %>
+          <%= link_to_edit_if_editable activity %>  
         </div>
-        <div>
-          <%= '<strong>Attività con prenotazioni da confermare</strong>'.html_safe if booking_to_confirm %>  
-        </div>
-        <div>
-          Posti totali: <strong><%= a.seats %></strong><br/>
-          Posti prentati: <strong><%= a.bookings.in_presence.sum(:seats) %></strong> <br/> 
-          Prenotazioni online: <strong><%= a.bookings.online.count(:seats) %></strong>
-        </div>
-        <p>Elenco iscritti:</p>
-        <ul class="list-disc pl-8">
-          <% a.bookings.includes(:user, :school).order(:created_at).each do |b| %>  
-            <li>
-              <span class="font-mono"><%= b.nonce ? b.nonce : '-----' %></span> 
-              <small><%= l b.created_at %></small>
-              <% if b.online %>  
-                <% activity_online_mails << b.email %>  
-                <span class="text-yellow-500">online</span>
-              <% else %>
-                <% activity_in_presence_mails << b.email %>  
-                <strong><%= b.seats %></strong> <%= b.seats == 1 ? 'posto' : 'posti' %> per  
-              <% end %>
-              <% if b.user %>  
-                <span class="font-bold text-green-700 underline"><%= link_to b.user.to_s, [:edit, b.user] %></span>     
-              <% else %>
-                <%= b.name %> <%= b.surname %>
-              <% end %>
-              <small>(<%= mail_to b.email %>)</small>
-              <%= b.role %> 
-              <%= b.grade %> anno 
-              <strong>scuola:</strong> 
-              <%= b.school_type %>  
-              <%= b.school %>  
-              <%= b.school_city %>
-              <small>(<%= b.school_pec %>)</small> <br/>
-              <strong>docente:</strong>
-              <%= b.teacher_name %>  
-              <%= b.teacher_surname %>  
-              <small>(<%= b.teacher_email %>)</small>
-              <%= link_to_delete b %> 
-              <% if booking_to_confirm && ! b.confirmed? %>  
-                <%= link_to '<i class="far fa-check-circle"></i> conferma'.html_safe, confirm_booking_path(b), method: :post, class: 'underline' %>  
-              <% else %>
-                <span class="text-green-500"><i class="fas fa-check-circle"></i> confermata</span>
-              <% end %>
-            </li>
+        <div class="pls-card-content">
+          <div>
+            <%= calendar_icon %>
+            <%= l activity.booking_start, format: :short %> - <%= l activity.booking_end, format: :short %>
+          </div>
+          <div>
+            <%= '<strong>Attività con prenotazioni da confermare</strong>'.html_safe if activity.booking_to_confirm? %>  
+          </div>
+          <div class="my-2">
+            Posti totali: <strong><%= activity.seats %></strong><br/>
+            Posti prenotati: <strong><%= activity.bookings.in_presence.sum(:seats) %></strong> <br/> 
+            Prenotazioni online: <strong><%= activity.bookings.online.count(:seats) %></strong>
+          </div>
+          <% if @with_users %>  
+            <%= render Booking::UserListComponent.new(activity: activity, current_user: current_user) %>  
+          <% else %>
+            <div class="mt-4">
+              <%= link_to 'mostra elenco iscritti', [activity, :bookings], class: 'button' %>  
+            </div>
           <% end %>
-        </ul>
+        </div>
       </div>
-      <div class="info text-sm my-2">
-        <strong>Indirizzi partecipanti in presenza:</strong> <%= activity_in_presence_mails.join(', ') %>  
-      </div>
-      <div class="info text-sm my-2">
-        <strong>Indirizzi partecipanti online:</strong> <%= activity_online_mails.join(', ') %>  
-      </div>
-      <%= link_to 'scarica elenco', bookings_path(activity_id: a.id, format: :csv) %>  
     </div>
   <% end %>
 </div>
