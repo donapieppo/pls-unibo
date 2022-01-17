@@ -13,7 +13,7 @@
       <i class="fas fa-network-wired fa-fw mr-2"></i>
       Fruibile online 
       <% unless @activity.access_url.blank? %>
-        <%= link_to "al link <i class=\"fas fa-external-link-alt fa-fw mr-2\"></i>".html_safe, @activity.access_url, class: 'underline' %>  
+        <%= link_to @activity.access_url_name + " <i class=\"fas fa-external-link-alt fa-fw mr-2\"></i>".html_safe, @activity.access_url, class: 'underline' %>  
       <% end %>
     </div>
   <% end %>
