@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.boolean "pcto"
     t.boolean "online"
     t.boolean "in_presence"
+    t.text "access_url"
     t.column "bookable", "enum('no','yes','to_confirm','external')"
     t.text "booking_url"
     t.datetime "booking_end"
@@ -223,7 +224,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.string "name"
     t.text "description"
     t.boolean "global"
-    t.timestamp "created_at", default: -> { "current_timestamp()" }, null: false
+    t.timestamp "created_at", default: -> { "current_timestamp() ON UPDATE current_timestamp()" }, null: false
   end
 
   create_table "resource_containers_resources", id: false, charset: "utf8mb4", force: :cascade do |t|
@@ -237,7 +238,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.string "name"
     t.string "url"
     t.text "credits"
-    t.timestamp "created_at", default: -> { "current_timestamp()" }, null: false
+    t.timestamp "created_at", default: -> { "current_timestamp() ON UPDATE current_timestamp()" }, null: false
   end
 
   create_table "schools", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
