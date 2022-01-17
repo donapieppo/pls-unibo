@@ -4,10 +4,12 @@ class BookingsController < ApplicationController
   before_action :set_booking_and_check_permission, only: %i(thankyou confirm, destroy)
 
   def index
-    if params[:activity_id]
-      @booked_activities = [Activity.find(params[:activity_id])]
+    activity = (params[:activity_id] or params[:edition_id] or params[:event_id])
+    if activity
+      @booked_activities = [Activity.find(activity)]
+      @with_users = true
     else
-      @booked_activities = Activity.order('start_date desc').find(Booking.select(:activity_id).map(&:activity_id))
+      @booked_activities = Activity.order('start_date desc').with_bookings
     end
     authorize :booking
     respond_to do |format|
