@@ -5,7 +5,7 @@
   </div>
 
   <% i = 1 %>  
-  <% @cluster.activities.order(:name).each do |activity| %>  
+  <% @activities.each do |activity| %>  
     <%= link_to activity do %>
       <div class="flex hover:bg-gray-200 rounded-xl py-2 px-2">
         <div class="w-16 text-xl text-center font-bold text-pls-strong px-2">
@@ -14,8 +14,8 @@
         <div class="flex-grow">
           <span class="font-semibold"><%= activity %></span>
           <%# <% if activity.seats.to_i > 0 %1> %>  
-          <%#   [<%= activity.seats %1> posti] %>
-          <%# <% end %1> %>
+            <%#   [<%= activity.seats %1> posti] %>
+            <%# <% end %1> %>
 
           <div>
             <%= activity.description %>  
@@ -39,5 +39,8 @@
     <% end %>
     <% i += 1 %>  
   <% end %>
-</div>
 
+  <% if current_user && current_user.staff? %>
+    <%= link_to 'lista iscrizioni', bookings_path(cluster: @cluster, format: :csv) %>  
+  <% end %>
+</div>

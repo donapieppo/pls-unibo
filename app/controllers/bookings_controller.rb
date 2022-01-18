@@ -8,6 +8,7 @@ class BookingsController < ApplicationController
 
     @activity = activity_id ? Activity.find(activity_id) : nil
     @teacher_email = params[:temail] 
+    @cluster = Cluster.find(params[:cluster]) if params[:cluster]
 
     authorize :booking
 
@@ -22,7 +23,9 @@ class BookingsController < ApplicationController
         end
       end
       format.csv do
-        if @activity
+        if @cluster
+          bookings = Booking.find(@cluster.activities.map(&:booking_ids).flatten.uniq)
+        elsif @activity
           bookings = @activity.bookings
         elsif @teacher_email
           bookings = Booking.where(teacher_email: @teacher_email).includes(:user, :activity)

@@ -22,6 +22,7 @@ class ClustersController < ApplicationController
   end
 
   def show
+    @activities = @cluster.activities.order(:name)
   end
 
   def edit
