@@ -1,6 +1,6 @@
 <p>Elenco iscritti:</p>
-<ul class="list-disc pl-8">
-  <% @activity.bookings.includes(:user, :school).order(:created_at).each do |b| %>  
+<ul class="list-disc pl-8 ml-4">
+  <% @bookings.each do |b| %>  
     <li>
       <span class="font-mono"><%= b.nonce ? b.nonce : '-----' %></span> 
       <small><%= l b.created_at %></small>
@@ -43,4 +43,9 @@
 <div class="info text-sm my-2">
   <strong>Indirizzi partecipanti online:</strong> <%= @activity_online_mails.join(', ') %>  
 </div>
-<%= link_to 'scarica elenco', bookings_path(activity_id: @activity.id, format: :csv) %>  
+<ul class="bg-yellow-500 text-sm my-2">
+  <% @activity.bookings.pluck(:teacher_email).sort.uniq.each do |teacher_email| %>  
+    <li><%= link_to teacher_email, bookings_path(temail: teacher_email) %></li>
+  <% end %>
+</ul>
+<%= link_to 'scarica elenco', bookings_path(activity_id: @activity.id, format: :csv), class: 'button my-4' %>  

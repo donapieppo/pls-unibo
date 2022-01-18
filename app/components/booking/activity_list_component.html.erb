@@ -1,11 +1,10 @@
 <div class="container">
-  <h1 class="title">Le iscrizioni</h1>
-  <% @booked_activities.each do |activity| %>  
+  <h1 class="title">Le attività con iscrizioni</h1>
+  <% @activities.each do |activity| %>  
     <div class="my-8">
       <div class="pls-card">
         <div class="pls-card-title">
           <%= link_to activity.name.upcase, activity %>
-          <%= link_to_edit_if_editable activity %>  
         </div>
         <div class="pls-card-content">
           <div>
@@ -20,13 +19,9 @@
             Posti prenotati: <strong><%= activity.bookings.in_presence.sum(:seats) %></strong> <br/> 
             Prenotazioni online: <strong><%= activity.bookings.online.count(:seats) %></strong>
           </div>
-          <% if @with_users %>  
-            <%= render Booking::UserListComponent.new(activity: activity, current_user: current_user) %>  
-          <% else %>
-            <div class="mt-4">
-              <%= link_to 'mostra elenco iscritti', [activity, :bookings], class: 'button' %>  
-            </div>
-          <% end %>
+          <div class="mt-4">
+            <%= link_to 'mostra elenco iscritti', [activity, :bookings], class: 'button' %>  
+          </div>
         </div>
       </div>
     </div>

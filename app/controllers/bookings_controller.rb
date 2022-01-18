@@ -4,17 +4,33 @@ class BookingsController < ApplicationController
   before_action :set_booking_and_check_permission, only: %i(thankyou confirm, destroy)
 
   def index
-    activity = (params[:activity_id] or params[:edition_id] or params[:event_id])
-    if activity
-      @booked_activities = [Activity.find(activity)]
-      @with_users = true
-    else
-      @booked_activities = Activity.order('start_date desc').with_bookings
-    end
+    activity_id = (params[:activity_id] or params[:edition_id] or params[:event_id])
+
+    @activity = activity_id ? Activity.find(activity_id) : nil
+    @teacher_email = params[:temail] 
+
     authorize :booking
+
     respond_to do |format|
-      format.html
-      format.csv { send_data Booking.to_csv(@booked_activities.first), filename: "prenotazioni.csv" }
+      format.html do  
+        if @activity
+          render(Booking::ActivityBookingsComponent.new(@activity, current_user)) 
+        elsif @teacher_email
+          render(Booking::TeacherBookingsComponent.new(@teacher_email, current_user))
+        else 
+          render(Booking::ActivityListComponent.new(current_user))
+        end
+      end
+      format.csv do
+        if @activity
+          bookings = @activity.bookings
+        elsif @teacher_email
+          bookings = Booking.where(teacher_email: @teacher_email).includes(:user, :activity)
+        else
+          bookings = []
+        end
+        send_data Booking.to_csv(bookings), filename: "prenotazioni.csv" 
+      end
     end
   end
 

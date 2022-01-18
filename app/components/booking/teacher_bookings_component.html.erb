@@ -1,0 +1,17 @@
+<div class="container">
+  <h1 class="title">Iscrizioni</h1>
+  <h2 class="title">docente: <%= @teacher_email %></h2>
+
+  <table class="table-auto my-4">
+    <tbody>
+      <% @bookings.each do |booking| %>  
+        <tr>
+          <th><%= booking.user.cn.upcase %></th>
+          <td><%= booking.activity %></td>
+          <td><%= booking.school %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to 'scarica_elenco', bookings_path(temail: @teacher_email, format: :csv) %>  
+</div>
