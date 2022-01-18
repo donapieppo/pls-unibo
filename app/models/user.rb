@@ -54,7 +54,7 @@ class User < ApplicationRecord
   end
 
   def master_of_universe?
-    cesia_upn.include?(self.email)
+    CESIA_UPN.include?(self.email)
   end
 
   def voyeur?
