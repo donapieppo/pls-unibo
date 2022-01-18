@@ -101,3 +101,8 @@ h4 {
   filter: grayscale(100%);
 }
 
+table {
+  th, td {
+    @apply p-1 px-2 border border-gray-500;
+  }
+}
