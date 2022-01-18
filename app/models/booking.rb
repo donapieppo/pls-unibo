@@ -62,7 +62,7 @@ class Booking < ApplicationRecord
   end
 
   def self.to_csv(_bookings)
-    CSV.generate(headers: true) do |csv|
+    CSV.generate(headers: true, encoding: Encoding::UTF_8) do |csv|
       csv << ['posto', 
               'nome', 
               'cognome', 
