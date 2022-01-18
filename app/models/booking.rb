@@ -76,15 +76,15 @@ class Booking < ApplicationRecord
               'attività']
       _bookings.each do |b|
         csv << [b.seats, 
-                b.user.name, 
-                b.user.surname, 
+                b.user.name.strip, 
+                b.user.surname.strip, 
                 b.online ? 'online' : '', 
                 b.role, 
                 b.school_id, 
                 b.school, 
-                b.user.email, 
-                b.teacher_name + " " +  b.teacher_surname, 
-                b.teacher_email, 
+                b.user.email.strip, 
+                b.teacher_name.strip + " " +  b.teacher_surname.strip, 
+                b.teacher_email.strip, 
                 b.activity]
       end
     end
