@@ -3,7 +3,9 @@
     <div class="py-1">
       <i class="far fa-calendar fa-fw mr-2"></i>
       <%= l @activity.start_date, format: :day %>
-      <i class="far fa-clock fa-fw mx-2"></i>
+    </div>
+    <div class="py-1">
+      <i class="far fa-clock fa-fw mr-2"></i>
       <%= l @activity.start_date, format: :hour %>
     </div>
   <% end %>
@@ -12,19 +14,27 @@
     <div class="py-1">
       <i class="fas fa-network-wired fa-fw mr-2"></i>
       Fruibile online 
-      <% unless @activity.access_url.blank? %>
-        <%= link_to @activity.access_url_name + " <i class=\"fas fa-external-link-alt fa-fw mr-2\"></i>".html_safe, @activity.access_url, class: 'underline' %>  
-      <% end %>
     </div>
+    <% unless @activity.access_url.blank? %>
+      <div class="ml-8 my-4">
+        <%= link_to @activity.access_url, class: 'inline-block online-access' do %>  
+          <%= image_tag 'teams_logo', width: 50, class: 'inline-block mr-4' %>  
+          <%= @activity.access_url_name %>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
 
   <% if @activity.in_presence %>  
     <div class="py-1">
       <i class="fas fa-chair fa-fw mr-2"></i>
-      In presenza presso <%= @activity.place %>
-    <% unless @activity.google_map.blank? %>  
-      <%= link_to 'vedi su google map <i class="fas fa-map fa-fw mr-2"></i>'.html_safe, @activity.google_map, class: 'underline' %>  
-    <% end %>
+      In presenza 
     </div>
+    <% unless @activity.place.blank? %>
+      <div class="ml-8">
+        presso <%= @activity.place %>
+        <%= link_to ' (mostra su google map)', @activity.google_map, class: 'underline', target: '_new' %>  
+      </div>
+    <% end %>
   <% end %>
 </div>
