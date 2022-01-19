@@ -19,9 +19,11 @@
             Posti prenotati: <strong><%= activity.bookings.in_presence.sum(:seats) %></strong> <br/> 
             Prenotazioni online: <strong><%= activity.bookings.online.count(:seats) %></strong>
           </div>
-          <div class="mt-4">
-            <%= link_to 'mostra elenco iscritti', [activity, :bookings], class: 'button' %>  
-          </div>
+          <% if @current_user.staff? %>  
+            <div class="mt-4">
+              <%= link_to 'mostra elenco iscritti', [activity, :bookings], class: 'button' %>  
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
