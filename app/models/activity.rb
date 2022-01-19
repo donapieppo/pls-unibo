@@ -75,14 +75,21 @@ class Activity < ApplicationRecord
     self.online && self.in_presence
   end
 
+  def on_zoom?
+    self.access_url =~ /zoom/
+  end
+
+  def on_teams?
+    self.access_url =~ /teams.microsoft.com/
+  end
+
   def access_url_name
-    case self.access_url
-    when /https:\/\/teams.microsoft.com/
-      "Stanza Teams"
-    when /zoom/
+    if on_zoom?
       "Stanza zoom"
+    elsif on_teams?
+      "Stanza Teams"
     else
       ""
-    end.html_safe
+    end
   end
 end
