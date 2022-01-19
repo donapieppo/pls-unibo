@@ -15,8 +15,8 @@
         <i class="fas fa-users fa-fw mr-2"></i>
         <%= @edition.audience %>
       </div>
-      <%= render Activity::DateAndPlaceComponent.new(activity: @edition) %>  
-      <%= render Activity::Extra.new(activity: @edition) %>  
+      <%= render Activity::DateAndPlaceComponent.new(@edition) %>  
+      <%= render Activity::Extra.new(@edition) %>  
     </div>
 
     <div class="my-8">
