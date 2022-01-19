@@ -28,7 +28,6 @@ body {
 .button-danger {
   @apply bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-4 rounded;
 }
-
 .big-button {
   @apply text-white border-2 border-pls bg-pls-strong hover:bg-pls hover:text-white font-bold p-8 text-center rounded-2xl;
 }
@@ -106,3 +105,8 @@ table {
     @apply p-1 px-2 border border-gray-500;
   }
 }
+
+.online-access {
+  @apply hover:bg-blue-300 border border-blue-300 px-4 rounded;
+}
+
