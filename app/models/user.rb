@@ -58,6 +58,6 @@ class User < ApplicationRecord
   end
 
   def voyeur?
-    VOYEURS.include?(self.email)
+    BOOKING_WATCHERS.include?(self.email)
   end
 end
