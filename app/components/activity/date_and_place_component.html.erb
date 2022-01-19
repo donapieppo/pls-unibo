@@ -18,7 +18,9 @@
     <% unless @activity.access_url.blank? %>
       <div class="ml-8 my-4">
         <%= link_to @activity.access_url, class: 'inline-block online-access' do %>  
-          <%= image_tag 'teams_logo', width: 50, class: 'inline-block mr-4' %>  
+          <% if @activity.on_teams? %>  
+            <%= image_tag 'teams_logo', width: 50, class: 'inline-block mr-4' %>  
+          <% end %>
           <%= @activity.access_url_name %>
         <% end %>
       </div>
