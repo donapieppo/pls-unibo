@@ -1,6 +1,6 @@
 class BookingPolicy < ApplicationPolicy
   def index?
-    @user && @user.staff?
+    @user && (@user.staff? || @user.voyeur?)
   end
 
   def create?
