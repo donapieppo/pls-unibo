@@ -5,7 +5,7 @@ class AreasController < ApplicationController
 
   def show
     @this_area_evidence = @area.projects.where(id: Edition.in_evidence_project_ids)
-    @this_area_projects = @area.projects.this_academic_year.includes(:editions, :activity_type).order(:name)
+    @this_area_projects = @area.projects.this_academic_year.includes(:editions, :activity_type).order(:name).uniq
     @common_projects = Project.where(global: true).includes(:editions, :activity_type).order(:name).all
     @resource_containers = @area.resource_containers.includes(:resources).all
     unless current_user && current_user.staff?
