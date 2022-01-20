@@ -5,9 +5,9 @@
 <div class="md:flex md:flex-wrap mt-2">
   <div class="md:w-2/3 xl:w-3/4">
     <% unless @skip_title %>  
-      <h3 class="mt-4 text-xl lg:text-3xl"> 
+      <h2 class="my-4"> 
         <%= link_to(@edition.name, @edition) %> 
-      </h3>
+      </h2>
     <% end %>
 
     <div class="my-2 text-lg text-pls font-semibold">
@@ -61,7 +61,7 @@
 <% end %>
 
 <% if @short %>  
-  <div class="my-8 text-right text-2xl text-pls">
+  <div class="my-8 text-right text-3xl text-pls">
     <%= link_to 'dettagli <i class="far fa-arrow-alt-circle-right"></i>'.html_safe, @edition %>
   </div>
 <% end %>
