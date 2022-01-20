@@ -110,3 +110,19 @@ table {
   @apply hover:bg-blue-300 border border-blue-300 px-4 rounded;
 }
 
+.details-trix-editor {
+  .trix-button-group--file-tools {
+    display: none;
+  }
+  @apply bg-yellow-50 p-4 my-4;
+  label {
+    font-weight: bold;
+  }
+}
+
+.trix-content {
+  li {
+   list-style-type: circle;
+  }
+}
+
