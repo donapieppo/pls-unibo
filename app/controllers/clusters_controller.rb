@@ -27,7 +27,7 @@ class ClustersController < ApplicationController
 
   def edit
     # FIXME
-    @activities = Activity.clusterable(Date.today.year)
+    @activities = Activity.clusterable(CURRENT_ACADEMIC_YEAR)
   end
 
   def update
