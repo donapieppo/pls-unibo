@@ -10,6 +10,7 @@ class Edition < Activity
   scope :this_academic_year, -> { where(academic_year: CURRENT_ACADEMIC_YEAR) }
   scope :in_evidence, -> { where(in_evidence: 1) }
   scope :with_next_events, -> (n) { where(id: Event.future.order('start_date asc').map(&:parent_id).uniq[0..n]) }
+  scope :in_area, -> (a) { where(parent_id: a.project_ids) }
 
   belongs_to :audience
 
