@@ -40,11 +40,11 @@
     </div>
   <% end %>
 
-  <%= render Project::ProjectsListComponent.new(@this_area_projects, no_year_filter: true, no_area_filter: true) %>  
+  <%= render Project::ListComponent.new(@this_area_projects, no_year_filter: true, no_area_filter: true) %>  
 
   <% if @common_projects.any? %>  
     <h3 class="title my-16">Le attività comuni</h3>
-    <%= render Project::ProjectsListComponent.new(@common_projects, no_filter: true) %>
+    <%= render Project::ListComponent.new(@common_projects, no_filter: true) %>
   <% end %>
 
   <% if @resource_containers.any? %>  
