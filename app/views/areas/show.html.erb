@@ -26,7 +26,7 @@
 
   <% if @this_area_evidence.any? %>  
     <h2 class="title py-2">In evidenza</h2>
-    <%= render ProjectsListComponent.new(@this_area_evidence, no_filter: true, in_evidence: true) %>
+    <%= render Edition::ListComponent.new(@this_area_evidence, current_user, in_evidence: true) %>
   <% end %>
 
   <h2 class="title py-2">Tutte le attività <%= academic_year(CURRENT_ACADEMIC_YEAR) %></h2>
@@ -40,11 +40,11 @@
     </div>
   <% end %>
 
-  <%= render ProjectsListComponent.new(@this_area_projects, no_year_filter: true, no_area_filter: true) %>  
+  <%= render Project::ProjectsListComponent.new(@this_area_projects, no_year_filter: true, no_area_filter: true) %>  
 
   <% if @common_projects.any? %>  
     <h3 class="title my-16">Le attività comuni</h3>
-    <%= render ProjectsListComponent.new(@common_projects, no_filter: true) %>
+    <%= render Project::ProjectsListComponent.new(@common_projects, no_filter: true) %>
   <% end %>
 
   <% if @resource_containers.any? %>  
