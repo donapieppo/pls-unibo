@@ -20,5 +20,5 @@
     <%= link_to 'Vedi tutte le attività del PLS', projects_path, class: 'underline' %>  
   <% end %>
 
-  <%= render ProjectsListComponent.new(@projects) %>
+  <%= render Project::ProjectsListComponent.new(@projects) %>
 </div>
