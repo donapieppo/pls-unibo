@@ -6,7 +6,9 @@
   </h2>
 <% end %>
 <% if @editable %>  
-  <center><%= link_to helpers.edit_icon, [:edit, @event] %></center>
+  <div class="my-2 text-right">
+    <%= link_to helpers.edit_icon + " Modifica i dati dell'evento", [:edit, @event] %>
+  </div>
 <% end %>
 
 <div class="md:flex my-6">
