@@ -52,7 +52,7 @@ class BookingsController < ApplicationController
     @user = User.where(email: params[:email]).first
 
     if @user == current_user
-      redirect_to @activity, notice: "non puoi registare te stesso come studente."
+      redirect_to @activity, notice: "Non puoi registare te stesso come studente."
       return
     end
 
@@ -80,7 +80,7 @@ class BookingsController < ApplicationController
       return
     end
     if @booking.save
-      redirect_to @activity, notice: "Iscrizione corretta"
+      redirect_to @activity, notice: "Iscrizione registrata correttamente."
     else
       render action: :new
     end
@@ -103,7 +103,7 @@ class BookingsController < ApplicationController
     else
       flash[:alert] = "Errore"
     end
-    redirect_to @booking.activity
+    redirect_to bookings_path(activity_id: @booking.activity_id)
   end
 
   private
