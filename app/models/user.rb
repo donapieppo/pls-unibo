@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :bookings
-  belongs_to :school
+  belongs_to :school, optional: true
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Formato della mail non corretto" }
 
@@ -55,5 +55,9 @@ class User < ApplicationRecord
 
   def master_of_universe?
     CESIA_UPN.include?(self.email)
+  end
+
+  def voyeur?
+    BOOKING_WATCHERS.include?(self.email)
   end
 end

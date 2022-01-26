@@ -7,6 +7,7 @@ class Activity < ApplicationRecord
 
   validates :name, presence: true, allow_blank: false
 
+  scope :with_bookings, -> { where(id: Booking.select(:activity_id).group(:activity_id).map(&:activity_id)) }
   scope :bookable_now, -> { where('activities.booking_start is not null and activities.booking_end is not null and activities.booking_start <= NOW() and NOW() <= activities.booking_end') }
 
   scope :clusterable, -> (year) { where(academic_year: year).order(:name) }
@@ -72,6 +73,24 @@ class Activity < ApplicationRecord
 
   def on_and_off_line?
     self.online && self.in_presence
+  end
+
+  def on_zoom?
+    self.access_url =~ /zoom/
+  end
+
+  def on_teams?
+    self.access_url =~ /teams.microsoft.com/
+  end
+
+  def access_url_name
+    if on_zoom?
+      "Stanza zoom"
+    elsif on_teams?
+      "Stanza Teams"
+    else
+      ""
+    end
   end
 
   def external_booking?

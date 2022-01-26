@@ -61,11 +61,33 @@ class Booking < ApplicationRecord
     self.save!
   end
 
-  def self.to_csv(_activity)
-    CSV.generate(headers: true) do |csv|
-      csv << ['posto', 'nome', 'online', 'ruolo', 'scuola', 'email']
-      _activity.bookings.each do |b|
-        csv << [b.seats, b.user.cn_militar, b.online ? 'online' : '', b.role, b.school, b.user.email]
+  def self.to_csv(_bookings)
+    CSV.generate(headers: true, encoding: Encoding::UTF_8) do |csv|
+      csv << ['posto', 
+              'nome', 
+              'cognome', 
+              'online', 
+              'ruolo', 
+              'scuola_id', 
+              'scuola', 
+              'pec scuola', 
+              'email', 
+              'nome docente', 
+              'email docente', 
+              'attività']
+      _bookings.each do |b|
+        csv << [b.seats, 
+                b.user.name.strip, 
+                b.user.surname.strip, 
+                b.online ? 'online' : '', 
+                b.role, 
+                b.school_id, 
+                b.school, 
+                b.school_pec, 
+                b.user.email.strip, 
+                b.teacher_name.strip + " " +  b.teacher_surname.strip, 
+                b.teacher_email.strip, 
+                b.activity]
       end
     end
   end

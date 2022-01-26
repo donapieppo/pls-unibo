@@ -1,5 +1,5 @@
 module.exports = { 
-  content: ["./app/views/**/*.erb", "./app/assets/stylesheets/*.css", "./app/components/*.erb"],
+  content: ["./app/views/**/*.erb", "./app/assets/stylesheets/*.css", "./app/components/*.erb", "./app/components/**/*.erb"],
   theme: {
     extend: {
       colors: {

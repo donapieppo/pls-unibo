@@ -31,7 +31,8 @@ it:
       project:
         hidden: Nascondi l'attività
         name: Nome
-        description: Descrizione
+        description: Descrizione breve
+        details: Descrizione più dettagliata con la possibilità di formattare il testo (opzionale)
         date: Organizzatori
         areas: Aree
         interested_areas: Altre aree di interesse
@@ -42,7 +43,9 @@ it:
         hidden: Nascondi l'edizione
         in_evidence: In evidenza
         name: Nome
-        description: Descrizione
+        description: Descrizione breve
+        details: Descrizione più dettagliata con la possibilità di formattare il testo (opzionale)
+        place: Dove si svolge
         audience: Rivolto a 
         academic_year: Anno accademico
         seats: Posti disponibili
@@ -52,6 +55,7 @@ it:
         atomic: Eventi non separabili (l'attività è fruibile solo completa e non per singoli eventi)
         in_presence: Si può partecipare in presenza
         online: Si può partecipare on-line
+        access_url: Indirizzo per accedere
         bookable: Possibile iscriversi
         booking_url: Indirizzo web esterno per la prenotazione
         booking_start: Data inizio iscrizioni
@@ -68,6 +72,7 @@ it:
         pcto: PCTO
         in_presence: Si può partecipare in presenza
         online: Si può partecipare on-line
+        access_url: Indirizzo per accedere
         bookable: Possibile iscriversi
         booking_url: Indirizzo web esterno per la prenotazione
         booking_start: Data inizio iscrizioni
@@ -124,8 +129,11 @@ it:
 
   simple_form:
     hints:
+      project:
+        details: Inserire eventualmente una descrizione più dettagliata con la possibilità di formattare il testo.
       edition:
         in_evidence: Si selezioni per mettere in evidenza questa edizione nella pagina dell'area.
+        details: Inserire eventualmente una descrizione più dettagliata con la possibilità di formattare il testo.
       booking:
         seats: Se si intende partecipare in presenza con i propri studenti indicare il numero totale di partecipanti (studenti + accompagnatori)
     placeholders:

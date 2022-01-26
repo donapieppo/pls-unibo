@@ -5,27 +5,18 @@
 <div class="md:flex md:flex-wrap mt-2">
   <div class="md:w-2/3 xl:w-3/4">
     <% unless @skip_title %>  
-      <h3 class="mt-4 text-xl lg:text-3xl"> 
+      <h2 class="my-4"> 
         <%= link_to(@edition.name, @edition) %> 
-      </h3>
+      </h2>
     <% end %>
 
     <div class="my-2 text-lg text-pls font-semibold">
-      <div><i class="fas fa-users fa-fw mr-2"></i><%= @edition.audience %></div>
-      <% if @edition.online %>  
-        <div><i class="fas fa-network-wired fa-fw mr-2"></i>Fruibile online</div>
-      <% end %>
-      <% if @edition.in_presence %>  
-        <div><i class="fas fa-chair fa-fw mr-2"></i>Fruibile in presenza</div>
-      <% end %>
       <div>
-        <% if @edition.sofia %>  
-          <i class="far fa-star fa-fw mr-2"></i><%= helpers.sofia_link(@edition) %>
-      <% end %>
-        <% if @edition.pcto %>  
-          <i class="far fa-star fa-fw mr-2"></i>PCTO
-        <% end %>
+        <i class="fas fa-users fa-fw mr-2"></i>
+        <%= @edition.audience %>
       </div>
+      <%= render Activity::DateAndPlaceComponent.new(@edition) %>  
+      <%= render Activity::Extra.new(@edition) %>  
     </div>
 
     <div class="my-8">
@@ -40,13 +31,13 @@
       </div>
 
       <% if @short %>  
-        <%= render BookingComponent.new(@edition.bookings.new, helpers.current_user, short: true) %>
+        <%= render Booking::BookingComponent.new(@edition.bookings.new, helpers.current_user, short: true) %>
       <% else %>  
         <div class="my-4 text-gray-700">
           <%= @edition.details %>  
         </div>
         <div class="my-4">
-          <%= render BookingComponent.new(@edition.bookings.new, helpers.current_user) %>
+          <%= render Booking::BookingComponent.new(@edition.bookings.new, helpers.current_user) %>
         </div>
       <% end %>
     </div>
@@ -59,13 +50,18 @@
 </div>
 
 <% unless @short || @events.empty? %>  
-  <div class="my-4">
-    <%= render EventsListComponent.new(events: @events, short: @short || @edition.atomic, with_image: @with_image) %>  
-  </div>
+  <% if @events.size == 1 %>  
+    <hr class="my-16"/>
+    <%= render Event::EventComponent.new(@events.first, @current_user, no_edition: true, heading: :h2) %>
+  <% else %>
+    <div class="my-4">
+      <%= render Event::ListComponent.new(events: @events, short: @short || @edition.atomic, with_image: @with_image) %>  
+    </div>
+  <% end %>
 <% end %>
 
 <% if @short %>  
-  <div class="my-8 text-right text-2xl text-pls">
+  <div class="my-8 text-right text-3xl text-pls">
     <%= link_to 'dettagli <i class="far fa-arrow-alt-circle-right"></i>'.html_safe, @edition %>
   </div>
 <% end %>

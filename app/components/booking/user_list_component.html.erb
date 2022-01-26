@@ -1,0 +1,51 @@
+<p>Elenco iscritti:</p>
+<ul class="list-disc pl-8 ml-4">
+  <% @bookings.each do |b| %>  
+    <li>
+      <span class="font-mono"><%= b.nonce ? b.nonce : '-----' %></span> 
+      <small><%= l b.created_at %></small>
+      <% if b.online %>  
+        <% @activity_online_mails << b.email %>  
+        <span class="text-yellow-500">online</span>
+      <% else %>
+        <% @activity_in_presence_mails << b.email %>  
+        <strong><%= b.seats %></strong> <%= b.seats == 1 ? 'posto' : 'posti' %> per  
+      <% end %>
+      <% if b.user %>  
+        <span class="font-bold text-green-700 underline"><%= link_to b.user.to_s, [:edit, b.user] %></span>     
+      <% else %>
+        <%= b.name %> <%= b.surname %>
+      <% end %>
+      <small>(<%= mail_to b.email %>)</small>
+      <%= b.role %> 
+      <%= b.grade %> anno 
+      <strong>scuola:</strong> 
+      <%= b.school_type %>  
+      <%= b.school %>  
+      <%= b.school_city %>
+      <small>(<%= b.school_pec %>)</small> <br/>
+      <strong>docente:</strong>
+      <%= b.teacher_name %>  
+      <%= b.teacher_surname %>  
+      <small>(<%= b.teacher_email %>)</small>
+      <%= link_to_delete b %> 
+      <% if @activity.booking_to_confirm? && ! b.confirmed? %>  
+        <%= link_to '<i class="far fa-check-circle"></i> conferma'.html_safe, confirm_booking_path(b), method: :post, class: 'underline' %>  
+      <% else %>
+        <span class="text-green-500"><i class="fas fa-check-circle"></i> confermata</span>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+<div class="info text-sm my-2">
+  <strong>Indirizzi partecipanti in presenza:</strong> <%= @activity_in_presence_mails.join(', ') %>  
+</div>
+<div class="info text-sm my-2">
+  <strong>Indirizzi partecipanti online:</strong> <%= @activity_online_mails.join(', ') %>  
+</div>
+<ul class="bg-yellow-500 text-sm my-2">
+  <% @activity.bookings.pluck(:teacher_email).sort.uniq.each do |teacher_email| %>  
+    <li><%= link_to teacher_email, bookings_path(temail: teacher_email) %></li>
+  <% end %>
+</ul>
+<%= link_to 'scarica elenco', bookings_path(activity_id: @activity.id, format: :csv), class: 'button my-4' %>  

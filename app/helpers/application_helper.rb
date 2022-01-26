@@ -38,7 +38,7 @@ module ApplicationHelper
   end
 
   def area_root(area)
-    "/#{area.slug}"
+    "/pls/#{area.slug}"
   end
 
   def sofia_link(a)

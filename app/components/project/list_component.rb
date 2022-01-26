@@ -1,4 +1,4 @@
-class ProjectsListComponent < ViewComponent::Base
+class Project::ListComponent < ViewComponent::Base
   def initialize(projects, no_filter: false, no_year_filter: false, no_area_filter: false, in_evidence: false)
     @projects = projects
     @no_filter = no_filter

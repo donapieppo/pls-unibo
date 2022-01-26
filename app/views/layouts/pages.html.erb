@@ -7,8 +7,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application' %>
-    <%= javascript_pack_tag 'application' %>
+    <%= stylesheet_link_tag "fa.all.min", "application", "actiontext" %>
+    <%= javascript_include_tag "application" %>
   </head>
 
   <body>
@@ -23,7 +23,7 @@
       </div>
 
       <div class="flex-grow">
-        <%= render FlashMessagesComponent.new(flash: flash) %>
+        <%= render FlashMessage::FlashMessagesComponent.new(flash: flash) %>
         <%= yield %>
       </div>
 

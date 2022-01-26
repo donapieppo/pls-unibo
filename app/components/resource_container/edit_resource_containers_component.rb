@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 include LinkHelper
 
-class EditResourceContainersComponent < ViewComponent::Base
+class ResourceContainer::EditResourceContainersComponent < ViewComponent::Base
   def initialize(what:, short: false)
     @what = what
     @short = short

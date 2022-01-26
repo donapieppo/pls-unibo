@@ -8,11 +8,11 @@
   <% end %>
 
   <div class="mt-4">
-    <%= render EditContactsComponent.new(what: @area, can_add: policy(@area).edit?) %>
+    <%= render Contact::EditContactsComponent.new(what: @area, can_add: policy(@area).edit?) %>
   </div>
 
   <div class="mt-4">
-    <%= render EditResourceContainersComponent.new(what: @area) %>
+    <%= render ResourceContainer::EditResourceContainersComponent.new(what: @area) %>
   </div>
 
   <div class="info my-2">

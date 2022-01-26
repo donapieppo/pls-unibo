@@ -14,6 +14,9 @@ module PlsUnibo
     config.time_zone = "Rome"
     config.i18n.default_locale = :it
 
+    config.hosts << "tester.dm.unibo.it"
+    config.relative_url_root = '/pls'
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

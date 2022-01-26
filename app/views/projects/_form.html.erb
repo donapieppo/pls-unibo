@@ -3,7 +3,14 @@
     <%= f.input :hidden %>  
     <%= f.input :name %>  
     <%= f.input :description, input_html: { cols: 80, rows: 5 } %>
-    <%= f.rich_text_area :details %>
+
+    <div class="details-trix-editor">
+      <label>
+        Descrizione più dettagliata con la possibilità di formattare il testo (opzionale)
+      </label>
+      <%= f.rich_text_area :details %>
+    </div>
+
     <%= f.association :activity_type, include_blank: false %>  
     <div class="my-4">
       <%= f.input :global, input_html: { id: 'activity_global' } %>  

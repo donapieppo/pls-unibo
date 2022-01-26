@@ -1,4 +1,4 @@
-<div id="page-header" style="background-image: url(<%= asset_path 'workshop21.png' %>)">
+<div id="page-header" style="background-image: url(<%= asset_path 'pages/workshop21.png' %>)">
   <div class="text-center text-white text-4xl md:text-6xl pt-8 h-48">
     <%= @edition.name %><br/>
     <span class="text-xl">16 ott 2021</span>
@@ -20,6 +20,6 @@
 </div>
 
 <div class="container my-8">
-  <%= render EditionComponent.new(edition: @edition, skip_title: true, with_image: true) %>
+  <%= render Edition::EditionComponent.new(@edition, current_user, skip_title: true, with_image: true) %>
 </div>
 

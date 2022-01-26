@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class FlashMessagesComponent < ViewComponent::Base
+class FlashMessage::FlashMessagesComponent < ViewComponent::Base
   def initialize(flash:)
     @flash = flash
   end

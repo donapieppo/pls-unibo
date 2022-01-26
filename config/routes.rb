@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   get 'auth/shibboleth/callback',    to: 'logins#shibboleth'
   post 'auth/shibboleth/callback',   to: 'logins#shibboleth'
-
   post 'auth/developer/callback',    to: 'logins#developer'
 
   get 'login',                       to: 'logins#index',  as: :login
@@ -69,9 +68,12 @@ Rails.application.routes.draw do
 
   resources :editions, concerns: [:resourceble, :contactable, :bookable] do
     resources :events
+    resources :bookings
   end
 
-  resources :events, concerns: [:resourceble, :contactable, :bookable] 
+  resources :events, concerns: [:resourceble, :contactable, :bookable] do
+    resources :bookings
+  end
   resources :resource_containers, concerns: [:resourceble]
   resources :resourcess, only: [:edit, :destroy]
 

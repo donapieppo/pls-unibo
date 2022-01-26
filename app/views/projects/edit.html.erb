@@ -10,8 +10,8 @@
       <%= render partial: 'form' %>  
     </div>
     <div class="lg:w-1/3">
-      <%= render EditContactsComponent.new(what: @project, can_add: policy(@project).edit?) %>
-      <%= render EditResourcesComponent.new(what: @project) %>
+      <%= render Contact::EditContactsComponent.new(what: @project, can_add: policy(@project).edit?) %>
+      <%= render Resource::EditResourcesComponent.new(what: @project) %>
 
       <div class="pls-card my-4">
         <div class="pls-card-title">EDIZIONI</div>

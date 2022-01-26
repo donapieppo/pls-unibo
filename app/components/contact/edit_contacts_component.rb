@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 include LinkHelper
 
-class EditContactsComponent < ViewComponent::Base
+class Contact::EditContactsComponent < ViewComponent::Base
   def initialize(what:, as: nil, can_add: false)
     @what = what
 

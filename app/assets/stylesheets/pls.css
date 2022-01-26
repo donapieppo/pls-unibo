@@ -28,7 +28,6 @@ body {
 .button-danger {
   @apply bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-4 rounded;
 }
-
 .big-button {
   @apply text-white border-2 border-pls bg-pls-strong hover:bg-pls hover:text-white font-bold p-8 text-center rounded-2xl;
 }
@@ -99,5 +98,31 @@ h4 {
 .filtered {
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
+}
+
+table {
+  th, td {
+    @apply p-1 px-2 border border-gray-500;
+  }
+}
+
+.online-access {
+  @apply hover:bg-blue-300 border border-blue-300 px-4 rounded;
+}
+
+.details-trix-editor {
+  .trix-button-group--file-tools {
+    display: none;
+  }
+  @apply bg-yellow-50 p-4 my-4;
+  label {
+    font-weight: bold;
+  }
+}
+
+.trix-content {
+  li {
+   list-style-type: circle;
+  }
 }
 

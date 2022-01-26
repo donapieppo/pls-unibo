@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-class EditionComponent < ViewComponent::Base
-  def initialize(edition:, short: false, title_if_different_from: false, skip_title: false, with_image: false)
+class Edition::EditionComponent < ViewComponent::Base
+  def initialize(edition, current_user, short: false, title_if_different_from: false, skip_title: false, with_image: false)
     @edition = edition
+    @current_user = current_user
     @short = short
     @skip_title = skip_title || (title_if_different_from && @edition.name == @title_if_different_from)
     @with_image = with_image
