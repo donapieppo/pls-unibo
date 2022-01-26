@@ -12,7 +12,7 @@
     </div>
   <% end %>
 
-  <% unless (@user || @what.external_booking? %>  
+  <% unless (@user || @what.external_booking?) %>  
     <div class="italic">
       Per iscriversi occorre essere loggati. <%= link_to 'Accedi', login_path(for: @what.id), class: 'underline' %>.
     </div>
