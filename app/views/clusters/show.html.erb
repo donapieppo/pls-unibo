@@ -1,5 +1,10 @@
 <div class="container">
   <h1 class="title"><%= @cluster.name %></h1>
+
+  <div class="text-right">
+    <%= link_to_edit_if_editable @cluster, msg: 'modifica raggruppamento' %>
+  </div>
+
   <div class="border-l-4 border-pls my-2 p-4 ">
     <%= simple_format @cluster.description %>
   </div>
