@@ -94,6 +94,6 @@ class Activity < ApplicationRecord
   end
 
   def external_booking?
-    self.booking == 'external'
+    self.bookable && self.bookable == 'external'
   end
 end
