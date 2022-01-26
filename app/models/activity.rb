@@ -73,4 +73,8 @@ class Activity < ApplicationRecord
   def on_and_off_line?
     self.online && self.in_presence
   end
+
+  def external_booking?
+    self.booking == 'external'
+  end
 end
