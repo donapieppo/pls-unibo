@@ -3,7 +3,7 @@
     Iscrizioni aperte dal <%= l @what.booking_start %> al <%= l @what.booking_end %>
   </div>
 
-  <% unless @user %>  
+  <% unless (@user || @what.external_booking? %>  
     <div class="italic">
       Per iscriversi occorre essere loggati. <%= link_to 'Accedi', login_path(for: @what.id), class: 'underline' %>.
     </div>
