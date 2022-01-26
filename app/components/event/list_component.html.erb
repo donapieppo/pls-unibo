@@ -4,7 +4,12 @@
       <div class="px-4 mr-1 mb-1 font-mono">
         <%= calendar_icon %>
         <%= l event.start_date, format: :day_with_year %> dalle <%= l event.start_date, format: :hour %>  
-        - <%= event.place %>  
+        <% if event.start_date && event.duration %>  
+          alle <%= l event.start_date + event.duration.minutes, format: :hour %>  
+        <% end %>
+        <% unless event.place.blank? %>  
+          - <%= event.place %>   
+        <% end %>
       </div>
     <% end %>
   </div>
