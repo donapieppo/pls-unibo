@@ -5,6 +5,7 @@ class BookingPolicy < ApplicationPolicy
 
   def create?
     return false unless @record.activity.bookable_now?
+    return false if @record.activity.external_booking?
 
     if @user
       @user.teacher? || ! @record.activity.any_cluster_siblings_booked?(@user)
