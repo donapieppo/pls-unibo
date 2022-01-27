@@ -1,22 +1,26 @@
 .trix-content {
+  @apply my-4;
+  h1 {
+    @apply block leading-none font-bold text-pls tracking-tight mt-6;
+  }
   a {
-   text-decoration: underline;
- }
- ul {
-   list-style-type: circle;
- }
-}
-
-dl {
-  margin: 4px;
-  dt {
-    font-weight: bold;
+    text-decoration: underline;
   }
-  dd {
-    margin-left: 8px;
+  ul {
+    list-style-type: circle;
   }
 }
 
-ol {
-  list-style-type: upper-roman;
-}
+/* dl { */
+/*   margin: 4px; */
+/*   dt { */
+/*     font-weight: bold; */
+/*   } */
+/*   dd { */
+/*     margin-left: 8px; */
+/*   } */
+/* } */
+
+/* ol { */
+/*   list-style-type: upper-roman; */
+/* } */
