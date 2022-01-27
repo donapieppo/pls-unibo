@@ -28,7 +28,7 @@ class ClustersController < ApplicationController
   def edit
     # FIXME
     # add already selected acivities (because of CURRENT_ACADEMIC_YEAR changes)
-    @activities = Activity.clusterable(CURRENT_ACADEMIC_YEAR)
+    @activities = Activity.in_current_academic_year.order(:name)
   end
 
   def update

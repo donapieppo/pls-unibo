@@ -10,7 +10,7 @@ class Activity < ApplicationRecord
   scope :with_bookings, -> { where(id: Booking.select(:activity_id).group(:activity_id).map(&:activity_id)) }
   scope :bookable_now, -> { where('activities.booking_start is not null and activities.booking_end is not null and activities.booking_start <= NOW() and NOW() <= activities.booking_end') }
 
-  scope :clusterable, -> (year) { where(academic_year: year).order(:name) }
+  scope :in_current_academic_year, -> () { where(academic_year: CURRENT_ACADEMIC_YEAR) }
   scope :visible, -> { where.not('activities.hidden = 1') }
   scope :future, -> { where('start_date >= NOW()') }
 
@@ -95,5 +95,9 @@ class Activity < ApplicationRecord
 
   def external_booking?
     self.bookable && self.bookable == 'external'
+  end
+
+  def booking_to_confirm?
+    self.bookable && self.bookable == 'to_confirm'
   end
 end
