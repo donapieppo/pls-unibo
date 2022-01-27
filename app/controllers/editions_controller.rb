@@ -38,7 +38,7 @@ class EditionsController < ApplicationController
 
   def update
     if @edition.update(edition_params)
-      redirect_to [:edit, @edition.project], notice: 'OK'
+      redirect_to @edition, notice: 'OK'
     else
       render action: :edit
     end
