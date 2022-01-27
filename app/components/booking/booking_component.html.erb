@@ -2,7 +2,7 @@
   <div class="my-4 font-bold text-green-700">
     Iscrizioni aperte dal <%= l @what.booking_start %> al <%= l @what.booking_end %>
   </div>
-  <% if @free_seats < 1 %>
+  <% if (!@what.external_booking?) && @free_seats < 1 %>
     <div class="text-lg text-red-500 font-bold my-4">  
       <span class="fa-stack">
         <i class="fas fa-chair fa-stack-1x"></i>
