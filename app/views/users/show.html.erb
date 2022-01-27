@@ -33,8 +33,11 @@
         </div>
       </div>
       <% end.empty? and begin  %>
-      <div class="info">
-        Nessuna sei al momento registrato ad alcuna attività.
+      <div class="warning">
+        <p>Al momento non sei registrato ad alcuna attività.</p>
+        <p>
+        <%= link_to "<i class='fas fa-arrow-alt-circle-right'></i> Vai all'elenco delle attività a cui è possibile iscriversi.".html_safe, projects_path(bookable: 1), class: 'underline' %>  
+        </p>
       </div>
     <% end %>
     <% Booking.where(teacher_id: @user.id) do |b| %>  
