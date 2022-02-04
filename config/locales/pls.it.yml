@@ -12,6 +12,10 @@ it:
   edition: Edizione
   event: Evento
   contact: Contatto
+  student_secondary: Studente scuola secondaria di secondo grado
+  student_university: Studente università
+  teacher: Docente scuola secondaria
+  other: Altro
 
   activerecord:
     models:
@@ -57,6 +61,8 @@ it:
         online: Si può partecipare on-line
         access_url: Indirizzo per accedere
         bookable: Possibile iscriversi
+        bookable_by: Chi può fare le iscrizioni
+        bookable_to: Chi partecipa
         booking_url: Indirizzo web esterno per la prenotazione
         booking_start: Data inizio iscrizioni
         booking_end: Data fine iscrizioni
@@ -74,6 +80,8 @@ it:
         online: Si può partecipare on-line
         access_url: Indirizzo per accedere
         bookable: Possibile iscriversi
+        bookable_by: Chi può fare le iscrizioni
+        bookable_to: Chi partecipa
         booking_url: Indirizzo web esterno per la prenotazione
         booking_start: Data inizio iscrizioni
         booking_end: Data fine iscrizioni
