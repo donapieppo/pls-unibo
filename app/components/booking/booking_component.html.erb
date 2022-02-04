@@ -1,6 +1,7 @@
 <% if @general_bookable %>  
   <div class="my-4 font-bold text-green-700">
-    Iscrizioni aperte dal <%= l @what.booking_start %> al <%= l @what.booking_end %>
+    Iscrizioni aperte dal <%= l @what.booking_start %> al <%= l @what.booking_end %> <br/>
+    <%= @what.bookable_by_description.upcase %>
   </div>
   <% if (!@what.external_booking?) && @free_seats < 1 %>
     <div class="text-lg text-red-500 font-bold my-4">  
