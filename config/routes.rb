@@ -37,7 +37,8 @@ Rails.application.routes.draw do
 
   concern :bookable do
     resources :bookings, only: [:index, :new, :create] do
-      post :new_user, on: :collection
+      get :new_student, on: :collection
+      post :create_student, on: :collection
       # get :anew, on: :collection
       # post :acreate, on: :collection
     end
@@ -68,11 +69,11 @@ Rails.application.routes.draw do
 
   resources :editions, concerns: [:resourceble, :contactable, :bookable] do
     resources :events
-    resources :bookings
+    # resources :bookings
   end
 
   resources :events, concerns: [:resourceble, :contactable, :bookable] do
-    resources :bookings
+    # resources :bookings
   end
   resources :resource_containers, concerns: [:resourceble]
   resources :resourcess, only: [:edit, :destroy]
