@@ -81,11 +81,15 @@ class BookingsController < ApplicationController
     @user = User.find_by_email(params[:email])
 
     if @user == current_user
-      redirect_to @activity, notice: "Non puoi registare te stesso come studente."
+      skip_authorization
+      redirect_to @activity, alert: "Non puoi registare te stesso come studente."
       return
     end
 
-    @user ||= User.create(email: params[:email], name: params[:name], surname: params[:surname])
+    @user ||= User.create(email: params[:email], 
+                          name: params[:name], 
+                          surname: params[:surname],
+                          school_id: current_user.school_id)
     if @user
       booking = @activity.bookings.new(user_id: @user.id, 
                                        teacher_id: current_user.id,
