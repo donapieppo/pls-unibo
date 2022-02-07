@@ -33,7 +33,7 @@
           <div class="mt-2">
             <%= helpers.possible_label_from_array 'Relatori', event.speakers %>
           </div>
-          <%= render Booking::BookingComponent.new(event.bookings.new, helpers.current_user) %>
+          <%= render Booking::BookingComponent.new(event, helpers.current_user) %>
           <% if @with_image %>  
             <% event.resources.each do |r| %>  
               <% if r.image? %>  
