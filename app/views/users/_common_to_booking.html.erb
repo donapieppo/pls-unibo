@@ -2,12 +2,13 @@
 <%= f.input :surname %>
 
 <div class="my-2" id="role_inputs">
-  <%= f.input :role, as: :radio_buttons, collection: [['Studente', 'student'], ['Docente', 'teacher'], ['Altro', 'other']] %>
+  <%= f.input :role, as: :radio_buttons, collection: [[t(:student_secondary), 'student_secondary'], 
+                                                      [t(:student_university), 'student_university'], 
+                                                      [t(:teacher), 'teacher'], 
+                                                      [t(:other), 'other']] %>
 </div>
+
 <hr/>
-<div class="my-2" id="school_type_div">
-  <%= f.input :school_type, as: :radio_buttons, label: '', collection: [['Scuola I grado', 'primo'], ['Scuola II grado', 'secondo'], ['Università', 'univ']] %>
-</div>
 
 <div id="other_string_div">
   <%= f.input :other_string %>  
@@ -41,7 +42,6 @@
 
 <%= javascript_tag do %>  
   const role_inputs = document.querySelectorAll('#role_inputs input');
-  const school_type_div = document.getElementById('school_type_div');
   const other_string_div = document.getElementById('other_string_div');
   const school_choose = document.getElementById('school_choose');
   const seats = document.getElementById('seats');
@@ -51,8 +51,7 @@
     if (seats) {
       seats.style.display = 'none';
     }
-    if (r && r.value === 'other') {
-      school_type_div.style.display = 'none';
+    if (r && (r.value === 'other' || r.value == 'student_university')) {
       school_choose.style.display = 'none';
       if (seats) {
         seats.style.display = 'none';
@@ -61,7 +60,6 @@
     } else {
       other_string_div.querySelector('textarea').value = '';
       other_string_div.style.display = 'none';
-      school_type_div.style.display = 'block';
       school_choose.style.display = 'block';
       if (r && r.value === 'teacher' && seats) {
         seats.style.display = 'block';
