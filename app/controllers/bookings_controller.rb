@@ -39,17 +39,46 @@ class BookingsController < ApplicationController
 
   def new
     @free_seats = @activity.free_seats
-    @booking = @activity.bookings.new
-    @booking.user_id = current_user.id
+    @booking = @activity.bookings.new(user_id: current_user.id)
     authorize @booking
-    if @booking.missing_user_data?
+    if @booking.missing_data?(:user)
       redirect_to myedit_users_path, alert: "Si prega di fornire i dati richiesti prima di iscriversi"
       return
     end
   end
 
-  def new_user
-    @user = User.where(email: params[:email]).first
+  def new_student
+    @free_seats = @activity.free_seats
+    @booking = @activity.bookings.new(teacher_id: current_user.id)
+    authorize @booking
+    if @booking.missing_data?(:teacher)
+      redirect_to myedit_users_path, alert: "Si prega di fornire i dati richiesti prima di iscriversi"
+      return
+    end
+  end
+
+  def new_class
+    raise "NEW_CLASS"
+  end
+
+  def create
+    @free_seats = @activity.free_seats
+    @booking = @activity.bookings.new(booking_params)
+    @booking.user_id = current_user.id
+    authorize @booking
+    if @booking.missing_data?(:user)
+      redirect_to myedit_users_path, alert: "Si prega di inserire i propri dati prima di iscriversi."
+      return
+    end
+    if @booking.save
+      redirect_to @activity, notice: "Iscrizione registrata correttamente."
+    else
+      render action: :new
+    end
+  end
+
+  def create_student
+    @user = User.find_by_email(params[:email])
 
     if @user == current_user
       redirect_to @activity, notice: "Non puoi registare te stesso come studente."
@@ -58,31 +87,20 @@ class BookingsController < ApplicationController
 
     @user ||= User.create(email: params[:email], name: params[:name], surname: params[:surname])
     if @user
-      booking = @activity.bookings.new(user_id: @user.id, teacher_id: current_user.id)
+      booking = @activity.bookings.new(user_id: @user.id, 
+                                       teacher_id: current_user.id,
+                                       teacher_name: current_user.name,
+                                       teacher_surname: current_user.surname,
+                                       teacher_email: current_user.email,
+                                       notes: params[:notes])
       authorize(booking)
       if booking.save
-        redirect_to [:new, @activity, :booking], notice: "Registrazione salvata."
+        redirect_to @activity, notice: "Registrazione salvata."
       else
         redirect_to @activity, alert: "NO. #{booking.errors.inspect}. #{params.inspect}"
       end
     else
       raise params.inspect
-    end
-  end
-
-  def create
-    @free_seats = @activity.free_seats
-    @booking = @activity.bookings.new(booking_params)
-    @booking.user_id = current_user.id
-    authorize @booking
-    if @booking.missing_user_data?
-      redirect_to myedit_users_path, alert: "Si prega di inserire i propri dati prima di iscriversi."
-      return
-    end
-    if @booking.save
-      redirect_to @activity, notice: "Iscrizione registrata correttamente."
-    else
-      render action: :new
     end
   end
 
@@ -103,7 +121,7 @@ class BookingsController < ApplicationController
     else
       flash[:alert] = "Errore"
     end
-    redirect_to bookings_path(activity_id: @booking.activity_id)
+    redirect_to @booking.activity
   end
 
   private
@@ -126,7 +144,7 @@ class BookingsController < ApplicationController
     if params[:booking][:online] == "1"
       params[:booking][:seats] = 0
     end
-    params[:booking].permit(:email, :name, :surname, :role, :school_type, :grade, :teacher_name, :teacher_surname, :teacher_email,  
+    params[:booking].permit(:email, :name, :surname, :role, :grade, :teacher_name, :teacher_surname, :teacher_email,  
                             :other_string, :notes, :online, :seats)
 
     # if current user the model adds user data
