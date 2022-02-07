@@ -1,7 +1,13 @@
-<ul>
-  <% @bookings.each do |booking| %>  
-    <li>
-      <%= booking.user %>
-    </li>
-  <% end %>
-</ul>
+<div class="bg-gray-50 ml-4 p-4">
+  <strong>
+    Elenco degli studenti che hai iscritto a <%= @what %>:  
+  </strong>
+
+  <ol class="list-decimal p-4">
+    <% @bookings.each do |booking| %>  
+      <li>
+        <%= booking.user %>
+      </li>
+    <% end %>
+  </ol>
+</div>
