@@ -56,4 +56,8 @@ class Activity < ApplicationRecord
       ""
     end
   end
+
+  def speakers_to_s 
+    self.speakers.map{ |speaker| speaker.to_s }.join(', ')
+  end
 end
