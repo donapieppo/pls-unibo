@@ -8,12 +8,12 @@
                                            ['studenti universitari', 'student_university'], 
                                            ['docenti', 'teacher']],  include_blank: false %>
 
-<%= @form.input :bookable_to, collection: [['lo stesso che si iscrive', 'itsself'],
-                                           ['studenti', 'students'], 
-                                           ['classi di studenti', 'classes']], include_blank: false %>
+<%= @form.input :bookable_for, collection: [['lo stesso che si iscrive', 'itsself'],
+                                            ['studenti', 'students'], 
+                                            ['classi di studenti', 'classes']], include_blank: false %>
 
 <div id="booking_url">
-  <%= @form.input :booking_url, hint: "In caso di sofia #{SOFIA_LINK}" %>
+  <%= @form.input :booking_url, as: :string, hint: "In caso di sofia #{SOFIA_LINK}" %>
 </div>
 
 <div id="booking_dates">

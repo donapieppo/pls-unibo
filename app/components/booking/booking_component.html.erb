@@ -1,78 +1,35 @@
-<% if @general_bookable %>  
-  <div class="my-4 font-bold text-green-700">
-    Iscrizioni aperte dal <%= l @what.booking_start %> al <%= l @what.booking_end %> <br/>
-    <%= @what.bookable_by_description.upcase %>
-  </div>
-  <% if (!@what.external_booking?) && @free_seats < 1 %>
-    <div class="text-lg text-red-500 font-bold my-4">  
-      <span class="fa-stack">
-        <i class="fas fa-chair fa-stack-1x"></i>
-        <i class="fas fa-ban fa-stack-2x" style="color:Tomato"></i>
-      </span>
-      Posti esauriti.
-    </div>
-  <% end %>
+<%= render Booking::BookingInfoComponent.new(@what, @current_user) %>  
+<%= render Booking::CurrentUserBookingComponent.new(@what, @current_user) %>  
 
-  <% unless (@current_user || @what.external_booking?) %>  
-    <div class="italic">
-      Per iscriversi occorre essere loggati. <%= link_to 'Accedi', login_path(for: @what.id), class: 'underline' %>.
-    </div>
-    <%# <div class="text-yellow-500"> %>
-      <%#   Nel caso ci si volesse iscrivere senza utilizzare un account è possibile scrivere una mail all'indirizzo %>
-      <%#   <%= mail_to 'dipmat-supportoweb@unibo.it' %1> specificando %> 
-      <%#   nome, cognome, scuola e l'attivitá a cui ci si vuole iscrivere. %>
-      <%# </div> %>
-  <% end %>
-<% end %>
-
-<% if @user_this_booking %>
-  <!-- manage booking -->
-  <div class="text-xl text-green-700 font-bold my-4">
-    <%= exclamation_icon %> 
-    <%= @user_this_booking.confirmed ? 'Hai fatto richiesta di iscrizione per' : 'Sei prenotato a' %>
-    questa edizione con codice &ldquo;<%= @user_this_booking.nonce %>&rdquo;.
-    <% if @user_this_booking.online %>  
-      <br/><small>Hai fatto richiesta per partecipare on line.</small>
-    <% end %>
-  </div>
-
-  <div class="my-4">
-    <%= link_to "Cancella l'iscrizione", booking_path(@user_this_booking), method: :delete, class: 'button-danger' %>  
-  </div>
-<% elsif @user_sibling_booking_activity %>
-  <div class="text-xl text-green-700 font-bold my-4">  
-    Sei iscritto all'attività 
-    &ldquo;<span class="underline"><%= link_to @user_sibling_booking_activity.to_s, @user_sibling_booking_activity %>&rdquo;</span>
-    dello stesso gruppo. 
-  </div>
-<% else %>
-  <div class="actions">
-    <% if @bookable_by_user %>  
-      <div class="my-2">
-        [<%= @what.free_seats %> posti liberi su <%= @what.seats %>]
-      </div>
-      <div class="bg-pls-light p-4 border-l-4 border-pls">
-        <% if @what.booking_to_confirm? %>  
-          <div>
-            Puoi fare richiesta di partecipazione
-            usando il pulsante sotto.<br/> 
-            In seguito riceverai ulteriori informazioni al tuo indirizzo email <%= @current_user.email if @current_user %>.
+<% if @bookable_for_itsself %>  
+  <% unless @user_this_booking %>
+    <div class="actions">
+      <% if @bookable_by_user %>  
+        <div class="my-2">
+          [<%= @free_seats %> posti liberi su <%= @what.seats %>]
+        </div>
+        <div class="bg-pls-light p-4 border-l-4 border-pls">
+          <% if @what.booking_to_confirm? %>  
+            <div>
+              Puoi fare richiesta di partecipazione
+              usando il pulsante sotto.<br/> 
+              In seguito riceverai ulteriori informazioni al tuo indirizzo email <%= @current_user.email if @current_user %>.
+            </div>
+          <% end %>
+          <div class="my-4">
+            <% txt = @what.booking_to_confirm? ? ' prenota' : ' iscriviti' %>  
+            <%= link_to booking_icon + txt, [:new, @what, :booking], class: 'button' %>
           </div>
-        <% end %>
-        <div class="my-4">
-          <% txt = @what.booking_to_confirm? ? ' prenota' : ' iscriviti' %>  
-          <%= link_to booking_icon + txt, [:new, @what, :booking], class: 'button' %>
+          <div>
+            <%= link_to "Controlla le tue iscrizioni e prenotazioni per attività PLS", me_users_path, class: "underline" %>.
+          </div>
         </div>
-        <div>
-          <%= link_to "Controlla le tue iscrizioni e prenotazioni per attività PLS", me_users_path, class: "underline" %>.
-        </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
+  <% end %>
+<% elsif @bookable_by_teacher_for_students %>
+  <%= render Booking::CurrentTeacherBookingComponent.new(@what, @current_user) %>  
+  <div class="my-4">
+    <%= link_to booking_icon + " Prenota i tuoi studenti", [:new_student, @what, :bookings], class: 'button' %>
   </div>
 <% end %>
-
-<%# <% if @current_user && @current_user.teacher? && @bookable %1> %> 
-  <%#   <div class="my-4"> %>
-    <%#     <%= link_to "Prenota i tuoi studenti", [:new, @what, :booking], class: 'button' %1> %>
-    <%#   </div> %>
-  <%# <% end %1> %>

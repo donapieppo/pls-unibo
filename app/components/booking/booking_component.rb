@@ -1,19 +1,23 @@
 # frozen_string_literal: true
 
 class Booking::BookingComponent < ViewComponent::Base
-  def initialize(booking, current_user, short: false)
-    @booking = booking
+  def initialize(what, current_user, short: false)
+    @what = what
     @current_user = current_user
+    @booking = what.bookings.new
 
-    @what = @booking.activity
-
-    @general_bookable = @what.bookable? && @what.booking_start && @what.booking_end
     @bookable_by_user = BookingPolicy.new(@current_user, @booking).create?
     @free_seats = @what.free_seats
 
-    @user_this_booking = @current_user ? @what.bookings.where(user_id: @current_user.id).first : nil
-    @user_sibling_booking_activity_id = @current_user ? @what.cluster_siblings_booked_activity_ids(@current_user).first : nil
-    @user_sibling_booking_activity = Activity.find(@user_sibling_booking_activity_id) if @user_sibling_booking_activity_id
+    if @bookable_for_itsself = (@what.bookable_for == 'itsself')
+      @user_this_booking = @current_user ? @what.bookings.where(user_id: @current_user.id).first : nil
+      @user_sibling_booking_activity_id = @current_user ? @what.cluster_siblings_booked_activity_ids(@current_user).first : nil
+      @user_sibling_booking_activity = Activity.find(@user_sibling_booking_activity_id) if @user_sibling_booking_activity_id
+    elsif @bookable_by_teacher_for_students = (@current_user.teacher? && what.bookable_by == 'teacher' && @what.bookable_for == 'students')
+      # ok
+    else
+      # future
+    end
   end
 
   def render?
