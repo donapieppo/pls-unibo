@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.text "access_url"
     t.column "bookable", "enum('no','yes','to_confirm','external')"
     t.column "bookable_by", "enum('all','student_secondary','student_university','teacher')"
-    t.column "bookable_to", "enum('itsself','classes','students')"
+    t.column "bookable_for", "enum('itsself','classes','students')"
     t.integer "bookable_limit", limit: 1
     t.text "booking_url"
     t.datetime "booking_end"
@@ -259,8 +259,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
 
   create_table "users", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
     t.boolean "staff"
-    t.column "role", "enum('student','teacher','other')"
-    t.column "school_type", "enum('primo','secondo','univ')"
+    t.column "role", "enum('student_secondary','student_university','teacher','other')"
     t.integer "school_id", unsigned: true
     t.string "school_city"
     t.string "school_pec"
