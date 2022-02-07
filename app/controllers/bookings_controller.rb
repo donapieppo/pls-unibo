@@ -77,6 +77,7 @@ class BookingsController < ApplicationController
     end
   end
 
+  # REFACTOR in model
   def create_student
     @user = User.find_by_email(params[:email])
 
@@ -89,6 +90,7 @@ class BookingsController < ApplicationController
     @user ||= User.create(email: params[:email], 
                           name: params[:name], 
                           surname: params[:surname],
+                          role: 'student_secondary', 
                           school_id: current_user.school_id)
     if @user
       booking = @activity.bookings.new(user_id: @user.id, 
@@ -96,6 +98,7 @@ class BookingsController < ApplicationController
                                        teacher_name: current_user.name,
                                        teacher_surname: current_user.surname,
                                        teacher_email: current_user.email,
+                                       seats: 1,
                                        notes: params[:notes])
       authorize(booking)
       if booking.save
