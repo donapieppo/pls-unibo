@@ -1,9 +1,9 @@
 <div class="container">
   <h1 class="title">Iscrivi uno studente</h1>
 
-  <hr class="my-4"/>
-  Sei registrato come docente.<br/>
-  Puoi iscrivere i tuoi studenti fornendo nome, cognome e email dello studente.
+  <p>Sei registrato come docente.</p>
+  <p>Puoi iscrivere i tuoi studenti fornendo nome, cognome e email dello studente.</p>
+
   <%= form_with url: [:create_student, @activity, :bookings] do |f| %>  
     <%= f.label :name, 'Nome' %>
     <%= f.text_field :name %><br/>  
@@ -12,7 +12,7 @@
     <%= f.label :email %>
     <%= f.text_field :email %><br/>
     <%= f.label :notes, 'Note facoltative' %>
-    <%= f.text_field :notes %><br/>
+    <%= f.text_area :notes %><br/>
     <%= f.submit "Iscrivi lo studente" %>  
   <% end %>
 </div>
