@@ -17,8 +17,8 @@ class Booking < ApplicationRecord
   validates :user_id, uniqueness: { scope: [:activity_id], message: "Prenotazione già presente." }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Formato della mail non corretto" }
 
-  validates :teacher_name, :teacher_surname, presence: { allow_blank: false }, if: -> { user.student? }
-  validates :teacher_email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Formato della mail del docente non corretto" }, if: -> { user.student? }
+  validates :teacher_name, :teacher_surname, presence: { allow_blank: false }, if: -> { user.student_secondary? }
+  validates :teacher_email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Formato della mail del docente non corretto" }, if: -> { user.student_secondary? }
 
   validates :name, :surname, presence: { allow_blank: false }
   validates_with BookingSeatsValidator 
@@ -31,6 +31,11 @@ class Booking < ApplicationRecord
                     :confirm_if_activity_not_to_confirm
   after_create :create_nonce
 
+  # FIXME
+  def teacher
+    User.find(self.teacher_id)
+  end
+
   def copy_params_from_user
     # if self.user_id && ! self.user
     #   self.user = User.find(self.user_id)
@@ -40,7 +45,6 @@ class Booking < ApplicationRecord
       self.name = u.name
       self.surname = u.surname
       self.role = u.role
-      self.school_type = u.school_type
       self.school = u.school
       self.other_string = u.other_string
       self.school_pec = u.school_pec
@@ -92,12 +96,12 @@ class Booking < ApplicationRecord
     end
   end
 
-  def missing_user_data?
-    user = self.user
+  def missing_data?(what)
+    user = (what == :user) ? self.user : self.teacher
     if user.role.blank? || user.name.blank? || user.surname.blank?
       return true
     end
-    if user.student?
+    if user.student_secondary?
       if user.school_id.blank? || user.school_city.blank? || user.school_pec.blank?
         return true
       end
