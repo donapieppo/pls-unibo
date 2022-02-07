@@ -4,6 +4,7 @@
     <li>
       <span class="font-mono"><%= b.nonce ? b.nonce : '-----' %></span> 
       <small><%= l b.created_at %></small>
+      <% @teacher_mails << b.teacher_email %>  
       <% if b.online %>  
         <% @activity_online_mails << b.email %>  
         <span class="text-yellow-500">online</span>
@@ -18,7 +19,9 @@
       <% end %>
       <small>(<%= mail_to b.email %>)</small>
       <%= b.role %> 
-      <%= b.grade %> anno 
+      <% unless b.grade.blank? %>  
+        <%= b.grade %> anno 
+      <% end %>
       <strong>scuola:</strong> 
       <%= b.school %>  
       <%= b.school_city %>
@@ -36,15 +39,15 @@
     </li>
   <% end %>
 </ul>
+
 <div class="info text-sm my-2">
   <strong>Indirizzi partecipanti in presenza:</strong> <%= @activity_in_presence_mails.join(', ') %>  
 </div>
 <div class="info text-sm my-2">
   <strong>Indirizzi partecipanti online:</strong> <%= @activity_online_mails.join(', ') %>  
 </div>
-<ul class="bg-yellow-500 text-sm my-2">
-  <% @activity.bookings.pluck(:teacher_email).sort.uniq.each do |teacher_email| %>  
-    <li><%= link_to teacher_email, bookings_path(temail: teacher_email) %></li>
-  <% end %>
-</ul>
+<div class="info text-sm my-2">
+  <strong>Indirizzi docenti:</strong> <%= @teacher_mails.sort.uniq.join(', ') %>  
+</div>
+
 <%= link_to 'scarica elenco', bookings_path(activity_id: @activity.id, format: :csv), class: 'button my-4' %>  
