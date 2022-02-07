@@ -3,6 +3,7 @@ class User < ApplicationRecord
   belongs_to :school, optional: true
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Formato della mail non corretto" }
+  validates :school_pec, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Formato della mail non corretto", allow_blank: true }
 
   def cn
     "%s %s" % [self.name, self.surname]
@@ -32,8 +33,8 @@ class User < ApplicationRecord
     self.staff
   end
 
-  def student?
-    self.role && self.role == 'student'
+  def student_secondary?
+    self.role && self.role == 'student_secondary' 
   end
 
   def teacher?
