@@ -30,18 +30,16 @@
         <%= helpers.possible_label_from_array 'Relatori', @edition.speakers %>
       </div>
 
-      <% if @short %>  
-        <%= render Booking::BookingComponent.new(@edition.bookings.new, @current_user, short: true) %>
-      <% else %>  
+      <% unless @short %>  
         <div class="my-4 text-gray-700">
           <%= @edition.details %>  
         </div>
-        <div class="my-4">
-          <%= render Booking::BookingComponent.new(@edition.bookings.new, @current_user) %>
-        </div>
       <% end %>
+
+      <%= render Booking::BookingComponent.new(@edition, @current_user, short: @short) %>
     </div>
   </div>
+
   <div class="md:w-1/3 xl:w-1/4 px-4 mx-auto">
     <% @resources.each do |resource| %>
       <%= render resource, with_preview: true %>  
