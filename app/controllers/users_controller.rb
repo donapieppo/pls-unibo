@@ -71,14 +71,11 @@ class UsersController < ApplicationController
   def user_params
     # FIXME FIXME
     params[:user].delete(:role) if params[:user][:role] == ''
-    permitted = [:name, :surname, :role, :school_type, :school_city, :school_pec, :other_string]
+    permitted = [:name, :surname, :role, :school_city, :school_pec, :other_string]
     if current_user.staff?
       permitted << :email
     else
       params[:user].delete(:email) unless current_user.staff?
-    end
-    if params[:user][:school_type].blank? || params[:user][:role] == 'other'
-      params[:user][:school_type] = nil 
     end
 
     params[:user].permit(permitted)
