@@ -62,7 +62,7 @@ it:
         access_url: Indirizzo per accedere
         bookable: Possibile iscriversi
         bookable_by: Chi può fare le iscrizioni
-        bookable_to: Chi partecipa
+        bookable_for: Chi partecipa
         booking_url: Indirizzo web esterno per la prenotazione
         booking_start: Data inizio iscrizioni
         booking_end: Data fine iscrizioni
@@ -81,7 +81,7 @@ it:
         access_url: Indirizzo per accedere
         bookable: Possibile iscriversi
         bookable_by: Chi può fare le iscrizioni
-        bookable_to: Chi partecipa
+        bookable_for: Chi partecipa
         booking_url: Indirizzo web esterno per la prenotazione
         booking_start: Data inizio iscrizioni
         booking_end: Data fine iscrizioni
