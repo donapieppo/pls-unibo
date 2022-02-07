@@ -52,7 +52,7 @@ module Bookable
     when 'student_university'
       'prenotazioni aperte agli studenti universitari'
     when 'teacher'
-      case self.bookable_to
+      case self.bookable_for
       when 'itsself'
         'prenotazioni aperte ai docenti'
       when 'classes'
