@@ -118,7 +118,7 @@ table {
   .trix-button-group--file-tools {
     display: none;
   }
-  @apply bg-yellow-50 p-4 my-4;
+  @apply border-2 border-yellow-500 bg-gray-50 p-2 lg:p-4 my-4;
   label {
     font-weight: bold;
   }

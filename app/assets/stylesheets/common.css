@@ -1,5 +1,5 @@
 .trix-content {
-  @apply my-4;
+  @apply my-8;
   h1 {
     @apply block leading-none font-bold text-pls tracking-tight mt-6;
   }
