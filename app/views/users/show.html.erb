@@ -1,21 +1,23 @@
 <div class="container my-16">
   <div>
-    <p class="my-2">Gentile <%= @user.cn %>,</p>
-    <p>sei registrato a questo sito con l'indirizzo di posta <%= @user.email %>.</p>
-    <p>
-    Sei registrato 
-    <% if @user.role %>  
-      come <strong class="px-2"><%= t @user.role %></strong>
-    <% if @user.school_type %> 
-        <%= t(@user.school_type).upcase if @user.school_type %><%= @user.other_string if @user.role == 'other' %>. 
-        <% if @user.school_id %>
-          <%= @user.school %> (<%= @user.school.municipality %>)
+    Gentile <%= @user.cn %>, sei registrato
+    <div class="my-2">
+      <% if @user.role %>  
+        <div>
+          come <strong class="px-2"><%= t @user.role %></strong>
+        </div>
+        <% if @user.role == 'student_secondary' || @user.role == 'teacher' %> 
+          <% if @user.school_id %>
+            della scuola <%= @user.school %> (<%= @user.school.municipality %>)
+          <% end %>
         <% end %>
+      <% else %>
+        senza avere specificato il tuo ruolo (docente/studente/altro).<br/> Puoi aggiornare i tuoi dati.
       <% end %>
-    <% else %>
-      senza avere specificato il tuo ruolo (docente/studente/altro).<br/> Puoi aggiornare i tuoi dati.
-    <% end %>
-    </p>
+      <div>
+        con l'indirizzo di posta <%= @user.email %>.
+      </div>
+    </div>
   </div>
   <div class="mt-8">
     <%= link_to 'Modifica i miei dati', myedit_users_path, class: 'button' %>  
