@@ -4,14 +4,8 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def create?
-    return false unless @record.activity.bookable_now?
-    return false if @record.activity.external_booking?
-
-    if @user
-      @user.teacher? || ! @record.activity.any_cluster_siblings_booked?(@user)
-    else
-      false
-    end
+    @activity = @record.activity
+    @activity.bookable_now? && @activity.bookable_by_user?(@user)
   end
 
   # teachers can add students
@@ -27,13 +21,21 @@ class BookingPolicy < ApplicationPolicy
     @user && @user.staff?
   end
 
-  def anew?
-    acreate?
+  def new_student?
+    create_student?
   end
 
-  def acreate?
-    @record.activity.bookable_now?
+  def create_student?
+    @user && @user.teacher?
   end
+
+  # def anew?
+  #   acreate?
+  # end
+
+  # def acreate?
+  #   @record.activity.bookable_now?
+  # end
 
   def thankyou?
     true
