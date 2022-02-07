@@ -1,0 +1,22 @@
+<% if @user_this_booking %>
+  <!-- manage booking -->
+  <div class="text-xl text-green-700 font-bold my-4">
+    <%= exclamation_icon %> 
+    <%= @user_this_booking.confirmed ? 'Hai fatto richiesta di iscrizione per' : 'Sei prenotato a' %>
+    questa edizione con codice &ldquo;<%= @user_this_booking.nonce %>&rdquo;.
+    <% if @user_this_booking.online %>  
+      <br/><small>Hai fatto richiesta per partecipare on line.</small>
+    <% end %>
+  </div>
+
+  <div class="my-4">
+    <%= link_to "Cancella l'iscrizione", booking_path(@user_this_booking), method: :delete, class: 'button-danger' %>  
+  </div>
+<% elsif @user_sibling_booking_activity %>
+  <div class="text-xl text-green-700 font-bold my-4">  
+    Sei iscritto all'attività 
+    &ldquo;<span class="underline"><%= link_to @user_sibling_booking_activity.to_s, @user_sibling_booking_activity %>&rdquo;</span>
+    dello stesso gruppo. 
+  </div>
+<% end %>
+
