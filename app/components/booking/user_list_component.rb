@@ -8,6 +8,7 @@ class Booking::UserListComponent < ViewComponent::Base
     @bookings = @activity.bookings.includes(:user, :school).order(:created_at)
     @activity_online_mails = []   
     @activity_in_presence_mails = []   
+    @teacher_mails = []
   end
 end
 
