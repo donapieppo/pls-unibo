@@ -20,7 +20,7 @@ class LoginsController < ApplicationController
       user = create_logged_user
       sign_in_and_redirect user, myedit_users_path
     else
-      logger.info "Authentication: allow_and_create found user #{user.inspect}"
+      logger.info "Authentication: google_oauth2 found user #{user.inspect}"
       sign_in_and_redirect user, root_path
     end
   end
@@ -33,8 +33,8 @@ class LoginsController < ApplicationController
     if @email =~ /@(studio\.)?unibo.it\z/ 
       allow_and_create
     else
-      logger.info "Students are not allowed: #{@email} user not allowed."
-      redirect_to no_access_path and return
+      logger.info "#{@email} user not allowed."
+      redirect_to no_access_path 
     end
   end
 
@@ -47,7 +47,7 @@ class LoginsController < ApplicationController
       user = create_logged_user
       sign_in_and_redirect user, myedit_users_path
     else
-      logger.info "Developer Authentication: allow_and_create found user #{user.inspect}"
+      logger.info "Developer Authentication found user #{user.inspect}"
       sign_in_and_redirect user, root_path
     end
   end
@@ -115,17 +115,17 @@ class LoginsController < ApplicationController
   end
 
   def allow_and_create
-    user = @idAnagraficaUnica ? ::User.where(id: @idAnagraficaUnica).first : ::User.where(email: @email).first
+    # user = @idAnagraficaUnica ? ::User.where(id: @idAnagraficaUnica).first : ::User.where(email: @email).first
+    user = User.find_by_email(@email)
     if ! user
       logger.info "Authentication: User #{@email} to be CREATED"
-      h = {id:      @idAnagraficaUnica || 0,
-           email:   @email,
-           name:    @name, 
-           surname: @surname }
-      h[:nationalpin] = @nationalpin if ::User.column_names.include?('nationalpin')
-      user = ::User.create!(h)
+      h = { # id:      @idAnagraficaUnica || 0,
+            email:   @email,
+            name:    @name, 
+            surname: @surname }
+      user = User.create!(h)
     end
-    logger.info "Authentication: allow_and_create as #{user.inspect}"
+    logger.info "allow_and_create: #{user.inspect}"
     sign_in_and_redirect user, root_path
   end
 
