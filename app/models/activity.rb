@@ -11,7 +11,8 @@ class Activity < ApplicationRecord
 
   scope :in_current_academic_year, -> () { where(academic_year: CURRENT_ACADEMIC_YEAR) }
   scope :visible, -> { where.not('activities.hidden = 1') }
-  scope :future, -> { where('start_date >= NOW()') }
+  scope :future, -> { where('activities.start_date > DATE_ADD(UTC_TIMESTAMP(), INTERVAL -2 hour)') }
+  scope :past, -> { where('activities.start_date <= DATE_ADD(UTC_TIMESTAMP(), INTERVAL -2 hour)') }
 
   def check_children
     if Activity.where(parent_id: self.id).count > 0 
