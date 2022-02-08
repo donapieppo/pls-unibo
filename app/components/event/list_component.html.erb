@@ -15,7 +15,7 @@
   </div>
 <% else %>
   <div class="my-4 border-2 rounded-xl shadow-xl bg-gray-100 bg-opacity-50">
-    <h3 class="text-2xl text-center my-4">Eventi</h3>
+    <h3 class="text-2xl text-center my-4"><%= 'PROSSIMI' unless @past %>  EVENTI <%= 'PASSATI' if @past %>  </h3>
     <% @events.each do |event| %>  
       <div class="my-8 md:flex px-2">
         <div class="md:w-40 md:px-8 py-4 text-center">
