@@ -12,7 +12,6 @@ class EditionsController < ApplicationController
   end
 
   def show
-    @events = @edition.events.order([:name]).with_rich_text_details.all
   end
 
   def new

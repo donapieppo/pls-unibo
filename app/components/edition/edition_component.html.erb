@@ -47,13 +47,14 @@
   </div>
 </div>
 
-<% unless @short || @events.empty? %>  
-  <% if @events.size == 1 %>  
+<% unless @short || @all_events.empty? %>  
+  <% if @all_events.size == 1 %>  
     <hr class="my-16"/>
     <%= render Event::EventComponent.new(@events.first, @current_user, no_edition: true, heading: :h2) %>
   <% else %>
     <div class="my-4">
       <%= render Event::ListComponent.new(events: @events, short: @short || @edition.atomic, with_image: @with_image) %>  
+      <%= render Event::ListComponent.new(events: @past_events, short: @short || @edition.atomic, with_image: @with_image, past: true) %>  
     </div>
   <% end %>
 <% end %>

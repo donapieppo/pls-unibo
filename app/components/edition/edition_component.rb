@@ -8,7 +8,9 @@ class Edition::EditionComponent < ViewComponent::Base
     @skip_title = skip_title || (title_if_different_from && @edition.name == @title_if_different_from)
     @with_image = with_image
 
-    @events = @edition.events.order(:start_date).all  
+    @events = @edition.events.future.order(start_date: :asc).all  
+    @past_events = @edition.events.past.order(start_date: :desc).all  
+    @all_events = @events + @past_events
     @resources = @edition.resources
   end
 end
