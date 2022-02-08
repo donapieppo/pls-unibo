@@ -24,8 +24,8 @@
       </div>
     </div>
     <% if true %>  
-      <%= f.association :organization, label: "Nel caso delle chimiche è possibile indicare il Dipartimento che organizza",
-                                       hint: '<strong>Opzionale</strong>. Utile solo per distinguere le due chimiche.'.html_safe %>  
+      <%= f.association :organization, label: "Nel caso delle <strong>chimiche</strong> è possibile indicare il Dipartimento che organizza.".html_safe,
+                                       hint: '<strong>Opzionale.</strong> Utile solo per distinguere le due chimiche.'.html_safe %>  
     <% end %>
     <%= f.submit %>  
   <% end %>
