@@ -50,7 +50,7 @@
 <% unless @short || @all_events.empty? %>  
   <% if @all_events.size == 1 %>  
     <hr class="my-16"/>
-    <%= render Event::EventComponent.new(@events.first, @current_user, no_edition: true, heading: :h2) %>
+    <%= render Event::EventComponent.new(@all_events.first, @current_user, no_edition: true, heading: :h2) %>
   <% else %>
     <div class="my-4">
       <%= render Event::ListComponent.new(events: @events, short: @short || @edition.atomic, with_image: @with_image) %>  
