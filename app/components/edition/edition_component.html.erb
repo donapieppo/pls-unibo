@@ -48,7 +48,7 @@
 </div>
 
 <% unless @short || @all_events.empty? %>  
-  <% if @all_events.size == 1 %>  
+  <% if @all_events.size == 1 && ! @edition.atomic %>  
     <hr class="my-16"/>
     <%= render Event::EventComponent.new(@all_events.first, @current_user, no_edition: true, heading: :h2) %>
   <% else %>
