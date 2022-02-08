@@ -23,6 +23,7 @@
       <% if @event.pcto %>  
         <i class="far fa-star fa-fw mr-2"></i>PCTO
       <% end %>
+      <%= helpers.possible_label_from_array 'Relatori', @event.speakers %>
       </div>
     </div>
 
@@ -34,11 +35,6 @@
         <% @event.contacts.each do |contact| %>  
           <div>
             <%= contact %>
-          </div>
-        <% end %>
-        <% @event.speakers.each do |speaker| %>  
-          <div>
-            <%= speaker %>
           </div>
         <% end %>
       </div>
