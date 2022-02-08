@@ -23,7 +23,9 @@ form {
   select.datetime, select.date {
     @apply h-10 placeholder-gray-600 border rounded-lg appearance-none focus:shadow;
   }
-
+  select option {
+    @apply pr-4;
+  }
   input[type="submit"] {
     @apply bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-4 my-2 rounded cursor-pointer;
   }
