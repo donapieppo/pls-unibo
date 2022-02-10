@@ -83,7 +83,7 @@ h4 {
   transition: all 3s;
 }
 .badge {
-  @apply px-2 rounded-xl text-pls bg-pls-light;
+  @apply px-4 rounded-xl text-gray-800 bg-pls-light;
 }
 
 .presentation {
