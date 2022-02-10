@@ -12,7 +12,7 @@ class Booking::CurrentTeacherBookingComponent < ViewComponent::Base
   end
 
   def render?
-    @current_user_teacher
+    @current_user_teacher && @bookings.any?
   end
 end
 
