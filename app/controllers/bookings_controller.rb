@@ -38,6 +38,11 @@ class BookingsController < ApplicationController
   end
 
   def new
+    unless current_user
+      skip_authorization
+      redirect_to root_path
+      return
+    end
     @free_seats = @activity.free_seats
     @booking = @activity.bookings.new(user_id: current_user.id)
     authorize @booking
@@ -93,18 +98,19 @@ class BookingsController < ApplicationController
                           role: 'student_secondary', 
                           school_id: current_user.school_id)
     if @user
-      booking = @activity.bookings.new(user_id: @user.id, 
-                                       teacher_id: current_user.id,
-                                       teacher_name: current_user.name,
-                                       teacher_surname: current_user.surname,
-                                       teacher_email: current_user.email,
-                                       seats: 1,
-                                       notes: params[:notes])
-      authorize(booking)
-      if booking.save
-        redirect_to @activity, notice: "Registrazione salvata."
+      @booking = @activity.bookings.new(user_id: @user.id, 
+                                        teacher_id: current_user.id,
+                                        teacher_name: current_user.name,
+                                        teacher_surname: current_user.surname,
+                                        teacher_email: current_user.email,
+                                        seats: 1,
+                                        notes: params[:notes])
+      authorize(@booking)
+      if @booking.save
+        redirect_to [@activity, anchor: 'binfos'], notice: "Registrazione salvata."
       else
-        redirect_to @activity, alert: "NO. #{booking.errors.inspect}. #{params.inspect}"
+        @free_seats = @activity.free_seats
+        render action: :new_student
       end
     else
       raise params.inspect
