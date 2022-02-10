@@ -24,7 +24,7 @@
   </div>
 
   <div class="p-2">
-    <h2 class="title">Le tue prenotazioni</h2>
+    <h2 class="title">Le tue iscrizioni</h2>
     <% @user.bookings.each do |b| %>  
       <div class="my-4 bg-pls-light border-l-4 border-pls p-4">
         <%= link_to b.activity.is_a?(Event) ? b.activity.edition : b.activity do %>
@@ -36,15 +36,14 @@
       </div>
       <% end.empty? and begin  %>
       <div class="warning">
-        <p>Al momento non sei registrato ad alcuna attività.</p>
+        <p>Al momento non sei iscritto ad alcuna attività.</p>
+        <p>Le iscrizioni effettuate su siti esterni (i.e. SOFIA, Google Forms, etc.) NON compaiono in questa pagina.</p>
         <p>
         <%= link_to "<i class='fas fa-arrow-alt-circle-right'></i> Vai all'elenco delle attività a cui è possibile iscriversi.".html_safe, projects_path(bookable: 1), class: 'underline' %>  
         </p>
       </div>
-    <% end %>
-    <% Booking.where(teacher_id: @user.id) do |b| %>  
-      <li><%= b %></li>
-    <% end %>
+    <% end %> 
+    <%= render Booking::ListComponent.new(current_user, teacher: true) %>  
   </div>
 </div>
 
