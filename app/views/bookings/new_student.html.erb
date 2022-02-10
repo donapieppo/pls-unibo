@@ -5,6 +5,11 @@
   <p>Puoi iscrivere i tuoi studenti fornendo nome, cognome e email dello studente.</p>
 
   <%= form_with url: [:create_student, @activity, :bookings] do |f| %>  
+    <% if @booking.errors.any? %>
+      <% @booking.errors.full_messages.each do |message|%>
+        <div class="alert"><%= message %> </div>
+      <%end%>
+    <%end%>
     <%= f.label :name, 'Nome' %>
     <%= f.text_field :name %><br/>  
     <%= f.label :surname, 'Cognome' %>
