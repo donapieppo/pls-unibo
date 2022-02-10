@@ -1,5 +1,5 @@
 <% if @general_bookable %>  
-  <div class="my-4 font-bold text-green-700">
+  <div id="binfos" class="my-4 font-bold text-green-700">
     Iscrizioni aperte dal <%= l @what.booking_start %> al <%= l @what.booking_end %> <br/>
     <%= @what.bookable_by_description.upcase %>
   </div>
