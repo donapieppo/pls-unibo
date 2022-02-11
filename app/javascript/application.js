@@ -8,11 +8,12 @@ Rails.start()
 import "trix"
 import "@rails/actiontext"
 
-window.display_unless = function (txt, what, condition_input) {
-  what.style.display = (condition_input.value == txt) ? 'none' : 'block';
+// txts = Array
+window.display_unless = function (txts, what, condition_input) {
+  what.style.display = txts.includes(condition_input.value) ? 'none' : 'block';
   condition_input.addEventListener('change', () => {
     console.log(condition_input.value);
-    what.style.display = (condition_input.value === txt) ? 'none' : 'block';
+    what.style.display = txts.includes(condition_input.value) ? 'none' : 'block';
   });
 }
 

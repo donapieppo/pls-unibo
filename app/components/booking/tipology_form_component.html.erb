@@ -3,14 +3,18 @@
                                         ['da confermare', 'to_confirm'], 
                                         ['esterne', 'external']], include_blank: false %>
 
+<div id="bookable_by_div">
 <%= @form.input :bookable_by, collection: [['aperte a tutti', 'all'],
                                            ['studenti scuola secondaria', 'student_secondary'], 
                                            ['studenti universitari', 'student_university'], 
                                            ['docenti', 'teacher']],  include_blank: false %>
+</div>
 
+<div id="bookable_for_div">
 <%= @form.input :bookable_for, collection: [['lo stesso che si iscrive', 'itsself'],
                                             ['studenti', 'students'], 
                                             ['classi di studenti', 'classes']], include_blank: false %>
+</div>
 
 <div id="booking_url">
   <%= @form.input :booking_url, as: :string, hint: "In caso di sofia #{SOFIA_LINK}" %>
@@ -23,7 +27,9 @@
 
 <%= javascript_tag do %>  
   document.addEventListener('DOMContentLoaded', (event) => {
-    display_unless('no', document.getElementById('edition_bookable_by'), document.getElementById('edition_bookable'));
+    display_unless(['no', 'external'], document.getElementById('bookable_by_div'), document.getElementById('edition_bookable'));
+    display_unless(['no', 'external'], document.getElementById('bookable_for_div'), document.getElementById('edition_bookable'));
+
     display_unless('no', document.getElementById('booking_dates'), document.getElementById('edition_bookable'));
     display_if('external', document.getElementById('booking_url'), document.getElementById('edition_bookable'));
     display_if_checked(document.getElementById('if_in_presence'), document.getElementById('edition_in_presence'));
