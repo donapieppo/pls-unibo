@@ -12,12 +12,12 @@
             <%= l activity.booking_start, format: :short %> - <%= l activity.booking_end, format: :short %>
           </div>
           <div>
-            <%= '<strong>Attività con prenotazioni da confermare</strong>'.html_safe if activity.booking_to_confirm? %>  
+            <%= '<strong>Attività con iscrizioni da confermare</strong>'.html_safe if activity.booking_to_confirm? %>  
           </div>
           <div class="my-2">
             Posti totali: <strong><%= activity.seats %></strong><br/>
             Posti prenotati: <strong><%= activity.bookings.in_presence.sum(:seats) %></strong> <br/> 
-            Prenotazioni online: <strong><%= activity.bookings.online.count(:seats) %></strong>
+            Iscrizioni online: <strong><%= activity.bookings.online.count(:seats) %></strong>
           </div>
           <% if @current_user.staff? %>  
             <div class="mt-4">
