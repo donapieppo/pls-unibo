@@ -11,8 +11,8 @@
     <% opacity = current_year ? '' : 'opacity-60' %>  
     <div class="lg:w-1/2 p-2 lg:p-4 project <%= opacity %>" 
          data-years="<%= project.cache_years %>" 
-         data-audiences="<%= project.editions_audience_ids %>" 
-         data-areas="<%= project.area_ids + project.interested_area_ids %>" 
+         data-audiences="<%= project.editions_audience_ids.uniq %>" 
+         data-areas="<%= (project.area_ids + project.interested_area_ids).uniq %>" 
          data-activity_types="<%= project.parent_id ? [project.parent_id] : [] %>">
          <%= link_to project do %>  
 
