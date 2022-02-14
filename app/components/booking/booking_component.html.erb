@@ -1,7 +1,7 @@
 <%= render Booking::BookingInfoComponent.new(@what, @current_user) %>  
 <%= render Booking::CurrentUserBookingComponent.new(@what, @current_user) %>  
 
-<% if @bookable_for_itsself %>  
+<% if @bookable_by_user && @bookable_for_itsself %>  
   <% unless @user_this_booking %>
     <div class="actions">
       <% if @bookable_by_user %>  

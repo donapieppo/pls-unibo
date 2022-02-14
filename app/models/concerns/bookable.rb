@@ -33,6 +33,7 @@ module Bookable
   end
 
   def bookable_by_user?(_user)
+    return false if self.external_booking?
     return false unless _user
     case self.bookable_by
     when 'all'
