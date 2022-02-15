@@ -62,4 +62,8 @@ class Activity < ApplicationRecord
   def speakers_to_s 
     self.speakers.map{ |speaker| speaker.to_s }.join(', ')
   end
+
+  def this_academic_year?
+    self.academic_year == CURRENT_ACADEMIC_YEAR
+  end
 end
