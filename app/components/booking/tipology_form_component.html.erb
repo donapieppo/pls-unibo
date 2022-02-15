@@ -1,7 +1,8 @@
 <%= @form.input :bookable, collection: [['no', 'no'], 
                                         ['si', 'yes'], 
                                         ['da confermare', 'to_confirm'], 
-                                        ['esterne', 'external']], include_blank: false %>
+                                        ['esterne', 'external'],
+                                        ['tutto finito', 'done']], include_blank: false %>
 
 <div id="bookable_by_div">
 <%= @form.input :bookable_by, collection: [['aperte a tutti', 'all'],
