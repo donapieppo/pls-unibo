@@ -28,7 +28,8 @@
       <div class="border-4 border-pls-strong bg-gray-50 text-xl lg:text-3xl font-bold absolute -top-8 text-pls p-2 lg:p-4 px-8 rounded-2xl tracking-wider">
         <%= link_to edition.academic_year_to_s, edition %>
       </div>
-      <%= render Edition::EditionComponent.new(edition, current_user, short: true, title_if_different_from: @project.name) %>
+      <% @short = ! edition.this_academic_year? %>  
+      <%= render Edition::EditionComponent.new(edition, current_user, short: @short, title_if_different_from: @project.name) %>
     </div>
   </div>
 <% end %>
