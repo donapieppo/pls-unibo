@@ -18,6 +18,12 @@ Rails.application.routes.draw do
   post 'impersonate/:id',    to: 'impersonations#impersonate',        as: :impersonate
   post 'stop_impersonating', to: 'impersonations#stop_impersonating', as: :stop_impersonating
 
+  # PAGES
+  get '/workshop21', to: "pages#workshop21", as: :workshop21
+  get '/scienza_al_cinema', to: "pages#scienza_al_cinema", as: :scienza_al_cinema
+  get '/editions/282', to: redirect('/metodi_matematici_animazione')
+  get '/metodi_matematici_animazione', to: "pages#metodi_matematici_animazione", as: :metodi_matematici_animazione
+
   concern :contactable do
     member do
       post :add_contact
@@ -88,11 +94,6 @@ Rails.application.routes.draw do
   get "/privacy", to: "home#privacy", as: "privacy"
 
   root "home#index"
-
-
-  # PAGES
-  get '/workshop21', to: "pages#workshop21", as: :workshop21
-  get '/scienza_al_cinema', to: "pages#scienza_al_cinema", as: :scienza_al_cinema
 
   resources :areas, concerns: :contactable
 
