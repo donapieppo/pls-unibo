@@ -5,11 +5,11 @@
 
   <% @next_editions.each do |edition| %>  
     <%= link_to edition do %>  
-      <div class="text-lg md:text-xl py-4 text-gray-900 hover:bg-pls-light rounded-xl px-2 ">
+      <div class="text-lg md:text-xl py-4 text-gray-900 border-2 border-gray-50 hover:border-pls hover:bg-gray-50 rounded-xl px-2 ">
         <i class="fas fa-chevron-right text-base mr-2"></i> 
         <%= edition.to_s.upcase %> 
         <% if start_date = edition.first_event_date %>  
-          <small>da <%= l start_date, format: :day %></small>
+          <span class="text-sm pl-2">da <%= l start_date, format: :day %></span>
         <% end %>
       </div>
     <% end %>
