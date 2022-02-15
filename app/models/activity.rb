@@ -13,6 +13,7 @@ class Activity < ApplicationRecord
   scope :visible, -> { where.not('activities.hidden = 1') }
   scope :future, -> { where('activities.start_date > DATE_ADD(UTC_TIMESTAMP(), INTERVAL -2 hour)') }
   scope :past, -> { where('activities.start_date <= DATE_ADD(UTC_TIMESTAMP(), INTERVAL -2 hour)') }
+  scope :bookable_undone, -> { where('activities.bookable != "done"') }
 
   def check_children
     if Activity.where(parent_id: self.id).count > 0 
