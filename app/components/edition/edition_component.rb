@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Edition::EditionComponent < ViewComponent::Base
-  def initialize(edition, current_user, short: false, title_if_different_from: false, skip_title: false, with_image: false)
+  def initialize(edition, current_user, short: false, title_if_different_from: false, skip_title: false, with_image: false, no_resources: false)
     @edition = edition
     @current_user = current_user
     @short = short
