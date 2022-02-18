@@ -6,14 +6,12 @@
   </div>
   <div class="w-full lg:w-1/2 lg:pr-24 text-center text-pls text-4xl lg:text-6xl pt-8 lg:pt-16" style="background-color: #f0f0f0">
     <%= @edition.name %><br/>
-    <span class="text-xl">16 ott 2021</span>
-    <h1 class="font-bold text-2xl tracking-tight pt-8 lg:pt-24 text-center text-pls">
-      Attività aperta al pubblico 
-    </h1>
 
-    <h2 class="font-bold text-2xl tracking-tight py-6 pb-16 text-center text-pls">
+    <h2 class="font-bold text-2xl tracking-tight py-6 text-center text-pls lg:mt-24">
       <%= @edition.academic_year_to_s %>
     </h2>
+
+    <h3 class="my-8 lg:my-16">Corso tenuto da <br/> Gian Marco Todesco</h3>
   </div>
 </div> 
 
@@ -23,6 +21,10 @@
 
 <div class="container my-8">
   <%= render Edition::EditionComponent.new(@edition, current_user, skip_title: true, with_image: true, no_resources: true) %>
+</div>
+
+<div class="container">
+<%= link_to 'Edizioni precedenti del corso', project_path(1), class: 'underline text-lg' %>  
 </div>
 
 <%= javascript_tag do %>  
