@@ -12,7 +12,7 @@ end
 class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :activity
-  belongs_to :school
+  belongs_to :school, optional: true
 
   validates :user_id, uniqueness: { scope: [:activity_id], message: "Prenotazione già presente." }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Formato della mail non corretto" }
@@ -99,10 +99,12 @@ class Booking < ApplicationRecord
   def missing_data?(what)
     user = (what == :user) ? self.user : self.teacher
     if user.role.blank? || user.name.blank? || user.surname.blank?
+      logger.info("booking missing data role name surname")
       return true
     end
     if user.student_secondary?
       if user.school_id.blank? || user.school_city.blank? || user.school_pec.blank?
+        logger.info("booking missing data student_secondary")
         return true
       end
     end
