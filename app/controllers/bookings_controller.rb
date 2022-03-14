@@ -78,6 +78,7 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to @activity, notice: "Iscrizione registrata correttamente."
     else
+      logger.info(@booking.errors.inspect)
       render action: :new
     end
   end
