@@ -4,7 +4,7 @@
     <li>
       <span class="font-mono"><%= b.nonce ? b.nonce : '-----' %></span> 
       <small><%= l b.created_at %></small>
-      <% @teacher_mails << b.teacher_email %>  
+      <% @teacher_mails << b.teacher_email if b.teacher_email %>  
       <% if b.online %>  
         <% @activity_online_mails << b.email %>  
         <span class="text-yellow-500">online</span>
