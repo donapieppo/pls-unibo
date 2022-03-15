@@ -35,7 +35,7 @@ body {
 .big-home-button {
   @apply flex flex-col items-center justify-center; 
   @apply border-2 border-pls;
-  @apply bg-gray-50 hover:bg-gray-200 hover:shadow-2xl text-pls p-4 rounded-2xl w-full h-full;
+  @apply hover:bg-gray-100 hover:shadow-2xl text-pls p-4 rounded-2xl w-full h-full;
   @apply text-xl;
 }
 

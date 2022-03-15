@@ -1,5 +1,11 @@
 <%= render 'title' %>  
 <%= render 'areas', areas: @areas %>  
-<%= render 'home_buttons' %>  
-<%= render 'next_editions' %>
+<div class="md:flex">  
+  <div class="md:w-1/2">
+    <%= render 'home_buttons' %>  
+  </div>
+  <div class="md:w-1/2">
+    <%= render 'next_editions' %>
+  </div>
+</div>
 <%= render 'pls' %>  
