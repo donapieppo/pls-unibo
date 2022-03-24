@@ -37,6 +37,10 @@ class User < ApplicationRecord
     self.role && self.role == 'student_secondary' 
   end
 
+  def student_university?
+    self.role && self.role == 'student_university' 
+  end
+
   def teacher?
     self.role && self.role == 'teacher'
   end

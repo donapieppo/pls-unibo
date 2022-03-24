@@ -41,7 +41,7 @@ module Bookable
     when 'student_secondary'
       _user.student_secondary?
     when 'student_university'
-      _user.student_university
+      _user.student_university?
     when 'teacher'
       _user.teacher?
     end
