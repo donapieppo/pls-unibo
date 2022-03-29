@@ -21,7 +21,7 @@ class AreasController < ApplicationController
     if @area.update(area_params)
       redirect_to root_path, notice: 'OK'
     else
-      render action: :edit
+      render action: :edit, status: :unprocessable_entity
     end
   end
 

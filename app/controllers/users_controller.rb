@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to me_users_path, notice: 'I tuoi dati sono stati registrati'
     else
-      render action: :edit
+      render action: :edit, status: :unprocessable_entity
     end
   end
 

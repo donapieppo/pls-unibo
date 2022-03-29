@@ -79,7 +79,7 @@ class BookingsController < ApplicationController
       redirect_to @activity, notice: "Iscrizione registrata correttamente."
     else
       logger.info(@booking.errors.inspect)
-      render action: :new
+      render action: :new, status: :unprocessable_entity
     end
   end
 
@@ -111,7 +111,7 @@ class BookingsController < ApplicationController
         redirect_to [@activity, anchor: 'binfos'], notice: "Registrazione salvata."
       else
         @free_seats = @activity.free_seats
-        render action: :new_student
+        render action: :new_student, status: :unprocessable_entity
       end
     else
       raise params.inspect

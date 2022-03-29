@@ -17,7 +17,7 @@ class ClustersController < ApplicationController
     if @cluster.save
       redirect_to [:edit, @cluster]
     else
-      render action: :new
+      render action: :new, status: :unprocessable_entity
     end
   end
 

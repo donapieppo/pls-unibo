@@ -28,7 +28,7 @@ class EditionsController < ApplicationController
     if @edition.save
       redirect_to [:edit, @edition], notice: 'OK'
     else
-      render action: :new
+      render action: :new, status: :unprocessable_entity
     end
   end
 
@@ -39,7 +39,7 @@ class EditionsController < ApplicationController
     if @edition.update(edition_params)
       redirect_to @edition, notice: 'OK'
     else
-      render action: :edit
+      render action: :edit, status: :unprocessable_entity
     end
   end
 

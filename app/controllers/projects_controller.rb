@@ -36,7 +36,7 @@ class ProjectsController < ApplicationController
     if @project.save
       redirect_to [:edit, @project], notice: 'OK'
     else
-      render action: :new
+      render action: :new, status: :unprocessable_entity
     end
   end
 
@@ -48,7 +48,7 @@ class ProjectsController < ApplicationController
     if @project.update(project_params)
       redirect_to [:edit, @project], notice: 'OK'
     else
-      render action: :edit
+      render action: :edit, status: :unprocessable_entity
     end
   end
 

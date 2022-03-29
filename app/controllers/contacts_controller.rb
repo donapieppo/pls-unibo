@@ -42,7 +42,7 @@ class ContactsController < ApplicationController
         redirect_to contacts_path, notice: 'OK'
       end
     else
-      render action: :new
+      render action: :new, status: :unprocessable_entity
     end
   end
 
@@ -53,7 +53,7 @@ class ContactsController < ApplicationController
     if @contact.update(contact_params)
       redirect_to contacts_path, notice: 'OK'
     else
-      render action: :edit
+      render action: :edit, status: :unprocessable_entity
     end
   end
 
