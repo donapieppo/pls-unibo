@@ -89,8 +89,8 @@ class Booking < ApplicationRecord
                 b.school, 
                 b.school_pec, 
                 b.user.email.strip, 
-                b.teacher_name.strip + " " +  b.teacher_surname.strip, 
-                b.teacher_email.strip, 
+                (b.teacher_name.blank? ? "" : (b.teacher_name.strip + " " +  b.teacher_surname.strip)), 
+                (b.teacher_email.blank? ? "" : b.teacher_email.strip), 
                 b.activity]
       end
     end
