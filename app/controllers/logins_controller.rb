@@ -16,11 +16,11 @@ class LoginsController < ApplicationController
     parse_google_omniauth
     user = User.where(email: @email).first
     if ! user
-      logger.info "Authentication: User #{@email} to be CREATED"
+      logger.info "Authentication: google_oauth2 user #{@email} not present in db."
       user = create_logged_user
       sign_in_and_redirect user, myedit_users_path
     else
-      logger.info "Authentication: google_oauth2 found user #{user.inspect}"
+      logger.info "Authentication: google_oauth2 user #{user.inspect} found in db."
       sign_in_and_redirect user, root_path
     end
   end
@@ -118,7 +118,7 @@ class LoginsController < ApplicationController
     # user = @idAnagraficaUnica ? ::User.where(id: @idAnagraficaUnica).first : ::User.where(email: @email).first
     user = User.find_by_email(@email)
     if ! user
-      logger.info "Authentication: User #{@email} to be CREATED"
+      logger.info "Authentication: allow_and_create user #{@email} to be CREATED."
       h = { # id:      @idAnagraficaUnica || 0,
             email:   @email,
             name:    @name, 
@@ -130,7 +130,7 @@ class LoginsController < ApplicationController
   end
 
   def create_logged_user
-    logger.info "Authentication: User #{@email} to be CREATED"
+    logger.info "Authentication: create_logged_user user #{@email} to be CREATED"
     logger.info "name: #{@name}, surname: #{@surname}, email: #{@email}"
     User.create!(name: @name, surname: @surname, email: @email)
   end
