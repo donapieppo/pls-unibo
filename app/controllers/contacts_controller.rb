@@ -11,10 +11,7 @@ class ContactsController < ApplicationController
   end
 
   def show
-    respond_to do |format|
-      format.js
-      format.html { render layout: false }
-    end
+    @modal = params[:modal]
   end
 
   def new
