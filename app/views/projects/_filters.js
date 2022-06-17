@@ -1,7 +1,7 @@
-const year_selector = document.getElementById('years');
-const audience_selector = document.getElementById('audiences');
-const area_selector = document.getElementById('areas');
-const activity_type_selector = document.getElementById('activity_types');
+var year_selector = document.getElementById('years');
+var audience_selector = document.getElementById('audiences');
+var area_selector = document.getElementById('areas');
+var activity_type_selector = document.getElementById('activity_types');
 
 function clear_filters() {
   document.querySelectorAll("#filters input[type='checkbox']").forEach((x) => x.checked = false);
@@ -11,7 +11,7 @@ function toggle_filters() {
   document.getElementById("filters").classList.toggle("hidden");
 }
 
-const hide_projects_not_selected = () => {
+var hide_projects_not_selected = () => {
   document.querySelectorAll('.project').forEach ((p) => { p.style.display = 'block' });
   noresults = document.getElementById('noresults');
   noresults.style.display = 'block';
