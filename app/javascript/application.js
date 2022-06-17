@@ -1,9 +1,11 @@
-// Entry point for the build script in your package.json
-// import "@hotwired/turbo-rails"
-// import "./controllers"
+import "@hotwired/turbo-rails"
+import "./controllers"
 
-import Rails from "@rails/ujs"
-Rails.start()
+// import "@fortawesome/fontawesome-free/js/regular.min"
+// import "@fortawesome/fontawesome-free/js/solid.min"
+// import "@fortawesome/fontawesome-free/js/brands.min"
+// import "@fortawesome/fontawesome-free/js/fontawesome.min"
+import "@fortawesome/fontawesome-free/js/all.min"
 
 import "trix"
 import "@rails/actiontext"

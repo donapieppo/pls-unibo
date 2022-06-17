@@ -16,12 +16,6 @@
   @apply top-0 w-full flex flex-row items-center justify-center;
 }
 
-#modal-opener {
-  @apply block ml-8 cursor-pointer;
-  border: none;
-  text-decoration: none;
-}
-
 #modal-opener.active .bar:nth-child(2) {
   opacity: 0;
 }
