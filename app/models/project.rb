@@ -35,7 +35,7 @@ class Project < Activity
   end
 
   def current_year?
-    self.cache_years.last >= CURRENT_ACADEMIC_YEAR
+    self.cache_years.last.to_i >= CURRENT_ACADEMIC_YEAR
   end
 
   def cache_years
