@@ -9,19 +9,16 @@
     </div>
 
     <div class="text-center">
-      <%= form_tag(google_login_url, method: 'post') do %>
-        <input type="submit" value="" class="input-google-login" 
-               style="background-image: url(<%= image_path("google/btn_google_signin_light_normal_web.png") %>)"/>
-      <% end %>
+      <%= button_to "", google_login_url, data: { turbo: false }, class: "input-google-login", style: "background-image: url(#{ image_path("google/btn_google_signin_light_normal_web.png") }" %>
+
       <div class="text-gray-500 px-2 mb-2">
         Sono account Google validi anche <br/>
         gli account scolastici che usano <br/> 
         Google Classroom.
       </div>
 
-      <%= form_tag(shibboleth_login_url, method: 'post') do %>
-        <input type="submit" value="Accedi in Unibo" />
-      <% end %>
+      <%= button_to "Accedi in Unibo", shibboleth_login_url, class: 'button', data: { turbo: false } %>
+
       <div class="text-gray-500 px-2">
         Sono account Unibo validi sia gli account <br/>
         <i>@unibo</i> <br/>
@@ -37,12 +34,9 @@
     di aver letto le nostre <%= link_to 'Norme sulla privacy', privacy_path, class: 'underline' %>
     </p>
 
-
     <% if Rails.env.development? %>  
       <div class="text-center">
-        <%= form_tag(developer_login_url, method: 'post') do %>
-          <input type="submit" value="Entra in test" class="button"></input>
-        <% end %>
+        <%= button_to "Entra in test", developer_login_url, data: { turbo: false } %>
       </div>
     <% end %>
   </div>
