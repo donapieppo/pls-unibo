@@ -1,2 +1,5 @@
-<%= render Menu::HeaderComponent.new(current_user) %>  
-<%= render Menu::MenuComponent.new(current_user) %>  
+<div data-controller="menu">
+  <%= render Menu::HeaderComponent.new(current_user) %>  
+  <%= render Menu::MenuComponent.new(current_user) %>  
+</div>
+
