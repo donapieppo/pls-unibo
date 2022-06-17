@@ -1,0 +1,22 @@
+<header class="header">
+  <nav role="navigation" class="navbar">
+    <div role="button" tabindex="0" id="modal-opener" class="block ml-8 cursor-pointer">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <div class="header-title">
+      <%= link_to 'PLS UNIBO', root_path %>
+    </div>
+    <div class="mx-4">
+      <div class="header-user">
+        <% if @current_user %>  
+          <%= link_to @current_user.initials, me_users_path, class: "rounded-full border-2 border-pls text-pls font-bold py-1 px-2" %>
+          <%= link_to logout_icon, logout_path %>
+        <% else %>
+          <%= link_to 'accedi <i class="fas fa-sign-in-alt"></i>'.html_safe, login_path, class: 'float-right p-1 px-2 border text-pls border-pls ' %>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+</header>
