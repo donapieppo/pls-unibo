@@ -1,6 +1,6 @@
 <% unless @no_filter %>  
   <div class="p-4">
-    <%= render partial: 'projects/filters', locals: { no_year_filter: @no_year_filter, no_area_filter: @no_area_filter } %>  
+    <%= render Filter::ProjectsComponent.new(no_year_filter: @no_year_filter, no_area_filter: @no_area_filter) %>  
   </div>
 <% end %>
 
