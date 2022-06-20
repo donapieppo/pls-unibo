@@ -12,3 +12,6 @@ application.register("turbo-modal", TurboModalController)
 
 import MenuController from "./menu_controller"
 application.register("menu", MenuController)
+
+import FilterController from "./filter_controller"
+application.register("filter", FilterController)
