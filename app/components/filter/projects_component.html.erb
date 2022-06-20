@@ -1,0 +1,54 @@
+<div data-controller="filter">
+  <div id="filter-toggler" class="inline-block border border-gray-700 px-4 p-2 my-2">
+    <button data-action="click->filter#toggle_menu">Filtri <i class="fas fa-filter"></i></button>
+  </div>
+  <div data-filter-target="menu" id="filters" class="hidden bg-gray-50 border border-gray-500 py-4">
+    <div class="lg:flex w-full">
+      <div data-filter-target="years" id="years" class="p-4 border-r-2">
+        <% unless @no_year_filter %>
+          <h4 class="text-base font-bold text-pls-strong pb-2">Anno accademico</h4>
+          <% Edition.all_academic_years.each do |y| %>  
+            <input type="checkbox" id="yr_<%= y %>" name="years" value="<%= y %>"/>
+            <label for="yr_<%= y %>"> <%= academic_year(y) %></label> <br/>
+          <% end %>
+        <% end %>
+      </div>
+      <div data-filter-target="areas" id="areas" class="p-4 border-r-2">
+        <% unless @no_area_filter %>  
+          <h4 class="text-base font-bold text-pls-strong pb-2">Area</h4>
+          <% Area.order(:name).each do |a| %>  
+            <input type="checkbox" id="ar_<%= a.id %>" name="areas" value="<%= a.id %>"/>
+            <label for="ar_<%= a.id %>"><%= a.name %> </label> <br/>
+          <% end %>
+        <% end %>
+      </div>
+      <div data-filter-target="audiences" id="audiences" class="flex-grow p-4 border-r-2">
+        <h4 class="text-base font-bold text-pls-strong pb-2">Rivolto a</h4>
+        <% Audience.order(:name).each do |a| %>  
+          <input type="checkbox" id="au_<%= a.id %>" name="audiences" value="<%= a.id %>"/>
+          <label for="au_<%= a.id %>"><%= a.name %> </label> <br/>
+        <% end %>
+      </div>
+      <div data-filter-target="activity_types" id="activity_types" class="p-4">
+        <h4 class="text-base font-bold text-pls-strong pb-2">Tipologia</h4>
+        <% ActivityType.order(:name).each do |a| %>  
+          <input type="checkbox" id="at_<%= a.id %>" name="activity_types" value="<%= a.id %>"/>
+          <label for="at_<%= a.id %>"><%= a.name %> </label> <br/>
+        <% end %>
+      </div>
+    </div>
+    <div class="text-center">
+      <button data-action="click->filter#toggle_menu" class="button">OK</button>
+      <button data-action="click->filter#clear_filters" class="mx-2 underline">Pulisci filtri</button>
+    </div>
+  </div>
+
+  <div data-filter-target="noresults" style="display: none" class="alert my-4">
+    Non sono registrate attività che soddisfino ai criteri selezionati.
+  </div>
+</div>
+
+<%# <%= javascript_tag do %1> %>  
+<%#   <%= render partial: 'projects/filters', formats: :js %1> %>  
+<%# <% end %1> %>
+
