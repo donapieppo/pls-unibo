@@ -10,15 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_27_080855) do
-
+ActiveRecord::Schema[7.0].define(version: 2021_04_27_080855) do
   create_table "action_text_rich_texts", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
     t.string "record_type", null: false
     t.bigint "record_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
@@ -27,7 +26,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -40,7 +39,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
     t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -58,7 +57,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.boolean "in_evidence", default: false
     t.string "place"
     t.text "google_map"
-    t.datetime "start_date"
+    t.datetime "start_date", precision: nil
     t.integer "seats", limit: 2, unsigned: true
     t.integer "parent_id", unsigned: true
     t.integer "audience_id", unsigned: true
@@ -70,13 +69,13 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.boolean "online"
     t.boolean "in_presence"
     t.text "access_url"
-    t.column "bookable", "enum('no','yes','to_confirm','external')"
+    t.column "bookable", "enum('no','yes','to_confirm','external','done')"
     t.column "bookable_by", "enum('all','student_secondary','student_university','teacher')"
     t.column "bookable_for", "enum('itsself','classes','students')"
     t.integer "bookable_limit", limit: 1
     t.text "booking_url"
-    t.datetime "booking_end"
-    t.datetime "booking_start"
+    t.datetime "booking_end", precision: nil
+    t.datetime "booking_start", precision: nil
     t.boolean "atomic"
     t.boolean "hidden"
   end
@@ -168,7 +167,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.boolean "online", default: false
     t.integer "nonce"
     t.integer "seats"
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.boolean "confirmed"
     t.string "name"
     t.string "surname"
@@ -204,16 +203,6 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.string "twitter"
     t.string "facebook"
     t.text "affiliation"
-  end
-
-  create_table "contributions", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
-    t.integer "activity_id", unsigned: true
-    t.integer "contact_id", unsigned: true
-    t.text "name"
-    t.text "description"
-    t.string "url"
-    t.index ["activity_id"], name: "fk_contributions_activity_id"
-    t.index ["contact_id"], name: "fk_contributions_contact_id"
   end
 
   create_table "organizations", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
@@ -270,8 +259,8 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
     t.string "contact_email"
     t.text "description"
     t.string "telephone"
-    t.datetime "last_login"
-    t.datetime "updated_at"
+    t.datetime "last_login", precision: nil
+    t.datetime "updated_at", precision: nil
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -295,8 +284,6 @@ ActiveRecord::Schema.define(version: 2021_04_27_080855) do
   add_foreign_key "bookings", "schools", name: "fk_book_school"
   add_foreign_key "bookings", "users", column: "teacher_id", name: "fk_book_teacher"
   add_foreign_key "bookings", "users", name: "fk_book_user"
-  add_foreign_key "contributions", "activities", name: "fk_contributions_activity_id"
-  add_foreign_key "contributions", "contacts", name: "fk_contributions_contact_id"
   add_foreign_key "resource_containers_resources", "resource_containers", name: "fk_res_res_c_id"
   add_foreign_key "resource_containers_resources", "resources", name: "fk_res_res_id"
 end
