@@ -9,7 +9,7 @@
           <h4 class="text-base font-bold text-pls-strong pb-2">Anno accademico</h4>
           <% Edition.all_academic_years.each do |y| %>  
             <input type="checkbox" id="yr_<%= y %>" name="years" value="<%= y %>"/>
-            <label for="yr_<%= y %>"> <%= academic_year(y) %></label> <br/>
+            <label for="yr_<%= y %>"> <%= helpers.academic_year(y) %></label> <br/>
           <% end %>
         <% end %>
       </div>
