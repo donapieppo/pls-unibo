@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
   def index
     authorize :user
-    @users = User.order(:surname, :name).includes(:school).all
+    @users = User.order(:surname, :name).includes(:school)
+    if params[:staff]
+      @users = @users.where(staff: true)
+    end
   end
 
   def show 
