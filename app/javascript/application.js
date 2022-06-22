@@ -1,6 +1,3 @@
-import "@hotwired/turbo-rails"
-import "./controllers"
-
 // import "@fortawesome/fontawesome-free/js/regular.min"
 // import "@fortawesome/fontawesome-free/js/solid.min"
 // import "@fortawesome/fontawesome-free/js/brands.min"
@@ -9,6 +6,9 @@ import "@fortawesome/fontawesome-free/js/all.min"
 
 import "trix"
 import "@rails/actiontext"
+
+import "@hotwired/turbo-rails"
+import "./controllers"
 
 // txts = Array
 window.display_unless = function (txts, what, condition_input) {
