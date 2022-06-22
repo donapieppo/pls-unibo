@@ -3,6 +3,7 @@ class Project < Activity
   has_and_belongs_to_many :interested_areas, join_table: 'areas_interests',     foreign_key: 'activity_id', class_name: 'Area'
   has_and_belongs_to_many :contacts,         join_table: 'activities_contacts', foreign_key: 'activity_id'
   belongs_to :organization, optional: true
+  belongs_to :campus, optional: true
 
   has_rich_text :details
 

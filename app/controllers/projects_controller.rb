@@ -67,6 +67,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params[:project].permit(:hidden, :in_evidence, :name, :description, :details, :audience_id, :parent_id, :organization_id, :global, interested_area_ids: [], area_ids: [])
+    params[:project].permit(:hidden, :in_evidence, :name, :description, :details, :audience_id, :parent_id, :organization_id, :campus_id, :global, interested_area_ids: [], area_ids: [])
   end
 end
