@@ -6,7 +6,7 @@ module.exports = {
         pls: {
           light: '#CFF09E',
           DEFAULT: '#0B486B',
-          strong: '#3B8686  ',
+          strong: '#3B8686',
         }
       }
     }
