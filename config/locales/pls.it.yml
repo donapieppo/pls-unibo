@@ -11,6 +11,7 @@ it:
   project: Attività
   edition: Edizione
   event: Evento
+  snippet: Blocco informazioni
   contact: Contatto
   student_secondary: Studente scuola secondaria di secondo grado
   student_university: Studente università
@@ -134,6 +135,9 @@ it:
         areas: Areee
         name: Nome
         description: Descrizione
+      snippet:
+        name: Titolo
+        description: Testo
 
   simple_form:
     hints:
@@ -144,6 +148,9 @@ it:
         details: Inserire eventualmente una descrizione più dettagliata con la possibilità di formattare il testo.
       booking:
         seats: Se si intende partecipare in presenza con i propri studenti indicare il numero totale di partecipanti (studenti + accompagnatori)
+      snippet:
+        name: il Titolo compare come pulsante
+
     placeholders:
       edition:
         booking_url: https://

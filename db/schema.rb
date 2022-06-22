@@ -78,6 +78,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_04_27_080855) do
     t.datetime "booking_start", precision: nil
     t.boolean "atomic"
     t.boolean "hidden"
+    t.index ["parent_id"], name: "parent_id"
   end
 
   create_table "activities_areas", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
@@ -246,6 +247,13 @@ ActiveRecord::Schema[7.0].define(version: 2021_04_27_080855) do
     t.text "address"
   end
 
+  create_table "snippets", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+    t.integer "activity_id", unsigned: true
+    t.string "name"
+    t.text "description"
+    t.index ["activity_id"], name: "fk_snippets_activities"
+  end
+
   create_table "users", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
     t.boolean "staff"
     t.column "role", "enum('student_secondary','student_university','teacher','other')"
@@ -286,4 +294,5 @@ ActiveRecord::Schema[7.0].define(version: 2021_04_27_080855) do
   add_foreign_key "bookings", "users", name: "fk_book_user"
   add_foreign_key "resource_containers_resources", "resource_containers", name: "fk_res_res_c_id"
   add_foreign_key "resource_containers_resources", "resources", name: "fk_res_res_id"
+  add_foreign_key "snippets", "activities", name: "fk_snippets_activities"
 end

@@ -75,6 +75,7 @@ Rails.application.routes.draw do
 
   resources :editions, concerns: [:resourceble, :contactable, :bookable] do
     resources :events
+    resources :snippets
     # resources :bookings
   end
 
@@ -83,6 +84,8 @@ Rails.application.routes.draw do
   end
   resources :resource_containers, concerns: [:resourceble]
   resources :resourcess, only: [:edit, :destroy]
+
+  resources :snippets
 
   resources :clusters
   resources :schools
