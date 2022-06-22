@@ -4,6 +4,7 @@ class Activity < ApplicationRecord
   has_and_belongs_to_many :resources
   has_and_belongs_to_many :clusters
   has_many :bookings
+  has_many :snippets
 
   before_destroy :check_children
 
