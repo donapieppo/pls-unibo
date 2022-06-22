@@ -1,3 +1,8 @@
+<% if project.campus_id %>  
+  <div class="text-right font-bold">
+    Sede: <%= project.campus %>  
+  </div>
+<% end %>
 <div class="text-right">
   <%= possible_label_from_array 'Organizzato da', project.areas, add_class: 'badge' %>  
 </div>
