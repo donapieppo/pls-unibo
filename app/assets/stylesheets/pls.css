@@ -1,9 +1,3 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;1,400;1,700&display=swap');
-
 body {
   font-family: 'Titillium Web', sans-serif;
   font-size: 16px;
@@ -34,9 +28,20 @@ body {
 
 .big-home-button {
   @apply flex flex-col items-center justify-center; 
-  @apply border-2 border-pls;
-  @apply hover:bg-gray-100 hover:shadow-2xl text-pls p-4 rounded-2xl w-full h-full;
-  @apply text-xl;
+  @apply h-full;
+  @apply border-2 border-gray-400 bg-yellow-600 hover:bg-gray-100 rounded-2xl;
+  @apply text-xl font-bold text-gray-100 hover:text-yellow-600;
+  @apply hover:shadow-2xl; 
+  @apply p-8 pt-16 m-2 my-4;
+  position: relative;
+}
+.big-home-button-icon {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 15px;
+  @apply bg-gray-100 text-yellow-600 border-2 border-pls-strong;
+  @apply rounded-2xl;
 }
 
 .alert {
@@ -80,6 +85,9 @@ h4 {
   .pls-card-content {
     @apply mt-4 mb-4;
   }
+  .pls-card-footer {
+    @apply mt-4 mb-1;
+  }
 }
 
 .toggable {
@@ -117,10 +125,10 @@ table {
   @apply hover:bg-blue-300 border border-blue-300 px-4 rounded;
 }
 
+.trix-button-group--file-tools {
+  display: none !important;
+}
 .details-trix-editor {
-  .trix-button-group--file-tools {
-    display: none;
-  }
   @apply border-2 border-gray-400 bg-gray-50 p-2 lg:p-4 my-4 rounded-xl;
   label {
     font-weight: bold;
@@ -129,7 +137,7 @@ table {
 
 .trix-content {
   li {
-   list-style-type: circle;
+    list-style-type: circle;
   }
 }
 
