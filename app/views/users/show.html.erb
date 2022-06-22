@@ -12,7 +12,7 @@
           <% end %>
         <% end %>
       <% else %>
-        senza avere specificato il tuo ruolo (docente/studente/altro).<br/> Puoi aggiornare i tuoi dati.
+        senza avere specificato il tuo ruolo (docente/studente/altro).<br/> Puoi aggiornare i tuoi dati
       <% end %>
       <div>
         con l'indirizzo di posta <%= @user.email %>.
@@ -31,7 +31,7 @@
           <%= b.activity %>  
         <% end %>
         <div>
-          <%= link_to "[Cancella questa iscrizione]", booking_path(b), method: :delete %>  
+          <%= button_to "[Cancella questa iscrizione]", booking_path(b), method: :delete %>  
         </div>
       </div>
       <% end.empty? and begin  %>
