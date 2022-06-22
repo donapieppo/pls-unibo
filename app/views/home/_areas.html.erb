@@ -10,17 +10,17 @@
       <%= link_to url do %>  
         <div class="relative border border-gray-700 shadow rounded-xl p-2 my-6 h-52 lg:h-72 hover:shadow-xl" 
              style="background: no-repeat center url(<%= asset_path(area_image(area)) %>); background-size: cover; ">
-             <div class="absolute -bottom-2 -right-2 bg-white rounded-xl p-4 px-8 border border-gray-700 shadow-xl text-right">
-               <h2 class="inline align-text-bottom text-xl text-pls">
-                 <%= area.name %>
-               </h2>
-               <div class="mt-1 text-sm">
-                 Responsabile: <%= area.head %> 
-               </div>
+           <div class="absolute -bottom-2 -right-2 bg-white rounded-xl p-4 px-8 border border-gray-700 shadow-xl text-right">
+             <h2 class="inline align-text-bottom text-xl text-pls">
+               <%= area.name %>
+             </h2>
+             <div class="mt-1 text-sm">
+               Responsabile: <%= area.head %> 
              </div>
-             <div class="absolute rounded-full p-4 -top-4 -left-4 bg-white border border-gray-700 text-pls-strong">
-               <%= area_icon(area, size: 30) %>
-             </div>
+           </div>
+           <div class="absolute rounded-full p-4 -top-4 -left-4 bg-white border border-gray-700 text-pls-strong">
+             <%= area_icon(area, size: 30) %>
+           </div>
         </div>
       <% end %>
     </div>
