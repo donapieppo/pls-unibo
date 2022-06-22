@@ -34,6 +34,13 @@
         <div class="my-4 text-gray-700">
           <%= @edition.details %>  
         </div>
+        <div>
+        <% @edition.snippets.each do |snippet| %>  
+          <div class="inline-block">
+            <%= link_to snippet.name, snippet_path(snippet, modal: 1), data: { turbo_frame: :modal }, class: 'text-xl m-4 px-4 py-2 border-2 border-pls bg-yellow-400' %>  
+          </div>
+        <% end %>
+        </div>
       <% end %>
 
       <%= render Booking::BookingComponent.new(@edition, @current_user, short: @short) %>

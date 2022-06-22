@@ -1,16 +1,13 @@
 <div class="pls-card my-8">
-  <label class="pls-card-title">
+  <div class="pls-card-title">
     <%= @label %>  
-  </label>
-  <div class="my-2 p-2 pt-8">
+  </div>
+  <div class="pls-card-content">
     <% @contacts.each do |contact| %>  
       <div>
         <%= contact %>
         <span class="float-right">
-          <% url = [:remove_contact, @what, { contact_id: contact.id, as: @as }] %>
-          <%= link_to url, method: :delete, title: 'elimina', data: { confirm: 'Siete sicuri di voler cancellare?' } do %>
-            <i class="far fa-trash-alt"></i>
-          <% end %>
+          <%= link_to_delete [:remove_contact, @what, { contact_id: contact.id, as: @as }] %>
         </span>
       </div>
     <% end %>
@@ -28,10 +25,9 @@
       </datalist>
       <input type="submit" value="aggiungi"/>
     <% end %>
-
-    <div class="mt-4">
-      <%= link_to plus_icon + ' aggiungi un nuovo contatto se non lo trovi nella lista', [:new, @what, :contact, as: @as], class: 'text-sm' %>  
-    </div>
+  </div>
+  <div class="pls-card-footer">
+    <%= link_to plus_icon + ' aggiungi un nuovo contatto se non lo trovi nella lista', [:new, @what, :contact, as: @as], class: 'text-sm' %>  
   </div>
 </div>
 

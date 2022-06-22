@@ -10,7 +10,7 @@
   </div>
 
   <div class="my-4">
-    <%= link_to "Cancella l'iscrizione", booking_path(@user_this_booking), method: :delete, class: 'button-danger' %>  
+    <%= button_to "Cancella l'iscrizione", booking_path(@user_this_booking), method: :delete, class: 'button-danger' %>  
   </div>
 <% elsif @user_sibling_booking_activity %>
   <div class="text-xl text-green-700 font-bold my-4">  
