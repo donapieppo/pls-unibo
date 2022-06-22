@@ -62,6 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_04_27_080855) do
     t.integer "parent_id", unsigned: true
     t.integer "audience_id", unsigned: true
     t.integer "organization_id", unsigned: true
+    t.integer "campus_id", unsigned: true
     t.boolean "global"
     t.integer "duration", limit: 2, unsigned: true
     t.boolean "sofia"
@@ -186,6 +187,10 @@ ActiveRecord::Schema[7.0].define(version: 2021_04_27_080855) do
     t.index ["school_id"], name: "fk_book_school"
     t.index ["teacher_id"], name: "fk_book_teacher"
     t.index ["user_id"], name: "fk_book_user"
+  end
+
+  create_table "campuses", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "clusters", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
