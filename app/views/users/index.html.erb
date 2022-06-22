@@ -1,15 +1,17 @@
 <h1 class="title">Utenti</h1>
 
 <div class="container">
+  <%= link_to 'mostra solo staff', users_path(staff: 1), class: 'button mb-3' %>  
   <table>
     <% @users.each do |u| %>  
-      <tr>
+      <tr class="<%= 'bg-yellow-500' if u.staff %>">
+        <th><%= u.id %></th>
         <th><%= link_to u.to_s, [:edit, u] %></th>
         <td><%= u.role %></td>
         <td><%= u.email %></td>
         <td><%= u.school %></td>
         <td><%= u.school_city %></td>
       </tr>
-      <% end %>
+    <% end %>
   </table>
 </div>
