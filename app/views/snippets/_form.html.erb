@@ -1,0 +1,5 @@
+<%= simple_form_for [@edition, @snippet] do |f| %>  
+  <%= f.input :name %>  
+  <%= f.rich_text_area :description  %>
+  <%= f.submit %>  
+<% end %>
