@@ -1,32 +1,26 @@
 <div id="home-buttons" class="container mt-32">
-  <div class="px-8 text-center">
-    <div class="sm:grid sm:grid-cols-3 sm:gap-16 place-content-stretch">
-      <%= link_to projects_path(on: 1) do %>
-        <div class="big-home-button my-2">
-          <div><i class="fas fa-play text-6xl mb-8"></i></div>
-          <div>Attività del 2021/2022</div>
-        </div>
+  <div class="px-2 text-center">
+    <div class="md:flex">
+      <%= link_to projects_path(on: 1), class: "big-home-button md:w-1/3" do %>
+        <div class="big-home-button-icon"><i class="fas fa-play text-4xl"></i></div>
+        <div>ATTIVITÀ DEL 2021/2022</div>
       <% end %>
-      <%= link_to projects_path(bookable: 1) do %>
-        <div class="big-home-button my-2">
-          <div><i class="far fa-folder-open text-6xl mb-8"></i></div>
-          <div>Iscrizioni aperte</div>
-        </div>
+      <%= link_to projects_path(bookable: 1), class: "big-home-button md:w-1/3" do %>
+        <div class="big-home-button-icon"><i class="far fa-folder-open text-4xl"></i></div>
+        <div>ISCRIZIONI APERTE</div>
       <% end %>
-      <%= link_to projects_path do %>
-        <div class="big-home-button my-2">
-          <div><i class="fas fa-chalkboard text-6xl mb-8"></i></div>
-          <div>Tutte le attività</div>
-        </div>
+      <%= link_to projects_path, class: "big-home-button md:w-1/3" do %>
+        <div class="big-home-button-icon"><i class="fas fa-chalkboard text-4xl"></i></div>
+        <div>TUTTE LE ATTIVITÀ</div>
       <% end %>
     </div>
 
-    <h2 class="font-bold text-pls mb-6 mt-16">LE RISORSE</h2>
-    <%= link_to resource_containers_path do %>
-      <div class="big-home-button my-2">
-        <div><i class="far fa-file-image text-6xl mb-8"></i></div>
-        <div>Le risorse disponibili</div>
-      </div>
-    <% end %>
-  </div>
+    <%# <h2 class="font-bold text-pls mb-6 mt-16">LE RISORSE</h2> %>
+    <%# <%= link_to resource_containers_path do %1> %>
+    <%#   <div class="big-home-button"> %>
+      <%#     <div class="big-home-button-icon"><i class="far fa-file-image text-4xl"></i></div> %>
+      <%#     <div>LE RISORSE DISPONIBILI</div> %>
+      <%#   </div> %>
+    <%# <% end %1> %>
+</div>
 </div>
