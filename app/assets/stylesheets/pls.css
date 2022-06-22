@@ -29,8 +29,8 @@ body {
 .big-home-button {
   @apply flex flex-col items-center justify-center; 
   @apply h-full;
-  @apply border-2 border-gray-400 bg-yellow-600 hover:bg-gray-100 rounded-2xl;
-  @apply text-xl font-bold text-gray-100 hover:text-yellow-600;
+  @apply border-2 border-gray-400 bg-pls hover:bg-gray-100 rounded-2xl;
+  @apply text-xl font-bold text-gray-100 hover:text-gray-100;
   @apply hover:shadow-2xl; 
   @apply p-8 pt-16 m-2 my-4;
   position: relative;
@@ -40,7 +40,7 @@ body {
   top: -10px;
   right: -10px;
   padding: 15px;
-  @apply bg-gray-100 text-yellow-600 border-2 border-pls-strong;
+  @apply bg-gray-100 text-pls border-2 border-pls-strong;
   @apply rounded-2xl;
 }
 
