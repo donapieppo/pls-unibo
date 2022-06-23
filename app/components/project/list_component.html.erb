@@ -6,44 +6,8 @@
 
 <div class="lg:flex lg:flex-wrap">
   <% @projects.each do |project| %>  
-    <% current_year = project.current_year? %>  
-    <% border_color = current_year ? 'border-pls-light' : 'border-gray-200' %>  
-    <% opacity = current_year ? '' : 'opacity-60' %>  
-    <div class="lg:w-1/2 p-2 lg:p-4 project <%= opacity %>" 
-         data-years="<%= project.cache_years %>" 
-         data-audiences="<%= project.editions_audience_ids.uniq %>" 
-         data-areas="<%= (project.area_ids + project.interested_area_ids).uniq %>" 
-         data-activity_types="<%= project.parent_id ? [project.parent_id] : [] %>">
-         <%= link_to project do %>  
-
-           <div class="relative h-full flex flex-col my-2 bg-gray-100 border-t-4 <%= border_color %> rounded p-4 hover:bg-pls-light hover:shadow-2xl">
-             <% if @in_evidence %>  
-               <div class="absolute -top-4 -left-2 bg-gray-100 text-pls-strong border-4 border-pls-light rounded-xl text-2xl p-1">
-                 <i class="far fa-star"></i>
-               </div>
-             <% end %>
-             <% if project.hidden %>  
-               <div class="absolute -top-4 -left-2 bg-gray-100 text-pls-strong border-4 border-pls-light rounded-xl text-2xl p-1">
-                 <i class="far fa-eye-slash"></i>
-               </div>
-             <% end %>
-             <div class="flex-grow text-center">
-               <%= project.activity_type %>
-               <h3 class="font-semibold"><%= project.name.upcase %></h3>
-             </div>
-             <div class="text-sm text-gray-700 text-right">
-               <% if project.organization_id || project.campus_id %>  
-                 <div class="text-sm mb-2">
-                   <%= project.organization if project.organization_id %>
-                   <%= "Sede #{project.campus.name}" if project.campus_id %>
-                 </div>
-               <% end %>
-               <div><strong>Organizzato da:</strong> <%= project.areas_to_s %></div>
-               <div><%= helpers.possible_label_from_array 'Altre aree di interesse', project.interested_areas - project.areas, margins: 'my-0', separator: ', ', with_link: false %></div>
-               <div><%= helpers.project_academic_years_to_s(project) %></div>  
-             </div>
-           </div>
-         <% end %>
+    <div class="lg:w-1/2 p-2 lg:p-4"> 
+      <%= render Project::CardComponent.new(project, no_filter: @no_filter) %>  
     </div>
   <% end %>
 </div>

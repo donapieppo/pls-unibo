@@ -29,10 +29,10 @@
           <label for="au_<%= a.id %>"><%= a.name %> </label> <br/>
         <% end %>
       </div>
-      <div data-filter-target="activity_types" id="activity_types" class="p-4">
+      <div data-filter-target="activitytypes" id="activitytypes" class="p-4">
         <h4 class="text-base font-bold text-pls-strong pb-2">Tipologia</h4>
         <% ActivityType.order(:name).each do |a| %>  
-          <input type="checkbox" id="at_<%= a.id %>" name="activity_types" value="<%= a.id %>"/>
+          <input type="checkbox" id="at_<%= a.id %>" name="activitytypes" value="<%= a.id %>"/>
           <label for="at_<%= a.id %>"><%= a.name %> </label> <br/>
         <% end %>
       </div>
@@ -47,8 +47,3 @@
     Non sono registrate attività che soddisfino ai criteri selezionati.
   </div>
 </div>
-
-<%# <%= javascript_tag do %1> %>  
-<%#   <%= render partial: 'projects/filters', formats: :js %1> %>  
-<%# <% end %1> %>
-
