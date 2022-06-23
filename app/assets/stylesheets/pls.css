@@ -30,7 +30,7 @@ body {
   @apply flex flex-col items-center justify-center; 
   @apply h-full;
   @apply border-2 border-gray-400 bg-pls hover:bg-gray-100 rounded-2xl;
-  @apply text-xl font-bold text-gray-100 hover:text-gray-100;
+  @apply text-xl font-bold text-gray-100 hover:text-pls;
   @apply hover:shadow-2xl; 
   @apply p-8 pt-16 m-2 my-4;
   position: relative;
