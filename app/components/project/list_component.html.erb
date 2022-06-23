@@ -22,6 +22,11 @@
                  <i class="far fa-star"></i>
                </div>
              <% end %>
+             <% if project.hidden %>  
+               <div class="absolute -top-4 -left-2 bg-gray-100 text-pls-strong border-4 border-pls-light rounded-xl text-2xl p-1">
+                 <i class="far fa-eye-slash"></i>
+               </div>
+             <% end %>
              <div class="flex-grow text-center">
                <%= project.activity_type %>
                <h3 class="font-semibold"><%= project.name.upcase %></h3>
