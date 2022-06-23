@@ -16,7 +16,7 @@
 </div> 
 
 <div class="container">
-  <%= render partial: 'projects/attributes', locals: { project: @edition.project } %>  
+  <%= render Project::AttributesComponent.new(@edition.project) %>  
 </div>
 
 <div class="container my-8">

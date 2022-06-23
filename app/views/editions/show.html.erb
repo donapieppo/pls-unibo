@@ -14,7 +14,7 @@
     <%= link_to '<i class="fas fa-level-up-alt rounded-xl border-2 border-pls mx-4 px-4 py-2 text-base"></i>'.html_safe, @edition.project, title: 'Torna al progetto' %>
   </h2>
 
-  <%= render partial: 'projects/attributes', locals: { project: @edition.project } %>  
+  <%= render Project::AttributesComponent.new(@edition.project) %>  
 
   <% if c = @edition.clusters.first %>  
     <div class="text-right">
