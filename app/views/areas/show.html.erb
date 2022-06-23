@@ -7,7 +7,7 @@
 
 <div class="lg:relative">
   <div class="relative lg:ml-auto -top-16 lg:right-8 lg:max-w-4xl 2xl:max-w-6xl mx-2 bg-pls-light font-light lg:text-xl text-justify rounded-xl p-6 border-gray-900 border-4">
-    <%= @area.description %>
+    <%= simple_format @area.description %>
     <div class="text-sm mt-4">
       <div>Responsabile: <%= @area.head %></div>
       <div>Contatti: <%= render Contact::InlineContactsComponent.new(@area.contacts) %></div>
@@ -17,6 +17,12 @@
     </div>
   </div>
 </div>
+
+<% unless @area.notice.blank? %>  
+  <div class="container area-notice">
+    <%= raw @area.notice %>  
+  </div>
+<% end %>
 
 <div class="container">
   <% if policy(:project).new? %>  
