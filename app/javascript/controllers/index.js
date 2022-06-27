@@ -15,3 +15,6 @@ application.register("menu", MenuController)
 
 import FilterController from "./filter_controller"
 application.register("filter", FilterController)
+
+import BookingController from "./booking_controller"
+application.register("booking", BookingController)
