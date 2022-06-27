@@ -3,6 +3,7 @@
 
   <%= simple_form_for @area do |f| %>  
     <%= f.input :description, input_html: { cols: 80, rows: 10, class: 'border-2' } %>
+    <%= f.rich_text_area :notice %>
     <%= f.association :head, label_method: :cn, collection: Contact.order(:surname, :name) %>  
     <%= f.submit %>  
   <% end %>
