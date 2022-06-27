@@ -37,7 +37,7 @@
         <div>
         <% @edition.snippets.each do |snippet| %>  
           <div class="inline-block">
-            <%= link_to snippet.name, snippet_path(snippet, modal: 1), data: { turbo_frame: :modal }, class: 'inline-block text-xl m-2 px-4 py-2 border-2 border-pls bg-pls text-gray-100' %>  
+            <%= link_to snippet.name, snippet_path(snippet, modal: 1), data: { turbo_frame: :modal }, class: 'inline-block text-xl m-2 px-4 py-2 border-2 border-pls-strong bg-gray-50 text-pls-strong hover:bg-gray-200' %>  
           </div>
         <% end %>
         </div>
