@@ -1,5 +1,5 @@
 <% if @modal %>
-  <%= render ModalComponent.new() do %>
+  <%= render ModalComponent.new(small: true) do %>
     <%= render Contact::ContactComponent.new(@contact) %>
   <% end %>
 <% else  %>  
