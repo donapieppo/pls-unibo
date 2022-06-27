@@ -44,11 +44,3 @@ form {
   }
 }
 
-trix-toolbar {
-  @apply mt-8;
-}
-trix-editor > div {
-  @apply mt-8;
-  font-size: 16px;
-}
-

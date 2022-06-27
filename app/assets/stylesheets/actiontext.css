@@ -1,10 +1,4 @@
-/*
- * Provides a drop-in pointer for the default Trix stylesheet that will format the toolbar and
- * the trix-editor content (whether displayed or under editing). Feel free to incorporate this
- * inclusion directly in any other asset bundle and remove this file.
- *
- *= require trix
-*/
+@import 'trix';
 
 /*
  * We need to override trix.css’s image gallery styles to accommodate the
@@ -32,4 +26,33 @@
 
 .trix-button {
   @apply border-2 border-pls-strong px-1;
+}
+
+trix-toolbar {
+  @apply mt-8;
+}
+
+trix-editor > div {
+  @apply mt-2;
+  font-size: 16px;
+}
+
+.trix-content {
+  @apply my-8;
+  h1 {
+    @apply block leading-none font-bold text-pls tracking-tight mt-6;
+  }
+  a {
+    text-decoration: underline;
+  }
+}
+
+.trix-button-group--file-tools {
+  display: none !important;
+}
+.details-trix-editor {
+  @apply border-2 border-gray-400 bg-gray-50 p-2 lg:p-4 my-4 rounded-xl;
+  label {
+    font-weight: bold;
+  }
 }

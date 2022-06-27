@@ -125,19 +125,9 @@ table {
   @apply hover:bg-blue-300 border border-blue-300 px-4 rounded;
 }
 
-.trix-button-group--file-tools {
-  display: none !important;
+ul {
+  list-style-type: circle;
 }
-.details-trix-editor {
-  @apply border-2 border-gray-400 bg-gray-50 p-2 lg:p-4 my-4 rounded-xl;
-  label {
-    font-weight: bold;
-  }
+ol {
+  list-style-type: decimal;
 }
-
-.trix-content {
-  li {
-    list-style-type: circle;
-  }
-}
-
