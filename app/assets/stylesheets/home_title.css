@@ -18,21 +18,19 @@
   @apply flex flex-col justify-center items-center rounded-full;
   @apply px-8 py-16 shadow-2xl;
   @apply text-lg lg:text-xl;
+  @apply bg-gray-100 border-4 border-pls text-pls;
   height: 200px;
   width: 200px;
 }
 #home-box-areas {
-  @apply bg-pls text-gray-100;
   margin-top: -25px; 
   margin-left: 100px;
 }
 #home-box-projects {
-  @apply bg-pls-light text-gray-700;
   margin-top:  -75px; 
   margin-left: 0;
 }
 #home-box-students {
-  @apply bg-pls-strong text-gray-100;
   margin-top:  -75px; 
   margin-left: 100px;
 }

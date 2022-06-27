@@ -1,15 +1,7 @@
 <div class="container mt-32">
   <h2 class="font-bold text-pls mb-6">LE PROSSIME ATTIVITÀ</h2>
   <% @next_editions.each do |edition| %>  
-    <%= link_to edition do %>  
-      <div class="md:text-lg py-4 text-gray-900 border-2 border-gray-50 hover:border-pls hover:bg-gray-50 rounded-xl px-2 ">
-        <i class="fas fa-chevron-right text-base mr-2"></i> 
-        <%= edition.to_s.upcase %> 
-        <% if start_date = edition.first_event_date %>  
-          <span class="text-sm text-gray-500 pl-2">da <%= l start_date, format: :day %></span>
-        <% end %>
-      </div>
-    <% end %>
+    <%= render Edition::CardComponent.new(edition) %>  
   <% end %>
 </div>
 
