@@ -5,7 +5,7 @@ export default class extends Controller {
 
   connect() {
     console.log("filter controller");
-    this.projects = document.querySelectorAll('.project');
+    this.projects = document.querySelectorAll('.with-filter');
 
     [this.yearsTarget, this.audiencesTarget, this.areasTarget, this.activitytypesTarget].filter(s => s !== null).forEach((selector) => {
       selector.addEventListener('change', () => {
