@@ -1,4 +1,4 @@
-<%= content_tag :div, class: "project #{@opacity}", data: @filter_data do %>
+<%= content_tag :div, class: "project #{'with-filter' unless @no_filter} #{@opacity}", data: @filter_data do %>
   <%= link_to @project do %>  
     <div class="relative h-full flex flex-col my-2 bg-gray-100 border-t-4 <%= @border_color %> rounded p-4 hover:bg-pls-light hover:shadow-2xl">
       <% if @in_evidence %>  
@@ -19,7 +19,7 @@
         <% if @project.organization_id || @project.campus_id %>  
           <div class="text-sm mb-2">
             <%= @project.organization if @project.organization_id %>
-            <%= "Sede #{@project.campus.name}" if @project.campus_id %>
+            <strong><%= "Sede #{@project.campus.name}" if @project.campus_id %></strong>
           </div>
         <% end %>
         <div><strong>Organizzato da:</strong> <%= @project.areas_to_s %></div>
