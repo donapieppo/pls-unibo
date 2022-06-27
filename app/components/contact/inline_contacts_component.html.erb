@@ -1,5 +1,5 @@
 <% @contacts.each do |contact| %>  
   <div class="inline-block cursor-pointer my-2">
-    <%= link_to contact.to_s, contact_path(contact, modal: 1), data: { turbo_frame: :modal }, class: 'p-1 border-2' %>  
+    <%= link_to contact.to_s, contact_path(contact, modal: 1), data: { turbo_frame: :modal }, class: 'px-1 mx-1 border-2 border-pls rounded' %>  
   </div>
 <% end %>
