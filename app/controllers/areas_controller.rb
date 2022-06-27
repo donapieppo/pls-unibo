@@ -34,6 +34,6 @@ class AreasController < ApplicationController
   end
 
   def area_params
-    params[:area].permit(:description, :head_id)
+    params[:area].permit(:description, :head_id, :notice)
   end
 end
