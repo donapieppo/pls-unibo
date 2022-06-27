@@ -60,7 +60,7 @@
     <div class="md:flex md:flex-wrap">
       <% @area.resource_containers.order(:name).each do |resource_container| %>  
         <div class="md:w-1/4 p-2">
-          <%= render resource_container %>  
+          <%= render ResourceContainer::CardComponent.new(resource_container, current_user) %>  
         </div>
       <% end %>
     </div>
