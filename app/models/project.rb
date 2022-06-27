@@ -15,7 +15,7 @@ class Project < Activity
   before_save :global_and_areas_relation
   # FIXME 
   # manca uniq alla fine
-  scope :this_academic_year, -> { joins("JOIN `activities` `editions_activities` ON `editions_activities`.`parent_id` = `activities`.`id` AND `editions_activities`.`type` = 'Edition' AND (editions_activities.academic_year = #{CURRENT_ACADEMIC_YEAR})") }
+  scope :this_academic_year, -> { joins("JOIN `activities` `editions_activities` ON `editions_activities`.`parent_id` = `activities`.`id` AND `editions_activities`.`type` = 'Edition' AND (editions_activities.academic_year >= #{CURRENT_ACADEMIC_YEAR})") }
 
   def global_and_areas_relation
     if self.global
