@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
 
   def index
     authorize :project
-    @projects = Project.includes(:editions, :activity_type).order(:name)
+    @projects = Project.visible(current_user && current_user.staff?).includes(:editions, :activity_type).order(:name)
     if params[:on] == '1'
       @on = true
       @projects = @projects.where(id: Edition.this_academic_year_project_ids)
@@ -13,16 +13,10 @@ class ProjectsController < ApplicationController
       @bookable_now = true
       @projects = @projects.where(id: Edition.bookable_project_ids)
     end
-    unless current_user && current_user.staff?
-      @projects = @projects.where('activities.global = 1 or activities.hidden != 1')
-    end
   end
 
   def show
-    @editions = @project.editions.order('academic_year desc, name').with_rich_text_details
-    unless current_user && current_user.staff?
-      @editions = @editions.visible
-    end
+    @editions = @project.editions.visible(current_user && current_user.staff?).order('academic_year desc, name').with_rich_text_details
   end
 
   def new
