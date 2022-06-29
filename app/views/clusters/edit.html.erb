@@ -1,16 +1,16 @@
-<div class="container">
+<div class="container" data-controller="cluster">
   <h1 class="title">Modifica raggruppamento di attività</h1>
 
   <%= simple_form_for @cluster do |f| %>  
     <%# <%= f.input :slug %1> %>  
     <%= f.input :name %>  
     <%= f.input :description %>  
-    <input id="limited_activities_checkbox" 
+    <input data-cluster-target="limited_activities_checkbox"
            type="checkbox" 
            name="cluster[limited_activities_checkbox]" 
            <%= @cluster.max_bookable_activities.to_i > 0 ? 'checked="checked"' : '' %>/>
-    <label for="limited_activities_checkbox">Il numero di attività a cui iscriversi è limitato?</label>
-    <div id="limited_activities" style="display: none">
+    <label for="checkbox">Il numero di attività a cui iscriversi è limitato?</label>
+    <div id="checkbox" data-cluster-target="limited_activities" style="display: none">
       <%= f.input :max_bookable_activities %>  
     </div>
     <%= f.association :activities, collection: @activities, as: :check_boxes, label_method: -> (x) { "#{x.name} #{x.academic_year}" } %>  
@@ -18,10 +18,3 @@
   <% end %>
 </div>
 
-<%= javascript_tag do %>  
-  document.addEventListener('DOMContentLoaded', (event) => {
-    let condition_input = document.getElementById("limited_activities_checkbox");
-    let what = document.getElementById("limited_activities");
-    display_if_checked(what, condition_input);
-  });
-<% end %>
