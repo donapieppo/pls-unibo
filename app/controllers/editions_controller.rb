@@ -5,10 +5,7 @@ class EditionsController < ApplicationController
 
   def index
     authorize :edition
-    @editions = Edition.includes(:events).order(:name)
-    unless current_user && current_user.staff?
-      @editions = @editions.where('activities.hidden != 1')
-    end
+    @editions = Edition.includes(:events).order(:name).visible(current_user && current_user.staff?)
   end
 
   def show
