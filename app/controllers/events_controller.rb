@@ -6,9 +6,7 @@ class EventsController < ApplicationController
   def index
     authorize :event
     @events = Event.order(:name)
-    unless current_user && current_user.staff?
-      @events = @events.where('activities.hidden != 1')
-    end
+    @events = @events.visible(current_user && current_user.staff?)
   end
 
   def show
