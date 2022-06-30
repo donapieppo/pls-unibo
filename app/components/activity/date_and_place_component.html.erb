@@ -35,7 +35,9 @@
     <% unless @activity.place.blank? %>
       <div class="ml-8">
         presso <%= @activity.place %>
-        <%= link_to ' (mostra su google map)', @activity.google_map, class: 'underline', target: '_new' %>  
+        <% unless @activity.google_map.blank? %>  
+          <%= link_to ' (mostra su google map)', @activity.google_map, class: 'underline', target: '_new' %>  
+        <% end %>
       </div>
     <% end %>
   <% end %>
