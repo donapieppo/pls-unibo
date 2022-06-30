@@ -5,24 +5,24 @@
                                           ['esterne', 'external'],
                                           ['tutto finito', 'done']], include_blank: false %>
 
-  <div id="bookable_by_div">
+  <div data-booking-target="by">
   <%= @form.input :bookable_by, collection: [['aperte a tutti', 'all'],
                                              ['studenti scuola secondaria', 'student_secondary'], 
                                              ['studenti universitari', 'student_university'], 
                                              ['docenti', 'teacher']],  include_blank: false %>
   </div>
 
-  <div id="bookable_for_div">
+  <div data-booking-target="for">
   <%= @form.input :bookable_for, collection: [['lo stesso che si iscrive', 'itsself'],
                                               ['studenti', 'students'], 
                                               ['classi di studenti', 'classes']], include_blank: false %>
   </div>
 
-  <div id="booking_url">
+  <div data-booking-target="url">
     <%= @form.input :booking_url, as: :string, hint: "In caso di sofia #{SOFIA_LINK}" %>
   </div>
 
-  <div id="booking_dates">
+  <div data-booking-target="dates">
     <%= @form.input :booking_start, minute_step: 10 %>
     <%= @form.input :booking_end, minute_step: 10 %>
   </div>
