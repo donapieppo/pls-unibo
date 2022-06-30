@@ -13,6 +13,9 @@ application.register("turbo-modal", TurboModalController)
 import MenuController from "./menu_controller"
 application.register("menu", MenuController)
 
+import HideShowController from "./hideshow"
+application.register("hideshow", HideShowController)
+
 import FilterController from "./filter_controller"
 application.register("filter", FilterController)
 
