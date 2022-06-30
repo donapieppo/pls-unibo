@@ -33,6 +33,11 @@ class SnippetsController < ApplicationController
     end
   end
 
+  def destroy
+    @snippet.destroy
+    redirect_to [:edit, @snippet.edition]
+  end
+
   private
 
   def set_edition
