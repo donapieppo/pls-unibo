@@ -4,20 +4,22 @@
                                           ['da confermare', 'to_confirm'], 
                                           ['esterne', 'external'],
                                           ['tutto finito', 'done']], 
-                              include_blank: false, 
-                              input_html: { data: { 'booking-target': 'bookableboolean' }} %>
+                             include_blank: false, 
+                             input_html: { data: { 'booking-target': 'bookableType' }} %>
 
   <div data-booking-target="by">
   <%= @form.input :bookable_by, collection: [['aperte a tutti', 'all'],
                                              ['studenti scuola secondaria', 'student_secondary'], 
                                              ['studenti universitari', 'student_university'], 
-                                             ['docenti', 'teacher']],  include_blank: false %>
+                                             ['docenti', 'teacher']],  
+                                include_blank: false %>
   </div>
 
   <div data-booking-target="for">
   <%= @form.input :bookable_for, collection: [['lo stesso che si iscrive', 'itsself'],
                                               ['studenti', 'students'], 
-                                              ['classi di studenti', 'classes']], include_blank: false %>
+                                              ['classi di studenti', 'classes']], 
+                                 include_blank: false %>
   </div>
 
   <div data-booking-target="url">
