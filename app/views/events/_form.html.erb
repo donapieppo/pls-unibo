@@ -29,16 +29,7 @@
       </div>
 
       <%= render Booking::TipologyFormComponent.new(f) %>  
-
-      <%# <%= f.input :bookable, collection: [['no', 'no'], ['si', 'yes'], ['da confermare', 'to_confirm'], ['esterne', 'external']], include_blank: false %1> %>
-      <%# <div id="booking_url"> %>
-      <%#   <%= f.input :booking_url %1> %>
-      <%# </div> %>
-      <%# <div id="booking_dates"> %>
-      <%#   <%= f.input :booking_start, minute_step: 10 %1> %>
-      <%#   <%= f.input :booking_end, minute_step: 10 %1> %>
-      <%# </div> %>
-    <%# <% end %1> %>
+    <% end %>
 
     <%= f.submit %>
   <% end %>
