@@ -35,11 +35,11 @@
   <% end %>
 </div>
 
-<%= javascript_tag do %>  
-  document.addEventListener('DOMContentLoaded', (event) => {
-    display_unless(['no'], document.getElementById('booking_dates'), document.getElementById('event_bookable'));
-    display_if('external', document.getElementById('booking_url'), document.getElementById('event_bookable'));
-    display_if_checked(document.getElementById('if_in_presence'), document.getElementById('event_in_presence'));
-    display_if_checked(document.getElementById('if_online'), document.getElementById('event_online'));
-  });
-<% end %>
+<%# <%= javascript_tag do %1> %>  
+<%#   document.addEventListener('DOMContentLoaded', (event) => { %>
+<%#     display_unless(['no'], document.getElementById('booking_dates'), document.getElementById('event_bookable')); %>
+<%#     display_if('external', document.getElementById('booking_url'), document.getElementById('event_bookable')); %>
+<%#     display_if_checked(document.getElementById('if_in_presence'), document.getElementById('event_in_presence')); %>
+<%#     display_if_checked(document.getElementById('if_online'), document.getElementById('event_online')); %>
+<%#   }); %>
+<%# <% end %1> %>
