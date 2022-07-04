@@ -25,11 +25,11 @@
         </div>
         <div class="md:w-full">
           <%= link_to event do %>
-            <div class="text-lg font-semibold ">
+            <div class="text-lg font-semibold">
               <%= event.name.upcase %>  
             </div>
             <div class="text-sm italic text-justify text-gray-700 mt-4">
-              <q><%= event.description %></q>
+              <%= event.description %>
             </div>
           <% end %>
           <div class="mt-2">
