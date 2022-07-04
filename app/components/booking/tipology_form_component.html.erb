@@ -3,7 +3,9 @@
                                           ['si', 'yes'], 
                                           ['da confermare', 'to_confirm'], 
                                           ['esterne', 'external'],
-                                          ['tutto finito', 'done']], include_blank: false %>
+                                          ['tutto finito', 'done']], 
+                              include_blank: false, 
+                              input_html: { data: { 'booking-target': 'bookableboolean' }} %>
 
   <div data-booking-target="by">
   <%= @form.input :bookable_by, collection: [['aperte a tutti', 'all'],
