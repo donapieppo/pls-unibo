@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <%= render 'layouts/seo' %>  
+    <title>PlsUnibo</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag("application") %>
+    <%= javascript_include_tag("application") %>
+  </head>
+
+  <body>
+    <div style="position: fixed; top: 80px; z-index: -1000; opacity: 0.35" >
+      <%= image_tag 'Logo_PLS_bg.png' %>  
+    </div>
+
+    <div class="flex flex-col justify-between min-h-screen">
+      <div class="flex-none">
+        <%= render partial: 'layouts/menu' %>  
+        <%= render partial: 'layouts/modal' %>  
+      </div>
+
+      <div class="min-h-screen">
+        <%= render FlashMessage::FlashMessagesComponent.new(flash: flash) %>
+        <%= yield %>
+      </div>
+
+      <div class="flex-none">
+        <%= render partial: 'layouts/footer' %>  
+      </div>
+    </div>
+  </body>
+</html>
