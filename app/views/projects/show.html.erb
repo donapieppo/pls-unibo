@@ -1,6 +1,6 @@
 <div class="container">
   <div class="text-center text-2xl mt-4">
-    <%= @project.activity_type.name.upcase %>  
+    <%= @project.activity_type.name.upcase if @project.activity_type %>  
   </div>
 
   <h1 class="title">
