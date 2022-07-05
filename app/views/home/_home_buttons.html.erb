@@ -1,26 +1,18 @@
-<div id="home-buttons" class="container mt-32">
+<div id="home-buttons" class="container md:mt-32">
   <div class="px-2 text-center">
-    <div class="md:flex">
-      <%= link_to projects_path(on: 1), class: "big-home-button md:w-1/3" do %>
+    <div class="flex flex-col items-center justify-center">
+      <%= link_to projects_path(on: 1), class: "big-home-button w-64" do %>
         <div class="big-home-button-icon"><i class="fas fa-play text-4xl"></i></div>
         <div>ATTIVITÀ DEL 2021/2022</div>
       <% end %>
-      <%= link_to projects_path(bookable: 1), class: "big-home-button md:w-1/3" do %>
+      <%= link_to projects_path(bookable: 1), class: "big-home-button w-64" do %>
         <div class="big-home-button-icon"><i class="far fa-folder-open text-4xl"></i></div>
         <div>ISCRIZIONI APERTE</div>
       <% end %>
-      <%= link_to projects_path, class: "big-home-button md:w-1/3" do %>
+      <%= link_to projects_path, class: "big-home-button w-64" do %>
         <div class="big-home-button-icon"><i class="fas fa-chalkboard text-4xl"></i></div>
         <div>TUTTE LE ATTIVITÀ</div>
       <% end %>
     </div>
-
-    <%# <h2 class="font-bold text-pls mb-6 mt-16">LE RISORSE</h2> %>
-    <%# <%= link_to resource_containers_path do %1> %>
-    <%#   <div class="big-home-button"> %>
-      <%#     <div class="big-home-button-icon"><i class="far fa-file-image text-4xl"></i></div> %>
-      <%#     <div>LE RISORSE DISPONIBILI</div> %>
-      <%#   </div> %>
-    <%# <% end %1> %>
-</div>
+  </div>
 </div>
