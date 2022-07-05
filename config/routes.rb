@@ -1,13 +1,14 @@
+#  get 'auth/:provider/callback', to: 'sessions#create'
+#  get '/login', to: 'sessions#new'
 Rails.application.routes.draw do
-  get 'auth/google_oauth2',          as: 'google_login'
-  get 'auth/developer',              as: 'developer_login'
-  get 'auth/shibboleth',             as: 'shibboleth_login'
+  get  'auth/google_oauth2/callback', to: 'logins#google_oauth2'
+  get  'auth/shibboleth/callback',    to: 'logins#shibboleth'
+  post 'auth/shibboleth/callback',    to: 'logins#shibboleth'
+  post 'auth/developer/callback',     to: 'logins#developer'
 
-  get 'auth/google_oauth2/callback', to: 'logins#google_oauth2'
-
-  get 'auth/shibboleth/callback',    to: 'logins#shibboleth'
-  post 'auth/shibboleth/callback',   to: 'logins#shibboleth'
-  post 'auth/developer/callback',    to: 'logins#developer'
+  post  'auth/google_oauth2',          as: 'google_login'
+  post  'auth/developer',              as: 'developer_login'
+  post  'auth/shibboleth',             as: 'shibboleth_login'
 
   get 'login',                       to: 'logins#index',  as: :login
   get 'logins/logout',               to: 'logins#logout', as: :logout
@@ -94,7 +95,8 @@ Rails.application.routes.draw do
 
   get "/presentazione", to: "home#presentazione", as: "presentation"
   get "/contatti", to: "home#contacts", as: "contacts_page"
-  get "/privacy", to: "home#privacy", as: "privacy"
+  get "/privacy",  to: "home#privacy", as: "privacy"
+  get "/archive",  to: "home#archive", as: "archive"
 
   root "home#index"
 
@@ -102,5 +104,6 @@ Rails.application.routes.draw do
 
   Area.find_each do |a|
     get "/#{a.slug}", to: "areas#show", id: a.id
+    get "/#{a.slug}/archive", to: "home#archive", id: a.id
   end
 end
