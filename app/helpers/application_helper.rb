@@ -1,4 +1,12 @@
 module ApplicationHelper
+  def area_root(area)
+    "#{root_path}#{area.slug}"
+  end
+
+  def area_archive_root(area)
+    "#{area_root(area)}/archive"
+  end
+
   def current_user_booked?(id)
     @booked_activity_ids ||= current_user ? current_user.bookings.map(&:activity_id) : []
     @booked_activity_ids.include?(id)
@@ -35,10 +43,6 @@ module ApplicationHelper
       res = "<span class='text-gray-700'>" + _label +  "</span>: " + res
     end
     content_tag :div, res.html_safe, class: margins unless res.blank?
-  end
-
-  def area_root(area)
-    "/pls/#{area.slug}"
   end
 
   def sofia_link(a)
