@@ -14,5 +14,6 @@ module PlsUnibo
     config.i18n.default_locale = :it
 
     config.hosts << "www.dm.unibo.it"
+    config.action_mailer.default_url_options = { protocol: 'https' }
   end
 end
