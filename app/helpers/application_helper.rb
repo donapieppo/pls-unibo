@@ -1,6 +1,6 @@
 module ApplicationHelper
   def area_root(area)
-    "#{root_path}#{area.slug}"
+    "#{config.relative_url_root}/#{area.slug}"
   end
 
   def area_archive_root(area)
