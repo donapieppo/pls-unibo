@@ -1,6 +1,9 @@
 <div data-controller="filter">
-  <div id="filter-toggler" class="inline-block border border-gray-700 px-4 p-2 my-2">
-    <button data-action="click->filter#toggle_menu">Filtri <i class="fas fa-filter"></i></button>
+  <div id="filter-toggler" class="inline-block border-2 bg-gray-50 hover:bg-gray-200 border-gray-700 px-4 p-2 my-2" data-filter-target="toggler">
+    <button data-action="click->filter#toggle_menu">
+      <i class="fas fa-filter fa-2xl pr-2"></i>
+      Filtra le attività 
+    </button>
   </div>
   <div data-filter-target="menu" id="filters" class="hidden bg-gray-50 border border-gray-500 py-4">
     <div class="lg:flex w-full">
