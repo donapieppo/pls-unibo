@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :log_current_user
   after_action :verify_authorized
 
-  include Pundit
+  include Pundit::Authorization
 
   def current_user
     # session[:user_id] = User.where("name > 'm' and id>100").first.id
