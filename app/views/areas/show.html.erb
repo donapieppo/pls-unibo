@@ -69,5 +69,5 @@
 
 <div class="my-16 text-2xl text-center">
   <i class="fa-solid fa-box-archive fa-2xl px-4"></i>
-  <%= link_to 'ARCHIVIO', "/#{@area.slug}/archive", data: { turbo: false } %>  
+  <%= link_to 'ARCHIVIO', area_archive_root(@area), data: { turbo: false } %>  
 </div>
