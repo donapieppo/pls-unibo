@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["menu", "years", "areas", "audiences", "activitytypes", "noresults"]
+  static targets = ["toggler", "menu", "years", "areas", "audiences", "activitytypes", "noresults"]
 
   connect() {
     console.log("filter controller");
@@ -17,6 +17,7 @@ export default class extends Controller {
 
   toggle_menu() {
     this.menuTarget.classList.toggle("hidden");
+    this.togglerTarget.classList.toggle("hidden");
   }
 
   clear_filters() {
