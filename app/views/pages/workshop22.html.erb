@@ -1,0 +1,25 @@
+<div id="page-header" style="background-image: url(<%= asset_path 'pages/workshop22.png' %>)">
+  <div class="text-center text-gray-900 text-4xl md:text-6xl pt-36 h-48">
+    <%= @edition.name %><br/>
+    <span class="text-xl">15 ott 2022</span>
+  </div>
+
+  <div class="h-24 md:h-48 md:mt-48">
+    <h1 class="font-bold text-2xl tracking-tight my-6 text-center text-pls">
+      WORKSHOP ANNUALE
+    </h1>
+
+    <h2 class="font-bold text-2xl tracking-tight my-6 text-center text-pls">
+      <%= @edition.academic_year_to_s %>
+    </h2>
+  </div>
+</div>
+
+<div class="container">
+  <%= render Project::AttributesComponent.new(@edition.project) %>  
+</div>
+
+<div class="container my-8">
+  <%= render Edition::EditionComponent.new(@edition, current_user, skip_title: true, with_image: true) %>
+</div>
+

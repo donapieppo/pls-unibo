@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   # PAGES
   get '/workshop21', to: "pages#workshop21", as: :workshop21
+  get '/workshop22', to: "pages#workshop22", as: :workshop22
   get '/scienza_al_cinema', to: "pages#scienza_al_cinema", as: :scienza_al_cinema
   get '/editions/282', to: redirect('/metodi_matematici_animazione')
   get '/metodi_matematici_animazione', to: "pages#metodi_matematici_animazione", as: :metodi_matematici_animazione

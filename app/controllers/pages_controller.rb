@@ -11,6 +11,11 @@ class PagesController < ApplicationController
     render layout: 'pages'
   end
 
+  def workshop22
+    @edition = Edition.find(384)
+    render layout: 'pages'
+  end
+
   def metodi_matematici_animazione
     @edition = Edition.find(282)
     render layout: 'application'
