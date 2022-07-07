@@ -1,14 +1,18 @@
 #  get 'auth/:provider/callback', to: 'sessions#create'
 #  get '/login', to: 'sessions#new'
 Rails.application.routes.draw do
-  get  'auth/google_oauth2/callback', to: 'logins#google_oauth2'
-  get  'auth/shibboleth/callback',    to: 'logins#shibboleth'
-  post 'auth/shibboleth/callback',    to: 'logins#shibboleth'
-  post 'auth/developer/callback',     to: 'logins#developer'
+  # No route matches [GET] "/nuovo-pls/auth/shibboleth/callback"
+  #get '/nuovo-pls/auth/shibboleth/callback' do
+  #  redirect 'https://www.dm.unibo.it/nuovo-pls/auth/shibboleth/callback'
+  #end
 
-  post  'auth/google_oauth2',          as: 'google_login'
-  post  'auth/developer',              as: 'developer_login'
-  post  'auth/shibboleth',             as: 'shibboleth_login'
+  get 'auth/google_oauth2/callback', to: 'logins#google_oauth2'
+  get 'auth/shibboleth/callback',    to: 'logins#shibboleth'
+
+  get '/auth/failure' do
+    flash[:notice] = params[:message] # if using sinatra-flash or rack-flash
+    redirect '/'
+  end
 
   get 'login',                       to: 'logins#index',  as: :login
   get 'logins/logout',               to: 'logins#logout', as: :logout
