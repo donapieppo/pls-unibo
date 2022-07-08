@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   before_action :skip_authorization
 
   def scienza_al_cinema
-    @edition = Edition.find(110)
+    @edition = Edition.find(392)
     render layout: 'pages'
   end
 
