@@ -36,16 +36,16 @@
     <%= render Edition::ListComponent.new(@this_area_evidence, current_user, in_evidence: true) %>
   <% end %>
 
-  <h2 class="title py-2">Tutte le attività <%= academic_year(CURRENT_ACADEMIC_YEAR) %></h2>
-
   <% unless current_user && current_user.staff? %>  
-    <div class="my-8">
+    <div class="my-4">
       Altre informazioni per le attività 2021/2022 per l'area <strong><%= @area %></strong> sono disponibili alla pagina <br/>
-      <div class="text-center my-8">
+      <div class="text-center my-4">
         <%= link_to ACCROCCHIO_VECCHIO_SITO[@area.id], ACCROCCHIO_VECCHIO_SITO[@area.id], class: 'underline text-xl' %>
       </div>
     </div>
   <% end %>
+
+  <h2 class="title py-2">Tutte le attività <%= academic_year(CURRENT_ACADEMIC_YEAR) %></h2>
 
   <%= render Project::ListComponent.new(@this_area_projects, no_year_filter: true, no_area_filter: true) %>  
 
