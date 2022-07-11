@@ -1,5 +1,5 @@
 <div class="container mt-32">
-  <h2 class="font-bold text-pls mb-6">LE PROSSIME ATTIVITÀ</h2>
+  <h2 class="font-bold text-pls mb-6 text-center">LE PROSSIME ATTIVITÀ</h2>
   <% @next_editions.each do |edition| %>  
     <%= render Edition::CardComponent.new(edition) %>  
   <% end %>
