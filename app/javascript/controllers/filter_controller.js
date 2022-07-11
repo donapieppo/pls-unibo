@@ -35,7 +35,7 @@ export default class extends Controller {
         this.projects.forEach( (p) => {
           var ids_in_project = p.getAttribute(`data-${selector.id}`);
           // if intersection of checked_ids and ids_in_project empty => hide
-          if (checked_ids.filter(x => ids_in_project.includes(x)).length === 0) {
+          if ( (! ids_in_project) || checked_ids.filter(x => ids_in_project.includes(x)).length === 0) {
             p.parentElement.style.display = 'none';
           }
         });
