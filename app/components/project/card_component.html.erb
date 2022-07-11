@@ -1,5 +1,5 @@
 <%= content_tag :div, class: "h-full project #{'with-filter' unless @no_filter} #{@opacity}", data: @filter_data do %>
-  <%= link_to @project, class: "relative flex flex-col my-2 bg-gray-100 border-t-4 #{@border_color} rounded-b-xl p-4 hover:bg-pls-light hover:shadow-2xl" do %>
+  <%= link_to @project, class: "h-full relative flex flex-col my-2 bg-gray-100 border-t-4 #{@border_color} rounded-b-xl p-4 hover:bg-pls-light hover:shadow-2xl" do %>
     <% if @in_evidence %>  
       <div class="absolute -top-4 -left-2 bg-gray-100 text-pls-strong border-4 border-pls-light rounded-xl text-2xl p-1">
         <i class="far fa-star"></i>
