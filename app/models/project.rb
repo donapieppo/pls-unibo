@@ -50,4 +50,8 @@ class Project < Activity
   def editions_audience_ids
     self.editions.map(&:audience_id)
   end
+
+  def hidden?
+    self.hidden
+  end
 end

@@ -24,6 +24,10 @@ class Edition < Activity
     "a.a. #{self.academic_year}/#{self.academic_year + 1}"
   end
 
+  def current_year?
+    self.academic_year >= CURRENT_ACADEMIC_YEAR
+  end
+
   def over?
     self.academic_year < CURRENT_ACADEMIC_YEAR
     # Date.parse("#{self.academic_year + 1}/07/31") < Date.today
@@ -58,5 +62,9 @@ class Edition < Activity
 
   def self.in_evidence_project_ids
     self.in_evidence.map(&:parent_id)
+  end
+
+  def hidden?
+    self.hidden || self.project.hidden?
   end
 end
