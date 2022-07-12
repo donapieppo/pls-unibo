@@ -10,7 +10,7 @@
     <%= simple_format @area.description %>
     <div class="text-sm mt-4">
       <div>Responsabile: <%= @area.head %></div>
-      <div>Contatti: <%= render Contact::InlineContactsComponent.new(@area.contacts) %></div>
+      <div><%= render Contact::InlineContactsComponent.new(@area.contacts) %></div>
     </div>
     <div class="text-right">
       <%= link_to_edit_if_editable @area, msg: 'modifica descrizione e responsabile' %>

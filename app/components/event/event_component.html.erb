@@ -18,12 +18,14 @@
     <div>
       <div class="py-1">
         <% if @event.sofia %>  
-          <i class="far fa-star fa-fw mr-2"></i><%= helpers.sofia_link %>
-      <% end %>
-      <% if @event.pcto %>  
-        <i class="far fa-star fa-fw mr-2"></i>PCTO
-      <% end %>
-      <%= helpers.possible_label_from_array 'Relatori', @event.speakers %>
+          <i class="far fa-star fa-fw mr-2"></i>
+          <%= helpers.sofia_link %>
+        <% end %>
+        <% if @event.pcto %>  
+          <i class="far fa-star fa-fw mr-2"></i>
+          PCTO
+        <% end %>
+        <%= render Contact::InlineSpeakersComponent.new(@event.speakers) %>  
       </div>
     </div>
 
