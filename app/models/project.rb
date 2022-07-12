@@ -13,9 +13,17 @@ class Project < Activity
   validates :name, uniqueness: {}
 
   before_save :global_and_areas_relation
+  after_save :propagate_hidden
+
   # FIXME 
   # manca uniq alla fine
   scope :this_academic_year, -> { joins("JOIN `activities` `editions_activities` ON `editions_activities`.`parent_id` = `activities`.`id` AND `editions_activities`.`type` = 'Edition' AND (editions_activities.academic_year >= #{CURRENT_ACADEMIC_YEAR})") }
+
+  def propagate_hidden
+    self.editions.each do |e|
+      e.update(hidden: self.hidden)
+    end
+  end
 
   def global_and_areas_relation
     if self.global

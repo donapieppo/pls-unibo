@@ -9,19 +9,12 @@ class Activity < ApplicationRecord
   before_destroy :check_children
 
   validates :name, presence: true, allow_blank: false
-  after_save :propagate_hidden
 
   scope :in_current_academic_year, -> () { where(academic_year: CURRENT_ACADEMIC_YEAR) }
   scope :visible, -> (nolimit) { where.not('activities.hidden = 1') unless nolimit }
   scope :future, -> { where('activities.start_date > DATE_ADD(UTC_TIMESTAMP(), INTERVAL -2 hour)') }
   scope :past, -> { where('activities.start_date <= DATE_ADD(UTC_TIMESTAMP(), INTERVAL -2 hour)') }
   scope :bookable_undone, -> { where('activities.bookable != "done"') }
-
-  def propagate_hidden
-    Activity.where(parent_id: self.id).each do |a|
-      a.update(hidden: self.hidden)
-    end
-  end
 
   def check_children
     if Activity.where(parent_id: self.id).count > 0 
