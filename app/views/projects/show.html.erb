@@ -9,7 +9,7 @@
 
   <div class="md:flex md:flex-row-reverse my-8 md:my-16">
     <div class="md:pl-4 md:w-1/4">
-      <%= render Project::AttributesComponent.new(@project) %>  
+      <%= render Activity::AttributesComponent.new(@project) %>  
       <div class="text-right">
         <%= link_to_edit_if_editable @project, msg: ' Modifica i dati del progetto' %>
       </div>
