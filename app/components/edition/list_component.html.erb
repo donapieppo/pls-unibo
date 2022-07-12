@@ -1,7 +1,7 @@
 <div class="lg:flex lg:flex-wrap">
   <% @editions.each do |edition| %>  
     <div class="lg:w-1/2 p-2 lg:p-4"> 
-      <%= render Edition::CardComponent.new(edition, in_evidence: @in_evidence) %>  
+      <%= render Activity::CardComponent.new(edition, in_evidence: @in_evidence) %>  
     </div>
   <% end %>
 </div>
