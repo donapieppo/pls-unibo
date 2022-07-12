@@ -1,0 +1,7 @@
+<span>Relatori:</span>
+<% @contacts.each do |contact| %>  
+  <div class="inline-block cursor-pointer my-2">
+    <%= link_to contact.to_s, contact_path(contact, modal: 1), data: { turbo_frame: :modal }, class: 'badge' %>  
+  </div>
+<% end %>
+
