@@ -5,8 +5,6 @@ class TurboModalController extends Controller {
 
   connect() {
     console.log("turbo modal connected");
-    this.modalDiv = document.getElementById("main_modal");
-    this.modalContent = document.getElementById("modal_content"); // to locate click
   }
 
   showModal() {
@@ -43,7 +41,7 @@ class TurboModalController extends Controller {
   }
 
   closeBackground(e) {
-    if (e && this.modalContent.contains(e.target)) {
+    if (e && this.modalContentTarget.contains(e.target)) {
       return
     }
     this.hideModal()
