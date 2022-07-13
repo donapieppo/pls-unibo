@@ -7,7 +7,7 @@ class AreasController < ApplicationController
     @this_area_evidence = Edition.visible(current_user && current_user.staff?).in_evidence.in_area(@area)
     @this_area_projects = @area.projects.this_academic_year.includes(:editions, :activity_type).order(:name).visible(current_user && current_user.staff?)
     @common_projects = Project.where(global: true).includes(:editions, :activity_type).visible(current_user && current_user.staff?).order(:name).all
-    @resource_containers = @area.resource_containers.includes(:resources).all
+    @resource_containers = @area.resource_containers.includes(:resources).order(:name).all
     @this_area_projects = @this_area_projects.uniq
   end
 
