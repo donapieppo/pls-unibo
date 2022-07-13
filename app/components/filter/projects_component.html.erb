@@ -10,11 +10,11 @@
       <div data-filter-target="years" id="years">
         <% unless @no_year_filter %>
           <div class="pr-2">
-            <h4 class="text-base font-bold text-pls-strong pb-2">Anno acc.</h4>
+            <h4 class="text-base font-bold text-pls-strong pb-2">A.A.</h4>
             <% Edition.all_academic_years.each do |y| %>  
               <input type="checkbox" id="yr_<%= y %>" name="years" value="<%= y %>"/>
               <label for="yr_<%= y %>">
-                <small>a.a. </small><%= y %>/<%= (y.to_i + 1) - 2000 %>
+                <%= y %>/<%= (y.to_i + 1) - 2000 %>
               </label><br/>
             <% end %>
           </div>
@@ -25,7 +25,8 @@
           <div class="pr-2">
             <h4 class="text-base font-bold text-pls-strong pb-2">Area</h4>
             <% Area.order(:name).each do |a| %>  
-              <input type="checkbox" id="ar_<%= a.id %>" name="areas" value="<%= a.id %>"/>
+              <% checked = (a.id == @area_id) ? 'checked="checked"' : '' %>  
+              <input type="checkbox" id="ar_<%= a.id %>" name="areas" value="<%= a.id %>" <%= checked %>  />
               <label for="ar_<%= a.id %>"><%= a.name %> </label> <br/>
             <% end %>
           </div>

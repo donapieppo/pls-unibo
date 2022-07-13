@@ -4,19 +4,21 @@
       <%= @resource_container.name.upcase %>
     </div>
   </div>
-  <div class="flex-grow">
+  <div class="flex-grow p-2">
     <% @resource_container.resources.each do |resource| %>  
-      <div class="p-4">
-        <%= render resource %>  
+      <div class="inline-block">
+        <%= render Resource::ResourceComponent.new(resource) %>  
       </div>
     <% end %>
   </div>
   <div class="text-right bg-gray-100 border-t border-gray-200 rounded-b-xl p-4 text-sm">
-    <% helpers.areas_to_s(@resource_container.areas) %>
-    <div>
-      <%= helpers.link_to_edit_if_editable @resource_container %> 
-      <%= helpers.link_to_delete_if_deletable @resource_container %> 
-    </div>
+    <%= helpers.areas_to_s(@resource_container.areas) %>
+    <% if @resource_container_policy.edit? %>  
+      <%= link_to helpers.edit_icon, [:edit, @resource_container] %>
+    <% end %>
+    <% if @resource_container_policy.destroy?  %>  
+      <%= helpers.link_to_delete @resource_container %> 
+    <% end %>
   </div>
 </div>
 

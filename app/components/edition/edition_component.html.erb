@@ -1,73 +1,48 @@
-<div class="my-2 text-right">
-  <%= helpers.link_to_edit_if_editable @edition, msg: " Modifica i dati dell'edizione" %>
-</div>
+<div>
+  <% unless @skip_title %>  
+    <h2 class="my-4"> 
+      <%= link_to(@edition.name, @edition) %> 
+    </h2>
+  <% end %>
 
-<div class="md:flex md:flex-wrap mt-2">
-  <div class="md:w-2/3 xl:w-3/4">
-    <% unless @skip_title %>  
-      <h2 class="my-4"> 
-        <%= link_to(@edition.name, @edition) %> 
-      </h2>
-    <% end %>
+  <div class="text-xl mb-4">
+    Progetto: <%= link_to @edition.project.name.upcase, @edition.project, class: 'underline' %>
+  </div>
 
-    <div class="my-2 text-lg text-pls font-semibold">
-      <div>
-        <i class="fas fa-users fa-fw mr-2"></i>
-        <%= @edition.audience %>
-      </div>
-      <%= render Activity::DateAndPlaceComponent.new(@edition) %>  
-      <%= render Activity::Extra.new(@edition) %>  
+  <div class="my-2 text-lg text-pls font-semibold">
+    <div>
+      <i class="fas fa-users fa-fw mr-2"></i>
+      <%= @edition.audience %>
     </div>
+    <%= render Activity::DateAndPlaceComponent.new(@edition) %>  
+    <%= render Activity::Extra.new(@edition) %>  
+  </div>
 
-    <div class="my-8">
-      <div class="lg:text-lg my-4">
-        <%= simple_format @edition.description %>  
+  <div class="my-8">
+    <div class="lg:text-lg my-4">
+      <%= simple_format @edition.description %>  
+    </div>
+    <% unless @short %>  
+      <div class="my-4 text-gray-700">
+        <%= @edition.details %>  
       </div>
-      <div class="my-2">
-        <%= render Contact::InlineContactsComponent.new(@edition.contacts) %>  
-      </div>
-      <div class="my-2">
-        <%= render Contact::InlineSpeakersComponent.new(@edition.speakers) %>  
-      </div>
-
-      <% unless @short %>  
-        <div class="my-4 text-gray-700">
-          <%= @edition.details %>  
-        </div>
-        <div>
+      <div>
         <% @edition.snippets.each do |snippet| %>  
           <div class="inline-block">
             <%= link_to snippet.name, snippet_path(snippet, modal: 1), data: { turbo_frame: :modal }, class: 'inline-block text-xl m-2 px-4 py-2 border-2 border-pls-strong bg-gray-50 text-pls-strong hover:bg-gray-200' %>  
           </div>
         <% end %>
-        </div>
-      <% end %>
-
-      <%= render Booking::BookingComponent.new(@edition, @current_user, short: @short) %>
-    </div>
-  </div>
-
-  <div class="md:w-1/3 xl:w-1/4 px-4 mx-auto">
-    <% @resources.each do |resource| %>
-      <%= render resource, with_preview: true %>  
+      </div>
     <% end %>
+
+    <%= render Booking::BookingComponent.new(@edition, @current_user, short: @short) %>
   </div>
-</div>
 
-<% unless @short || @all_events.empty? %>  
-  <% if @all_events.size == 1 && ! @edition.atomic %>  
-    <hr class="my-16"/>
-    <%= render Event::EventComponent.new(@all_events.first, @current_user, no_edition: true, heading: :h2) %>
-  <% else %>
-    <div class="my-4">
-      <%= render Event::ListComponent.new(events: @events, short: @short || @edition.atomic, with_image: @with_image) %>  
-      <%= render Event::ListComponent.new(events: @past_events, short: @short || @edition.atomic, with_image: @with_image, past: true) %>  
-    </div>
-  <% end %>
-<% end %>
-
-<% if @short %>  
   <div class="my-8 text-right text-3xl text-pls">
     <%= link_to 'dettagli <i class="far fa-arrow-alt-circle-right"></i>'.html_safe, @edition %>
   </div>
-<% end %>
+
+  <div class="my-2 text-right">
+    <%= helpers.link_to_edit_if_editable @edition, msg: " Modifica i dati dell'edizione." %>
+  </div>
+</div>

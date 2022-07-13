@@ -1,19 +1,23 @@
-<div class="pls-card">
+<div class="pls-card my-6">
   <div class="pls-card-title">
     RISORSE
   </div>
   <div class="pls-card-content mx-auto max-w-sm py-4">
     <div class="max-w-xl">
       <% @resources.each do |resource| %>  
-        <%= render resource, what: @what %>  
+        <%= render Resource::ResourceComponent.new(resource) %>  
+        <div class="text-right text-gray-900">
+          <%= link_to helpers.edit_icon, [:edit, resource] %>
+          <%= helpers.link_to_delete([:remove_resource, @what, { resource_id: resource.id }]) if @what %>  
+        </div>
       <% end %>
     </div>
   </div>
   <div class="pls-card-footer">
-    <div class="inline-block">
+    <div class="inline-block py-2">
       <%= link_to 'aggiungi risorsa esistente', [:choose_resource, @what], class: 'button' %>  
     </div>
-    <div class="inline-block">
+    <div class="inline-block py-2">
       <%= link_to 'crea nuova risorsa', [:new, @what, :resource], class: 'button' %>  
     </div>
   </div>

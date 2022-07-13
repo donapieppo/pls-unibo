@@ -1,18 +1,10 @@
-<div class="text-right">
-  <% if @activity.campus_id %>  
-    <div class="font-bold">
-      Sede: <%= @activity.campus %>  
-    </div>
-  <% end %>
-  <div class="text-right">
-    <%= render Area::InlineOrganizationsComponent.new(@activity.areas) %>  
+<% if @activity.campus_id %>  
+  <div class="font-bold">
+    Sede: <%= @activity.campus %>  
   </div>
-  <div class="text-right">
-    <%= render Contact::InlineContactsComponent.new(@activity.contacts) %>  
-  </div>
-  <% if @activity.interested_areas.any? %>  
-    <div class="text-right">
-      Altre aree di interesse: <strong><%= @activity.interested_areas.map(&:name).join(', ') %></strong>  
-    </div>
-  <% end %>
-</div>
+<% end %>
+
+<%= render Area::InlineOrganizationsComponent.new(@activity.areas) %>  
+<%= render Area::InlineOrganizationsComponent.new(@activity.interested_areas, title: 'Altre aree di interesse') %>  
+<%= render Contact::InlineContactsComponent.new(@activity.contacts) %>  
+

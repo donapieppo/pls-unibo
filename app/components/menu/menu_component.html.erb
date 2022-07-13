@@ -17,7 +17,7 @@
         <%= link_to 'raggruppamenti', clusters_path, class: 'menu-items-item' %>
         <%= link_to 'prenotazioni', bookings_path, class: 'menu-items-item' %>
       <% end %>
-      <%= form_tag search_path do %>  
+      <%= form_with url: search_path, data: { turbo: false } do %>  
         <input class="mt-4 border border-gray-300 bg-white px-2 py-1 rounded-lg text-sm focus:outline-none" type="search" name="search" placeholder="cerca"/>
       <% end %>
       <%= render partial: 'layouts/social' %>  
