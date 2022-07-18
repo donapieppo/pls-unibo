@@ -20,7 +20,7 @@
     <div class="lg:w-1/3">
       <%= render Contact::EditComponent.new(what: @event, can_add: policy(@event).edit?) %>
       <%= render Contact::EditComponent.new(what: @event, as: :speaker) %>
-      <%= render Resource::EditComponent.new(what: @event) %>
+      <%= render Resource::EditComponent.new(@event, current_user) %>
     </div>
   </div>
 </div>
