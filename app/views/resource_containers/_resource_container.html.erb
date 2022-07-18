@@ -12,7 +12,7 @@
     <% end %>
   </div>
   <div class="text-right bg-gray-100 border-t border-gray-200 rounded-b-xl p-4 text-sm">
-    <% areas_to_s(resource_container.areas) %>
+    <%= helpers.areas_to_s(resource_container.areas) %>
     <div>
       <%= link_to_edit_if_editable resource_container %> 
       <%= link_to_delete_if_deletable resource_container %> 
