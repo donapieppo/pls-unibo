@@ -24,3 +24,6 @@ application.register("booking", BookingController)
 
 import ClusterController from "./cluster_controller"
 application.register("cluster", ClusterController)
+
+import ResourceController from "./resource_controller"
+application.register("resource", ResourceController)
