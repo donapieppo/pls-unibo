@@ -13,7 +13,7 @@
 
   <div class="">
     <%= link_to url_for(@resource.document) do %>  
-      <%= image_tag @resource.document.preview(resize_to_limit: [@limit, @limit]), class: 'w-full' %>
+      <%= image_tag @resource.document.preview(resize_to_limit: [@limit, @limit]), class: '' %>
     <% end %>
     <span class="underline text-lg"><%= link_to @resource.name, @resource.url.blank? ? url_for(@resource.document) : @resource.url %></span>
   </div>
