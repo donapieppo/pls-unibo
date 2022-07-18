@@ -6,22 +6,23 @@
 
   <div class="h-full">
     <% dest = @resource.url.blank? ? url_for(@resource.document) : @resource.url %>  
-    <%= link_to image_tag(@resource.document.variant(resize_to_limit: [350, 350]), class: 'h-full'), dest %>
+    <%= link_to image_tag(@resource.document.variant(resize_to_limit: [@limit, @limit]), class: 'h-full'), dest %>
   </div>
 
-<% elsif (defined?(with_preview) && @resource.document && @resource.document.previewable?) %>  
+<% elsif @resource.document && @resource.document.previewable? %>  
 
   <div class="">
     <%= link_to url_for(@resource.document) do %>  
-      <%= image_tag @resource.document.preview(resize_to_limit: [350, 350]), class: 'w-full' %>
+      <%= image_tag @resource.document.preview(resize_to_limit: [@limit, @limit]), class: 'w-full' %>
     <% end %>
+    <span class="underline text-lg"><%= link_to @resource.name, @resource.url.blank? ? url_for(@resource.document) : @resource.url %></span>
   </div>
 
 <% else @resource.video? %>  
 
   <div class="text-left font-medium text-gray-900">
-    <span class="mr-2"><%= @resource.url.blank? ? document_icon : link_icon %></span>
-    <span class="underline"><%= link_to @resource.name, @resource.url.blank? ? url_for(@resource.document) : @resource.url %></span>
+    <span class="mr-2 ml-2"><%= @resource.url.blank? ? document_icon : link_icon %></span>
+    <span class="underline text-lg"><%= link_to @resource.name, @resource.url.blank? ? url_for(@resource.document) : @resource.url %></span>
   </div>
 
 <% end %>
