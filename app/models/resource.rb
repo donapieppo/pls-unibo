@@ -10,7 +10,7 @@ class Resource < ApplicationRecord
   end
 
   def video?
-    self.url or return false
+    self.url.blank? and return false
     self.url.match("^https://vimeo.com") || self.url.match("^https://(www.)?youtu\.?be")
   end
 
@@ -24,6 +24,18 @@ class Resource < ApplicationRecord
 
     elsif url =~ /https:\/\/youtu.be\/([0-9a-zA-Z]+)/
       return "https://www.youtube.com/embed/#{$1}"
+    end
+  end
+
+  def document_type
+    if self.image?
+      return 'image'
+    elsif self.video?
+      return 'video'
+    elsif ! self.url.blank?
+      return 'url'
+    else
+      return 'document'
     end
   end
 end
