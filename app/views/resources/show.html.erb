@@ -1,5 +1,5 @@
 <div class="p-8 lg:max-w-4xl m-auto">
-  <%= render @resource %>  
+  <%= render Resource::ResourceComponent.new(@resource) %>  
 
   <%= link_to edit_icon, [:edit, @resource] %>  
 </div>
