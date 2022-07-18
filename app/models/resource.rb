@@ -38,4 +38,8 @@ class Resource < ApplicationRecord
       return 'document'
     end
   end
+
+  def name_and_type
+    "#{self.name} (#{self.document.attachment.content_type})"
+  end
 end
