@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
   def index
     authorize :project
     @projects = Project.visible(current_user && current_user.staff?).includes(:editions, :activity_type).order(:name)
+    @area_id = params[:area_id]
     if params[:on] == '1'
       @on = true
       @projects = @projects.where(id: Edition.this_academic_year_project_ids)
