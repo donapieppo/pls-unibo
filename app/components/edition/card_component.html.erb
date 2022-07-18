@@ -19,7 +19,7 @@
         <%= @edition.audience %>
       </div>
       <%= render Activity::DateAndPlaceComponent.new(@edition, no_link: true) %>  
-      <%= render Activity::Extra.new(@edition) %>  
+      <%= render Activity::Extra.new(@edition, no_link: true) %>  
     </div>
 
     <div class="my-8">
