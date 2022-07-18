@@ -18,13 +18,13 @@
   </div>
 </div>
 
-<% unless @area.notice.blank? %>  
-  <div class="container area-notice">
-    <%= raw @area.notice %>  
-  </div>
-<% end %>
-
 <div class="container">
+  <% unless @area.notice.blank? %>  
+    <div class="area-notice">
+      <%= raw @area.notice %>  
+    </div>
+  <% end %>
+
   <% if policy(:project).new? %>  
     <div class="text-center my-4">
       <%= link_to 'Aggiungi nuova attività', new_project_path, class: 'button' %>
@@ -32,38 +32,29 @@
   <% end %>
 
   <% if @this_area_evidence.any? %>  
-    <h2 class="title py-2">In evidenza</h2>
+    <h2 class="title">In evidenza</h2>
     <%= render Edition::ListComponent.new(@this_area_evidence, current_user, in_evidence: true) %>
   <% end %>
 
-  <% unless current_user && current_user.staff? %>  
-    <div class="my-4">
-      Altre informazioni per le attività 2021/2022 per l'area <strong><%= @area %></strong> sono disponibili alla pagina <br/>
-      <div class="text-center my-4">
-        <%= link_to ACCROCCHIO_VECCHIO_SITO[@area.id], ACCROCCHIO_VECCHIO_SITO[@area.id], class: 'underline text-xl' %>
-      </div>
-    </div>
-  <% end %>
-
-  <h2 class="title py-2">Tutte le attività <%= academic_year(CURRENT_ACADEMIC_YEAR) %></h2>
+  <h2 class="title">Tutte le attività <%= academic_year(CURRENT_ACADEMIC_YEAR) %></h2>
+  <div class="text-right text-xl">
+    <%= link_to 'Mostra tutte le attività', projects_path(area_id: @area.id), class: 'underline' %> 
+  </div>
 
   <%= render Project::ListComponent.new(@this_area_projects, no_year_filter: true, no_area_filter: true) %>  
 
   <% if @common_projects.any? %>  
-    <h3 class="title my-16">Le attività comuni</h3>
+    <h2 class="title">Le attività comuni</h3>
     <%= render Project::ListComponent.new(@common_projects, no_filter: true) %>
   <% end %>
 
-  <% if @resource_containers.any? %>  
-    <h2 class="title py-2">Le risorse</h2>
 
-    <div class="md:flex md:flex-wrap">
-      <% @area.resource_containers.order(:name).each do |resource_container| %>  
-        <div class="md:w-1/4 p-2">
-          <%= render ResourceContainer::CardComponent.new(resource_container, current_user) %>  
-        </div>
-      <% end %>
-    </div>
+  <% if @resource_containers.any? %>  
+    <h2 class="title">Le risorse</h2>
+
+    <% @resource_containers.each do |resource_container| %>  
+      <%= render ResourceContainer::CardComponent.new(resource_container, current_user) %>  
+    <% end %>
   <% end %>
 </div>
 
