@@ -9,7 +9,7 @@
 
     <% if @with_project %>  
       <div class="text-xl mb-4">
-        Progetto: <%= link_to @edition.project.name.upcase, @edition.project, class: 'underline' %>
+        Progetto: <%= @edition.project.name.upcase %>
       </div>
     <% end %>
 
@@ -18,7 +18,7 @@
         <i class="fas fa-users fa-fw mr-2"></i>
         <%= @edition.audience %>
       </div>
-      <%= render Activity::DateAndPlaceComponent.new(@edition) %>  
+      <%= render Activity::DateAndPlaceComponent.new(@edition, no_link: true) %>  
       <%= render Activity::Extra.new(@edition) %>  
     </div>
 
