@@ -3,7 +3,7 @@
     <div class="flex flex-col items-center justify-center">
       <%= link_to projects_path(on: 1), class: "big-home-button w-64" do %>
         <div class="big-home-button-icon"><i class="fa-regular fa-calendar fa-2xl fa-fw"></i></div>
-        <div>ATTIVITÀ DEL 2021/2022</div>
+        <div>ATTIVITÀ DEL <%= CURRENT_ACADEMIC_YEAR %>/<%= CURRENT_ACADEMIC_YEAR + 1 %></div>
       <% end %>
       <%= link_to projects_path(bookable: 1), class: "big-home-button w-64" do %>
         <div class="big-home-button-icon"><i class="fa-solid fa-calendar-check fa-2xl fa-fw"></i></div>
