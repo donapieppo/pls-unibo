@@ -12,7 +12,7 @@
         <span class="px-4 text-gray-700 text-sm"><%= contact.affiliation %></span>
 
         <% if params[:area] == '1' %>  
-          <div><% areas_to_s(contact.areas) %></div>
+          <div><%= areas_to_s(contact.areas) %></div>
         <% end %>
 
         <div class="float-right pl-4">
