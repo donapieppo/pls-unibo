@@ -4,7 +4,10 @@ class ResourcesController < ApplicationController
 
   def index
     authorize :resource
-    @resources = Resource.all
+    @resources = Hash.new { |hash, key| hash[key] = [] }
+    Resource.all.with_attached_document.each do |r|
+      @resources[r.document_type] << r
+    end
   end
 
   def show
@@ -58,6 +61,6 @@ class ResourcesController < ApplicationController
   end
 
   def resource_params
-    params[:resource].permit(:name, :url, :document, :credits)
+    params[:resource].permit(:name, :display_name, :url, :document, :credits)
   end
 end
