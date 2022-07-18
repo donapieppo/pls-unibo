@@ -56,7 +56,7 @@ class Activity < ApplicationRecord
     elsif on_teams?
       "Stanza Teams"
     else
-      ""
+      self.access_url
     end
   end
 
