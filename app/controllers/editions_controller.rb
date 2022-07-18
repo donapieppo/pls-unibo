@@ -9,6 +9,9 @@ class EditionsController < ApplicationController
   end
 
   def show
+    @events = @edition.events.future.order(start_date: :asc).all  
+    @past_events = @edition.events.past.order(start_date: :desc).all  
+    @all_events = @events + @past_events
   end
 
   def new
