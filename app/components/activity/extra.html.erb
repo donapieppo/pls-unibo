@@ -1,7 +1,13 @@
 <div>
   <% if @activity.sofia %>  
     <i class="far fa-star fa-fw mr-2"></i> 
-    <%= helpers.sofia_link(@activity) %>
+    <% if @activity.sofia %>  
+      <% if @no_link %>  
+        Iscrizioni disponibili su S.O.F.I.A.
+      <% else %>
+        <%= link_to 'Iscrizioni disponibili su S.O.F.I.A.', SOFIA_LINK, class: 'underline' %>
+      <% end %>
+    <% end %>
   <% end %>
   <% if @activity.pcto %>  
     <i class="far fa-star fa-fw mr-2"></i>
