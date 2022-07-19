@@ -9,16 +9,11 @@
     <h1 class="title">Le attività del PLS</h1>
   <% end %>
 
-  <div class="p-8 text-lg info">
-    Informazioni sulle attività di Biologia e Biotecnologie, Chimica, Fisica, Geologia, Informatica, Scienze naturali e ambientali 
-    sono disponibili anche nel vecchio sito <%= link_to 'http://www.pls.unibo.it', 'http://www.pls.unibo.it' %>.
-  </div>
-
   <div class="text-center my-4">
     <%= link_to('Nuova Attività', new_project_path, class: 'button') if policy(:project).new? %>  
   </div>
 
-  <% if (@on || @bookable_now) %>  
+  <% if (@area || @on || @bookable_now) %>  
     <%= link_to 'Vedi tutte le attività del PLS', projects_path, class: 'underline' %>  
   <% end %>
 
