@@ -233,6 +233,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_04_27_080855) do
 
   create_table "resources", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
+    t.string "display_name"
     t.string "url"
     t.text "credits"
     t.timestamp "created_at", default: -> { "current_timestamp() ON UPDATE current_timestamp()" }, null: false
