@@ -1,78 +1,43 @@
-<%= f.input :name %>
-<%= f.input :surname %>
+<div data-controller="user">
+  <%= f.input :name %>
+  <%= f.input :surname %>
 
-<div class="my-2" id="role_inputs">
-  <%= f.input :role, as: :radio_buttons, collection: [[t(:student_secondary), 'student_secondary'], 
-                                                      [t(:student_university), 'student_university'], 
-                                                      [t(:teacher), 'teacher'], 
-                                                      [t(:other), 'other']] %>
-</div>
-
-<hr/>
-
-<div id="other_string_div">
-  <%= f.input :other_string %>  
-</div>
-
-<div id="school_choose">
-  <% if @user && @user.school %>  
-    <%= render 'schools/school', school: @user.school %>  
-  <% end %>
-
-  <label>
-    Nel caso di scuola I / II grado specificate la vostra scuola iniziando iniziate a scrivere il nome nel box sotto:
-  </label>
-
-  <input id="school_id" name="user[school_name]" class="border-4 rounded my-2 w-full" list="schools" />
-  <datalist id="schools" style="background-color: #ccc;">
-    <% School.select(:id, :name, :municipality).each do |s| %>  
-      <option data-value="<%= s.id %>" value="<%= s.name + " -- " + s.municipality %>"/>
-    <% end %>
-  </datalist>
-
-  <%= f.input :school_city %>  
-  <%= f.input :school_pec %>  
-</div>
-
-<% if @booking %>  
-  <div id="seats">
-    <%= f.input :seats %>  
+  <div class="my-2" data-user-target="roleInput">
+    <%= f.input :role, as: :radio_buttons, collection: [[t(:student_secondary), 'student_secondary'], 
+                                                        [t(:student_university), 'student_university'], 
+                                                        [t(:teacher), 'teacher'], 
+                                                        [t(:other), 'other']] %>
   </div>
-<% end %>
 
-<%= javascript_tag do %>  
-  const role_inputs = document.querySelectorAll('#role_inputs input');
-  const other_string_div = document.getElementById('other_string_div');
-  const school_choose = document.getElementById('school_choose');
-  const seats = document.getElementById('seats');
+  <hr/>
 
-  const update = () => {
-    r = document.querySelectorAll('#role_inputs input:checked')[0];
-    if (seats) {
-      seats.style.display = 'none';
-    }
-    if (r && (r.value === 'other' || r.value == 'student_university')) {
-      school_choose.style.display = 'none';
-      if (seats) {
-        seats.style.display = 'none';
-      }
-      other_string_div.style.display = 'block';
-    } else {
-      other_string_div.querySelector('textarea').value = '';
-      other_string_div.style.display = 'none';
-      school_choose.style.display = 'block';
-      if (r && r.value === 'teacher' && seats) {
-        seats.style.display = 'block';
-      }
-    }
-  }
+  <div data-user-target="otherStringDiv">
+    <%= f.input :other_string %>  
+  </div>
 
-  update();
+  <div data-user-target="schoolChoose">
+    <% if @user && @user.school %>  
+      <%= render 'schools/school', school: @user.school %>  
+    <% end %>
 
-  role_inputs.forEach((r) => {
-    r.addEventListener('change', () => {
-      update();
-    });
-  });
-<% end %>
+    <label>
+      Nel caso di scuola I / II grado specificate la vostra scuola iniziando iniziate a scrivere il nome nel box sotto:
+    </label>
 
+    <input id="school_id" name="user[school_name]" class="border-4 rounded my-2 w-full" list="schools" />
+    <datalist id="schools" style="background-color: #ccc;">
+      <% School.select(:id, :name, :municipality).each do |s| %>  
+        <option data-value="<%= s.id %>" value="<%= s.name + " -- " + s.municipality %>"/>
+      <% end %>
+    </datalist>
+
+    <%= f.input :school_city %>  
+    <%= f.input :school_pec %>  
+  </div>
+
+  <% if @booking %>  
+    <div data-user-target="seats">
+      <%= f.input :seats %>  
+    </div>
+  <% end %>
+</div>
