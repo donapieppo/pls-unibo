@@ -11,6 +11,7 @@ class Edition < Activity
   scope :in_evidence, -> { where(in_evidence: 1) }
   scope :with_next_events, -> (n) { where(id: Event.future.order('start_date asc').map(&:parent_id).uniq[0..n]) }
   scope :in_area, -> (a) { where(parent_id: a.project_ids) }
+  scope :bookable, -> { where("bookable != 'no' and booking_start < NOW() and booking_end > NOW()") }
 
   belongs_to :audience
 
@@ -29,6 +30,7 @@ class Edition < Activity
   end
 
   def over?
+    return false if self.id == 275 
     self.academic_year < CURRENT_ACADEMIC_YEAR
     # Date.parse("#{self.academic_year + 1}/07/31") < Date.today
   end
