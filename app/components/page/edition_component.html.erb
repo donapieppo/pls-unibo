@@ -1,0 +1,48 @@
+<div>
+  <div class="text-xl mb-4">
+    Progetto: <%= link_to @edition.project.name.upcase, @edition.project, class: 'underline' %>
+  </div>
+
+  <div class="my-2 text-lg text-pls font-semibold">
+    <div>
+      <i class="fas fa-users fa-fw mr-2"></i>
+      <%= @edition.audience %>
+    </div>
+    <%= render Activity::DateAndPlaceComponent.new(@edition) %>  
+    <%= render Activity::Extra.new(@edition) %>  
+  </div>
+
+  <div class="my-8">
+    <div class="lg:text-lg my-4">
+      <%= simple_format @edition.description %>  
+    </div>
+    <div class="my-4 text-gray-700">
+      <%= @edition.details %>  
+    </div>
+    <div>
+      <% @edition.snippets.each do |snippet| %>  
+        <div class="inline-block">
+          <%= link_to snippet.name, snippet_path(snippet, modal: 1), data: { turbo_frame: :modal }, class: 'inline-block text-xl m-2 px-4 py-2 border-2 border-pls-strong bg-gray-50 text-pls-strong hover:bg-gray-200' %>  
+        </div>
+      <% end %>
+    </div>
+
+    <%= render Booking::BookingComponent.new(@edition, @current_user) %>
+  </div>
+
+  <% unless @all_events.empty? %>  
+    <% if @all_events.size == 1 && ! @edition.atomic %>  
+      <hr class="my-16"/>
+      <%= render Event::EventComponent.new(@all_events.first, current_user, no_edition: true, heading: :h2) %>
+    <% else %>
+      <div class="my-4">
+        <%= render Event::ListComponent.new(events: @events) %>  
+        <%= render Event::ListComponent.new(events: @past_events, past: true) %>  
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="my-2 text-right">
+    <%= helpers.link_to_edit_if_editable @edition, msg: " Modifica i dati dell'edizione." %>
+  </div>
+</div>
