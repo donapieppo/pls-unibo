@@ -5,6 +5,7 @@ class Event < Activity
   has_rich_text :details
 
   belongs_to :edition, foreign_key: 'parent_id'
+  scope :bookable, -> { where("bookable != 'no' and booking_start < NOW() and booking_end > NOW()") }
 
   def to_s
     self.name
