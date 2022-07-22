@@ -22,6 +22,9 @@ application.register("filter", FilterController)
 import BookingController from "./booking_controller"
 application.register("booking", BookingController)
 
+import UserController from "./user_controller"
+application.register("user", UserController)
+
 import ClusterController from "./cluster_controller"
 application.register("cluster", ClusterController)
 
