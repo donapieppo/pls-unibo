@@ -20,6 +20,8 @@ class Project < Activity
   scope :this_academic_year, -> { joins("JOIN `activities` `editions_activities` ON `editions_activities`.`parent_id` = `activities`.`id` AND `editions_activities`.`type` = 'Edition' AND (editions_activities.academic_year >= #{CURRENT_ACADEMIC_YEAR})") }
   scope :in_area, -> (aid) { joins("JOIN `activities_areas` ON `activities_areas`.`activity_id` = `activities`.`id` AND `activities_areas`.`area_id` = #{aid.to_i}") }
 
+  scope :include_all, -> { includes(:editions, :activity_type, :campus, :areas, :interested_areas) }
+
   def propagate_hidden
     self.editions.each do |e|
       e.update(hidden: self.hidden)
