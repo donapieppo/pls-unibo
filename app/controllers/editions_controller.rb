@@ -6,6 +6,13 @@ class EditionsController < ApplicationController
   def index
     authorize :edition
     @editions = Edition.includes(:events).order(:name).visible(current_user && current_user.staff?)
+    if params[:bookable] == '1'
+      @bookable_now = true
+      @editions = @editions.bookable.to_a
+      @events = Event.bookable.to_a
+    else
+      @editions = @editions.limit(10)
+    end
   end
 
   def show
