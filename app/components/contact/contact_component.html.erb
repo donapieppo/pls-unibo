@@ -14,4 +14,9 @@
     <div><% link_to @contact.web_page %> </div>
     <div class="my-4 ml-4 italic text-gray-700"><%= @contact.description %></div>
   </div>
+  <% if @contactPolicy.edit? %>  
+    <div class="text-right">
+      <%= link_to 'modifica', [:edit, @contact], class: 'underline' %>  
+    </div>
+  <% end %>
 </div>
