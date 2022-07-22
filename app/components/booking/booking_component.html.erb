@@ -8,7 +8,7 @@
         <div class="my-2">
           [<%= @free_seats %> posti liberi su <%= @what.seats %>]
         </div>
-        <div class="bg-pls-light p-4 border-l-4 border-pls">
+        <div class="bg-pls-light p-4 border-pla rounded-xl">
           <% if @what.booking_to_confirm? %>  
             <div>
               Puoi fare richiesta di partecipazione
@@ -32,4 +32,6 @@
   <div class="my-4">
     <%= link_to booking_icon + " Prenota i tuoi studenti", [:new_student, @what, :bookings], class: 'button' %>
   </div>
+<% else %>
+  <%= link_to 'Controlla i tuoi dati', me_users_path, class: 'underline' %>  
 <% end %>
