@@ -9,9 +9,6 @@ class ProjectsController < ApplicationController
     if params[:on] == '1'
       @on = true
       @projects = @projects.where(id: Edition.this_academic_year_project_ids)
-    elsif params[:bookable] == '1'
-      @bookable_now = true
-      @projects = @projects.where(id: Edition.bookable_project_ids)
     elsif params[:area_id]
       @area = Area.find(params[:area_id])
       @projects = @projects.in_area(params[:area_id])

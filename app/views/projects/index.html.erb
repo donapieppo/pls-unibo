@@ -1,8 +1,6 @@
 <div class="container">
   <% if @on %>  
     <h1 class="title">Le attività dell'anno corrente</h1>
-  <% elsif @bookable_now %>  
-    <h1 class="title">Le attività prenotabili</h1>
   <% elsif @area %>  
     <h1 class="title">Le attività di <br/><%= @area %></h1>
   <% else %>
@@ -13,9 +11,9 @@
     <%= link_to('Nuova Attività', new_project_path, class: 'button') if policy(:project).new? %>  
   </div>
 
-  <% if (@area || @on || @bookable_now) %>  
+  <% if (@area || @on) %>  
     <%= link_to 'Vedi tutte le attività del PLS', projects_path, class: 'underline' %>  
   <% end %>
 
-  <%= render Project::ListComponent.new(@projects, no_filter: (@area || @on || @bookable_now)) %>
+  <%= render Project::ListComponent.new(@projects, no_filter: (@area || @on)) %>
 </div>
