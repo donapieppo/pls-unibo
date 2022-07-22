@@ -21,6 +21,8 @@
       <%= render Contact::InlineContactsComponent.new(@edition.contacts) %>  
       <%= render Contact::InlineSpeakersComponent.new(@edition.speakers) %>  
 
+  <%= render Booking::BookingComponent.new(@edition, current_user) %>
+
       <% @edition.resources.each do |resource| %>
         <div class='mt-4 mx-auto'>
           <%= render Resource::ResourceComponent.new(resource) %>  
@@ -55,8 +57,6 @@
       </div>
     </div>
   </div>
-
-  <%= render Booking::BookingComponent.new(@edition, current_user) %>
 
   <% unless @all_events.empty? %>  
     <% if @all_events.size == 1 && ! @edition.atomic %>  
