@@ -35,3 +35,9 @@
 <% else %>
   <%= link_to 'Controlla i tuoi dati', me_users_path, class: 'underline' %>  
 <% end %>
+
+<% if @current_user.staff? %>  
+  <div>
+    <%= link_to 'Elenco prenotazioni', bookings_path(activity_id: @what.id), class: 'underline' %>  
+  </div>
+<% end %>
