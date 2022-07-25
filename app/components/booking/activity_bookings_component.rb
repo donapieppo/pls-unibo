@@ -5,6 +5,10 @@ class Booking::ActivityBookingsComponent < ViewComponent::Base
     @activity = activity
     @current_user = current_user
   end
+
+  def render?
+    @activity.booking_start && @activity.booking_end
+  end
 end
 
 
