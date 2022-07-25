@@ -13,33 +13,15 @@
 
 <div class="md:flex my-6">
   <div class="md:w-2/3">
-    <%= render Activity::DateAndPlaceComponent.new(@event) %>  
-
-    <div>
-      <div class="py-1">
-        <% if @event.sofia %>  
-          <i class="far fa-star fa-fw mr-2"></i>
-          <%= helpers.sofia_link %>
-        <% end %>
-        <% if @event.pcto %>  
-          <i class="far fa-star fa-fw mr-2"></i>
-          PCTO
-        <% end %>
-        <%= render Contact::InlineSpeakersComponent.new(@event.speakers) %>  
-      </div>
+    <div class="text-xl mb-4">
+      <%= render Activity::DateAndPlaceComponent.new(@event) %>  
+      <%= render Activity::Extra.new(@event) %>  
     </div>
 
-    <div class="pls-card my-4">
-      <div class="pls-card-content">
-        <%= @event.description %>  
-      </div>
-      <div class="pls-card-footer">
-        <% @event.contacts.each do |contact| %>  
-          <div>
-            <%= contact %>
-          </div>
-        <% end %>
-      </div>
+    <%= render Contact::InlineSpeakersComponent.new(@event.speakers) %>  
+
+    <div class="my-8">
+      <%= @event.description %>  
     </div>
 
     <% if @current_user %>  
