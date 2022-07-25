@@ -24,6 +24,8 @@
             <%= link_to "Controlla le tue iscrizioni e prenotazioni per attività PLS", me_users_path, class: "underline" %>.
           </div>
         </div>
+      <% else %>
+        <%= link_to 'Controlla i tuoi dati', me_users_path, class: 'underline' %>
       <% end %>
     </div>
   <% end %>
@@ -32,11 +34,9 @@
   <div class="my-4">
     <%= link_to booking_icon + " Prenota i tuoi studenti", [:new_student, @what, :bookings], class: 'button' %>
   </div>
-<% else %>
-  <%= link_to 'Controlla i tuoi dati', me_users_path, class: 'underline' %>  
 <% end %>
 
-<% if @current_user.staff? %>  
+<% if @current_user.staff? && @what.booking_start && @what.booking_end %>  
   <div>
     <%= link_to 'Elenco prenotazioni', bookings_path(activity_id: @what.id), class: 'underline' %>  
   </div>
