@@ -64,8 +64,8 @@
       <%= render Event::EventComponent.new(@all_events.first, current_user, no_edition: true, heading: :h2) %>
     <% else %>
       <div class="my-4">
-        <%= render Event::ListComponent.new(events: @events) %>  
-        <%= render Event::ListComponent.new(events: @past_events, past: true) %>  
+        <%= render Event::ListComponent.new(events: @events, short: @edition.atomic, title: 'prossimi eventi') %>  
+        <%= render Event::ListComponent.new(events: @past_events, short: @edition.atomic, title: 'eventi passati') %>  
       </div>
     <% end %>
   <% end %>
