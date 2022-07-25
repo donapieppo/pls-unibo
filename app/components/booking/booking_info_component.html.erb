@@ -1,12 +1,10 @@
-<% if @general_bookable %>  
-  <div id="binfos" class="my-4 font-bold text-green-700">
-    Iscrizioni aperte dal <%= l @what.booking_start %> al <%= l @what.booking_end %> <br/>
-    <%= @what.bookable_by_description.upcase %>
-    <% if @current_user && (! @current_user.role )%>  
-      <div><%= link_to 'Controlla i tuoi dati', myedit_users_path, class: 'text-sm underline' %></div>
-    <% end %>
-  </div>
-  <% if (!@what.external_booking?) && @free_seats < 1 %>
+<div id="binfos" class="my-4 font-bold text-green-700">
+  Iscrizioni aperte dal <%= l @what.booking_start %> al <%= l @what.booking_end %> <br/>
+  <%= @what.bookable_by_description.upcase %>
+</div>
+
+<% unless @what.external_booking? %>  
+  <% if @free_seats < 1 %>
     <div class="text-lg text-red-500 font-bold my-4">  
       <span class="fa-stack">
         <i class="fas fa-chair fa-stack-1x"></i>
@@ -16,11 +14,12 @@
     </div>
   <% end %>
 
-  <% unless (@current_user || @what.external_booking?) %>  
+  <% if @current_user %>  
+    <%= link_to 'Controlla i tuoi dati', myedit_users_path, class: 'underline' %>
+  <% else %> 
     <div class="italic">
-      Per iscriversi occorre essere loggati. <%= link_to 'Accedi', login_path(for: @what.id), class: 'underline' %>.
+      Per iscriversi occorre essere loggati. 
+      <%= link_to 'Accedi', login_path(for: @what.id), class: 'underline' %>.
     </div>
   <% end %>
 <% end %>
-
-
