@@ -36,7 +36,7 @@
   </div>
 <% end %>
 
-<% if @current_user.staff? && @what.booking_start && @what.booking_end %>  
+<% if @current_user && @current_user.staff? && @what.booking_start && @what.booking_end %>  
   <div>
     <%= link_to 'Elenco prenotazioni', bookings_path(activity_id: @what.id), class: 'underline' %>  
   </div>
