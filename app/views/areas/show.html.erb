@@ -45,13 +45,12 @@
 
   <% if @common_projects.any? %>  
     <h2 class="title">Le attività comuni</h3>
-    <%= render Project::ListComponent.new(@common_projects, no_filter: true) %>
+    <%= render Project::ListComponent.new(@common_projects, no_filter: false) %>
   <% end %>
 
 
   <% if @resource_containers.any? %>  
     <h2 class="title">Le risorse</h2>
-
     <% @resource_containers.each do |resource_container| %>  
       <%= render ResourceContainer::CardComponent.new(resource_container, current_user) %>  
     <% end %>
