@@ -17,8 +17,10 @@
         Google Classroom.
       </div>
 
-      <%= button_to image_tag('ssologo18x18.png', class: 'inline mr-2') + " Accedi in Unibo", '/auth/shibboleth/callback', 
-                    class: 'bg-gray-100 border-b-2 border-gray-300 hover:bg-gray-200 text-sm font-bold py-2 px-4 rounded', data: { turbo: false } %>
+      <%# <%= button_to image_tag('ssologo18x18.png', class: 'inline mr-2') + " Accedi in Unibo", '/auth/shibboleth/callback', %> 
+      <%#               class: 'bg-gray-100 border-b-2 border-gray-300 hover:bg-gray-200 text-sm font-bold py-2 px-4 rounded', data: { turbo: false } %1> %>
+      <%= link_to image_tag('ssologo18x18.png', class: 'inline mr-2') + " Accedi in Unibo", "https://www.dm.unibo.it/nuovo-pls/login", 
+                   class: 'bg-gray-100 border-b-2 border-gray-300 hover:bg-gray-200 text-sm font-bold py-2 px-4 rounded', data: { turbo: false } %>
 
       <div class="text-sm text-gray-500 px-2 mt-2 mb-6">
         Sono account Unibo validi sia gli account <br/>
