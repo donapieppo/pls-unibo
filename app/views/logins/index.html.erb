@@ -9,17 +9,18 @@
     </div>
 
     <div class="text-center">
-      <%= button_to "", google_login_url, data: { turbo: false }, class: "input-google-login", style: "background-image: url(#{ image_path("google/btn_google_signin_light_normal_web.png") }" %>
+      <%= button_to "", '/auth/google_oauth2', data: { turbo: false }, class: "input-google-login", style: "background-image: url(#{ image_path("google/btn_google_signin_light_normal_web.png") }" %>
 
-      <div class="text-gray-500 px-2 mb-2">
+      <div class="text-sm text-gray-500 px-2 mt-2 mb-6">
         Sono account Google validi anche <br/>
         gli account scolastici che usano <br/> 
         Google Classroom.
       </div>
 
-      <%= button_to "Accedi in Unibo", shibboleth_login_url, class: 'button', data: { turbo: false } %>
+      <%= button_to image_tag('ssologo18x18.png', class: 'inline mr-2') + " Accedi in Unibo", '/auth/shibboleth/callback', 
+                    class: 'bg-gray-100 border-b-2 border-gray-300 hover:bg-gray-200 text-sm font-bold py-2 px-4 rounded', data: { turbo: false } %>
 
-      <div class="text-gray-500 px-2">
+      <div class="text-sm text-gray-500 px-2 mt-2 mb-6">
         Sono account Unibo validi sia gli account <br/>
         <i>@unibo</i> <br/>
         che gli account <br/>
@@ -36,7 +37,7 @@
 
     <% if Rails.env.development? %>  
       <div class="text-center">
-        <%= button_to "Entra in test", developer_login_url, data: { turbo: false } %>
+        <%= button_to "Entra in test", '/auth/developer', data: { turbo: false } %>
       </div>
     <% end %>
   </div>
