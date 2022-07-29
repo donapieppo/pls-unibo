@@ -11,7 +11,7 @@
   <div class="my-2"><%= @contact.affiliation %></div>
   <div class="my-4">
     <div><%= mail_to @contact.email %> </div>
-    <div><% link_to @contact.web_page %> </div>
+    <div><%= link_to link_icon + " " + @contact.web_page, @contact.web_page, class: 'underline' %></div>
     <div class="my-4 ml-4 italic text-gray-700"><%= @contact.description %></div>
   </div>
   <% if @contactPolicy.edit? %>  
