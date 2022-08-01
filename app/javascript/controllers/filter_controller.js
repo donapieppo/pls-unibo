@@ -10,7 +10,7 @@ export default class extends Controller {
 
     [this.yearsTarget, this.audiencesTarget, this.areasTarget, this.activitytypesTarget].filter(s => s !== null).forEach((selector) => {
       selector.addEventListener('change', () => {
-        console.log(selector.id + " changed");
+        console.log(`${selector.id} changed`);
         this.hide_projects_not_selected();
       });
     });
