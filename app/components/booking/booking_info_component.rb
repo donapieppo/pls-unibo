@@ -4,11 +4,13 @@ class Booking::BookingInfoComponent < ViewComponent::Base
   def initialize(what, current_user)
     @what = what
     @current_user = current_user
-    @free_seats = @what.free_seats
+    unless @what.unbookable?
+      @free_seats = @what.free_seats
+    end
   end
 
   def render?
-    @what.bookable? && @what.booking_start && @what.booking_end
+    ! @what.unbookable?
   end
 end
 
