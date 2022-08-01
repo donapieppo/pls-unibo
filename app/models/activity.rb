@@ -67,4 +67,8 @@ class Activity < ApplicationRecord
   def this_academic_year?
     self.academic_year == CURRENT_ACADEMIC_YEAR
   end
+
+  def unbookable?
+    (! self.bookable) || self.bookable == 'no' || (! self.booking_start) || (! self.booking_end)
+  end
 end
