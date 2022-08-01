@@ -13,7 +13,13 @@
         <strong><%= b.seats %></strong> <%= b.seats == 1 ? 'posto' : 'posti' %> per  
       <% end %>
       <% if b.user %>  
-        <span class="font-bold text-green-700 underline"><%= link_to b.user.to_s, [:edit, b.user] %></span>     
+        <span class="font-bold text-green-700 underline">
+          <% if @editable %>  
+            <%= link_to b.user.to_s, [:edit, b.user] %>
+          <% else %>
+            <%= b.user.to_s %>  
+          <% end %>
+        </span>     
       <% else %>
         <%= b.name %> <%= b.surname %>
       <% end %>
@@ -30,10 +36,12 @@
       <%= b.teacher_name %>  
       <%= b.teacher_surname %>  
       <small>(<%= b.teacher_email %>)</small>
-      <%= link_to_delete b %> 
+      <% if @editable %>  
+        <%= link_to_delete b %> 
+      <% end %>
       <% if @activity.booking_to_confirm? && ! b.confirmed? %>  
         <%= button_to '<i class="far fa-check-circle"></i> conferma'.html_safe, confirm_booking_path(b), class: 'underline' %>  
-      <% else %>
+      <% elsif @editable %>
         <span class="text-green-500"><i class="fas fa-check-circle"></i> confermata</span>
       <% end %>
     </li>

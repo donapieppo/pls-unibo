@@ -5,7 +5,7 @@ class Booking::BookingComponent < ViewComponent::Base
     @what = what
     @current_user = current_user
 
-    unless @what.unbookable?
+    if @what.bookable?
       @booking = what.bookings.new
 
       @bookable_by_user = BookingPolicy.new(@current_user, @booking).create?
@@ -24,6 +24,6 @@ class Booking::BookingComponent < ViewComponent::Base
   end
 
   def render?
-    ! @what.unbookable?
+    @what.bookable?
   end
 end

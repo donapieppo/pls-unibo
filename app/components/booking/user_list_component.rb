@@ -9,6 +9,8 @@ class Booking::UserListComponent < ViewComponent::Base
     @activity_online_mails = []   
     @activity_in_presence_mails = []   
     @teacher_mails = []
+
+    @editable = @current_user && @current_user.staff?
   end
 end
 
