@@ -16,7 +16,7 @@
       <%= render Booking::BookingComponent.new(@edition, current_user) %>
 
       <% @edition.resources.each do |resource| %>
-        <div class='mt-4 mx-auto'>
+        <div class="mt-4 w-full">
           <%= render Resource::ResourceComponent.new(resource) %>  
         </div>
       <% end %>
@@ -49,7 +49,9 @@
       </div>
     </div>
   </div>
+</div>
 
+<div class="container">
   <% unless @all_events.empty? %>  
     <% if @all_events.size == 1 && ! @edition.atomic %>  
       <hr class="my-16"/>
@@ -61,9 +63,8 @@
       </div>
     <% end %>
   <% end %>
-
-  <div class="text-center text-base mt-4">
-    <%= link_to '[torna al progetto]', @edition.project %>  
-  </div>
 </div>
 
+<div class="text-center text-base mt-4">
+  <%= link_to '[torna al progetto]', @edition.project %>  
+</div>
