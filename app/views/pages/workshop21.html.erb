@@ -15,11 +15,4 @@
   </div>
 </div>
 
-<div class="container">
-  <%= render Activity::AttributesComponent.new(@edition.project) %>  
-</div>
-
-<div class="container my-8">
-  <%= render Page::EditionComponent.new(@edition, current_user) %>
-</div>
-
+<%= render 'editions/edition' %>  
