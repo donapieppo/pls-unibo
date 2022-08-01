@@ -11,8 +11,7 @@
         <div class="bg-pls-light p-4 border-pla rounded-xl">
           <% if @what.booking_to_confirm? %>  
             <div>
-              Puoi fare richiesta di partecipazione
-              usando il pulsante sotto.<br/> 
+              Puoi fare richiesta di partecipazione usando il pulsante sotto.<br/> 
               In seguito riceverai ulteriori informazioni al tuo indirizzo email <%= @current_user.email if @current_user %>.
             </div>
           <% end %>
@@ -34,7 +33,7 @@
   </div>
 <% end %>
 
-<% if @current_user && @current_user.staff? && @what.booking_start && @what.booking_end %>  
+<% if @current_user && @current_user.voyeur? && @what.bookable != 'no' && @what.bookable != 'external' %>  
   <div>
     <%= link_to 'Elenco prenotazioni', bookings_path(activity_id: @what.id), class: 'underline' %>  
   </div>
