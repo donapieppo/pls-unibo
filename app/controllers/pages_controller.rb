@@ -4,25 +4,21 @@ class PagesController < ApplicationController
   def scienza_al_cinema
     @edition = Edition.find(392)
     set_events
-    render layout: 'pages'
   end
 
   def workshop21
     @edition = Edition.find(121)
     set_events
-    render layout: 'pages'
   end
 
   def workshop22
     @edition = Edition.find(384)
     set_events
-    render layout: 'pages'
   end
 
   def metodi_matematici_animazione
     @edition = Edition.find(282)
     set_events
-    render layout: 'application'
   end
 
   private
