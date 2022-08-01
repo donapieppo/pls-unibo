@@ -10,8 +10,12 @@
 <div>
   <div class="my-2"><%= @contact.affiliation %></div>
   <div class="my-4">
-    <div><%= mail_to @contact.email, mail_icon + " " + @contact.email, class: 'underline' %></div>
-    <div><%= link_to link_icon + " " + @contact.web_page, @contact.web_page, class: 'underline' %></div>
+    <% unless @contact.email.blank? %>  
+      <div><%= mail_to @contact.email, mail_icon + " " + @contact.email, class: 'underline' %></div>
+    <% end %>
+    <% unless @contact.web_page.blank? %>
+      <div><%= link_to link_icon + " " + @contact.web_page, @contact.web_page, class: 'underline' %></div>
+    <% end %>
     <div class="my-4 ml-4 italic text-gray-700"><%= @contact.description %></div>
   </div>
   <% if @contactPolicy.edit? %>  
