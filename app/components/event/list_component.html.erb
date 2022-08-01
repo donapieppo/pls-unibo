@@ -14,18 +14,19 @@
     <% end %>
   </div>
 <% else %>
-  <div class="my-4 border-2 rounded-xl shadow-xl bg-gray-100 bg-opacity-50">
-    <h3 class="text-2xl text-center my-4">
+  <div class="relative my-8 border-2 border-pls rounded-xl shadow-xl bg-gray-100 bg-opacity-50">
+    <h2 class="md:absolute md:-top-6 md:left-5 bg-pls rounded-xl text-gray-100 px-4 py-2 text-2xl text-center">
       <%= @title.upcase %>  
     </h3>
+
     <% @events.each do |event| %>  
-      <div class="my-2 md:my-8 md:flex px-2">
-        <div class="md:w-40 md:px-8 py-2 text-center">
+      <div class="my-4 md:my-8 md:flex px-2">
+        <div class="md:w-1/5 md:px-8 py-2 text-center">
           <%= link_to event, class: "block text-pls border-pls border-2 shadow-xl text-sm font-bold py-2 px-4" do %>  
             <%= l event.start_date %> 
           <% end %>
         </div>
-        <div class="md:w-full">
+        <div class="<%= @with_image ? 'md:w-3/5' : 'md-w-full' %> mt-2">
           <%= link_to event do %>
             <div class="text-lg font-semibold">
               <%= event.name.upcase %>  
@@ -34,19 +35,24 @@
               <%= event.description %>
             </div>
           <% end %>
-          <div class="mt-2">
+            <div>
             <%= render Contact::InlineSpeakersComponent.new(event.speakers) %>  
           </div>
           <%= render Booking::BookingComponent.new(event, helpers.current_user) %>
+        </div>
           <% if @with_image %>  
+            <div class="md:w-1/5 px-4">
             <% event.resources.each do |r| %>  
               <% if r.image? %>  
-                <%= image_tag(r.document.variant(resize_to_limit: [350, 350])) %>  
+                <div class="mx-auto">
+                  <%= image_tag(r.document.variant(resize_to_limit: [350, 350])) %>  
+                </div>
               <% end %>
             <% end %>
+            </div>
           <% end %>
-        </div>
       </div>
+      <hr class="my-4 w-64 border-pls border mx-auto"/>
     <% end %>
   </div>
 <% end %>
