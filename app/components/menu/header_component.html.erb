@@ -11,8 +11,14 @@
     <div class="mx-4">
       <div class="header-user">
         <% if @current_user %>  
-          <%= link_to @current_user.initials, me_users_path, class: "rounded-full border-2 border-pls text-pls font-bold py-1 px-2" %>
-          <%= link_to logout_icon, logout_path %>
+          <% if @current_user.unibo_account? %>  
+            <%= link_to @current_user.email, me_users_path, class: "" %> 
+            <%= image_tag('ssologo18x18.png', class: 'inline mx-1') %>  
+             <%= link_to "Logout", logout_path %>
+          <% else %>
+            <%= link_to @current_user.initials, me_users_path, class: "rounded-full border-2 border-pls text-pls font-bold py-1 px-2" %>
+            <%= link_to logout_icon, logout_path %>
+          <% end %>
         <% else %>
           <%= link_to 'accedi <i class="fas fa-sign-in-alt"></i>'.html_safe, login_path, class: 'p-1 px-2 border text-pls border-pls ' %>
         <% end %>
