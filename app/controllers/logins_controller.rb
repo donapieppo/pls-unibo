@@ -61,11 +61,17 @@ class LoginsController < ApplicationController
   end
 
   def logout
+    unibo = current_user && current_user.unibo_account?
     session[:user_id] = nil
     reset_session
     # logger.info("after logout we redirect to params[:return] = #{params[:return]}")
     # redirect_to (params[:return] || 'https://www.muriditalia.it')
-    redirect_to root_path, notice: "Uscito correttamente."
+    logger.info("redirect after reset session")
+    if unibo
+      redirect_to "https://idptest.unibo.it/adfs/ls/?wa=wsignout1.0", allow_other_host: true
+    else
+      redirect_to root_path, notice: "Uscito correttamente."  
+    end
   end
 
   private 
