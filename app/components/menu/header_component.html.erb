@@ -14,7 +14,7 @@
           <% if @current_user.unibo_account? %>  
             <%= link_to @current_user.email, me_users_path, class: "" %> 
             <%= image_tag('ssologo18x18.png', class: 'inline mx-1') %>  
-            <%= link_to "Logout", "https://idptest.unibo.it/adfs/ls/?wa=wsignout1.0" %>
+            <%= link_to "Logout", "https://idp.unibo.it/adfs/ls/?wa=wsignout1.0" %>
           <% else %>
             <%= link_to @current_user.initials, me_users_path, class: "rounded-full border-2 border-pls text-pls font-bold py-1 px-2" %>
             <%= link_to logout_icon, logout_path %>
