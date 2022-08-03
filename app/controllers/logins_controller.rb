@@ -68,8 +68,10 @@ class LoginsController < ApplicationController
     # redirect_to (params[:return] || 'https://www.muriditalia.it')
     logger.info("redirect after reset session")
     if unibo
+      logger.info("redirect https://idptest.unibo.it/adfs/ls/?wa=wsignout1.0")
       redirect_to "https://idptest.unibo.it/adfs/ls/?wa=wsignout1.0", allow_other_host: true
     else
+      logger.info("redirect root")
       redirect_to root_path, notice: "Uscito correttamente."  
     end
   end
