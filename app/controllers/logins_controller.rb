@@ -61,11 +61,25 @@ class LoginsController < ApplicationController
   end
 
   def logout
+    logger.info("Chiamato Logout")
+    logger.info("session_user_id: #{session[:user_id]}")
+
     session[:user_id] = nil
     reset_session
+    cookies.clear
+
     # logger.info("after logout we redirect to params[:return] = #{params[:return]}")
     # redirect_to (params[:return] || 'https://www.muriditalia.it')
-    logger.info("redirect after reset session")
+    redirect_to "https://idp.unibo.it/adfs/ls/?wa=wsignout1.0", allow_other_host: true
+  end
+
+  def glogout
+    logger.info("Chiamato Logout per Google")
+    logger.info("session_user_id: #{session[:user_id]}")
+
+    session[:user_id] = nil
+    reset_session
+    cookies.clear
     redirect_to root_path, notice: "Uscito correttamente."  
   end
 
@@ -137,10 +151,14 @@ class LoginsController < ApplicationController
   end
 
   def log_unibo_omniauth
-    request.env['omniauth.auth'] or return
-    logger.info("Authentication: uid   = #{request.env['omniauth.auth'].uid}")
-    logger.info("Authentication: info  = #{request.env['omniauth.auth'].info}")
-    logger.info("Authentication: extra = #{request.env['omniauth.auth'].extra}")
+    logger.info("Chiamato shibboleth")
+    logger.info("HTTP_EPPN: #{request.env['HTTP_EPPN']}")
+
+    if request.env['omniauth.auth']
+      logger.info("Authentication: uid   = #{request.env['omniauth.auth'].uid}")
+      logger.info("Authentication: info  = #{request.env['omniauth.auth'].info}")
+      logger.info("Authentication: extra = #{request.env['omniauth.auth'].extra}")
+    end
   end
 
   def no_access
