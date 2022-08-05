@@ -63,6 +63,6 @@ class User < ApplicationRecord
   end
 
   def voyeur?
-    BOOKING_WATCHERS.include?(self.email)
+    staff? || BOOKING_WATCHERS.include?(self.email)
   end
 end
