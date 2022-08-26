@@ -21,15 +21,15 @@
   height: 200px;
   width: 200px;
 }
-#home-box-areas {
+#home-box-first {
   margin-top: -25px; 
   margin-left: 100px;
 }
-#home-box-projects {
+#home-box-second {
   margin-top:  -75px; 
   margin-left: 0;
 }
-#home-box-students {
+#home-box-third {
   margin-top:  -75px; 
   margin-left: 100px;
 }
