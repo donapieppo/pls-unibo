@@ -1,13 +1,15 @@
 <div class="w-full overflow-hidden" 
      style="height: 60vh; background: no-repeat fixed center url(<%= asset_path(area_image(@area)) %>); background-size: cover;">
-     <h1 class="m-4 my-16 text-5xl lg:text-8xl tracking-wide font-semibold text-white text-center leading-relaxed">
+     <h1 class="m-4 my-24 text-4xl lg:text-8xl tracking-wide font-semibold text-white text-center leading-relaxed">
        <span class="px-4 bg-pls bg-opacity-80 rounded-xl"><%= @area %></span>
      </h1>
 </div>
 
 <div class="lg:relative">
-  <div class="relative lg:ml-auto -top-16 lg:right-8 lg:max-w-4xl 2xl:max-w-6xl mx-2 bg-pls-light font-light lg:text-xl text-justify rounded-xl p-6 border-gray-900 border-4">
-    <%= simple_format @area.description %>
+  <div class="relative lg:ml-auto -top-16 lg:right-8 lg:max-w-4xl 2xl:max-w-6xl mx-2 bg-pls-light font-light lg:text-xl rounded-xl p-6 border-gray-900 border-4">
+    <div class="text-justify">
+      <%= simple_format @area.description %>
+    </div>
     <div class="text-sm mt-4">
       <div>Responsabile: <%= @area.head %></div>
       <div><%= render Contact::InlineContactsComponent.new(@area.contacts) %></div>
