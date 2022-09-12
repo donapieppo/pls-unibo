@@ -2,8 +2,16 @@ module Bookable
   extend ActiveSupport::Concern
 
   included do
+    # has_one :bookability
+    has_many :bookings
+
     scope :with_bookings, -> { where(id: Booking.select(:activity_id).group(:activity_id).map(&:activity_id)) }
     scope :bookable_now, -> { where('activities.booking_start is not null and activities.booking_end is not null and activities.booking_start <= NOW() and NOW() <= activities.booking_end') }
+    scope :bookable_undone, -> { where('activities.bookable != "done"') }
+  end
+
+  def bookable?
+    self.bookable && self.bookable != 'no' && self.booking_start && self.booking_end
   end
 
   def external_booking?
@@ -12,9 +20,6 @@ module Bookable
 
   def booking_to_confirm?
     self.bookable && self.bookable == 'to_confirm'
-  end
-  def bookable?
-    self.bookable && self.bookable != 'no'
   end
 
   def booking_to_confirm?
@@ -82,6 +87,8 @@ module Bookable
     #end
     #true
   end
+
+  def free_seats
+    @free_seats_cache ||= (self.seats.to_i > 0) ? (self.seats - self.bookings.sum(:seats)) : 0
+  end
 end
-#
-# @user.teacher? || ! @record.activity.any_cluster_siblings_booked?(@user)

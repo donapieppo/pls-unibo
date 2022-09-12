@@ -3,7 +3,7 @@ class Activity < ApplicationRecord
 
   has_and_belongs_to_many :resources
   has_and_belongs_to_many :clusters
-  has_many :bookings
+
   has_many :snippets
 
   before_destroy :check_children
@@ -14,7 +14,6 @@ class Activity < ApplicationRecord
   scope :visible, -> (nolimit) { where.not('activities.hidden = 1') unless nolimit }
   scope :future, -> { where('activities.start_date > DATE_ADD(UTC_TIMESTAMP(), INTERVAL -2 hour)') }
   scope :past, -> { where('activities.start_date <= DATE_ADD(UTC_TIMESTAMP(), INTERVAL -2 hour)') }
-  scope :bookable_undone, -> { where('activities.bookable != "done"') }
 
   def check_children
     if Activity.where(parent_id: self.id).count > 0 
@@ -24,10 +23,6 @@ class Activity < ApplicationRecord
 
   def cluster_siblings
     self.clusters.map{|c| c.activities}.flatten.uniq
-  end
-
-  def free_seats
-    @free_seats_cache ||= (self.seats.to_i > 0) ? (self.seats - self.bookings.sum(:seats)) : 0
   end
 
   def self.approximate_count
@@ -66,9 +61,5 @@ class Activity < ApplicationRecord
 
   def this_academic_year?
     self.academic_year == CURRENT_ACADEMIC_YEAR
-  end
-
-  def bookable?
-    self.bookable && self.bookable != 'no' && self.booking_start && self.booking_end
   end
 end
