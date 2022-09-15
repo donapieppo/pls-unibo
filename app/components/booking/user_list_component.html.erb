@@ -30,15 +30,22 @@
       <% unless b.grade.blank? %>  
         <%= b.grade %> anno 
       <% end %>
+
       <br/>
+
+      <% if b.teacher_id %>  
+        <strong>Iscritto dal docente:</strong> <%= b.teacher %>  
+      <% else %>
+        <strong>docente:</strong>
+        <%= b.teacher_name %>  
+        <%= b.teacher_surname %>  
+        <small>(<%= b.teacher_email %>)</small>
+      <% end %>
+
       <strong>scuola:</strong> 
       <%= b.school %>  
       <%= b.school_city %>
       <small>(<%= b.school_pec %>)</small>
-      <strong>docente:</strong>
-      <%= b.teacher_name %>  
-      <%= b.teacher_surname %>  
-      <small>(<%= b.teacher_email %>)</small>
       <% if @editable %>  
         <%= link_to_delete b %> 
       <% end %>
