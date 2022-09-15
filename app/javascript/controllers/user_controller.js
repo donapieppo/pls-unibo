@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = [ 'roleInput', 'otherStringDiv', 'schoolChoose', 'seats' ]
+  static targets = [ 'roleInput', 'otherRoleStringDiv', 'schoolChoose', 'schoolInput', 'choosedSchool', 'seats' ]
 
   connect() {
     console.log("user controller");
@@ -16,18 +16,24 @@ export default class extends Controller {
 
     if (selectedRole && (selectedRole.value === 'other' || selectedRole.value == 'student_university')) {  
       this.schoolChooseTarget.style.display = 'none';
-      this.otherStringDivTarget.style.display = 'block';
+      this.otherRoleStringDivTarget.style.display = 'block';
       if (this.hasSeatsTarget) {
         this.seatsTarget.style.display = 'none';
       }
     } else {
-      this.otherStringDivTarget.querySelector('textarea').value = '';
-      this.otherStringDivTarget.style.display = 'none';
+      this.otherRoleStringDivTarget.querySelector('textarea').value = '';
+      this.otherRoleStringDivTarget.style.display = 'none';
       this.schoolChooseTarget.style.display = 'block';
       if (selectedRole && selectedRole.value === 'teacher' && this.hasSeatsTarget) {
         this.seatsTarget.style.display = 'block';
       }
     }
+  }
+
+  change_school(event) {
+    console.log('changing school');
+    this.choosedSchoolTarget.style.display = 'none';
+    this.schoolInputTarget.style.display = 'block';
   }
 }
 
