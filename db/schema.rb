@@ -71,6 +71,12 @@ ActiveRecord::Schema[7.0].define(version: 2021_04_27_080855) do
     t.boolean "in_presence"
     t.text "access_url"
     t.column "bookable", "enum('no','yes','to_confirm','external','done')"
+    t.boolean "bookable_by_teacher_for_students"
+    t.boolean "bookable_by_all"
+    t.boolean "bookable_by_student_secondary"
+    t.boolean "bookable_by_student_university"
+    t.boolean "bookable_by_teacher"
+    t.boolean "bookable_by_teacher_for_classes"
     t.column "bookable_by", "enum('all','student_secondary','student_university','teacher')"
     t.column "bookable_for", "enum('itsself','classes','students')"
     t.integer "bookable_limit", limit: 1
@@ -176,6 +182,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_04_27_080855) do
     t.string "email"
     t.column "role", "enum('student_secondary','student_university','teacher','other')"
     t.integer "grade", unsigned: true
+    t.string "school_class"
     t.string "teacher_name"
     t.string "teacher_surname"
     t.string "teacher_email"
