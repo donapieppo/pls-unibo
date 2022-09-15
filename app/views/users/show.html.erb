@@ -25,16 +25,10 @@
 
   <div class="p-2">
     <h2 class="title">Le tue iscrizioni</h2>
-    <% @user.bookings.each do |b| %>  
-      <div class="my-4 bg-pls-light border-l-4 border-pls p-4">
-        <%= link_to b.activity.is_a?(Event) ? b.activity.edition : b.activity do %>
-          <%= b.activity %>  
-        <% end %>
-        <div>
-          <%= button_to "[Cancella questa iscrizione]", booking_path(b), method: :delete %>  
-        </div>
-      </div>
-      <% end.empty? and begin  %>
+    <% @bookings.each do |booking| %>
+      <%= render Booking::DetailsComponent.new(booking, current_user, deletable: true) %>  
+    <% end %>
+    <% if @bookings.empty? %>  
       <div class="warning">
         <p>Al momento non sei iscritto ad alcuna attività.</p>
         <p>Le iscrizioni effettuate su siti esterni (i.e. SOFIA, Google Forms, etc.) NON compaiono in questa pagina.</p>
@@ -43,7 +37,6 @@
         </p>
       </div>
     <% end %> 
-    <%= render Booking::ListComponent.new(current_user, teacher: true) %>  
   </div>
 </div>
 
