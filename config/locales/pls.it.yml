@@ -67,6 +67,12 @@ it:
         booking_url: Indirizzo web esterno per la prenotazione
         booking_start: Data inizio iscrizioni
         booking_end: Data fine iscrizioni
+        bookable_by_all: Tutti possono prenotare per se stressi
+        bookable_by_student_secondary: Possono iscriversi gli studenti di scuola secondaria
+        bookable_by_student_university: Possono iscriversi gli studenti universitari
+        bookable_by_teacher:  Possono iscriversi i docenti per se stessi
+        bookable_by_teacher_for_students: I docenti possono iscrivere gli studenti
+        bookable_by_teacher_for_classes: I docenti possono iscrivere intere classi
       event:
         hidden: Nascondi l'evento
         name: Nome
@@ -86,6 +92,12 @@ it:
         booking_url: Indirizzo web esterno per la prenotazione
         booking_start: Data inizio iscrizioni
         booking_end: Data fine iscrizioni
+        bookable_by_all: Tutti possono prenotare per se stressi
+        bookable_by_student_secondary: Possono iscriversi gli studenti di scuola secondaria
+        bookable_by_student_university: Possono iscriversi gli studenti universitari
+        bookable_by_teacher:  Possono iscriversi i docenti per se stessi
+        bookable_by_teacher_for_students: I docenti possono iscrivere gli studenti
+        bookable_by_teacher_for_classes: I docenti possono iscrivere intere classi
       resource:
         name: Nome completo
         display_name: Nome come appare sul sito
@@ -120,6 +132,7 @@ it:
         teacher_surname: Cognome del docente
         teacher_email: Indirizzo email del docente
         grade: Classe
+        school_class: Classe
       contact:
         name: Nome
         surname: Cognome
