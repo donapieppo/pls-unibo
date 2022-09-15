@@ -1,0 +1,18 @@
+<div class="container">
+  <h1 class="title">Iscrizioni</h1>
+  <% if @activity %>  
+    <h2 class="title"><%= @activity %></h2>
+  <% end %>
+
+  <% if @activity %>  
+    <%= render Booking::ActivityCardComponent.new(@activity, details: true) %>  
+  <% else %>  
+    <% @activities.each do |activity| %>  
+      <div class="my-5">
+        <%= render Booking::ActivityCardComponent.new(activity) %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+
