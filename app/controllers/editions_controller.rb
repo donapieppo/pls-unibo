@@ -5,13 +5,14 @@ class EditionsController < ApplicationController
 
   def index
     authorize :edition
-    @editions = Edition.includes(:events).order(:name).visible(current_user && current_user.staff?)
+    @editions = Edition.includes(:events).visible(current_user && current_user.staff?)
     if params[:bookable] == '1'
       @bookable_now = true
-      @editions = @editions.bookable.to_a
+      @editions = @editions.order(:name).bookable.to_a
       @events = Event.bookable.to_a
     else
-      @editions = @editions.limit(10)
+      # Never used
+      @editions = @editions.order('academic_year desc, name asc').limit(20)
     end
   end
 
@@ -66,6 +67,11 @@ class EditionsController < ApplicationController
 
   # Fixme booking_url only if external
   def edition_params
-    params[:edition].permit(:hidden, :in_evidence, :in_presence, :place, :google_map, :online, :access_url, :name, :description, :details, :academic_year, :audience_id, :seats, :sofia, :pcto, :bookable, :bookable_by, :bookable_for, :booking_url, :booking_start, :booking_end, :atomic)
+    params[:edition].permit(:hidden, :in_evidence, :in_presence, :place, :google_map, :online, :access_url, :name, :description, 
+                            :details, :academic_year, :audience_id, :seats, :sofia, :pcto, 
+                            :bookable, :bookable_by, :bookable_for, :booking_url, :booking_start, :booking_end, 
+                            :bookable_by_all, :bookable_by_student_secondary, :bookable_by_student_university, 
+                            :bookable_by_teacher, :bookable_by_teacher_for_students, :bookable_by_teacher_for_classes,
+                            :atomic)
   end
 end
