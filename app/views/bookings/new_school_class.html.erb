@@ -1,0 +1,24 @@
+<div class="container">
+  <h1 class="title">Iscrivi una classe</h1>
+
+  <p>
+    Sei registrato come docente e per questa attività puoi iscrivere gli studenti di una classe.<br/> 
+    <strong>Sono disponibili <%= @free_seats %> posti</strong>.
+  </p>
+
+  <%= simple_form_for [@activity, @booking] do |f| %>  
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="my-4">
+    <%= f.input :school_class, size: 10 %>
+    <%= f.input :seats %>
+    </div>
+
+    <div class="my-4">
+    <%= f.label :notes, 'Note facoltative' %>
+    <%= f.text_area :notes %>
+    </div>
+    <%= f.submit "Iscrivi la classe" %>  
+  <% end %>
+</div>
