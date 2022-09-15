@@ -66,7 +66,10 @@ class EventsController < ApplicationController
   def event_params
     h = [:hidden, :name, :description, :in_presence, :online, :academic_year, :place, :google_map, :access_url, :start_date, :duration]
     unless @editon && @edition.atomic
-      h += [:seats, :sofia, :pcto, :bookable, :bookable_by, :bookable_for, :booking_url, :booking_start, :booking_end]
+      h += [:seats, :sofia, :pcto, :bookable, :bookable_by, :bookable_for, :booking_url, :booking_start, :booking_end,
+            :bookable_by_all, :bookable_by_student_secondary, :bookable_by_student_university, 
+            :bookable_by_teacher, :bookable_by_teacher_for_students, :bookable_by_teacher_for_classes,
+      ]
     end
     params[:event].permit(h)
   end
