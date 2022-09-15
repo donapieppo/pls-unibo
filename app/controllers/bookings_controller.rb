@@ -7,6 +7,7 @@ class BookingsController < ApplicationController
     activity_id = (params[:activity_id] or params[:edition_id] or params[:event_id])
 
     @activity = activity_id ? Activity.find(activity_id) : nil
+    @activities = activity_id ? [@activity] : Activity.order('start_date desc').with_bookings.bookable_undone
     @teacher_email = params[:temail] 
     @cluster = Cluster.find(params[:cluster]) if params[:cluster]
 
@@ -14,13 +15,6 @@ class BookingsController < ApplicationController
 
     respond_to do |format|
       format.html do  
-        if @activity
-          render(Booking::ActivityBookingsComponent.new(@activity, current_user)) 
-        elsif @teacher_email
-          render(Booking::TeacherBookingsComponent.new(@teacher_email, current_user))
-        else 
-          render(Booking::ActivityListComponent.new(current_user))
-        end
       end
       format.csv do
         if @cluster
@@ -47,7 +41,7 @@ class BookingsController < ApplicationController
     @booking = @activity.bookings.new(user_id: current_user.id)
     authorize @booking
     if @booking.missing_data?(:user)
-      redirect_to myedit_users_path, alert: "Si prega di fornire i dati richiesti prima di iscriversi"
+      redirect_to myedit_users_path, alert: "Si prega di fornire i dati richiesti prima di iscriversi."
       return
     end
   end
@@ -57,13 +51,15 @@ class BookingsController < ApplicationController
     @booking = @activity.bookings.new(teacher_id: current_user.id)
     authorize @booking
     if @booking.missing_data?(:teacher)
-      redirect_to myedit_users_path, alert: "Si prega di fornire i dati richiesti prima di iscriversi"
+      redirect_to myedit_users_path, alert: "Si prega di fornire i dati richiesti prima di iscriversi."
       return
     end
   end
 
-  def new_class
-    raise "NEW_CLASS"
+  def new_school_class
+    @free_seats = @activity.free_seats
+    @booking = @activity.bookings.new(user_id: current_user.id, teacher_id: current_user.id)
+    authorize @booking
   end
 
   def create
@@ -71,6 +67,7 @@ class BookingsController < ApplicationController
     @booking = @activity.bookings.new(booking_params)
     @booking.user_id = current_user.id
     authorize @booking
+
     if @booking.missing_data?(:user)
       redirect_to myedit_users_path, alert: "Si prega di inserire i propri dati prima di iscriversi."
       return
@@ -152,13 +149,13 @@ class BookingsController < ApplicationController
 
   # only teacher can book more than one
   def booking_params
-    unless params[:booking][:role] && params[:booking][:role] == 'teacher'
-      params[:booking][:seats] = 1
-    end
     if params[:booking][:online] == "1"
       params[:booking][:seats] = 0
+    elsif ! (current_user.confirmed_teacher? || current_user.staff?)
+      params[:booking][:seats] = 1
+      params[:booking].delete(:school_class)
     end
-    params[:booking].permit(:email, :name, :surname, :role, :grade, :teacher_name, :teacher_surname, :teacher_email,  
+    params[:booking].permit(:email, :name, :surname, :role, :grade, :teacher_name, :teacher_surname, :teacher_email, :school_class,   
                             :other_string, :notes, :online, :seats)
 
     # if current user the model adds user data
