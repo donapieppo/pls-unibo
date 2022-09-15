@@ -9,27 +9,37 @@
                                                         [t(:other), 'other']] %>
   </div>
 
-  <hr/>
-
-  <div data-user-target="otherStringDiv">
+  <div data-user-target="otherRoleStringDiv">
     <%= f.input :other_string %>  
   </div>
 
   <div data-user-target="schoolChoose">
-    <% if @user && @user.school %>  
-      <%= render 'schools/school', school: @user.school %>  
+    <% if @user && school = @user.school %>  
+      <div data-user-target="choosedSchool" class="p-2 bg-gray-100">
+        Scuola <br/>
+        <div class="ml-2">
+          <%= school %> <br/>
+          <%= school.address %> <%= school.cap %>  <%= school.municipality %> <br/>
+          <%= school.province %> <br/>  
+          <%= link_to(link_icon, school.web_url) unless school.url.blank? %>  
+          <div class="text-right">
+            <%= content_tag :span, edit_icon + ' cambia', data: { action: "click->user#change_school" } %>  
+          </div>
+        </div>
+      </div>
     <% end %>
+    <div data-user-target="schoolInput" style="display: <%= (@user && school) ? 'none' : 'block' %>">
+      <label>
+        Nel caso di scuola I / II grado specificate la vostra scuola iniziando iniziate a scrivere il nome nel box sotto:
+      </label>
 
-    <label>
-      Nel caso di scuola I / II grado specificate la vostra scuola iniziando iniziate a scrivere il nome nel box sotto:
-    </label>
-
-    <input id="school_id" name="user[school_name]" class="border-4 rounded my-2 w-full" list="schools" />
-    <datalist id="schools" style="background-color: #ccc;">
-      <% School.select(:id, :name, :municipality).each do |s| %>  
-        <option data-value="<%= s.id %>" value="<%= s.name + " -- " + s.municipality %>"/>
-      <% end %>
-    </datalist>
+      <input type="text" id="school_id" name="user[school_name]" class="border-2 rounded py-2 w-full" list="schools"/>
+      <datalist id="schools" style="background-color: #ccc;">
+        <% School.select(:id, :name, :municipality).each do |s| %>  
+          <option data-value="<%= s.id %>" value="<%= "#{s.name} -- #{s.municipality}" %>"/>
+        <% end %>
+      </datalist>
+    </div>
 
     <%= f.input :school_city %>  
     <%= f.input :school_pec %>  
