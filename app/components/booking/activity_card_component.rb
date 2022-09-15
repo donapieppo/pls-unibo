@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
-class Booking::ActivityBookingsComponent < ViewComponent::Base
-  def initialize(activity, current_user)
+class Booking::ActivityCardComponent < ViewComponent::Base
+  def initialize(activity, details: false)
     @activity = activity
-    @current_user = current_user
+    @details = details
   end
 
   def render?
     @activity.booking_start && @activity.booking_end
   end
 end
-
-

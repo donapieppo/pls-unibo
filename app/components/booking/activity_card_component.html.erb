@@ -1,0 +1,26 @@
+<div class="pls-card">
+  <div class="pls-card-title">
+    <%= link_to @activity.name.upcase, @activity %>
+  </div>
+  <div class="pls-card-content">
+    <div>
+      <%= calendar_icon %>
+      <%= l @activity.booking_start, format: :short %> - <%= l @activity.booking_end, format: :short %>
+    </div>
+    <div>
+      <%= '<strong>Attività con prenotazioni da confermare</strong>'.html_safe if @activity.booking_to_confirm? %>  
+    </div>
+    <div class="my-2">
+      Posti totali: <strong><%= @activity.seats %></strong><br/>
+      Posti prenotati: <strong><%= @activity.bookings.in_presence.sum(:seats) %></strong> <br/> 
+      Prenotazioni online: <strong><%= @activity.bookings.online.count(:seats) %></strong>
+    </div>
+    <% if @details %>  
+      <%= render Booking::UserListComponent.new(@activity) %>  
+    <% else %>
+      <div class="mt-4">
+        <%= link_to 'mostra elenco iscritti', [@activity, :bookings], class: 'button' %>  
+      </div>
+    <% end %>
+  </div>
+</div>

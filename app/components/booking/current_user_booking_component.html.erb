@@ -2,8 +2,9 @@
   <!-- manage booking -->
   <div class="text-xl text-green-700 font-bold my-4">
     <%= exclamation_icon %> 
-    <%= @user_this_booking.confirmed ? 'Hai fatto richiesta di iscrizione per' : 'Sei iscritto a' %>
-    questa edizione con codice &ldquo;<%= @user_this_booking.nonce %>&rdquo;.
+    <%= @user_this_booking.confirmed ? 'Sei iscritto a' : 'Hai fatto richiesta di iscrizione per' %>
+    questa edizione 
+    <%# con codice &ldquo;<%= @user_this_booking.nonce %1>&rdquo;. %>
     <% if @user_this_booking.online %>  
       <br/><small>Hai fatto richiesta per partecipare on line.</small>
     <% end %>
@@ -20,3 +21,17 @@
   </div>
 <% end %>
 
+<% if @user_this_teacher_bookings && @user_this_teacher_bookings.any? %>  
+  <div class="font-bold">Elenco studenti/classi che hai iscritto</div>
+  <ol class="list-decimal p-4">
+    <% @user_this_teacher_bookings.each do |booking| %>  
+      <li class="pl-2">
+      <% if booking.for_class? %>  
+        classe <%= booking.school_class %>  
+      <% else %>
+        <%= booking.user %> <small>(<%= booking.user.email %>)</small>
+      <% end %>
+      </li>
+    <% end %>
+  </ol>
+<% end %>

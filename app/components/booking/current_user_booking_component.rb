@@ -6,10 +6,14 @@ class Booking::CurrentUserBookingComponent < ViewComponent::Base
     @current_user = current_user
 
     if @current_user
-      @user_this_booking = @current_user ? @what.bookings.where(user_id: @current_user.id).first : nil
+      @user_this_booking = @what.bookings.where(user_id: @current_user.id).where(school_class: nil).first 
 
-      @user_sibling_booking_activity_id = @current_user ? @what.cluster_siblings_booked_activity_ids(@current_user).first : nil
+      @user_sibling_booking_activity_id = @what.cluster_siblings_booked_activity_ids(@current_user).first
       @user_sibling_booking_activity = Activity.find(@user_sibling_booking_activity_id) if @user_sibling_booking_activity_id
+    end
+
+    if @current_user && @current_user.confirmed_teacher?
+      @user_this_teacher_bookings = @what.bookings.where(teacher_id: @current_user.id)
     end
   end
 

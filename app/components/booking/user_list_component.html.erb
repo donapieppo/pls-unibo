@@ -1,17 +1,8 @@
 <p>Elenco iscritti:</p>
+
 <ul class="list-disc pl-8 ml-4">
   <% @bookings.each do |b| %>  
     <li>
-      <span class="font-mono"><%= b.nonce ? b.nonce : '-----' %></span> 
-      <small><%= l b.created_at %></small>
-      <% @teacher_mails << b.teacher_email if b.teacher_email %>  
-      <% if b.online %>  
-        <% @activity_online_mails << b.email %>  
-        <span class="text-yellow-500">online</span>
-      <% else %>
-        <% @activity_in_presence_mails << b.email %>  
-        <strong><%= b.seats %></strong> <%= b.seats == 1 ? 'posto' : 'posti' %> per  
-      <% end %>
       <% if b.user %>  
         <span class="font-bold text-green-700 underline">
           <% if @editable %>  
@@ -24,14 +15,26 @@
         <%= b.name %> <%= b.surname %>
       <% end %>
       <small>(<%= mail_to b.email %>)</small>
-      <%= b.role %> 
+
+      <% @teacher_mails << b.teacher_email if b.teacher_email %>  
+
+      <% if b.online %>  
+        <% @activity_online_mails << b.email %>  
+        <span class="text-yellow-500">online</span>
+      <% else %>
+        <% @activity_in_presence_mails << b.email %>  
+        <strong><%= b.seats %> <%= b.seats == 1 ? 'posto' : 'posti' %></strong>
+      <% end %>
+
+      <%= t b.role %> 
       <% unless b.grade.blank? %>  
         <%= b.grade %> anno 
       <% end %>
+      <br/>
       <strong>scuola:</strong> 
       <%= b.school %>  
       <%= b.school_city %>
-      <small>(<%= b.school_pec %>)</small> <br/>
+      <small>(<%= b.school_pec %>)</small>
       <strong>docente:</strong>
       <%= b.teacher_name %>  
       <%= b.teacher_surname %>  
@@ -44,6 +47,9 @@
       <% elsif @editable %>
         <span class="text-green-500"><i class="fas fa-check-circle"></i> confermata</span>
       <% end %>
+
+      <%# <span class="font-mono"><%= b.nonce ? b.nonce : '-----' %1></span> %> 
+      <small>(<%= l b.created_at %>)</small>
     </li>
   <% end %>
 </ul>
@@ -58,4 +64,6 @@
   <strong>Indirizzi docenti:</strong> <%= @teacher_mails.sort.uniq.join(', ') %>  
 </div>
 
-<%= link_to 'scarica elenco', bookings_path(activity_id: @activity.id, format: :csv), class: 'button my-4' %>  
+<div>
+  <%= link_to 'scarica elenco', bookings_path(activity_id: @activity.id, format: :csv), class: 'button my-4' %>  
+</div>

@@ -38,7 +38,9 @@
             <div>
             <%= render Contact::InlineSpeakersComponent.new(event.speakers) %>  
           </div>
-          <%= render Booking::BookingComponent.new(event, helpers.current_user) %>
+          <%= render Bookability::InfoComponent.new(event) %>  
+          <%= render Booking::CurrentUserBookingComponent.new(event, @current_user) %>  
+          <%= render Bookability::ActionsComponent.new(event, @current_user) %>
         </div>
           <% if @with_image %>  
             <div class="md:w-1/5 px-4">

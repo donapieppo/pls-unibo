@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Booking::ClusterSiblingsMessageComponent < ViewComponent::Base
+class Bookability::ClusterSiblingsMessageComponent < ViewComponent::Base
   def initialize(activity)
     @activity = activity
     # FIXME
