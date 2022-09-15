@@ -52,9 +52,9 @@ Rails.application.routes.draw do
   concern :bookable do
     resources :bookings, only: [:index, :new, :create] do
       get :new_student, on: :collection
+      get :new_school_class, on: :collection
       post :create_student, on: :collection
-      # get :anew, on: :collection
-      # post :acreate, on: :collection
+      post :create_school_class, on: :collection
     end
   end
 
