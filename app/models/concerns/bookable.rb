@@ -38,42 +38,73 @@ module Bookable
   end
 
   def bookable_by_user?(_user)
-    return false if self.external_booking?
     return false unless _user
-    case self.bookable_by
-    when 'all'
-      true
-    when 'student_secondary'
-      _user.student_secondary?
-    when 'student_university'
-      _user.student_university?
-    when 'teacher'
-      _user.teacher?
+
+    if self.external_booking?
+      return false
+    elsif self.bookable_for_itsself?(_user)
+      return true
+    elsif self.bookable_for_students?(_user) || self.bookable_for_classes?(_user)
+      return true
+    else
+      return false
     end
   end
 
-  def bookable_by_description
-    case self.bookable_by
-    when 'student_secondary'
-      'prenotazioni aperte agli studenti delle scuole secondarie'
-    when 'student_university'
-      'prenotazioni aperte agli studenti universitari'
-    when 'teacher'
-      case self.bookable_for
-      when 'itsself'
-        'prenotazioni aperte ai docenti'
-      when 'classes'
-        'prenotazioni aperte a classi di studenti iscritti dal docente'
-      when 'students'
-        'prenotazioni aperte a studenti iscritti dal docente'
-      end
+  def bookable_for_itsself?(_user)
+    return false unless _user
+
+    if self.bookable_by_all
+      return true
+    elsif self.bookable_by_student_secondary && _user.student_secondary?
+      return true
+    elsif self.bookable_by_student_university && _user.student_university?
+      return true
+    elsif self.bookable_by_teacher && _user.confirmed_teacher?
+      return true
     else
-      ''
+      return false
+    end
+  end
+
+  def bookable_for_students?(_user)
+    _user && self.bookable_by_teacher_for_students && _user.confirmed_teacher?
+  end
+
+  def bookable_for_classes?(_user)
+    _user && self.bookable_by_teacher_for_classes && _user.confirmed_teacher?
+  end
+
+  def bookable_by_description
+    res = []
+    if self.bookable_by_all
+      res << ' a tutti'
+    end
+    if self.bookable_by_student_secondary
+      res << ' agli studenti delle scuole secondarie'
+    end
+    if self.bookable_by_student_university
+      res << ' agli studenti universitari'
+    end
+    if self.bookable_by_teacher
+      res << ' ai docenti'
+    end
+    if self.bookable_by_teacher_for_students
+      res << ' a studenti iscritti dal docente'
+    end
+    if self.bookable_by_teacher_for_classes
+      res << ' a classi di studenti iscritti dal docente'
+    end
+
+    if res.any?
+      return 'Prenotazione aperta a ' + res.join(', ')
+    else
+      return ''
     end
   end
 
   def booked_by?(user)
-    self.bookings.where(user_id: user.id).any?
+    self.bookings.where(user_id: user.id).where(school_class: nil).any?
   end
 
   def cluster_siblings_booked_activity_ids(user)
