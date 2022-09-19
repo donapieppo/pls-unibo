@@ -12,7 +12,9 @@
   </div>
 
   <% if (@area || @on) %>  
-    <%= link_to 'Vedi tutte le attività del PLS', projects_path, class: 'underline' %>  
+    <div class="text-right text-xl">
+      <%= link_to 'Mostra tutte le attività del PLS', projects_path, class: 'underline' %>  
+    </div>
   <% end %>
 
   <%= render Project::ListComponent.new(@projects, no_filter: (@area || @on)) %>
