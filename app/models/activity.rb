@@ -10,7 +10,7 @@ class Activity < ApplicationRecord
 
   validates :name, presence: true, allow_blank: false
 
-  scope :in_current_academic_year, -> () { where(academic_year: CURRENT_ACADEMIC_YEAR) }
+  scope :in_current_academic_year, -> { where(academic_year: CURRENT_ACADEMIC_YEAR) }
   scope :visible, -> (nolimit) { where.not('activities.hidden = 1') unless nolimit }
   scope :future, -> { where('activities.start_date > DATE_ADD(UTC_TIMESTAMP(), INTERVAL -2 hour)') }
   scope :past, -> { where('activities.start_date <= DATE_ADD(UTC_TIMESTAMP(), INTERVAL -2 hour)') }
@@ -22,7 +22,7 @@ class Activity < ApplicationRecord
   end
 
   def cluster_siblings
-    self.clusters.map{|c| c.activities}.flatten.uniq
+    self.clusters.map { |c| c.activities }.flatten.uniq
   end
 
   def self.approximate_count
@@ -55,8 +55,8 @@ class Activity < ApplicationRecord
     end
   end
 
-  def speakers_to_s 
-    self.speakers.map{ |speaker| speaker.to_s }.join(', ')
+  def speakers_to_s
+    self.speakers.map { |speaker| speaker.to_s }.join(', ')
   end
 
   def this_academic_year?
