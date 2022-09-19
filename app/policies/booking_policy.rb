@@ -5,12 +5,17 @@ class BookingPolicy < ApplicationPolicy
 
   def create?
     @activity = @record.activity
+
     @user && @activity.bookable_now? && @activity.bookable_by_user?(@user)
   end
 
   # teachers can add students
   def new_user?
-    @user && @user.confirmed_teacher?
+    create? && @user.confirmed_teacher?
+  end
+  
+  def new_school_class?
+    create? && @user.confirmed_teacher?
   end
 
   def destroy?
