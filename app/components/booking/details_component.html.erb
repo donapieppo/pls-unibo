@@ -1,24 +1,22 @@
 <div class="my-4 bg-pls-light border-l-4 border-pls p-4">
   <div>
     Iscrizione del <%= l @booking.created_at %> 
-    <% if @booking.seats && @booking.seats > 1 %>  
-      per <strong><%= @booking.seats %> posti</strong>
-    <% end %>
+  <% if @booking.seats && @booking.seats > 1 %>  
+    per <strong><%= @booking.seats %> posti</strong>
+  <% end %>
   </div>
   <%= link_to @booking.activity.is_a?(Event) ? booking.activity.edition : @booking.activity do %>
     <div class="font-bold text-xl"><%= @booking.activity %></div>
   <% end %>
-  <% if @booking.user.teacher? %>  
-    <% unless @booking.school_class.blank? %>  
-      <div>
-        Prenotazione per la classe <%= @booking.school_class %>  
-      </div>
-    <% end %>
-    <% if @booking.user_id != @current_user.id %>  
-      <div>
-        Prenotato per <%= @booking.user %>  
-      </div>
-    <% end %>
+  <% unless @booking.school_class.blank? %>  
+    <div>
+      Prenotazione per la classe <%= @booking.school_class %>  
+    </div>
+  <% end %>
+  <% if @booking.user_id != @current_user.id %>  
+    <div>
+      Prenotato per <%= @booking.user %>  
+    </div>
   <% end %>
   <% if @booking.online %>  
     <div>
