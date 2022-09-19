@@ -23,7 +23,7 @@
           <%= school.province %> <br/>  
           <%= link_to(link_icon, school.web_url) unless school.url.blank? %>  
           <div class="text-right">
-            <%= link_to edit_icon + ' cambia', '', data: { action: "click->user#change_school" } %>  
+            <%= link_to edit_icon + ' cambia', '#', data: { action: "click->user#change_school" } %>  
           </div>
         </div>
       </div>
