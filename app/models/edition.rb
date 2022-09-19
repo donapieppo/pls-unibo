@@ -5,6 +5,7 @@ class Edition < Activity
   has_rich_text :details
 
   belongs_to :project, foreign_key: 'parent_id'
+  belongs_to :audience
   has_many :events, foreign_key: 'parent_id'
 
   scope :this_academic_year, -> { where(academic_year: CURRENT_ACADEMIC_YEAR) }
@@ -12,8 +13,6 @@ class Edition < Activity
   scope :with_next_events, -> (n) { where(id: Event.future.order('start_date asc').map(&:parent_id).uniq[0..n]) }
   scope :in_area, -> (a) { where(parent_id: a.project_ids) }
   scope :bookable, -> { where("bookable != 'no' and booking_start < NOW() and booking_end > NOW()") }
-
-  belongs_to :audience
 
   validates :academic_year, presence: true
 
