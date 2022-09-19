@@ -21,14 +21,8 @@
             <%= f.input :online %>
           <% end %> 
           <% if current_user && current_user.student_secondary? %>  
-            <div class="md:flex">
-              <div class="md:w-1/2 md:mr-2">
-                <%= f.input :teacher_name %>
-              </div>
-              <div class="md:w-1/2 md:ml-2">
-                <%= f.input :teacher_surname %>
-              </div>
-            </div>
+            <%= f.input :teacher_name %>
+            <%= f.input :teacher_surname %>
             <%= f.input :teacher_email %>
             <%= f.input :grade, collection: 3..5, as: :radio_buttons %>
           <% end %>
