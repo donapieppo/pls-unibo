@@ -1,5 +1,17 @@
 require 'csv'
 
+class BookingSingleValidator < ActiveModel::Validator
+  def validate(record)
+    return true if record.school_class
+    return true if record.teacher_id
+    user = record.user
+    others = user.bookings.where(activity_id: record.activity_id).where(school_class: nil).count
+    if others > 0 
+      record.errors.add :base, "Già prenotato questa attività."
+    end
+  end
+end
+
 class BookingSeatsValidator < ActiveModel::Validator
   def validate(record)
     activity = record.activity
@@ -14,13 +26,13 @@ class Booking < ApplicationRecord
   belongs_to :activity
   belongs_to :school, optional: true
 
-  validates :user_id, uniqueness: { scope: [:activity_id], message: "Prenotazione già presente." }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Formato della mail non corretto" }
 
   validates :teacher_name, :teacher_surname, presence: { allow_blank: false }, if: -> { user.student_secondary? }
   validates :teacher_email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Formato della mail del docente non corretto" }, if: -> { user.student_secondary? }
 
   validates :name, :surname, presence: { allow_blank: false }
+  validates_with BookingSingleValidator 
   validates_with BookingSeatsValidator 
 
   scope :by_teacher, -> (u_id) { where(teacher_id: u_id) }
@@ -28,32 +40,13 @@ class Booking < ApplicationRecord
   scope :online, -> { where(online: true) }
 
   before_validation :copy_params_from_user,
+                    :manage_class_booking, 
                     :confirm_if_activity_not_to_confirm
   after_create :create_nonce
 
   # FIXME
   def teacher
     User.find(self.teacher_id)
-  end
-
-  def copy_params_from_user
-    # if self.user_id && ! self.user
-    #   self.user = User.find(self.user_id)
-    # end
-    if u = self.user 
-      self.email = u.email
-      self.name = u.name
-      self.surname = u.surname
-      self.role = u.role
-      self.school = u.school
-      self.other_string = u.other_string
-      self.school_pec = u.school_pec
-      self.school_city = u.school_city
-    end
-  end
-
-  def confirm_if_activity_not_to_confirm
-    self.confirmed = ! self.activity.booking_to_confirm?
   end
 
   def confirmed?
@@ -63,6 +56,10 @@ class Booking < ApplicationRecord
   def confirm
     self.confirmed = true
     self.save!
+  end
+
+  def for_class?
+    ! self.school_class.blank?
   end
 
   def self.to_csv(_bookings)
@@ -122,6 +119,31 @@ class Booking < ApplicationRecord
         break
       end
     end
+  end
+
+  def copy_params_from_user
+    # if self.user_id && ! self.user
+    #   self.user = User.find(self.user_id)
+    # end
+    if u = self.user 
+      self.email = u.email
+      self.name = u.name
+      self.surname = u.surname
+      self.role = u.role
+      self.school = u.school
+      self.other_string = u.other_string
+      self.school_pec = u.school_pec
+      self.school_city = u.school_city
+    end
+  end
+
+  def confirm_if_activity_not_to_confirm
+    self.confirmed = ! self.activity.booking_to_confirm?
+  end
+
+  def manage_class_booking
+    self.teacher_id = self.user_id if self.school_class
+    self.school_class = nil if self.school_class.blank?
   end
 end
 
