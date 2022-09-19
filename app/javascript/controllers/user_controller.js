@@ -34,6 +34,7 @@ export default class extends Controller {
     console.log('changing school');
     this.choosedSchoolTarget.style.display = 'none';
     this.schoolInputTarget.style.display = 'block';
+    event.preventDefault();
   }
 }
 
