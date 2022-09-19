@@ -2,7 +2,7 @@
   <% if @bookable_now %>  
     <h1 class="title">Le attività prenotabili</h1>
   <% else %>
-    <h1 class="title">Le attività del PLS</h1>
+    <h1 class="title">Le ultime 20 attività del PLS</h1>
   <% end %>
 
   <%= render Edition::ListComponent.new(@editions, current_user) %>
