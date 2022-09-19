@@ -30,3 +30,6 @@ application.register("cluster", ClusterController)
 
 import ResourceController from "./resource_controller"
 application.register("resource", ResourceController)
+
+import SchoolController from "./school_controller"
+application.register("school", SchoolController)
