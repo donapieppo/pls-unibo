@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show 
     @user = User.find(params[:id])
+    @bookings = @user.bookings
     authorize @user
   end
 
@@ -19,6 +20,7 @@ class UsersController < ApplicationController
 
   def me
     @user = current_user
+    @bookings = Booking.where('user_id = ? or teacher_id =?', @user.id, @user.id).includes(:activity).order('activities.name')
     authorize @user
     render action: :show
   end
@@ -44,7 +46,7 @@ class UsersController < ApplicationController
       end
     end
     if @user.update(user_params)
-      redirect_to me_users_path, notice: 'I tuoi dati sono stati registrati'
+      redirect_to me_users_path, notice: 'I tuoi dati sono stati registrati.'
     else
       render action: :edit, status: :unprocessable_entity
     end
