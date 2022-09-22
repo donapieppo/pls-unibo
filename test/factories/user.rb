@@ -7,6 +7,7 @@ FactoryBot.define do
 
   trait :student_secondary do
     role { 'student_secondary' }
+    school
   end
 
   trait :student_university do
@@ -15,5 +16,6 @@ FactoryBot.define do
 
   trait :teacher do
     role { 'teacher' }
+    school
   end
 end
