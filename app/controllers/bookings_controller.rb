@@ -73,9 +73,14 @@ class BookingsController < ApplicationController
     end
     if @booking.save
       redirect_to @activity, notice: "Iscrizione registrata correttamente."
+      return
     else
       logger.info(@booking.errors.inspect)
-      render action: :new, status: :unprocessable_entity
+      if params[:booking][:school_class]
+       render action: :new_school_class, status: :unprocessable_entity
+      else
+       render action: :new, status: :unprocessable_entity
+      end
     end
   end
 
