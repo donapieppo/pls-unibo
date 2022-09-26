@@ -3,15 +3,15 @@
     <div class="flex flex-col items-center justify-center">
       <%= link_to projects_path(on: 1), class: "big-home-button w-64" do %>
         <div class="big-home-button-icon"><i class="fa-regular fa-calendar fa-2xl fa-fw"></i></div>
-        <div>ATTIVITÀ DEL <%= CURRENT_ACADEMIC_YEAR %>/<%= CURRENT_ACADEMIC_YEAR + 1 %></div>
+        <div>ATTIVITÀ DEL <br/><%= CURRENT_ACADEMIC_YEAR %>/<%= CURRENT_ACADEMIC_YEAR + 1 %></div>
       <% end %>
       <%= link_to editions_path(bookable: 1), class: "big-home-button w-64" do %>
         <div class="big-home-button-icon"><i class="fa-solid fa-calendar-check fa-2xl fa-fw"></i></div>
-        <div>ISCRIZIONI APERTE</div>
+        <div>ISCRIZIONI APERTE<br/>&nbsp;</div>
       <% end %>
       <%= link_to projects_path, class: "big-home-button w-64" do %>
         <div class="big-home-button-icon"><i class="fa-solid fa-ellipsis-vertical fa-2xl fa-fw"></i></div>
-        <div>MOSTRA TUTTE LE ATTIVITÀ</div>
+        <div>TUTTE LE ATTIVITÀ<br/>&nbsp;</div>
       <% end %>
     </div>
   </div>
