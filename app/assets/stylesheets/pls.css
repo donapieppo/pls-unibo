@@ -121,10 +121,6 @@ table {
   }
 }
 
-.online-access {
-  @apply hover:bg-blue-300 border border-blue-300 px-4 rounded;
-}
-
 ul {
   list-style-type: circle;
 }

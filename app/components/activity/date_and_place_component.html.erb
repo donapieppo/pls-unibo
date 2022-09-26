@@ -14,17 +14,12 @@
     <div class="py-1">
       <i class="fas fa-network-wired fa-fw mr-2"></i>
       Fruibile online 
-    </div>
     <% unless @no_link || @activity.access_url.blank? %>
-      <div class="ml-8 my-4">
-        <%= link_to @activity.access_url, class: 'inline-block online-access' do %>  
-          <% if @activity.on_teams? %>  
-            <%= image_tag 'teams_logo.svg', width: 50, class: 'inline-block mr-4' %>  
-          <% end %>
-          <%= @activity.access_url_name %>
+        <%= link_to @activity.access_url, class: 'underline' do %>  
+          [<%= @activity.access_url_name %>]
         <% end %>
-      </div>
     <% end %>
+    </div>
   <% end %>
 
   <% if @activity.in_presence %>  
