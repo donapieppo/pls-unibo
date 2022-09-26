@@ -19,7 +19,7 @@
         Scuola <br/>
         <div class="ml-2">
           <%= school %> <br/>
-          <%= school.address %> <%= school.cap %>  <%= school.municipality %> <br/>
+          <%= school.address %> <%= school.cap %> <%= school.municipality %> <br/>
           <%= school.province %> <br/>  
           <%= link_to(link_icon, school.web_url) unless school.url.blank? %>  
           <div class="text-right">
@@ -29,20 +29,14 @@
       </div>
     <% end %>
     <div data-user-target="schoolInput" style="display: <%= (@user && school) ? 'none' : 'block' %>">
-      <label>
-        Nel caso di scuola I / II grado specificate la vostra scuola iniziando iniziate a scrivere il nome nel box sotto:
+      <label class="my-4 block">
+        Nel caso di scuola I / II grado selezionate la vostra scuola scegliendo prima la città. <br/>
+        Nel caso <u>mancasse</u> dall'elenco la vostra scuola vi chiediamo di mandare una email a 
+        <a href="mailto:dipmat-supportoweb@unibo.it">dipmat-supportoweb@unibo.it</a>.
       </label>
 
-      <input type="text" id="school_id" name="user[school_name]" class="border-2 rounded py-2 w-full" list="schools"/>
-      <datalist id="schools" style="background-color: #ccc;">
-        <% School.select(:id, :name, :municipality).each do |s| %>  
-          <option data-value="<%= s.id %>" value="<%= "#{s.name} -- #{s.municipality}" %>"/>
-        <% end %>
-      </datalist>
+      <%= render School::SelectComponent.new(f) %>  
     </div>
-
-    <%= f.input :school_city %>  
-    <%= f.input :school_pec %>  
   </div>
 
   <% if @booking %>  

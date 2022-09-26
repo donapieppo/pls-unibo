@@ -13,19 +13,20 @@ export default class extends Controller {
 
   show_and_hide(event) {
     var selectedRole = this.roleInputTarget.querySelectorAll('input:checked')[0];
+    console.log("Selected role: " + selectedRole)
 
-    if (selectedRole && (selectedRole.value === 'other' || selectedRole.value == 'student_university')) {  
-      this.schoolChooseTarget.style.display = 'none';
-      this.otherRoleStringDivTarget.style.display = 'block';
-      if (this.hasSeatsTarget) {
-        this.seatsTarget.style.display = 'none';
-      }
-    } else {
+    if (selectedRole && (selectedRole.value === 'student_secondary' || selectedRole.value == 'teacher')) {  
       this.otherRoleStringDivTarget.querySelector('textarea').value = '';
       this.otherRoleStringDivTarget.style.display = 'none';
       this.schoolChooseTarget.style.display = 'block';
       if (selectedRole && selectedRole.value === 'teacher' && this.hasSeatsTarget) {
         this.seatsTarget.style.display = 'block';
+      }
+    } else {
+      this.schoolChooseTarget.style.display = 'none';
+      this.otherRoleStringDivTarget.style.display = 'block';
+      if (this.hasSeatsTarget) {
+        this.seatsTarget.style.display = 'none';
       }
     }
   }

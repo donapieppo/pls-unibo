@@ -7,7 +7,7 @@
           come <strong class="px-2"><%= t @user.role %></strong>
         </div>
         <% if @user.role == 'student_secondary' || @user.role == 'teacher' %> 
-          <% if @user.school_id %>
+          <% if @user.school %>
             della scuola <%= @user.school %> (<%= @user.school.municipality %>)
           <% end %>
         <% end %>

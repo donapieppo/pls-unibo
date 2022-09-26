@@ -38,13 +38,6 @@ class UsersController < ApplicationController
       @user = current_user
     end
     authorize @user
-    if school_name = params[:user].delete(:school_name)
-      name, municipality = school_name.split(" -- ")
-      school = School.where(name: name, municipality: municipality).first
-      if municipality && school
-        @user.school_id = school.id
-      end
-    end
     if @user.update(user_params)
       redirect_to me_users_path, notice: 'I tuoi dati sono stati registrati.'
     else
@@ -75,12 +68,12 @@ class UsersController < ApplicationController
 
   def user_params
     # FIXME FIXME
-    params[:user].delete(:role) if params[:user][:role] == ''
-    permitted = [:name, :surname, :role, :school_city, :school_pec, :other_string]
+    params[:user].delete(:role) if params[:user][:role].blank?
+    permitted = [:name, :surname, :role, :school_id, :other_string]
     if current_user.staff?
       permitted << :email
     else
-      params[:user].delete(:email) unless current_user.staff?
+      params[:user].delete(:email) 
     end
 
     params[:user].permit(permitted)
