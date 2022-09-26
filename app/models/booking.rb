@@ -124,6 +124,11 @@ class Booking < ApplicationRecord
     false
   end
 
+  def seats_to_s
+    return unless self.seats.to_i > 0
+    "#{self.seats} post" + (self.seats > 1 ? 'i' : 'o')
+  end
+
   private 
 
   def create_nonce
@@ -162,6 +167,5 @@ class Booking < ApplicationRecord
   def manage_class_booking
     self.teacher_id = self.user_id if self.school_class
     self.school_class = nil if self.school_class.blank?
-  end
+  end 
 end
-
