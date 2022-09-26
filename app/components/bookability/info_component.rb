@@ -8,8 +8,10 @@ class Bookability::InfoComponent < ViewComponent::Base
     end
   end
 
+  private 
+
   def render?
-    @what.bookable?
+    @what.external_booking? || @what.bookable?
   end
 end
 
