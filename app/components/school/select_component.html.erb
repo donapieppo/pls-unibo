@@ -1,0 +1,17 @@
+<div data-controller="school">
+  <select data-school-target="province" name="province" id="province">
+    <option value="0"></option>
+    <% @provinces.keys.sort.each do |p| %>  
+      <option value="<%= p %>"><%= p %></option>
+    <% end %>
+  </select>
+
+  <select data-school-target="school" name="user[school_id]" id="school">
+    <option value="0"></option>
+    <% @provinces.each do |province, schools| %>  
+      <% schools.each do |school| %>  
+        <option data-province="<%= province %>" value="<%= school.id %>" style="display: none"><%= school.name %></option>
+      <% end %>
+    <% end %>
+  </select>
+</div>
