@@ -1,5 +1,19 @@
 require 'csv'
 
+class BookingUserRole < ActiveModel::Validator
+  def validate(record)
+    record.user.role or record.errors.add :base, "Manca il ruolo del'utente"
+  end
+end
+
+class BookingSchoolForSecondary < ActiveModel::Validator
+  def validate(record)
+    if record.user.student_secondary? || record.user.teacher?
+      record.user.school or record.errors.add :school_id, "Manca la scuola"
+    end
+  end
+end
+
 class BookingSingleValidator < ActiveModel::Validator
   def validate(record)
     return true if record.school_class
@@ -32,6 +46,8 @@ class Booking < ApplicationRecord
   validates :teacher_email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Formato della mail del docente non corretto" }, if: -> { user.student_secondary? }
 
   validates :name, :surname, presence: { allow_blank: false }
+  validates_with BookingUserRole 
+  validates_with BookingSchoolForSecondary
   validates_with BookingSingleValidator 
   validates_with BookingSeatsValidator 
 
@@ -100,7 +116,7 @@ class Booking < ApplicationRecord
       return true
     end
     if user.student_secondary?
-      if user.school_id.blank? || user.school_city.blank? || user.school_pec.blank?
+      unless user.school
         logger.info("booking missing data student_secondary")
         return true
       end
@@ -132,8 +148,10 @@ class Booking < ApplicationRecord
       self.role = u.role
       self.school = u.school
       self.other_string = u.other_string
-      self.school_pec = u.school_pec
-      self.school_city = u.school_city
+      if u.school
+        self.school_pec = u.school_pec
+        self.school_city = "#{u.school.municipality} - #{u.school.province}"
+      end
     end
   end
 
