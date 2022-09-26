@@ -8,6 +8,8 @@ module Bookable
     scope :with_bookings, -> { where(id: Booking.select(:activity_id).group(:activity_id).map(&:activity_id)) }
     scope :bookable_now, -> { where('activities.booking_start is not null and activities.booking_end is not null and activities.booking_start <= NOW() and NOW() <= activities.booking_end') }
     scope :bookable_undone, -> { where('activities.bookable != "done"') }
+
+    before_save :fix_dates_for_external
   end
 
   def bookable?
@@ -121,5 +123,12 @@ module Bookable
 
   def free_seats
     @free_seats_cache ||= (self.seats.to_i > 0) ? (self.seats - self.bookings.sum(:seats)) : 0
+  end
+
+  def fix_dates_for_external
+    if self.external_booking?
+      self.booking_start = nil
+      self.booking_end = nil
+    end
   end
 end
