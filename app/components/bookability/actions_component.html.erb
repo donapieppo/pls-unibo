@@ -34,18 +34,18 @@
 
 <% unless @what.external_booking? %>  
   <% if @free_seats < 1 %>
-    <div class="text-lg text-red-500 font-bold my-4">  
+    <div class="text-lg text-red-700 font-bold my-4">  
       <span class="fa-stack">
         <i class="fas fa-chair fa-stack-1x"></i>
-        <i class="fas fa-ban fa-stack-2x" style="color: tomato"></i>
+        <i class="fas fa-ban fa-stack-2x"></i>
       </span>
-      Posti esauriti.
+      Posti esauriti
     </div>
   <% end %>
 
   <% if @current_user %>  
     <div>
-      <%= link_to "Controlla le tue iscrizioni e prenotazioni per attività PLS", me_users_path, class: "underline" %>.
+      <%= link_to "Controlla le tue iscrizioni e prenotazioni per attività PLS", me_users_path, class: "underline" %>
     </div>
   <% else %> 
     <div class="italic">
