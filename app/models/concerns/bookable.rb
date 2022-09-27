@@ -99,7 +99,7 @@ module Bookable
     end
 
     if res.any?
-      return 'Prenotazione aperta ' + res.join(', ')
+      return 'Prenotazione aperta ' + res.to_sentence
     else
       return ''
     end
