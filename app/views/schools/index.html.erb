@@ -7,7 +7,11 @@
         <td><%= school.id %></td>
         <th><%= school.name %></th>
         <td><%= school.code %></td>
-        <td><%= link_to school.web_url, school.web_url, target: "_new" %></td>
+        <td>
+          <% unless school.web_url.blank? %>  
+            <%= link_to school.web_url, school.web_url, target: "_new" %>
+          <% end %>
+        </td>
         <td><%= school.school_type %></td>
       </tr>
     <% end %>
