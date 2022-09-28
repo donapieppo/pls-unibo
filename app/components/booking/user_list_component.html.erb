@@ -4,7 +4,7 @@
   <% @bookings.each do |b| %>  
     <li>
       <% if b.user %>  
-        <span class="font-bold text-green-700 underline">
+        <span class="font-bold">
           <% if @editable %>  
             <%= link_to b.user.to_s, [:edit, b.user] %>
           <% else %>
@@ -14,28 +14,32 @@
       <% else %>
         <%= b.name %> <%= b.surname %>
       <% end %>
-      <small>(<%= mail_to b.email %>)</small>
-
-      <% @teacher_mails << b.teacher_email if b.teacher_email %>  
-
-      <% if b.online %>  
-        <% @activity_online_mails << b.email %>  
-        <span class="text-yellow-500">online</span>
-      <% else %>
-        <% @activity_in_presence_mails << b.email %>  
-        <strong><%= b.seats %> <%= b.seats == 1 ? 'posto' : 'posti' %></strong>
-      <% end %>
 
       <%= t b.role %> 
       <% unless b.grade.blank? %>  
         <%= b.grade %> anno 
       <% end %>
 
+
+      <% @teacher_mails << b.teacher_email if b.teacher_email %>  
+
+      <span class="text-blue-800 font-bold">
+      <% if b.online %>  
+        <% @activity_online_mails << b.email %>  
+        online
+      <% else %>
+        <% @activity_in_presence_mails << b.email %>  
+        <%= b.seats %> <%= b.seats == 1 ? 'posto' : 'posti' %>
+      <% end %>
+      </span>
+
+      <span class="underline"><%= mail_to b.email %></span>
+
       <br/>
 
       <% if b.teacher_id %>  
         <strong>Iscritto dal docente:</strong> <%= b.teacher %>  
-      <% else %>
+      <% elsif ! b.teacher_name.blank? %>
         <strong>docente:</strong>
         <%= b.teacher_name %>  
         <%= b.teacher_surname %>  
@@ -45,7 +49,6 @@
       <strong>scuola:</strong> 
       <%= b.school %>  
       <%= b.school_city %>
-      <small>(<%= b.school_pec %>)</small>
       <% if @editable %>  
         <%= link_to_delete b %> 
       <% end %>
