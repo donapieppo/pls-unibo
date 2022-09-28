@@ -6,7 +6,7 @@ class BookingsController < ApplicationController
     activity_id = (params[:activity_id] or params[:edition_id] or params[:event_id])
 
     @activity = activity_id ? Activity.find(activity_id) : nil
-    @activities = activity_id ? [@activity] : Activity.order('start_date desc').with_bookings.bookable_undone
+    @activities = activity_id ? [@activity] : Activity.order('booking_start desc').with_bookings.bookable_undone
     @teacher_email = params[:temail] 
     @cluster = Cluster.find(params[:cluster]) if params[:cluster]
 
