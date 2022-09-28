@@ -4,8 +4,8 @@
   </div>
   <div class="pls-card-content">
     <div>
-      <%= calendar_icon %>
-      <%= l @activity.booking_start, format: :short %> - <%= l @activity.booking_end, format: :short %>
+      <%= calendar_icon %> &nbsp;
+      <%= l @activity.booking_start, format: :day_with_year %> - <%= l @activity.booking_end, format: :day_with_year %>
     </div>
     <div>
       <%= '<strong>Attività con prenotazioni da confermare</strong>'.html_safe if @activity.booking_to_confirm? %>  
