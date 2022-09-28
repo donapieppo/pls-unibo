@@ -12,7 +12,7 @@ def ok?(str)
 end
 
 namespace :pls do
-  desc "informazioni sul json"
+  desc "informazioni sul json delle scuole"
   task json_informations: :environment do
     f = File.read(JSON_FILE)
     JSON.parse(f)["@graph"].each do |row|
