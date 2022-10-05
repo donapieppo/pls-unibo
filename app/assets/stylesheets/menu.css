@@ -1,19 +1,19 @@
 .header{
   background-color: rgb(250, 250, 250);
   @apply py-4;
-  .header-title {
-    @apply flex-grow text-center;
-    a {
-      @apply lg:text-2xl px-4 py-2 font-light text-blue-900 font-bold tracking-widest rounded-2xl;
+
+  .navbar {
+    @apply top-0 w-full flex flex-row items-center justify-center;
+    .header-title {
+      min-width: 50%;
+      @apply grow text-center px-2;
+      @apply text-xl lg:text-2xl;
+      @apply text-blue-900 font-bold tracking-widest;
     }
     .header-user {
-      @apply float-right text-2xl p-1 px-2;
+      @apply shrink px-4 text-xs lg:text-base text-right;
     }
   }
-}
-
-.navbar {
-  @apply top-0 w-full flex flex-row items-center justify-center;
 }
 
 #modal-opener.active .bar:nth-child(2) {
