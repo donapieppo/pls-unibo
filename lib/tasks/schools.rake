@@ -5,10 +5,11 @@ require 'json'
 #
 # togliere solo SCUOLA INFANZIA SCUOLA PRIMARIA SCUOLA PRIMO GRADO
 #
-JSON_FILE = "/home/rails/pls-unibo/doc/SCUANAGRAFESTAT20222320220901.json"
+#JSON_FILE = "/home/rails/pls-unibo/doc/SCUANAGRAFESTAT20222320220901.json"
+JSON_FILE = "/home/rails/pls-unibo/doc/SCUANAGRAFEPAR20222320220901.json"; PARITARIE = true
 
 def ok?(str)
-  str =~ /IST [PROF|TEC]/ || str =~ /ISTITUTO / || str =~ /LICEO / || str =~ /SCUOLA MAGISTRALE/
+  str =~ /IST [PROF|TEC]/ || str =~ /ISTITUTO / || str =~ /LICEO / || str =~ /SCUOLA MAGISTRALE/ || str =~ /SCUOLA SEC\. SECONDO GRADO/
 end
 
 namespace :pls do
@@ -27,7 +28,9 @@ namespace :pls do
       # non prendiamo  
       # CodiceScuola: Testo Codice della scuola (plesso)
       # CodiceIstitutoRiferimento: Testo Codice dell' istituto a cui fa riferimento la scuola (plesso)
-      next unless row["miur:CODICEISTITUTORIFERIMENTO"] == row["miur:CODICESCUOLA"]
+      unless PARITARIE
+        next unless row["miur:CODICEISTITUTORIFERIMENTO"] == row["miur:CODICESCUOLA"]
+      end
       next unless ok?(row["miur:DESCRIZIONETIPOLOGIAGRADOISTRUZIONESCUOLA"])
 
       row.each do |k, v|
