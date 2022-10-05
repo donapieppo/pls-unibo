@@ -5,7 +5,7 @@ require 'json'
 #
 # togliere solo SCUOLA INFANZIA SCUOLA PRIMARIA SCUOLA PRIMO GRADO
 #
-#JSON_FILE = "/home/rails/pls-unibo/doc/SCUANAGRAFESTAT20222320220901.json"
+#JSON_FILE = "/home/rails/pls-unibo/doc/SCUANAGRAFESTAT20222320220901.json"; PARITARIE = false
 JSON_FILE = "/home/rails/pls-unibo/doc/SCUANAGRAFEPAR20222320220901.json"; PARITARIE = true
 
 def ok?(str)
@@ -48,7 +48,8 @@ namespace :pls do
                        province: row['miur:PROVINCIA'],
                        municipality: row['miur:DESCRIZIONECOMUNE'],
                        cap: row['miur:CAPSCUOLA'].to_i,
-                       address: row['miur:INDIRIZZOSCUOLA'] }
+                       address: row['miur:INDIRIZZOSCUOLA'], 
+                       private_school: PARITARIE }
       s.save!
       p s
     end
