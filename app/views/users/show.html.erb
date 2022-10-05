@@ -1,29 +1,24 @@
-<div class="container my-16">
-  <div>
-    Gentile <%= @user.cn %>, sei registrato
-    <div class="my-2">
-      <% if @user.role %>  
-        <div>
-          come <strong class="px-2"><%= t @user.role %></strong>
-        </div>
-        <% if @user.role == 'student_secondary' || @user.role == 'teacher' %> 
-          <% if @user.school %>
-            della scuola <%= @user.school %> (<%= @user.school.municipality %>)
-          <% end %>
+<div class="container my-16 md:flex">
+  <div class="md:w-1/2">
+    <h2 class="title">I tuoi dati</h2>
+    Sei registrato con l'indirizzo di posta <%= @user.email %>
+    <% if @user.role %>  
+      <br/>come <strong><%= t @user.role %></strong>
+      <% if @user.role == 'student_secondary' || @user.role == 'teacher' %> 
+        <% if @user.school %>
+          <br/>della scuola <%= @user.school %> (<%= @user.school.municipality %>)
         <% end %>
-      <% else %>
-        senza avere specificato il tuo ruolo (docente/studente/altro).<br/> Puoi aggiornare i tuoi dati
       <% end %>
-      <div>
-        con l'indirizzo di posta <%= @user.email %>.
-      </div>
+    <% else %>
+      <br/><strong>senza avere specificato il tuo ruolo (docente/studente/altro).</strong>
+      <br/>Puoi aggiornare i tuoi dati
+    <% end %>
+    <div class="mt-8">
+      <%= link_to 'Modifica i miei dati', myedit_users_path, class: 'button' %>  
     </div>
   </div>
-  <div class="mt-8">
-    <%= link_to 'Modifica i miei dati', myedit_users_path, class: 'button' %>  
-  </div>
 
-  <div class="p-2">
+  <div class="md:w-1/2">
     <h2 class="title">Le tue iscrizioni</h2>
     <% @bookings.each do |booking| %>
       <%= render Booking::DetailsComponent.new(booking, current_user, deletable: true) %>  
@@ -33,7 +28,7 @@
         <p>Al momento non sei iscritto ad alcuna attività.</p>
         <p>Le iscrizioni effettuate su siti esterni (i.e. SOFIA, Google Forms, etc.) NON compaiono in questa pagina.</p>
         <p>
-        <%= link_to "<i class='fas fa-arrow-alt-circle-right'></i> Vai all'elenco delle attività a cui è possibile iscriversi.".html_safe, editions_path(bookable: 1), class: 'underline' %>  
+        <%= link_to "<i class='fas fa-arrow-alt-circle-right pr-2'></i> Vai all'elenco delle attività a cui è possibile iscriversi.".html_safe, editions_path(bookable: 1), class: 'underline' %>  
         </p>
       </div>
     <% end %> 
