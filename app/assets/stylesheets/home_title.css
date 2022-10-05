@@ -37,7 +37,7 @@
   @apply text-4xl px-2;
 }
 
-#home-box-areas { 
+#home-box-first { 
   animation: incomea 2s; 
   @keyframes incomea {
     0% {
@@ -48,7 +48,7 @@
     }
   }
 }
-#home-box-projects { 
+#home-box-second { 
   animation: incomep 2s; 
   @keyframes incomep {
     0% {
@@ -59,7 +59,7 @@
     }
   }
 }
-#home-box-students { 
+#home-box-third { 
   animation: incomes 2s; 
   @keyframes incomes {
     0% {
