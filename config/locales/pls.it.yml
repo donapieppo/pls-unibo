@@ -13,9 +13,9 @@ it:
   event: Evento
   snippet: Blocco informazioni
   contact: Contatto
-  student_secondary: Studente scuola secondaria di secondo grado
-  student_university: Studente università
-  teacher: Docente scuola secondaria
+  student_secondary: Studente di scuola secondaria di secondo grado
+  student_university: Studente universitario
+  teacher: Docente di scuola secondaria
   other: Altro
 
   activerecord:
