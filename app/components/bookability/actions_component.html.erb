@@ -1,4 +1,6 @@
-<%= link_to 'Controlla i tuoi dati', myedit_users_path, class: 'underline' %>
+<% if @current_user %>  
+  <%= link_to 'Controlla i tuoi dati', myedit_users_path, class: 'underline' %>
+<% end %>
 
 <% if @bookable_for_itsself && !@user_this_booking %>  
   <div class="actions">
