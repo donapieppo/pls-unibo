@@ -18,7 +18,9 @@
           <strong><%= "Sede #{@campus.name}" if @campus %></strong>
         </div>
       <% end %>
-      <div><strong>Organizzato da:</strong> <%= @project.areas_to_s %></div>
+      <div>
+        Organizzato da: <strong><%= @project.areas_to_s %></strong>
+      </div>
       <% if @other_areas.any? %>  
         <div>Altre aree di interesse: <%= @other_areas.map(&:name).join(', ') %></div>
       <% end %>
