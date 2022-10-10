@@ -6,7 +6,11 @@ class BookingPolicy < ApplicationPolicy
   def create?
     @activity = @record.activity
 
-    @user && @activity.bookable_now? && @activity.bookable_by_user?(@user)
+    @user && @activity.bookable && 
+             @activity.bookable != 'no' && 
+             @activity.now_in_bookable_interval? && 
+             @activity.bookable_by_user?(@user) && 
+             (@record.online || @activity.free_seats > 0)
   end
 
   # teachers can add students
@@ -33,14 +37,6 @@ class BookingPolicy < ApplicationPolicy
   def create_student?
     @user && @user.teacher?
   end
-
-  # def anew?
-  #   acreate?
-  # end
-
-  # def acreate?
-  #   @record.activity.bookable_now?
-  # end
 
   def thankyou?
     true
