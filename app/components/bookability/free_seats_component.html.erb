@@ -1,0 +1,10 @@
+<% if @free_seats && @free_seats > 0 %>  
+  <div class="inline bg-pls-light p-2 px-4 rounded-2xl">
+    <%= @free_seats %> posti disponibili in presenza
+  </div>
+<% else %>
+  <div class="inline bg-red-200 p-2 px-4 rounded-2xl">
+    Non sono disponibili posti in presenza.
+  </div>
+<% end %>
+
