@@ -4,9 +4,16 @@
   <div class="my-8">
     <h2 class="text-center"><%= @activity %></h2>
   </div>
-  <div class="inline bg-pls-light p-2 px-4 rounded-2xl">
-    <%= @free_seats ? "#{@free_seats} posti disponibili" : "" %>
-  </div>
+
+  <% if @free_seats && @free_seats > 0 %>  
+    <div class="inline bg-pls-light p-2 px-4 rounded-2xl">
+      <%= @free_seats %> posti disponibili in presenza
+    </div>
+  <% else %>
+    <div class="inline bg-red-200 p-2 px-4 rounded-2xl">
+      Non sono disponibili posti in presenza.
+    </div>
+  <% end %>
 
   <% txt_action = @activity.booking_to_confirm? ? ' Prenotami' : ' Iscrivimi' %>  
 
@@ -18,7 +25,7 @@
         <%= simple_form_for [@activity, @booking] do |f| %>  
           <%= f.error_notification %>
           <% if @activity.on_and_off_line? %>  
-            <%= f.input :online %>
+            <%= f.input :online, disabled: (@free_seats < 1) %>
           <% end %> 
           <% if current_user && current_user.student_secondary? %>  
             <%= f.input :teacher_name %>
