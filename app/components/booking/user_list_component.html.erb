@@ -59,7 +59,7 @@
       <% end %>
 
       <%# <span class="font-mono"><%= b.nonce ? b.nonce : '-----' %1></span> %> 
-      <small>(<%= l b.created_at %>)</small>
+      <small>(<%= l b.created_at %> - <%= b.id %>)</small>
     </li>
   <% end %>
 </ul>
