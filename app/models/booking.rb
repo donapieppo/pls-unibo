@@ -28,6 +28,7 @@ end
 
 class BookingSeatsValidator < ActiveModel::Validator
   def validate(record)
+    return true if record.online
     activity = record.activity
     if activity.seats.to_i > 0 && record.seats.to_i > activity.free_seats
       record.errors.add :seats, "Non ci sono sufficienti posti da prenotare."

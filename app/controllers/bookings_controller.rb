@@ -37,7 +37,7 @@ class BookingsController < ApplicationController
       return
     end
     @free_seats = @activity.free_seats
-    @booking = @activity.bookings.new(user_id: current_user.id)
+    @booking = @activity.bookings.new(user_id: current_user.id, online: (@free_seats < 1))
     authorize @booking
     if @booking.missing_data?(:user)
       redirect_to myedit_users_path, alert: "Si prega di fornire i dati richiesti prima di iscriversi."
@@ -47,7 +47,7 @@ class BookingsController < ApplicationController
 
   def new_student
     @free_seats = @activity.free_seats
-    @booking = @activity.bookings.new(teacher_id: current_user.id)
+    @booking = @activity.bookings.new(teacher_id: current_user.id, online: (@free_seats < 1))
     authorize @booking
     if @booking.missing_data?(:teacher)
       redirect_to myedit_users_path, alert: "Si prega di fornire i dati richiesti prima di iscriversi."
@@ -57,7 +57,7 @@ class BookingsController < ApplicationController
 
   def new_school_class
     @free_seats = @activity.free_seats
-    @booking = @activity.bookings.new(user_id: current_user.id, teacher_id: current_user.id)
+    @booking = @activity.bookings.new(user_id: current_user.id, teacher_id: current_user.id, online: (@free_seats < 1))
     authorize @booking
   end
 
