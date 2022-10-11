@@ -108,7 +108,7 @@ module Bookable
   end
 
   def free_seats
-    @free_seats_cache ||= (self.seats.to_i > 0) ? (self.seats - self.bookings.sum(:seats)) : 0
+    @free_seats_cache ||= (self.seats.to_i > 0) ? (self.seats - self.bookings.in_presence.sum(:seats)) : 0
   end
 
   def fix_dates_for_external
