@@ -26,6 +26,18 @@ class BookingSingleValidator < ActiveModel::Validator
   end
 end
 
+class BookingOnLineOrPresence < ActiveModel::Validator
+  def validate(record)
+    activity = record.activity
+    if record.online && ! activity.online
+      record.errors.add :base, :not_online, message: "Non è possibile prenotare in remoto questa attività."
+    end
+    if ! record.online && ! activity.in_presence
+      record.errors.add :base, :not_in_presence, message: "Non è possibile prenotare in presenza questa attività."
+    end
+  end
+end
+
 class BookingSeatsValidator < ActiveModel::Validator
   def validate(record)
     return true if record.online
@@ -50,6 +62,7 @@ class Booking < ApplicationRecord
   validates_with BookingUserRole 
   validates_with BookingSchoolForSecondary
   validates_with BookingSingleValidator 
+  validates_with BookingOnLineOrPresence 
   validates_with BookingSeatsValidator 
 
   scope :by_teacher, -> (u_id) { where(teacher_id: u_id) }
