@@ -1,12 +1,12 @@
 require 'csv'
 
-class BookingUserRole < ActiveModel::Validator
+class BookingUserRoleValidator < ActiveModel::Validator
   def validate(record)
     record.user.role or record.errors.add :base, "Manca il ruolo del'utente"
   end
 end
 
-class BookingSchoolForSecondary < ActiveModel::Validator
+class BookingSchoolForSecondaryValidator < ActiveModel::Validator
   def validate(record)
     if record.user.student_secondary? || record.user.teacher?
       record.user.school or record.errors.add :school_id, "Manca la scuola"
@@ -59,8 +59,8 @@ class Booking < ApplicationRecord
   validates :teacher_email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Formato della mail del docente non corretto" }, if: -> { user.student_secondary? }
 
   validates :name, :surname, presence: { allow_blank: false }
-  validates_with BookingUserRole 
-  validates_with BookingSchoolForSecondary
+  validates_with BookingUserRoleValidator
+  validates_with BookingSchoolForSecondaryValidator
   validates_with BookingSingleValidator 
   validates_with BookingOnLineOrPresence 
   validates_with BookingSeatsValidator 
