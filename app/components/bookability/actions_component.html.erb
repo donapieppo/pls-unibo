@@ -2,7 +2,11 @@
   <div class="actions">
     <% if @bookable_by_user %>  
       <div class="my-2">
-        [<%= @free_seats %> posti liberi in presenza su <%= @what.seats %>]
+        <% if @free_seats > 0 %>  
+          [<%= @free_seats %> posti liberi in presenza su <%= @what.seats %>]
+        <% else %>
+          [ posti in presenza esauriti ]
+        <% end %>
       </div>
       <% if @what.booking_to_confirm? %>  
         <div>
