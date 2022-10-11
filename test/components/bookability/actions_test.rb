@@ -47,4 +47,12 @@ class Bookability::ActionComponentTest < ViewComponent::TestCase
     render_inline Bookability::ActionsComponent.new(edition, u)
     assert_link 'prenota'
   end
+
+  test "booking = yes for class and remote and in presence event can not book a a class if not @seats > 0" do
+    u = FactoryBot.create(:user, :student_secondary)
+    edition = FactoryBot.create(:edition, bookable: yes, bookable_by_teacher: true, bookable_for_classes: treu, seats: 1, 
+                                          booking_start: Date.yesterday, booking_end: Date.tomorrow)
+    render_inline Bookability::ActionsComponent.new(edition, u)
+    assert_link 'iscrivi'
+  end
 end
