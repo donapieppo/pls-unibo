@@ -1,12 +1,8 @@
-<% if @current_user %>  
-  <%= link_to 'Controlla i tuoi dati', myedit_users_path, class: 'underline' %>
-<% end %>
-
 <% if @bookable_for_itsself && !@user_this_booking %>  
   <div class="actions">
     <% if @bookable_by_user %>  
       <div class="my-2">
-        [<%= @free_seats %> posti liberi su <%= @what.seats %>]
+        [<%= @free_seats %> posti liberi in presenza su <%= @what.seats %>]
       </div>
       <% if @what.booking_to_confirm? %>  
         <div>
@@ -46,6 +42,9 @@
   <% end %>
 
   <% if @current_user %>  
+    <div>
+      <%= link_to 'Controlla i tuoi dati', myedit_users_path, class: 'underline' %>
+    </div>
     <div>
       <%= link_to "Controlla le tue iscrizioni e prenotazioni per attività PLS", me_users_path, class: "underline" %>
     </div>
