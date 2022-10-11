@@ -12,16 +12,8 @@ module Bookable
     before_save :fix_dates_for_external
   end
 
-  def bookable?
-    self.bookable && self.bookable != 'no' && self.booking_start && self.booking_end
-  end
-
   def external_booking?
     self.bookable && self.bookable == 'external'
-  end
-
-  def booking_to_confirm?
-    self.bookable && self.bookable == 'to_confirm'
   end
 
   def booking_to_confirm?
@@ -31,12 +23,6 @@ module Bookable
   def now_in_bookable_interval?
     now = Time.now
     self.booking_start && self.booking_end && self.booking_start < now && now < self.booking_end
-  end
-
-  # FIXME 
-  # unite with scope :bookable_now
-  def bookable_now?
-    self.bookable? && self.now_in_bookable_interval? && free_seats > 0
   end
 
   def bookable_by_user?(_user)

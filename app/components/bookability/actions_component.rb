@@ -7,8 +7,8 @@ class Bookability::ActionsComponent < ViewComponent::Base
     @free_seats = @what.free_seats.to_i
 
     # con start e end date e non 'no'
-    if @current_user && @what.bookable?
-      @booking = what.bookings.new
+    if @current_user && @what.bookable && @what.bookable != 'no' && @what.booking_start && @what.booking_end
+      @booking = what.bookings.new(online: true)
 
       @bookable_by_user = BookingPolicy.new(@current_user, @booking).create?
 
@@ -25,6 +25,6 @@ class Bookability::ActionsComponent < ViewComponent::Base
   end
 
   def render?
-    @what.bookable?
+    @what.bookable && @what.bookable != 'no' && @what.booking_start && @what.booking_end
   end
 end
