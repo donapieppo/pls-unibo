@@ -14,7 +14,7 @@ class Bookability::ActionsComponent < ViewComponent::Base
 
       @bookable_for_itsself = @bookable_by_user && @what.bookable_for_itsself?(@current_user)
       @bookable_for_students = @bookable_by_user && @what.bookable_for_students?(@current_user)
-      @bookable_for_classes = @bookable_by_user && @what.bookable_for_classes?(@current_user)
+      @bookable_for_classes = @free_seats > 0 && @bookable_by_user && @what.bookable_for_classes?(@current_user)
 
       if @bookable_for_itsself 
         @user_this_booking = @what.bookings.where(user_id: @current_user.id).where(school_class: nil).first 
