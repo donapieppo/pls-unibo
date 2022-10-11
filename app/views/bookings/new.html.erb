@@ -5,54 +5,37 @@
     <h2 class="text-center"><%= @activity %></h2>
   </div>
 
-  <% if @free_seats && @free_seats > 0 %>  
-    <div class="inline bg-pls-light p-2 px-4 rounded-2xl">
-      <%= @free_seats %> posti disponibili in presenza
-    </div>
-  <% else %>
-    <div class="inline bg-red-200 p-2 px-4 rounded-2xl">
-      Non sono disponibili posti in presenza.
-    </div>
-  <% end %>
+  <%= render Bookability::FreeSeatsComponent.new(@activity) %>  
 
   <% txt_action = @activity.booking_to_confirm? ? ' Prenotami' : ' Iscrivimi' %>  
 
-  <% if current_user %>
-    <div class="my-8">
-      <% if @activity.booked_by?(current_user) %>  
-        <div class="info">Sei registrato a questa attività.</div>
-      <% else %>
-        <%= simple_form_for [@activity, @booking] do |f| %>  
-          <%= f.error_notification %>
-          <% if @activity.on_and_off_line? %>  
-            <%= f.input :online, disabled: (@free_seats < 1) %>
-          <% end %> 
-          <% if current_user && current_user.student_secondary? %>  
-            <%= f.input :teacher_name %>
-            <%= f.input :teacher_surname %>
-            <%= f.input :teacher_email %>
-            <%= f.input :grade, collection: 3..5, as: :radio_buttons %>
-          <% end %>
-          <%= f.input :notes %>  
-          <%= f.submit txt_action %>  
-        <% end %>
-      <% end %>
-    </div>
-  <% else %>
-    <div class="py-8 my-8 text-center">
-      <p>Per iscriverti è necessario accedere con le credenziali di Google.</p>
-      <%= link_to 'ACCEDI', login_path, class: 'my-8 big-button inline-block' %>
-    </div>
+  <div class="my-8">
+    <% if @activity.booked_by?(current_user) %>  
+      <div class="info">Sei registrato a questa attività.</div>
+    <% else %>
+      <%= simple_form_for [@activity, @booking] do |f| %>  
+        <%= f.error_notification %>
 
-    <div class="my-8 max-w-2xl mx-auto">
-      <p>Altrimenti puoi iscriverti a questa attività scrivedo una mail a ...</p>
-      <%# <p>inserendo i dati in questo form.</p> %>
-      <%# <p>Così facendo però non potrai....</p> %>
-      <%# <%= simple_form_for [@activity, @booking] do |f| %1> %>  
-      <%#   <%= f.input :email %1> %>
-      <%#   <%= render partial: 'users/common_to_booking', locals: { f: f } %1> %>  
-      <%#   <%= f.submit txt_action %1> %>  
-      <%# <% end %1> %>
+        <% if @booking.online == true %>
+          <div class="inline rounded-xl bg-blue-200 px-4 py-2">Partecipazione in remoto.</div>
+          <%= f.input :online, as: :hidden %>  
+        <% elsif @booking.online == false %>
+          <div class="inline rounded-xl bg-blue-200 px-4 py-2">Partecipazione in presenza.</div>
+          <%= f.input :online, as: :hidden %>  
+        <% else %>
+          <%= f.input :online %>
+        <% end %>
+
+        <% if current_user && current_user.student_secondary? %>  
+          <%= f.input :teacher_name %>
+          <%= f.input :teacher_surname %>
+          <%= f.input :teacher_email %>
+          <%= f.input :grade, collection: 3..5, as: :radio_buttons %>
+        <% end %>
+        <%= f.input :notes %>  
+        <%= f.submit txt_action %>  
+      <% end %>
+    <% end %>
   </div>
-<% end %>
+</div>
 
