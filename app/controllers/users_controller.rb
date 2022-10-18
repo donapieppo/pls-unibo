@@ -61,7 +61,10 @@ class UsersController < ApplicationController
                     surname: "#{@user.id}Surname", 
                     email: "#{@user.id}@deleted-pls-unibo.it")
     end
-    redirect_to logout_path
+    session[:user_id] = nil
+    reset_session
+    cookies.clear
+    redirect_to root_path, notice: "Il suo account è stato cancellato come richiesto."
   end
 
   private
