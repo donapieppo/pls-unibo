@@ -37,8 +37,7 @@ class BookingsController < ApplicationController
       return
     end
     @free_seats = @activity.free_seats
-    @booking = @activity.bookings.new(user_id: current_user.id)
-    fix_on_line
+    @booking = @activity.bookings.new(user_id: current_user.id, online: params[:online])
     authorize @booking
     if @booking.missing_data?(:user)
       redirect_to myedit_users_path, alert: "Si prega di fornire i dati richiesti prima di iscriversi."
@@ -49,7 +48,6 @@ class BookingsController < ApplicationController
   def new_student
     @free_seats = @activity.free_seats
     @booking = @activity.bookings.new(teacher_id: current_user.id, online: (@free_seats < 1))
-    fix_on_line
     authorize @booking
     if @booking.missing_data?(:teacher)
       redirect_to myedit_users_path, alert: "Si prega di fornire i dati richiesti prima di iscriversi."
@@ -142,18 +140,6 @@ class BookingsController < ApplicationController
   end
 
   private
-
-  def fix_on_line
-    if @activity.on_and_off_line? && @free_seats && @free_seats > 0
-      @booking.online = nil
-    elsif @activity.in_presence && @free_seats && @free_seats > 0
-      @booking.online = false
-    elsif @activity.online
-      @booking.online = true
-    else
-      raise "fix on line"
-    end
-  end
 
   def set_booking_and_check_permission
     @booking = Booking.find(params[:id])
