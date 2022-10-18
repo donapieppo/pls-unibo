@@ -1,11 +1,9 @@
 <div class="container">
-  <h1 class="title">Iscrizione</h1>
+  <h1 class="title">Iscrizione <%= @booking.online == true ? "in remoto" : "in presenza" %></h1>
 
   <div class="my-8">
     <h2 class="text-center"><%= @activity %></h2>
   </div>
-
-  <%= render Bookability::FreeSeatsComponent.new(@activity) %>  
 
   <% txt_action = @activity.booking_to_confirm? ? ' Prenotami' : ' Iscrivimi' %>  
 
@@ -18,13 +16,12 @@
 
         <% if @booking.online == true %>
           <div class="inline rounded-xl bg-blue-200 px-4 py-2">Partecipazione in remoto.</div>
-          <%= f.input :online, as: :hidden %>  
-        <% elsif @booking.online == false %>
-          <div class="inline rounded-xl bg-blue-200 px-4 py-2">Partecipazione in presenza.</div>
-          <%= f.input :online, as: :hidden %>  
         <% else %>
-          <%= f.input :online %>
+          <div class="inline rounded-xl bg-blue-200 px-4 py-2">Partecipazione in presenza.</div>
+          <%= render Bookability::FreeSeatsComponent.new(@activity) %>  
         <% end %>
+
+        <%= f.input :online, as: :hidden %>  
 
         <% if current_user && current_user.student_secondary? %>  
           <%= f.input :teacher_name %>
