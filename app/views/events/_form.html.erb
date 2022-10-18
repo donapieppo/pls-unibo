@@ -7,16 +7,7 @@
     <%= f.input :name %>
     <%= f.input :description %>
 
-    <%= f.input :in_presence %>
-    <div id="if_in_presence">
-      <%= f.input :place %>
-      <%= f.input :google_map, as: :string, placeholder: 'https://' %>
-    </div>
-
-    <%= f.input :online %>
-    <div id="if_online">
-      <%= f.input :access_url, as: :string, placeholder: 'https://' %>
-    </div>
+    <%= render Activity::PartecipationModeFormComponent.new(f) %>
 
     <%= f.input :start_date, minute_step: 10 %>
     <%= f.input :duration %>
@@ -34,12 +25,3 @@
     <%= f.submit %>
   <% end %>
 </div>
-
-<%# <%= javascript_tag do %1> %>  
-<%#   document.addEventListener('DOMContentLoaded', (event) => { %>
-<%#     display_unless(['no'], document.getElementById('booking_dates'), document.getElementById('event_bookable')); %>
-<%#     display_if('external', document.getElementById('booking_url'), document.getElementById('event_bookable')); %>
-<%#     display_if_checked(document.getElementById('if_in_presence'), document.getElementById('event_in_presence')); %>
-<%#     display_if_checked(document.getElementById('if_online'), document.getElementById('event_online')); %>
-<%#   }); %>
-<%# <% end %1> %>
