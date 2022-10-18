@@ -3,15 +3,14 @@ require "test_helper"
 class BookingsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = FactoryBot.create(:user, :student_secondary)
-    @edition = FactoryBot.create(:edition, bookable: 'yes', bookable_by_student_secondary: true, seats: 10, 
-                                booking_start: Date.today - 3.days, booking_end: Date.tomorrow)
+    @edition = FactoryBot.create(:edition, bookable_in_presence, seats: 10)
     post '/auth/developer/callback', params: { name: @user.email }
   end
 
-  test "first" do 
+  test 'new booking page has 10 posti disponibili in presenza' do
     get new_edition_booking_url(@edition)
     assert_response :success
-    assert_select "div", text: /10 posti disponibili in presenza/
+    assert_select 'div', text: /10 posti disponibili in presenza/
   end
 
   # test "should get index" do
