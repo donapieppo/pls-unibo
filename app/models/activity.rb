@@ -55,8 +55,9 @@ class Activity < ApplicationRecord
     end
   end
 
-  def speakers_to_s
-    self.speakers.map { |speaker| speaker.to_s }.join(', ')
+  def speakers_to_s(if_blank: '')
+    res = self.speakers.map { |speaker| speaker.to_s }.join(', ')
+    res.blank? ? if_blank : res
   end
 
   def this_academic_year?
