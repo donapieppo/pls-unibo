@@ -6,11 +6,14 @@ class BookingPolicy < ApplicationPolicy
   def create?
     @activity = @record.activity
 
-    @user && @activity.bookable && 
-             @activity.bookable != 'no' && 
-             @activity.now_in_bookable_interval? && 
-             @activity.bookable_by_user?(@user) && 
-             (@record.online || @activity.free_seats > 0)
+    return false if (@record.online && !@activity.online)
+    return false if (!@record.online && !@activity.in_presence)
+
+    @user && @activity.bookable &&
+             @activity.bookable != 'no' &&
+             @activity.now_in_bookable_interval? &&
+             @activity.bookable_by_user_role?(@user) &&
+             (@record.online || (@activity.free_seats > 0 && !@activity.cluster_complete_for_user?(@user)))
   end
 
   # teachers can add students
