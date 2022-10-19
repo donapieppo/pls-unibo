@@ -6,8 +6,8 @@ class Bookability::ActionsComponent < ViewComponent::Base
     @current_user = current_user
     @free_seats = @what.free_seats.to_i
 
-    # con start e end date e non 'no'
-    if @current_user && @what.bookable && @what.bookable != 'no' && @what.booking_start && @what.booking_end
+    # con start e end date e interno (non 'no' e non external)
+    if render?
       booking_online = what.bookings.new(online: true)
       booking_inpresence = what.bookings.new(online: false)
 
@@ -29,6 +29,6 @@ class Bookability::ActionsComponent < ViewComponent::Base
   end
 
   def render?
-    @what.bookable && @what.bookable != 'no' && @what.booking_start && @what.booking_end
+    @current_user && @what.internally_bookable_with_dates?
   end
 end
