@@ -8,9 +8,13 @@ class Bookability::ActionsComponent < ViewComponent::Base
 
     # con start e end date e non 'no'
     if @current_user && @what.bookable && @what.bookable != 'no' && @what.booking_start && @what.booking_end
-      @booking = what.bookings.new(online: true)
+      booking_online = what.bookings.new(online: true)
+      booking_inpresence = what.bookings.new(online: false)
 
-      @bookable_by_user = BookingPolicy.new(@current_user, @booking).create?
+      @bookable_by_user_online = BookingPolicy.new(@current_user, booking_online).create? 
+      @bookable_by_user_inpresence = BookingPolicy.new(@current_user, booking_inpresence).create?
+
+      @bookable_by_user = @bookable_by_user_online || @bookable_by_user_inpresence
 
       @bookable_for_itsself = @bookable_by_user && @what.bookable_for_itsself?(@current_user)
       @bookable_for_students = @bookable_by_user && @what.bookable_for_students?(@current_user)
