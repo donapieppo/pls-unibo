@@ -1,4 +1,6 @@
-<div data-controller="booking">
+<h3>Iscrizioni</h3>
+
+<div data-controller="booking" class="p-4 bg-gray-100 border border-pls rounded-xl">
   <%= @form.input :bookable, collection: [['no', 'no'], 
                                           ['si', 'yes'], 
                                           ['da confermare', 'to_confirm'], 
@@ -12,7 +14,6 @@
     <%= @form.input :booking_end, minute_step: 10 %>
   </div>
   <div data-booking-target="by">
-    <h3>Modaltá Iscrizioni</h3>
   <%# <%= @form.input :bookable_by, collection: [['aperte a tutti', 'all'], %>
   <%#                                            ['studenti scuola secondaria', 'student_secondary'], %> 
   <%#                                            ['studenti universitari', 'student_university'], %> 
