@@ -1,8 +1,14 @@
 require 'csv'
 
-class BookingUserRoleValidator < ActiveModel::Validator
+class BookingUserRolePresenceValidator < ActiveModel::Validator
   def validate(record)
     record.user.role or record.errors.add :base, "Manca il ruolo del'utente"
+  end
+end
+
+class BookingUserRoleValidator < ActiveModel::Validator
+  def validate(record)
+    record.activity.bookable_by_user_role?(record.user) or record.errors.add :base, "Ruolo utente non corretto per questa attività"
   end
 end
 
@@ -21,18 +27,25 @@ class BookingSingleValidator < ActiveModel::Validator
     user = record.user
     others = user.bookings.where(activity_id: record.activity_id).where(school_class: nil).count
     if others > 0 
-      record.errors.add :base, "Già prenotato questa attività."
+      record.errors.add :base, 'Già prenotato questa attività.'
+    end
+  end
+end
+
+class BookingLimitInClusterValidator < ActiveModel::Validator
+  def validate(record)
+    if record.activity.cluster_complete_for_user?(record.user)
+      record.errors.add :base, 'Già prenotato attività in questo raggruppamento.'
     end
   end
 end
 
 class BookingOnLineOrPresence < ActiveModel::Validator
   def validate(record)
-    activity = record.activity
-    if record.online && ! activity.online
+    if record.online && ! record.activity.online
       record.errors.add :base, :not_online, message: "Non è possibile prenotare in remoto questa attività."
     end
-    if ! record.online && ! activity.in_presence
+    if ! record.online && ! record.activity.in_presence
       record.errors.add :base, :not_in_presence, message: "Non è possibile prenotare in presenza questa attività."
     end
   end
@@ -41,8 +54,7 @@ end
 class BookingSeatsValidator < ActiveModel::Validator
   def validate(record)
     return true if record.online
-    activity = record.activity
-    if activity.seats.to_i > 0 && record.seats.to_i > activity.free_seats
+    if record.activity.seats.to_i > 0 && record.seats.to_i > record.activity.free_seats
       record.errors.add :seats, "Non ci sono sufficienti posti da prenotare."
     end
   end
@@ -59,19 +71,21 @@ class Booking < ApplicationRecord
   validates :teacher_email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Formato della mail del docente non corretto" }, if: -> { user.student_secondary? }
 
   validates :name, :surname, presence: { allow_blank: false }
+  validates_with BookingUserRolePresenceValidator
   validates_with BookingUserRoleValidator
   validates_with BookingSchoolForSecondaryValidator
   validates_with BookingSingleValidator 
   validates_with BookingOnLineOrPresence 
   validates_with BookingSeatsValidator 
+  validates_with BookingLimitInClusterValidator 
 
   scope :by_teacher, -> (u_id) { where(teacher_id: u_id) }
   scope :in_presence, -> { where(online: false) }
   scope :online, -> { where(online: true) }
 
   before_validation :copy_params_from_user,
-                    :manage_class_booking, 
-                    :confirm_if_activity_not_to_confirm
+    :manage_class_booking, 
+    :confirm_if_activity_not_to_confirm
   after_create :create_nonce
 
   # FIXME
