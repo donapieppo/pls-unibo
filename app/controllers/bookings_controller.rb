@@ -1,31 +1,32 @@
 class BookingsController < ApplicationController
-  before_action :set_activity, except: %i(index thankyou confirm destroy)
-  before_action :set_booking_and_check_permission, only: %i(thankyou confirm, destroy)
+  before_action :set_activity, except: %i[index thankyou confirm destroy]
+  before_action :set_booking_and_check_permission, only: %i[thankyou confirm destroy]
 
   def index
     activity_id = (params[:activity_id] or params[:edition_id] or params[:event_id])
 
     @activity = activity_id ? Activity.find(activity_id) : nil
     @activities = activity_id ? [@activity] : Activity.order('booking_start desc').with_bookings.bookable_undone
-    @teacher_email = params[:temail] 
     @cluster = Cluster.find(params[:cluster]) if params[:cluster]
+
+    # TODO
+    @teacher_email = params[:temail]
 
     authorize :booking
 
     respond_to do |format|
-      format.html do  
-      end
+      format.html {}
       format.csv do
-        if @cluster
-          bookings = Booking.find(@cluster.activities.map(&:booking_ids).flatten.uniq)
-        elsif @activity
-          bookings = @activity.bookings
-        elsif @teacher_email
-          bookings = Booking.where(teacher_email: @teacher_email).includes(:user, :activity)
-        else
-          bookings = []
-        end
-        send_data Booking.to_csv(bookings), filename: "prenotazioni.csv" 
+        bookings = if @cluster
+                     Booking.find(@cluster.activities.map(&:booking_ids).flatten.uniq)
+                   elsif @activity
+                     @activity.bookings
+                   elsif @teacher_email
+                     Booking.where(teacher_email: @teacher_email).includes(:user, :activity)
+                   else
+                     []
+                   end
+        send_data Booking.to_csv(bookings), filename: 'prenotazioni.csv'
       end
     end
   end
