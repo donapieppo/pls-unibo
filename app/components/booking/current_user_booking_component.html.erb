@@ -14,7 +14,7 @@
     <%= button_to "Cancella l'iscrizione", booking_path(@user_this_booking), method: :delete, class: 'button-danger' %>  
   </div>
 <% elsif @user_sibling_booking_activity %>
-  <div class="text-xl text-green-700 font-bold my-4">  
+  <div class="text-lg text-green-700 font-bold my-4">  
     Sei iscritto all'attività 
     &ldquo;<span class="underline"><%= link_to @user_sibling_booking_activity.to_s, @user_sibling_booking_activity %>&rdquo;</span>
     dello stesso gruppo. 
