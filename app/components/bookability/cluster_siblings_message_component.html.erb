@@ -1,9 +1,8 @@
-<hr class="my-2"/>
-<div class="bg-gray-100 p-4">
+<div class="bg-gray-100 p-4 rounded-xl border border-pls mt-4">
   <div class="text-yellow-600 text-lg">
     <%= helpers.exclamation_icon %> Nota: iscrizioni uniche con 
   </div>
-  <ul>
+  <ul class="pl-4 my-2">
     <% @siblings.each do |activity| %>
       <li><%= link_to activity.to_s, activity %></li>
     <% end %>
