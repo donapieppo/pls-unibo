@@ -3,8 +3,9 @@
     per le iscrizioni visitare il sito
     <%= link_to @what.booking_url, @what.booking_url %>  
   <% else %>
-    Iscrizioni aperte <br/>dal <%= l @what.booking_start %> al <%= l @what.booking_end %><br/>
-    <%= @what.bookable_by_description.upcase %>
-  <% end %>
+    <%= @what.bookable_by_description.upcase %><br/>
+    dal <%= l @what.booking_start %>
+    al <%= l @what.booking_end %>.
+<% end %>
 </div>
 
