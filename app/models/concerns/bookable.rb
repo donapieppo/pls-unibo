@@ -36,8 +36,24 @@ module Bookable
     self.bookable && self.bookable == 'to_confirm'
   end
 
+
   def internally_bookable_with_dates?
     self.bookable && self.bookable != 'no' && self.bookable != 'external' && self.with_booking_dates?
+  end
+
+  def booking_action_to_s
+    return "" unless self.bookable
+    self.booking_to_confirm? ? 'prenota' : 'iscriviti'
+  end
+
+  def booking_action_your_students_to_s
+    return "" unless self.bookable
+    self.booking_to_confirm? ? 'prenota i tuoi studenti' : 'iscrivi i tuoi studenti'
+  end
+
+  def booking_action_class_to_s
+    return "" unless self.bookable
+    self.booking_to_confirm? ? 'prenota una classe di studenti' : 'iscrivi una classe di studenti'
   end
 
   def now_in_bookable_interval?
