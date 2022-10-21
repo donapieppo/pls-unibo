@@ -2,7 +2,7 @@
   <h1 class="title">Iscrivi uno studente</h1>
 
   <p>Sei registrato come docente.</p>
-  <p>Puoi iscrivere i tuoi studenti fornendo nome, cognome e email dello studente.</p>
+  <p>Puoi iscrivere i tuoi studenti fornendo il loro nome, cognome e la loro email.</p>
 
   <%= form_with url: [:create_student, @activity, :bookings] do |f| %>  
     <% if @booking.errors.any? %>
