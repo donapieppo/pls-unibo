@@ -13,31 +13,18 @@
     <%= @form.input :booking_start, minute_step: 10 %>
     <%= @form.input :booking_end, minute_step: 10 %>
   </div>
+
   <div data-booking-target="by">
-  <%# <%= @form.input :bookable_by, collection: [['aperte a tutti', 'all'], %>
-  <%#                                            ['studenti scuola secondaria', 'student_secondary'], %> 
-  <%#                                            ['studenti universitari', 'student_university'], %> 
-  <%#                                            ['docenti', 'teacher']], %>  
-  <%#                               include_blank: false %1> %>
-
-  <%= @form.input :bookable_by_all %>
-  <%= @form.input :bookable_by_student_secondary %>
-  <%= @form.input :bookable_by_student_university %>
-  <%= @form.input :bookable_by_teacher %>
-  <%= @form.input :bookable_by_teacher_for_students %>
-  <%= @form.input :bookable_by_teacher_for_classes %>
-  </div>
-
-  <div data-booking-target="for">
-  <%# <%= @form.input :bookable_for, collection: [['lo stesso che si iscrive', 'itsself'], %>
-  <%#                                             ['studenti', 'students'], %> 
-  <%#                                             ['classi di studenti', 'classes']], %> 
-  <%#                                include_blank: false %1> %>
+    <%= @form.input :bookable_by_all %>
+    <%= @form.input :bookable_by_student_secondary %>
+    <%= @form.input :bookable_by_student_university %>
+    <%= @form.input :bookable_by_teacher %>
+    <%= @form.input :bookable_by_teacher_for_students %>
+    <%= @form.input :bookable_by_teacher_for_classes %>
   </div>
 
   <div data-booking-target="url">
     <%= @form.input :booking_url, as: :string, hint: "In caso di sofia #{SOFIA_LINK}" %>
   </div>
-
 </div>
 
