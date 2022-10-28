@@ -69,7 +69,7 @@ class EditionsController < ApplicationController
   def edition_params
     params[:edition].permit(:hidden, :in_evidence, :in_presence, :place, :google_map, :online, :access_url, :name, :description, 
                             :details, :academic_year, :audience_id, :seats, :sofia, :pcto, 
-                            :bookable, :bookable_by, :bookable_for, :booking_url, :booking_start, :booking_end, 
+                            :bookable, :booking_url, :booking_start, :booking_end, 
                             :bookable_by_all, :bookable_by_student_secondary, :bookable_by_student_university, 
                             :bookable_by_teacher, :bookable_by_teacher_for_students, :bookable_by_teacher_for_classes,
                             :atomic)
