@@ -14,13 +14,12 @@ class Bookability::ActionsComponent < ViewComponent::Base
       @bookable_by_user_online = BookingPolicy.new(@current_user, booking_online).create? 
       @bookable_by_user_inpresence = BookingPolicy.new(@current_user, booking_inpresence).create?
 
-      @bookable_by_user = @bookable_by_user_online || @bookable_by_user_inpresence
+      @bookable_for_students_online = BookingPolicy.new(@current_user, booking_online).new_student?
+      @bookable_for_students_inpresence = BookingPolicy.new(@current_user, booking_inpresence).new_student?
 
-      @bookable_for_itsself = @bookable_by_user && @what.bookable_for_itsself?(@current_user)
-      @bookable_for_students = @bookable_by_user && @what.bookable_for_students?(@current_user)
-      @bookable_for_classes = @free_seats > 0 && @bookable_by_user && @what.bookable_for_classes?(@current_user)
+      @bookable_for_classes = BookingPolicy.new(@current_user, booking_inpresence).new_school_class?
 
-      if @bookable_for_itsself 
+      if @bookable_by_user_online || @bookable_by_user_inpresence
         @user_this_booking = @what.bookings.where(user_id: @current_user.id).where(school_class: nil).first 
         @user_sibling_booking_activity_id = @what.cluster_siblings_booked_activity_ids(@current_user).first 
         @user_sibling_booking_activity = Activity.find(@user_sibling_booking_activity_id) if @user_sibling_booking_activity_id
