@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   after_action :verify_authorized
 
   include Pundit::Authorization
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def current_user
     # session[:user_id] = User.where("name > 'm' and id>100").first.id
@@ -23,5 +24,10 @@ class ApplicationController < ActionController::Base
     if current_user
       logger.info "Current user: #{current_user.email}" 
     end
+  end
+
+   def user_not_authorized
+     flash[:alert] = "Operazione non permessa con questo utente."
+     redirect_back(fallback_location: root_path)
   end
 end
