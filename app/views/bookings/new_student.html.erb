@@ -18,6 +18,11 @@
     <%= f.hidden_field :online %>
 
     <div>
+      <%= f.label 'Email dello studente' %>
+      <%= f.text_field :email %>
+    </div>
+
+    <div>
       <%= f.label :name, 'Nome dello studente' %>
       <%= f.text_field :name %>
     </div>
@@ -25,11 +30,6 @@
     <div>
       <%= f.label :surname, 'Cognome dello studente' %>
       <%= f.text_field :surname %>
-    </div>
-
-    <div>
-      <%= f.label 'Email dello studente' %>
-      <%= f.text_field :email %>
     </div>
 
     <div>
