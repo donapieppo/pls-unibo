@@ -76,6 +76,7 @@ module Bookable
   end
 
   def bookable_for_itsself?(_user)
+    return false if self.external_booking?
     return false unless _user
 
     if self.bookable_by_all
@@ -92,26 +93,23 @@ module Bookable
   end
 
   def bookable_for_students?(_user)
+    return false if self.external_booking?
     _user && _user.confirmed_teacher? && self.bookable_by_teacher_for_students
   end
 
   def bookable_for_classes?(_user)
+    return false if self.external_booking?
     _user && _user.confirmed_teacher? && self.bookable_by_teacher_for_classes
   end
 
   def bookable_by_user_role?(_user)
+    return false if self.external_booking?
     return false unless _user
 
-    if self.external_booking?
-      return false
-    elsif self.bookable_for_itsself?(_user) || self.bookable_for_students?(_user) || self.bookable_for_classes?(_user)
-      return true
-    else
-      return false
-    end
+    self.bookable_for_itsself?(_user) || self.bookable_for_students?(_user) || self.bookable_for_classes?(_user)
   end
 
-  def bookable_by_description
+  def bookable_by_to_s
     res = []
     if self.bookable_by_all
       res << ' a tutti'
