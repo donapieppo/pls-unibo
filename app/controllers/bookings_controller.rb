@@ -32,14 +32,10 @@ class BookingsController < ApplicationController
   end
 
   def new
-    unless current_user
-      skip_authorization
-      redirect_to root_path
-      return
-    end
-    @free_seats = @activity.free_seats
-    @booking = @activity.bookings.new(user_id: current_user.id, online: params[:online])
+    @booking = @activity.bookings.new(user_id: current_user.id, online: (params[:online] or false))
     authorize @booking
+
+    @free_seats = @activity.free_seats
     if @booking.missing_data?(:user)
       redirect_to myedit_users_path, alert: "Si prega di fornire i dati richiesti prima di iscriversi."
       return
@@ -47,9 +43,10 @@ class BookingsController < ApplicationController
   end
 
   def new_student
-    @free_seats = @activity.free_seats
-    @booking = @activity.bookings.new(teacher_id: current_user.id, online: (@free_seats < 1))
+    @booking = @activity.bookings.new(teacher_id: current_user.id, online: (params[:online] or false))
     authorize @booking
+
+    @free_seats = @activity.free_seats
     if @booking.missing_data?(:teacher)
       redirect_to myedit_users_path, alert: "Si prega di fornire i dati richiesti prima di iscriversi."
       return
@@ -57,31 +54,23 @@ class BookingsController < ApplicationController
   end
 
   def new_school_class
-    @free_seats = @activity.free_seats
-    @booking = @activity.bookings.new(user_id: current_user.id, teacher_id: current_user.id)
+    @booking = @activity.bookings.new(user_id: current_user.id, teacher_id: current_user.id, online: false)
     authorize @booking
+
+    @free_seats = @activity.free_seats
   end
 
   def create
-    @free_seats = @activity.free_seats
     @booking = @activity.bookings.new(booking_params)
     @booking.user_id = current_user.id
     authorize @booking
 
-    if @booking.missing_data?(:user)
-      redirect_to myedit_users_path, alert: "Si prega di inserire i propri dati prima di iscriversi."
-      return
-    end
+    @free_seats = @activity.free_seats
     if @booking.save
       redirect_to @activity, notice: "Iscrizione registrata correttamente."
-      return
     else
       logger.info(@booking.errors.inspect)
-      if params[:booking][:school_class]
-        render action: :new_school_class, status: :unprocessable_entity
-      else
-        render action: :new, status: :unprocessable_entity
-      end
+      render action: :new, status: :unprocessable_entity
     end
   end
 
@@ -91,7 +80,7 @@ class BookingsController < ApplicationController
 
     if @user == current_user
       skip_authorization
-      redirect_to @activity, alert: "Non puoi registare te stesso come studente."
+      redirect_to @activity, alert: "Non puoi registrare te stesso come studente."
       return
     end
 
@@ -106,8 +95,10 @@ class BookingsController < ApplicationController
                                         teacher_name: current_user.name,
                                         teacher_surname: current_user.surname,
                                         teacher_email: current_user.email,
-                                        seats: 1,
+                                        online: params[:online], 
                                         notes: params[:notes])
+      @booking.seats = @booking.online ? 0 : 1
+
       authorize(@booking)
       if @booking.save
         redirect_to [@activity, anchor: 'binfos'], notice: "Registrazione salvata."
@@ -117,6 +108,20 @@ class BookingsController < ApplicationController
       end
     else
       raise params.inspect
+    end
+  end
+
+  def create_school_class
+    @booking = @activity.bookings.new(booking_params)
+    @booking.user_id = current_user.id
+    authorize @booking
+
+    @free_seats = @activity.free_seats
+    if @booking.save
+      redirect_to @activity, notice: "Iscrizione registrata correttamente."
+    else
+      logger.info(@booking.errors.inspect)
+      render action: :new, status: :unprocessable_entity
     end
   end
 

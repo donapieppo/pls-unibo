@@ -1,5 +1,6 @@
 <div class="container">
   <h1 class="title">Iscrivi una classe</h1>
+  <h2><%= @activity %></h2>
 
   <div class="my-4">
     Sei registrato come <strong>docente</strong> e per questa attività puoi iscrivere gli studenti di una classe.<br/> 
@@ -7,7 +8,7 @@
 
   <%= render Bookability::FreeSeatsComponent.new(@activity) %>  
 
-  <%= simple_form_for [@activity, @booking] do |f| %>  
+  <%= simple_form_for [:create_school_class, @activity, @booking] do |f| %>  
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
