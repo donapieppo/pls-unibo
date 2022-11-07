@@ -76,7 +76,13 @@ class BookingsController < ApplicationController
 
   # REFACTOR in model
   def create_student
-    @user = User.find_by_email(params[:email])
+    if params[:email].blank? || params[:name].blank? || params[:surname].blank?
+      skip_authorization
+      redirect_to [:new_student, @activity, :bookings], alert: "E' necessario inserire tutti i dati dello studente."
+      return
+    else
+      @user = User.find_by_email(params[:email])
+    end
 
     if @user == current_user
       skip_authorization
@@ -89,7 +95,8 @@ class BookingsController < ApplicationController
                           surname: params[:surname],
                           role: 'student_secondary', 
                           school_id: current_user.school_id)
-    if @user
+
+    if @user.id
       @booking = @activity.bookings.new(user_id: @user.id, 
                                         teacher_id: current_user.id,
                                         teacher_name: current_user.name,
