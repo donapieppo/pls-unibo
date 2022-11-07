@@ -6,12 +6,6 @@ class BookingUserRolePresenceValidator < ActiveModel::Validator
   end
 end
 
-class BookingUserRoleValidator < ActiveModel::Validator
-  def validate(record)
-    record.activity.bookable_by_user_role?(record.user) or record.errors.add :base, "Ruolo utente non corretto per questa attività"
-  end
-end
-
 class BookingSchoolForSecondaryValidator < ActiveModel::Validator
   def validate(record)
     if record.user.student_secondary? || record.user.teacher?
@@ -72,7 +66,6 @@ class Booking < ApplicationRecord
 
   validates :name, :surname, presence: { allow_blank: false }
   validates_with BookingUserRolePresenceValidator
-  validates_with BookingUserRoleValidator
   validates_with BookingSchoolForSecondaryValidator
   validates_with BookingSingleValidator 
   validates_with BookingOnLineOrPresence 
