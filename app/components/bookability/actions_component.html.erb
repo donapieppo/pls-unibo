@@ -1,11 +1,4 @@
-<% if @bookable_for_itsself && !@user_this_booking %>  
-  <div class="my-2">
-    <% if @free_seats > 0 %>  
-      [<%= @free_seats %> posti liberi in presenza su <%= @what.seats %>]
-    <% else %>
-      [ posti in presenza esauriti ]
-    <% end %>
-  </div>
+<% if (@bookable_by_user_online || @bookable_by_user_inpresence) && !@user_this_booking %>  
   <% if @what.booking_to_confirm? %>  
     <div>
       Puoi fare richiesta di partecipazione.<br/> 
@@ -24,9 +17,14 @@
   <% end %>
 <% end %>
 
-<% if @bookable_for_students %>
+<% if @bookable_for_students_online %>
   <div class="my-4">
-    <%= link_to booking_icon + ' ' + @what.booking_action_your_students_to_s, [:new_student, @what, :bookings], class: 'button' %>
+    <%= link_to booking_icon + ' ' + @what.booking_action_your_students_to_s + " in remoto", [:new_student, @what, :bookings, online: 1], class: 'button' %>
+  </div>
+<% end %>
+<% if @bookable_for_students_inpresence %>
+  <div class="my-4">
+    <%= link_to booking_icon + ' ' + @what.booking_action_your_students_to_s + " in presenza", [:new_student, @what, :bookings], class: 'button' %>
   </div>
 <% end %>
 
