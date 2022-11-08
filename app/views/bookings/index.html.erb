@@ -8,8 +8,8 @@
     <%= render Booking::ActivityCardComponent.new(@activity, details: true) %>  
   <% else %>  
     <% @activities.each do |activity| %>  
-      <div class="my-5">
-        <%= render Booking::ActivityCardComponent.new(activity) %>
+      <div class="my-1">
+        <%= render Booking::ActivityLineComponent.new(activity) %>
       </div>
     <% end %>
   <% end %>
