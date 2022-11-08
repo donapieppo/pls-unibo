@@ -1,13 +1,13 @@
 require "test_helper"
 
 class Activity::BookingDateTest < ActiveSupport::TestCase
-  test 'bookable = yes && booking_start < booking_end' do
-    edition = FactoryBot.build(:edition, bookable: 'yes', 
-                                         booking_start: Date.tomorrow,
-                                         booking_end: Date.today)
-    assert_not edition.valid?
-    assert edition.errors.added? :booking_start, :wrong_date_order
-  end
+  # test 'bookable = yes && booking_start < booking_end' do
+  #   edition = FactoryBot.build(:edition, bookable: 'yes', 
+  #                                        booking_start: Date.tomorrow,
+  #                                        booking_end: Date.today)
+  #   assert_not edition.valid?
+  #   assert edition.errors.added? :booking_start, :wrong_date_order
+  # end
 
   test 'external bookings do not have dates' do
     edition = FactoryBot.build(:edition, bookable: 'external',

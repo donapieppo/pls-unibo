@@ -3,7 +3,7 @@ require "test_helper"
 class BookingsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = FactoryBot.create(:user, :student_secondary)
-    @edition = FactoryBot.create(:edition, bookable_in_presence, seats: 10)
+    @edition = FactoryBot.create(:edition, :bookable_in_presence, seats: 10)
     post '/auth/developer/callback', params: { name: @user.email }
   end
 

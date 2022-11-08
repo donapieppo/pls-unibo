@@ -1,6 +1,6 @@
 require "test_helper"
 
-class BookabilityComponentTest < ViewComponent::TestCase
+class Bookability::InfoTest < ViewComponent::TestCase
   # EXTERNAL
   test "external bookings links to site" do
     edition = FactoryBot.create(:edition, bookable: 'external', booking_url: 'http://example.com')

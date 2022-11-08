@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Bookability::ActionComponentTest < ViewComponent::TestCase
+class Bookability::ActionsTest < ViewComponent::TestCase
   # EXTERNAL
   test "external bookings don't have actions" do
     u = FactoryBot.create(:user, :student_secondary)

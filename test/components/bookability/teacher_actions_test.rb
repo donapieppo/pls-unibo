@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Bookability::ActionComponentTest < ViewComponent::TestCase
+class Bookability::TeacherActionsTest < ViewComponent::TestCase
   setup do
     @user = FactoryBot.create(:user, :teacher)
     @edition = FactoryBot.create(:edition, bookable: 'yes', bookable_by_teacher: true, 
