@@ -48,7 +48,7 @@ end
 class BookingSeatsValidator < ActiveModel::Validator
   def validate(record)
     return true if record.online
-    if record.activity.seats.to_i > 0 && record.seats.to_i > record.activity.free_seats
+    if record.seats.to_i > record.activity.free_seats
       record.errors.add :seats, "Non ci sono sufficienti posti da prenotare."
     end
   end
@@ -76,9 +76,10 @@ class Booking < ApplicationRecord
   scope :in_presence, -> { where(online: false) }
   scope :online, -> { where(online: true) }
 
-  before_validation :copy_params_from_user,
-    :manage_class_booking, 
-    :confirm_if_activity_not_to_confirm
+  before_validation :fix_seats_online, 
+                    :copy_params_from_user,
+                    :manage_class_booking, 
+                    :confirm_if_activity_not_to_confirm
   after_create :create_nonce
 
   # FIXME
@@ -161,6 +162,10 @@ class Booking < ApplicationRecord
         break
       end
     end
+  end
+
+  def fix_seats_online
+    self.seats = 0 if self.online
   end
 
   def copy_params_from_user
