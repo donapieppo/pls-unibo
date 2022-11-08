@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
   def index
     @areas = Area.includes(:head).order(:name).all
-    @next_editions = Edition.visible(current_user && current_user.staff?).with_next_events(5)
+    @next_editions = Edition.visible(current_user && current_user.staff?).with_next_events(10)
     authorize :home
   end
 
