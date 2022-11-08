@@ -3,7 +3,7 @@ require "test_helper"
 class BookingTest < ActiveSupport::TestCase
   test "user have to indicate role" do
     u = FactoryBot.create(:user)
-    a = FactoryBot.create(:edition, in_presence: true, bookable_by_student_secondary: true)
+    a = FactoryBot.create(:edition, seats: 10, in_presence: true, bookable_by_student_secondary: true)
     b = FactoryBot.build(:booking, activity: a, user: u, online: false)
     assert_not b.valid?
     assert b.errors.added? :base, "Manca il ruolo del'utente"
@@ -11,7 +11,7 @@ class BookingTest < ActiveSupport::TestCase
 
   test "student secondary have to indicate school" do
     u = FactoryBot.create(:user, :student_secondary, school: nil)
-    a = FactoryBot.create(:edition, in_presence: true, bookable_by_student_secondary: true)
+    a = FactoryBot.create(:edition, seats: 10, in_presence: true, bookable_by_student_secondary: true)
     b = FactoryBot.build(:booking, activity: a, user: u, online: false)
     assert_not b.valid?
     assert b.errors.added?(:school_id, "Manca la scuola")
@@ -19,7 +19,7 @@ class BookingTest < ActiveSupport::TestCase
 
   test "teacher have to indicate school" do
     u = FactoryBot.create(:user, :teacher, school: nil)
-    a = FactoryBot.create(:edition, in_presence: true, bookable_by_teacher: true)
+    a = FactoryBot.create(:edition, seats: 10, in_presence: true, bookable_by_teacher: true)
     b = FactoryBot.build(:booking, activity: a, user: u, online: false)
     assert_not b.valid?
     assert b.errors.added?(:school_id, "Manca la scuola")
@@ -27,14 +27,14 @@ class BookingTest < ActiveSupport::TestCase
 
   test "student_university have not to indicate school" do
     u = FactoryBot.create(:user, :student_university, school: nil)
-    a = FactoryBot.create(:edition, in_presence: true, bookable_by_student_university: true)
+    a = FactoryBot.create(:edition, seats: 10, in_presence: true, bookable_by_student_university: true)
     b = FactoryBot.build(:booking, activity: a, user: u, online: false)
     assert b.valid?
   end
 
   test "student have to indicate teacher" do
     u = FactoryBot.create(:user, :student_secondary)
-    a = FactoryBot.create(:edition, in_presence: true, bookable_by_student_secondary: true)
+    a = FactoryBot.create(:edition, seats: 10, in_presence: true, bookable_by_student_secondary: true)
     b = FactoryBot.build(:booking, activity: a, user: u, online: false)
     assert_not b.valid?
     assert b.errors.added?(:teacher_name, :blank)
@@ -42,28 +42,28 @@ class BookingTest < ActiveSupport::TestCase
 
   test "teacher have not to indicate teacher" do
     u = FactoryBot.create(:user, :teacher)
-    a = FactoryBot.create(:edition, in_presence: true, bookable_by_teacher: true)
+    a = FactoryBot.create(:edition, seats: 10, in_presence: true, bookable_by_teacher: true)
     b = FactoryBot.build(:booking, activity: a, user: u, online: false)
     assert b.valid?
   end
 
   test "valid for student if complete" do
     u = FactoryBot.create(:user, :student_secondary)
-    a = FactoryBot.create(:edition, in_presence: true, bookable_by_student_secondary: true)
+    a = FactoryBot.create(:edition, seats: 10, in_presence: true, bookable_by_student_secondary: true)
     b = FactoryBot.build(:booking, :data_complete, activity: a, user: u)
     assert b.valid?
   end
 
   test "valid for teacher even if not complete" do
     u = FactoryBot.create(:user, :teacher)
-    a = FactoryBot.create(:edition, in_presence: true, bookable_by_teacher: true)
+    a = FactoryBot.create(:edition, seats: 10, in_presence: true, bookable_by_teacher: true)
     b = FactoryBot.build(:booking, activity: a, user: u)
     assert b.valid?
   end
 
   test "unique for student" do
     u = FactoryBot.create(:user, :student_secondary)
-    a = FactoryBot.create(:edition, in_presence: true, bookable_by_student_secondary: true)
+    a = FactoryBot.create(:edition, seats: 10, in_presence: true, bookable_by_student_secondary: true)
     b = FactoryBot.create(:booking, :data_complete, activity: a, user: u)
     b2 = FactoryBot.build(:booking, :data_complete, activity: a, user: b.user)
     assert_not b2.valid?
@@ -72,7 +72,7 @@ class BookingTest < ActiveSupport::TestCase
 
   test "unique for teacher for itsself" do
     u = FactoryBot.create(:user, :teacher)
-    a = FactoryBot.create(:edition, in_presence: true, bookable_by_teacher: true)
+    a = FactoryBot.create(:edition, seats: 10, in_presence: true, bookable_by_teacher: true)
     b = FactoryBot.create(:booking, :data_complete, activity: a, user: u)
     b2 = FactoryBot.build(:booking, :data_complete, activity: a, user: u)
     assert_not b2.valid?
@@ -81,7 +81,7 @@ class BookingTest < ActiveSupport::TestCase
 
   test "not unique for teacher for itsself and class" do
     u = FactoryBot.create(:user, :teacher)
-    a = FactoryBot.create(:edition, in_presence: true, bookable_by_teacher: true)
+    a = FactoryBot.create(:edition, seats: 10, in_presence: true, bookable_by_teacher: true)
     b = FactoryBot.create(:booking, :data_complete, activity: a, user: u)
     b2 = FactoryBot.build(:booking, :data_complete, activity: a, user: u, school_class: 'IIa')
     assert b2.valid?
