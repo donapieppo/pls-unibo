@@ -165,7 +165,11 @@ class Booking < ApplicationRecord
   end
 
   def fix_seats_online
-    self.seats = 0 if self.online
+    if self.online
+      self.seats = 0
+    elsif self.seats.to_i == 0
+      self.seats = 1
+    end
   end
 
   def copy_params_from_user
