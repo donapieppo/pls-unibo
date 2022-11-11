@@ -1,0 +1,39 @@
+<table class="table-auto">
+  <thead>
+    <tr>
+      <th></th>
+      <th>in presenza</th>
+      <th>on line</th>
+      <th>date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @activities.each do |activity| %>  
+      <tr>
+        <td>
+          <%= link_to activity.name.upcase, activity %>
+          <% if activity.booking_to_confirm? %>  
+            <div class="text-yellow-800">
+              Attività con prenotazioni da confermare
+            </div>
+          <% end %>
+        </td>
+        <td nowrap="nowrap">
+          <strong><%= activity.bookings.in_presence.sum(:seats) %></strong> 
+          /
+          <%= activity.seats %> 
+        </td>
+        <td nowrap="nowrap">
+          <strong><%= activity.bookings.online.count(:seats) %></strong>
+        </td>
+        <td nowrap="nowrap">
+          <%= l activity.booking_start, format: :day_short %> - <%= l activity.booking_end, format: :day_short %>
+        </td>
+        <td>
+          <%= link_to 'elenco iscritti', [activity, :bookings], class: 'underline' %>  
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
