@@ -1,7 +1,12 @@
 <h1 class="title">Utenti</h1>
 
 <div class="container">
-  <%= link_to 'mostra solo staff', users_path(staff: 1), class: 'button mb-3' %>  
+  <div class="my-3">
+    <%= link_to 'mostra solo staff', users_path(staff: 1), class: 'button' %>  
+    <%= link_to 'mostra solo studenti scuole superiori', users_path(role: 'student_secondary'), class: 'button' %>  
+    <%= link_to 'mostra solo insegnati scuole superiori', users_path(role: 'teacher'), class: 'button' %>  
+    <%= link_to 'mostra solo studenti universitari', users_path(role: 'student_university'), class: 'button' %>  
+  </div>
   <table>
     <% @users.each do |u| %>  
       <tr class="<%= 'bg-yellow-500' if u.staff %>">
