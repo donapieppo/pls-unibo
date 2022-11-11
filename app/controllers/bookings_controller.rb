@@ -3,13 +3,14 @@ class BookingsController < ApplicationController
   before_action :set_booking_and_check_permission, only: %i[thankyou confirm destroy]
 
   def index
-    activity_id = (params[:activity_id] or params[:edition_id] or params[:event_id])
-
-    @activity = activity_id ? Activity.find(activity_id) : nil
-    @activities = activity_id ? [@activity] : Activity.order('booking_start desc').with_bookings.bookable_undone
     if params[:cluster_id]
       @cluster = Cluster.find(params[:cluster_id])
-      @activities = @activities & @cluster.activities
+      @bookings = Booking.find(@cluster.activities.map(&:booking_ids).flatten.uniq)
+    else
+      activity_id = (params[:activity_id] or params[:edition_id] or params[:event_id])
+
+      @activity = activity_id ? Activity.find(activity_id) : nil
+      @activities = activity_id ? [@activity] : Activity.order('booking_start desc').with_bookings.bookable_undone
     end
 
     # TODO
@@ -21,7 +22,7 @@ class BookingsController < ApplicationController
       format.html {}
       format.csv do
         bookings = if @cluster
-                     Booking.find(@cluster.activities.map(&:booking_ids).flatten.uniq)
+                     @bookings
                    elsif @activity
                      @activity.bookings
                    elsif @teacher_email
