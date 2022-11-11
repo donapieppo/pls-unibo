@@ -3,16 +3,28 @@
   <% if @activity %>  
     <h2 class="title"><%= @activity %></h2>
   <% end %>
+  <% if @cluster %>
+    <h2 class="title"><small>Raggruppamento</small> <%= @cluster %></h2>
+  <% end %>
 
   <% if @activity %>  
     <%= render Booking::ActivityCardComponent.new(@activity, details: true) %>  
-  <% else %>  
+  <% elsif @cluster %>
     <% @activities.each do |activity| %>  
-      <div class="my-1">
-        <%= render Booking::ActivityLineComponent.new(activity) %>
-      </div>
+      <div class="text-lg my-8 bg-yellow-500 p-4"><%= activity %></div>  
+      <%= render Booking::UserListComponent.new(activity) %>  
     <% end %>
+  <% else %>  
+    <%= render Booking::TableComponent.new(@activities) %>
   <% end %>
+
+  <h2>Clusters</h2>
+
+  <ul>
+    <% Cluster.find_each do |c| %>  
+      <li><%= link_to c, cluster_bookings_path(c) %></li>
+    <% end %>
+  </ul>
 </div>
 
 
