@@ -84,18 +84,17 @@ Rails.application.routes.draw do
   resources :editions, concerns: [:resourceble, :contactable, :bookable] do
     resources :events
     resources :snippets
-    # resources :bookings
   end
 
   resources :events, concerns: [:resourceble, :contactable, :bookable] do
-    # resources :bookings
   end
   resources :resource_containers, concerns: [:resourceble]
-  resources :resourcess, only: [:edit, :destroy]
 
   resources :snippets
 
-  resources :clusters
+  resources :clusters do
+    resources :bookings, only: [:index]
+  end
   resources :schools
 
   post '/search', to: 'home#search', as: :search
