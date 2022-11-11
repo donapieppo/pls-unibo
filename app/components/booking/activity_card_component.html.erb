@@ -16,11 +16,14 @@
       Prenotazioni online: <strong><%= @activity.bookings.online.count(:seats) %></strong>
     </div>
     <% if @details %>  
-      <%= render Booking::UserListComponent.new(@activity) %>  
+      <%= render Booking::UserListComponent.new(@bookings) %>  
     <% else %>
       <div class="mt-4">
         <%= link_to 'mostra elenco iscritti', [@activity, :bookings], class: 'button' %>  
       </div>
     <% end %>
+  </div>
+  <div>
+    <%= link_to 'scarica elenco', bookings_path(activity_id: @activity.id, format: :csv), class: 'button my-4' %>  
   </div>
 </div>
