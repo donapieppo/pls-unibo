@@ -10,10 +10,12 @@
   <% if @activity %>  
     <%= render Booking::ActivityCardComponent.new(@activity, details: true) %>  
   <% elsif @cluster %>
-    <% @activities.each do |activity| %>  
-      <div class="text-lg my-8 bg-yellow-500 p-4"><%= activity %></div>  
-      <%= render Booking::UserListComponent.new(activity) %>  
+    <% @cluster.activities.each do |activity| %>  
+      <div class="ml-4">
+        <%= link_to activity, [activity, :bookings], class: "underline" %>
+      </div>
     <% end %>
+    <%= render Booking::UserListComponent.new(@bookings) %>  
   <% else %>  
     <%= render Booking::TableComponent.new(@activities) %>
   <% end %>
