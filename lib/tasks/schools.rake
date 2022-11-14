@@ -40,7 +40,7 @@ namespace :pls do
       name = row['miur:DENOMINAZIONESCUOLA'].strip.gsub(/^"(.*)"/, '\1')
 
       s = School.find_or_initialize_by(code: row['miur:CODICESCUOLA'])
-      s.attributes = { name: name, 
+      s.attributes = { name: name.strip, 
                        school_type: row['miur:DESCRIZIONETIPOLOGIAGRADOISTRUZIONESCUOLA'],
                        email: row['miur:INDIRIZZOEMAILSCUOLA'],
                        pec_email: row['miur:INDIRIZZOPECSCUOLA'],
