@@ -39,15 +39,15 @@
   <% end %>
 
   <h2 class="title">Tutte le attività <%= academic_year(CURRENT_ACADEMIC_YEAR) %></h2>
-  <div class="text-right text-xl">
+  <%= render Edition::ListComponent.new(@editions, current_user) %>  
+
+  <div class="text-center text-xl mt-4 mb-8">
     <%= link_to 'Mostra tutte le attività', projects_path(area_id: @area.id), class: 'underline' %> 
   </div>
 
-  <%= render Edition::ListComponent.new(@editions, current_user) %>  
-
   <% if @common_projects.any? %>  
     <h2 class="title">Le attività comuni</h3>
-    <%= render Project::ListComponent.new(@common_projects, no_filter: false) %>
+    <%= render Project::ListComponent.new(@common_projects, no_filter: true) %>
   <% end %>
 
 
