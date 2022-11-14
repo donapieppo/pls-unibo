@@ -58,6 +58,6 @@ class ClustersController < ApplicationController
     else
       params[:cluster][:max_bookable_activities] = nil
     end
-    params[:cluster].permit(:slug, :name, :description, :max_bookable_activities, activity_ids: [])
+    params[:cluster].permit(:slug, :name, :description, :details, :max_bookable_activities, activity_ids: [])
   end
 end

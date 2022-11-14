@@ -5,6 +5,12 @@
     <%# <%= f.input :slug %1> %>  
     <%= f.input :name %>  
     <%= f.input :description %>  
+    <div class="details-trix-editor">
+      <label>
+        Descrizione più dettagliata con la possibilità di formattare il testo (opzionale)
+      </label>
+      <%= f.rich_text_area :details %>
+    </div>
     <input data-cluster-target="limited_activities_checkbox"
            type="checkbox" 
            name="cluster[limited_activities_checkbox]" 

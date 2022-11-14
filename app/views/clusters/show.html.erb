@@ -9,6 +9,10 @@
     <%= simple_format @cluster.description %>
   </div>
 
+  <div class="my-4 text-gray-700">
+    <%= @cluster.details %>  
+  </div>
+
   <% i = 1 %>  
   <% @activities.each do |activity| %>  
     <%= link_to activity do %>
