@@ -33,9 +33,9 @@
     </div>
   <% end %>
 
-  <% if @this_area_evidence.any? %>  
+  <% if @edition_evidences.any? %>  
     <h2 class="title">In evidenza</h2>
-    <%= render Edition::ListComponent.new(@this_area_evidence, current_user, in_evidence: true) %>
+    <%= render Edition::ListComponent.new(@edition_evidences, current_user, in_evidence: true) %>
   <% end %>
 
   <h2 class="title">Tutte le attività <%= academic_year(CURRENT_ACADEMIC_YEAR) %></h2>
@@ -43,7 +43,7 @@
     <%= link_to 'Mostra tutte le attività', projects_path(area_id: @area.id), class: 'underline' %> 
   </div>
 
-  <%= render Project::ListComponent.new(@this_area_projects, no_year_filter: true, no_area_filter: true) %>  
+  <%= render Edition::ListComponent.new(@editions, current_user) %>  
 
   <% if @common_projects.any? %>  
     <h2 class="title">Le attività comuni</h3>

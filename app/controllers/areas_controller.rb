@@ -4,11 +4,13 @@ class AreasController < ApplicationController
   before_action :set_area_and_check_permission, only: %i[ show edit update destroy add_contact remove_contact ]
 
   def show
-    @this_area_evidence = Edition.visible(current_user && current_user.staff?).in_evidence.in_area(@area)
-    @this_area_projects = @area.projects.this_academic_year.include_all.order(:name).visible(current_user && current_user.staff?)
+    # si vedono le edizioni di quest'anno
+    @edition_evidences = Edition.visible(current_user && current_user.staff?).in_evidence.in_area(@area)
+    @editions = Edition.visible(current_user && current_user.staff?).this_academic_year.in_area(@area)
     @common_projects = Project.where(global: true).include_all.visible(current_user && current_user.staff?).order(:name).all
+    #@this_area_projects = @area.projects.this_academic_year.include_all.order(:name).visible(current_user && current_user.staff?)
+    #@this_area_projects = @this_area_projects.uniq
     @resource_containers = @area.resource_containers.includes(:resources).order(:name).all
-    @this_area_projects = @this_area_projects.uniq
   end
 
   def edit
