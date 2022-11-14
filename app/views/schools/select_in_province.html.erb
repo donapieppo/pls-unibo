@@ -1,0 +1,7 @@
+<%= turbo_frame_tag :school_options do %>
+  <select data-school-target="school" name="user[school_id]">
+    <% @schools.each do |school| %>  
+      <option value="<%= school.id %>"><%= school.name %> (<%= school.code %>)</option>
+    <% end %>
+  </select>
+<% end %>
