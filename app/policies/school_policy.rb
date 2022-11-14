@@ -2,5 +2,8 @@ class SchoolPolicy < ApplicationPolicy
   def index?
     @user && @user.staff
   end
-end
 
+  def select_in_province?
+    @user
+  end
+end
