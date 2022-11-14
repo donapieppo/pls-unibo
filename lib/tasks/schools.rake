@@ -6,7 +6,8 @@ require 'json'
 # togliere solo SCUOLA INFANZIA SCUOLA PRIMARIA SCUOLA PRIMO GRADO
 #
 #JSON_FILE = "/home/rails/pls-unibo/doc/SCUANAGRAFESTAT20222320220901.json"; PARITARIE = false
-JSON_FILE = "/home/rails/pls-unibo/doc/SCUANAGRAFEPAR20222320220901.json"; PARITARIE = true
+#JSON_FILE = "/home/rails/pls-unibo/doc/SCUANAGRAFEPAR20222320220901.json"; PARITARIE = true
+JSON_FILE = "/home/rails/pls/doc/SCUANAGRAFEPAR20222320220901.json"; PARITARIE = true
 
 def ok?(str)
   str =~ /IST [PROF|TEC]/ || str =~ /ISTITUTO / || str =~ /LICEO / || str =~ /SCUOLA MAGISTRALE/ || str =~ /SCUOLA SEC\. SECONDO GRADO/
