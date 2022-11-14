@@ -95,7 +95,9 @@ Rails.application.routes.draw do
   resources :clusters do
     resources :bookings, only: [:index]
   end
-  resources :schools
+  resources :schools do
+    get :select_in_province, on: :collection
+  end
 
   post '/search', to: 'home#search', as: :search
 
