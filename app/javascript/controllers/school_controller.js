@@ -2,21 +2,19 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = [ 'province', 'school' ]
+  // select_in_province_schools_path
+  static values = { url: String }
 
   connect() {
-    console.log("school controller");
-    this.provinceTarget.addEventListener('change', (e) => {
-      var province = e.target.value;
-      console.log(e.target)
-      this.schoolTarget.value = "0"
-      console.log(`province changed -> ${province}`)
-      this.schoolTarget.querySelectorAll("option").forEach((i) => {
-        if (i.dataset.province == province) {
-          i.style.display = 'block'
-        } else {
-          i.style.display = 'none'
-        }
-      })
-    })
+    console.log(`school controller with url: ${this.urlValue}`);
+  }
+
+  change_province() {
+    var province = this.provinceTarget.value;
+    var frame = document.getElementById('school_options');
+
+    console.log(`school_controller: change province to ${province}`);
+    frame.src = this.urlValue + '?p=' + province;
+    frame.reload();
   }
 }
