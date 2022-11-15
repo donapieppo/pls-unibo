@@ -1,4 +1,4 @@
-# form fimplr_form
+# form is a simple_form
 class School::SelectComponent < ViewComponent::Base
   def initialize(form)
     @f = form
