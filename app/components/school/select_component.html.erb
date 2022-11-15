@@ -1,5 +1,5 @@
 <div data-controller="school" data-school-url-value="<%= Rails.application.routes.url_helpers.select_in_province_schools_path %>">
-  <select data-school-target="province" name="province" id="province" class="my-2" data-action="school#change_province">
+  <select name="province" id="province" class="my-2" data-action="school#change_province">
     <option value="0"></option>
     <% @provinces.each do |p| %>  
       <option value="<%= p %>"><%= p %></option>
