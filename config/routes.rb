@@ -96,6 +96,7 @@ Rails.application.routes.draw do
     resources :bookings, only: [:index]
   end
   resources :schools do
+    post :index, on: :collection
     get :select_in_province, on: :collection
   end
 
