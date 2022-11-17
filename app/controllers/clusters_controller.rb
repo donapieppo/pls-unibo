@@ -22,6 +22,7 @@ class ClustersController < ApplicationController
   end
 
   def show
+    # SONO EDITIONS
     @activities = @cluster.activities.order(:name)
   end
 
@@ -41,7 +42,7 @@ class ClustersController < ApplicationController
     redirect_to clusters_path
   end
 
-  private 
+  private
 
   def set_cluster_and_authorize
     @cluster = Cluster.includes(activities: :contacts).find(params[:id])
@@ -49,7 +50,6 @@ class ClustersController < ApplicationController
   end
 
   def cluster_params
-    #raise params[:cluster].inspect
     if params[:cluster][:limited_activities_checkbox]
       params[:cluster].delete(:limited_activities_checkbox)
       if params[:cluster][:max_bookable_activities].to_i < 1
