@@ -5,7 +5,7 @@ class Bookability::InfoTest < ViewComponent::TestCase
   test "external bookings links to site" do
     edition = FactoryBot.create(:edition, bookable: 'external', booking_url: 'http://example.com')
     render_inline Bookability::InfoComponent.new(edition)
-    assert_text "per le iscrizioni visitare il sito"
+    assert_text "Per le iscrizioni visitare il sito"
     assert_text "example.com"
   end
 
