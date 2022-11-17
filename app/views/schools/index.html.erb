@@ -5,12 +5,16 @@
     <div class="">
       <div class="border border-2 p-2">
         <% @school_types.each do |st| %>  
-          <input type="checkbox" id="<%= st %>" name="school_types[]" value="<%= st %>"></input><label class="mr-2" for="<%= st %>"><%= st %></label>
+          <div class='inline-block'>
+            <input type="checkbox" id="<%= st %>" name="school_types[]" value="<%= st %>"></input><label class="inline mr-2" for="<%= st %>"><%= st %></label>
+          </div>
         <% end %>
       </div>
       <div class="border border-2 p-2 my-4">
         <% @provinces.each do |pr| %>  
-          <input type="checkbox" id="<%= pr %>" name="provinces[]" value="<%= pr %>"></input><label class="mr-2" for="<%= pr %>"><%= pr %></label> 
+          <div class='inline-block'>
+            <input type="checkbox" id="<%= pr %>" name="provinces[]" value="<%= pr %>"></input><label class="inline mr-2" for="<%= pr %>"><%= pr %></label> 
+          </div>
         <% end %>
       </div>
     </div>
