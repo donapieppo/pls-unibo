@@ -46,6 +46,6 @@
   <% end %>
 
   <% if current_user && current_user.staff? %>
-    <%= link_to 'lista iscrizioni', bookings_path(cluster: @cluster, format: :csv) %>  
+    <%= link_to 'lista iscrizioni', cluster_bookings_path(@cluster) %>  
   <% end %>
 </div>
