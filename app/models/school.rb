@@ -20,4 +20,12 @@ class School < ApplicationRecord
       "http://#{url}"
     end
   end
+
+  def self.school_types
+    @@school_types ||= self.select(:school_type).distinct.pluck(:school_type).sort
+  end
+
+  def self.provinces
+    @@provinces ||= self.select(:province).distinct.pluck(:province).sort
+  end
 end
