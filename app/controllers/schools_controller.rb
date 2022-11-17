@@ -10,6 +10,9 @@ class SchoolsController < ApplicationController
     if params[:provinces]
       @schools = @schools.where(province: params[:provinces])
     end
+    unless params[:school_types] || params[:provinces]
+      @schools = []
+    end
   end
 
   def show
