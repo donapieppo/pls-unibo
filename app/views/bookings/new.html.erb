@@ -33,7 +33,7 @@
             <%= f.input :grade, collection: 3..5, as: :radio_buttons %>
           <% end %>
           <%= f.input :notes %>  
-          <%= f.submit txt_action %>  
+          <%= f.submit txt_action %> - <%= link_to 'indietro', @activity %>    
         </div>
       <% end %>
     <% end %>
