@@ -3,6 +3,16 @@
 <ul class="list-disc pl-8 ml-4">
   <% @bookings.each do |b| %>  
     <li>
+      <span class="text-blue-800 font-bold">
+      <% if b.online %>  
+        <% @online_mails << b.email %>  
+        online
+      <% else %>
+        <% @in_presence_mails << b.email %>  
+        <%= b.seats %> <%= b.seats == 1 ? 'posto' : 'posti' %>
+      <% end %>
+      </span>
+
       <% if b.user %>  
         <span class="font-bold">
           <% if @editable %>  
@@ -22,16 +32,6 @@
 
 
       <% @teacher_mails << b.teacher_email if b.teacher_email %>  
-
-      <span class="text-blue-800 font-bold">
-      <% if b.online %>  
-        <% @online_mails << b.email %>  
-        online
-      <% else %>
-        <% @in_presence_mails << b.email %>  
-        <%= b.seats %> <%= b.seats == 1 ? 'posto' : 'posti' %>
-      <% end %>
-      </span>
 
       <span class="underline"><%= mail_to b.email %></span>
 
