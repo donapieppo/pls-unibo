@@ -8,7 +8,7 @@
       dal <%= l @what.booking_start %> al <%= l @what.booking_end %>.
     <% end %>
   </div>
-  <% unless @what.external_booking? %>  
+  <% if @what.now_in_bookable_interval? && ! @what.external_booking? %>  
     <div class="my-2">
       <% if @free_seats > 0 %>  
         [ <%= @free_seats %> posti liberi in presenza su <%= @what.seats %> ]
