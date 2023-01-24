@@ -43,8 +43,8 @@ namespace :pls do
       s = School.find_or_initialize_by(code: row['miur:CODICESCUOLA'])
       s.attributes = { name: name.strip, 
                        school_type: row['miur:DESCRIZIONETIPOLOGIAGRADOISTRUZIONESCUOLA'],
-                       email: row['miur:INDIRIZZOEMAILSCUOLA'],
-                       pec_email: row['miur:INDIRIZZOPECSCUOLA'],
+                       email: row['miur:INDIRIZZOEMAILSCUOLA'].downcase,
+                       pec_email: row['miur:INDIRIZZOPECSCUOLA'].downcase,
                        url: row['miur:SITOWEBSCUOLA'],
                        province: row['miur:PROVINCIA'],
                        municipality: row['miur:DESCRIZIONECOMUNE'],
