@@ -35,9 +35,11 @@
             <% activity.events.each do |event| %>  
               <span class="text-gray-900 pr-4"><%= l event.start_date %></span>
             <% end %>
-            <span class="float-right">
-              <%= render Bookability::FreeSeatsComponent.new(activity) %>  
-            </span>
+            <% if activity.now_in_bookable_interval? %>  
+              <span class="float-right">
+                <%= render Bookability::FreeSeatsComponent.new(activity) %>  
+              </span>
+            <% end %>
           </div>
         </div>
       </div>
