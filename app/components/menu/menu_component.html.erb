@@ -10,6 +10,7 @@
       <%= link_to 'privacy', privacy_path, class: 'menu-items-item' %>
       <% if @current_user && @current_user.voyeur? %>  
         <%= link_to 'prenotazioni', bookings_path, class: 'menu-items-item' %>  
+        <%= link_to 'report', report_path, class: 'menu-items-item' %>  
       <% end %>
       <% if @current_user && @current_user.staff? %>  
         <div class="mt-4 text-sm">admin</div>

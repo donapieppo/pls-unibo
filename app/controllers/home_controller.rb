@@ -1,7 +1,7 @@
 require 'csv'
 
 class HomeController < ApplicationController
-  before_action :skip_authorization
+  before_action :skip_authorization, except: :report
 
   def index
     @areas = Area.includes(:head).order(:name).all
@@ -35,6 +35,7 @@ class HomeController < ApplicationController
   end
 
   def report
+    authorize :home
     @editions = Edition.includes(:audience, project: [:activity_type, :areas]).order(:academic_year, :name)
     result = CSV.generate(col_sep: "\t", quote_char: '"') do |csv|
       @editions.each do |edition|
