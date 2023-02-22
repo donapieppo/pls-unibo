@@ -36,12 +36,19 @@ class HomeController < ApplicationController
 
   def report
     authorize :home
-    @editions = Edition.includes(:audience, project: [:activity_type, :areas]).order(:academic_year, :name)
+    @editions = Edition.includes(:audience, :events, :speakers, project: [:activity_type, :areas]).order(:academic_year, :name)
     result = CSV.generate(col_sep: "\t", quote_char: '"') do |csv|
       @editions.each do |edition|
         # matematica :-)
         if edition.project.area_ids.include?(6)
-          csv << [edition.academic_year, edition.project.areas.map(&:name).join(', '), edition.project.activity_type, edition.project.name, edition.name, edition.audience]
+          csv << [edition.academic_year, 
+                  edition.project.areas.map(&:name).join(', '), 
+                  edition.project.activity_type, 
+                  edition.project.name, 
+                  edition.name, 
+                  edition.audience, 
+                  edition.events.map{|e| I18n.l(e.start_date, format: :day_with_year)}.join(', '),
+                  edition.speakers.map{|s| s.cn}.join(', ')]
         end
       end
     end
