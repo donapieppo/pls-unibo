@@ -102,6 +102,7 @@ Rails.application.routes.draw do
 
   post '/search', to: 'home#search', as: :search
 
+  get "/report", to: "home#report", as: "report"
   get "/presentazione", to: "home#presentazione", as: "presentation"
   get "/contatti", to: "home#contacts", as: "contacts_page"
   get "/privacy",  to: "home#privacy", as: "privacy"
