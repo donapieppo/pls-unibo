@@ -14,33 +14,21 @@ gem "cssbundling-rails"
 
 gem "jbuilder"
 
-gem 'simple_form'
-gem 'pundit'
+gem "simple_form"
+gem "pundit"
 gem "view_component"
 
-gem 'omniauth'
-gem 'omniauth-google-oauth2'
-gem 'omniauth-shibboleth'
+gem "omniauth"
+gem "omniauth-google-oauth2"
+gem "omniauth-shibboleth"
 gem "omniauth-rails_csrf_protection"
-gem 'pretender'
+gem "pretender"
 
 gem "recaptcha"
 
-# Use Redis adapter to run Action Cable in production
-# gem "redis", "~> 4.0"
-
-# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
-# gem "kredis"
-
-# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
-
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
-gem 'rack-protection', "~> 2.2"
+gem "rack-protection", "~> 2.2"
 
 # Use Sass to process CSS
 # gem "sassc-rails"
@@ -50,12 +38,12 @@ gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "debug", platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem "web-console"
+  # gem "web-console"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -69,5 +57,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
-  gem 'factory_bot_rails'
+  gem "factory_bot_rails"
 end
