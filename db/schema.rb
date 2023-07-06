@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2021_04_27_080855) do
-  create_table "action_text_rich_texts", charset: "utf8mb4", force: :cascade do |t|
+  create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
     t.string "record_type", null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_04_27_080855) do
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
-  create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
+  create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -31,7 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_04_27_080855) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", charset: "utf8mb4", force: :cascade do |t|
+  create_table "active_storage_blobs", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -43,13 +43,13 @@ ActiveRecord::Schema[7.0].define(version: 2021_04_27_080855) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", charset: "utf8mb4", force: :cascade do |t|
+  create_table "active_storage_variant_records", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "activities", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+  create_table "activities", id: { type: :integer, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "type", limit: 50
     t.string "name"
     t.text "description"
@@ -77,9 +77,6 @@ ActiveRecord::Schema[7.0].define(version: 2021_04_27_080855) do
     t.boolean "bookable_by_teacher", default: false
     t.boolean "bookable_by_teacher_for_students", default: false
     t.boolean "bookable_by_teacher_for_classes", default: false
-    t.column "bookable_by", "enum('all','student_secondary','student_university','teacher')"
-    t.column "bookable_for", "enum('itsself','classes','students')"
-    t.integer "bookable_limit", limit: 1
     t.text "booking_url"
     t.datetime "booking_end", precision: nil
     t.datetime "booking_start", precision: nil
@@ -88,45 +85,45 @@ ActiveRecord::Schema[7.0].define(version: 2021_04_27_080855) do
     t.index ["parent_id"], name: "parent_id"
   end
 
-  create_table "activities_areas", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+  create_table "activities_areas", id: { type: :integer, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.integer "activity_id", null: false, unsigned: true
     t.integer "area_id", null: false, unsigned: true
   end
 
-  create_table "activities_clusters", id: false, charset: "utf8mb4", force: :cascade do |t|
+  create_table "activities_clusters", id: false, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.integer "activity_id", null: false, unsigned: true
     t.integer "cluster_id", null: false, unsigned: true
     t.index ["activity_id"], name: "fk_ac_activity_id"
     t.index ["cluster_id"], name: "fk_ac_cluster_id"
   end
 
-  create_table "activities_contacts", id: false, charset: "utf8mb4", force: :cascade do |t|
+  create_table "activities_contacts", id: false, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.integer "activity_id", unsigned: true
     t.integer "contact_id", unsigned: true
     t.index ["activity_id"], name: "fk_act_cont_activity_id"
     t.index ["contact_id"], name: "fk_act_cont_contact_id"
   end
 
-  create_table "activities_resources", id: false, charset: "utf8mb4", force: :cascade do |t|
+  create_table "activities_resources", id: false, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.integer "activity_id", unsigned: true
     t.integer "resource_id", unsigned: true
     t.index ["activity_id"], name: "fk_act_activity_id"
     t.index ["resource_id"], name: "fk_act_res_id"
   end
 
-  create_table "activities_speakers", id: false, charset: "utf8mb4", force: :cascade do |t|
+  create_table "activities_speakers", id: false, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.integer "activity_id", unsigned: true
     t.integer "contact_id", unsigned: true
     t.index ["activity_id"], name: "fk_act_spk_activity_id"
     t.index ["contact_id"], name: "fk_act_spk_contact_id"
   end
 
-  create_table "activity_types", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+  create_table "activity_types", id: { type: :integer, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name"
     t.text "description"
   end
 
-  create_table "areas", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+  create_table "areas", id: { type: :integer, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name"
     t.string "slug"
     t.text "payoff"
@@ -136,38 +133,38 @@ ActiveRecord::Schema[7.0].define(version: 2021_04_27_080855) do
     t.index ["head_id"], name: "fk_area_head"
   end
 
-  create_table "areas_contacts", id: false, charset: "utf8mb4", force: :cascade do |t|
+  create_table "areas_contacts", id: false, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.integer "area_id", null: false, unsigned: true
     t.integer "contact_id", null: false, unsigned: true
   end
 
-  create_table "areas_interests", id: false, charset: "utf8mb4", force: :cascade do |t|
+  create_table "areas_interests", id: false, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.integer "area_id", unsigned: true
     t.integer "activity_id", unsigned: true
     t.index ["activity_id"], name: "fk_area_int_activity_id"
     t.index ["area_id"], name: "fk_area_int_area_id"
   end
 
-  create_table "areas_organizations", id: false, charset: "utf8mb4", force: :cascade do |t|
+  create_table "areas_organizations", id: false, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.integer "area_id", null: false, unsigned: true
     t.integer "organization_id", null: false, unsigned: true
     t.index ["area_id"], name: "fk_area_org_area_id"
     t.index ["organization_id"], name: "fk_area_org_organization_id"
   end
 
-  create_table "areas_resource_containers", id: false, charset: "utf8mb4", force: :cascade do |t|
+  create_table "areas_resource_containers", id: false, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.integer "area_id", unsigned: true
     t.integer "resource_container_id", unsigned: true
     t.index ["area_id"], name: "fk_ar_area_id"
     t.index ["resource_container_id"], name: "fk_ar_resource_id"
   end
 
-  create_table "audiences", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+  create_table "audiences", id: { type: :integer, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name"
     t.text "description"
   end
 
-  create_table "bookings", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+  create_table "bookings", id: { type: :integer, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.integer "activity_id", unsigned: true
     t.integer "user_id", unsigned: true
     t.integer "teacher_id", unsigned: true
@@ -196,18 +193,19 @@ ActiveRecord::Schema[7.0].define(version: 2021_04_27_080855) do
     t.index ["user_id"], name: "fk_book_user"
   end
 
-  create_table "campuses", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+  create_table "campuses", id: { type: :integer, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name"
   end
 
-  create_table "clusters", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+  create_table "clusters", id: { type: :integer, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "slug"
     t.string "name"
     t.text "description"
+    t.integer "academic_year", limit: 2, unsigned: true
     t.integer "max_bookable_activities"
   end
 
-  create_table "contacts", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+  create_table "contacts", id: { type: :integer, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name"
     t.string "surname"
     t.text "description"
@@ -218,27 +216,27 @@ ActiveRecord::Schema[7.0].define(version: 2021_04_27_080855) do
     t.text "affiliation"
   end
 
-  create_table "organizations", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+  create_table "organizations", id: { type: :integer, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name"
     t.string "slug"
     t.string "url"
   end
 
-  create_table "resource_containers", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+  create_table "resource_containers", id: { type: :integer, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.boolean "global"
     t.timestamp "created_at", default: -> { "current_timestamp() ON UPDATE current_timestamp()" }, null: false
   end
 
-  create_table "resource_containers_resources", id: false, charset: "utf8mb4", force: :cascade do |t|
+  create_table "resource_containers_resources", id: false, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.integer "resource_id", unsigned: true
     t.integer "resource_container_id", unsigned: true
     t.index ["resource_container_id"], name: "fk_res_c_id"
     t.index ["resource_id"], name: "fk_res_id"
   end
 
-  create_table "resources", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+  create_table "resources", id: { type: :integer, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name"
     t.string "display_name"
     t.string "url"
@@ -246,7 +244,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_04_27_080855) do
     t.timestamp "created_at", default: -> { "current_timestamp() ON UPDATE current_timestamp()" }, null: false
   end
 
-  create_table "schools", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+  create_table "schools", id: { type: :integer, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.text "name"
     t.string "code"
     t.boolean "private_school", default: false
@@ -261,14 +259,14 @@ ActiveRecord::Schema[7.0].define(version: 2021_04_27_080855) do
     t.text "address"
   end
 
-  create_table "snippets", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+  create_table "snippets", id: { type: :integer, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.integer "activity_id", unsigned: true
     t.string "name"
     t.text "description"
     t.index ["activity_id"], name: "fk_snippets_activities"
   end
 
-  create_table "users", id: { type: :integer, unsigned: true }, charset: "utf8mb4", force: :cascade do |t|
+  create_table "users", id: { type: :integer, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.boolean "staff"
     t.column "role", "enum('student_secondary','student_university','teacher','other')"
     t.integer "school_id", unsigned: true

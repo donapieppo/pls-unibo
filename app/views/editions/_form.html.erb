@@ -2,7 +2,7 @@
   <%= simple_form_for [@project, @edition] do |f| %>  
     <%= f.input :hidden, as: :boolean %>  
     <%= f.input :in_evidence, as: :boolean %>  
-    <%= f.input :academic_year, collection: (2016...2023).to_a.reverse, include_blank: false %>
+    <%= f.input :academic_year, collection: (2016...(CURRENT_ACADEMIC_YEAR + 1)).to_a.reverse, include_blank: false %>
     <%= f.input :name %>  
     <%= f.input :description, input_html: { cols: 80, rows: 5 } %>
 
@@ -25,11 +25,8 @@
     <%= f.input :atomic %>
 
     <%= render Activity::PartecipationModeFormComponent.new(f) %>
-
     <%= render Booking::TipologyFormComponent.new(f) %>  
-
     <%= render Bookability::ClusterSiblingsMessageComponent.new(@edition) %>  
-
     <%= f.submit %>  
   <% end %>
 </div>

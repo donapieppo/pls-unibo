@@ -29,7 +29,7 @@ class ClustersController < ApplicationController
   def edit
     # FIXME
     # add already selected acivities (because of CURRENT_ACADEMIC_YEAR changes)
-    @activities = Activity.in_current_academic_year.order(:name)
+    @activities = Activity.where(academic_year: @cluster.academic_year).order(:name)
   end
 
   def update
@@ -58,6 +58,6 @@ class ClustersController < ApplicationController
     else
       params[:cluster][:max_bookable_activities] = nil
     end
-    params[:cluster].permit(:slug, :name, :description, :details, :max_bookable_activities, activity_ids: [])
+    params[:cluster].permit(:slug, :name, :description, :academic_year, :details, :max_bookable_activities, activity_ids: [])
   end
 end
