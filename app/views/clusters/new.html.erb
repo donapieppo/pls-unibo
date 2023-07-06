@@ -4,6 +4,7 @@
   <div class="w-64 mx-auto">
     <%= simple_form_for @cluster do |f| %>  
       <%= f.input :name %>  
+      <%= f.input :academic_year, collection: (2016...(CURRENT_ACADEMIC_YEAR + 1)).to_a.reverse, include_blank: false %>
       <%= f.submit %>  
     <% end %>
   </div>
