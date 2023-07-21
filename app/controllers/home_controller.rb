@@ -1,4 +1,4 @@
-require 'csv'
+require "csv"
 
 class HomeController < ApplicationController
   before_action :skip_authorization, except: :report
@@ -21,17 +21,17 @@ class HomeController < ApplicationController
 
   def search
     @txt = params[:search]
-    @activities = Activity.where('name like ?', "%#{@txt}%")
-    @schools = School.where('name like ? or code like ?', "%#{@txt}%", "%#{@txt}%")
+    @activities = Activity.where("name like ?", "%#{@txt}%")
+    @schools = School.where("name like ? or code like ?", "%#{@txt}%", "%#{@txt}%")
   end
 
   def archive
     @area = Area.find(params[:id])
     @slug = @area.slug
-    @slug = 'scienze-naturali-ambientali' if @slug == 'scienze-naturali-e-ambientali'
+    @slug = "scienze-naturali-ambientali" if @slug == "scienze-naturali-e-ambientali"
     @archive_page = "#{config.relative_url_root}/archivio/it/#{@slug}.html"
 
-    render layout: 'archive'
+    render layout: "archive"
   end
 
   def report
@@ -41,18 +41,19 @@ class HomeController < ApplicationController
       @editions.each do |edition|
         # matematica :-)
         if edition.project.area_ids.include?(6)
-          csv << [edition.academic_year, 
-                  edition.project.areas.map(&:name).join(', '), 
-                  edition.project.activity_type, 
-                  edition.project.name, 
-                  edition.name, 
-                  edition.audience, 
-                  edition.events.map{|e| I18n.l(e.start_date, format: :day_with_year)}.join(', '),
-                  edition.speakers.map{|s| s.cn}.join(', ')]
+          csv << [
+            edition.academic_year,
+            edition.project.areas.map(&:name).join(", "),
+            edition.project.activity_type,
+            edition.project.name,
+            edition.name,
+            edition.audience,
+            edition.events.map { |e| I18n.l(e.start_date, format: :day_with_year) }.join(", "),
+            edition.speakers.map { |s| s.cn }.join(", ")
+          ]
         end
       end
     end
-    #raise result.inspect
     send_data result, filename: "report.csv", type: :csv
   end
 end
