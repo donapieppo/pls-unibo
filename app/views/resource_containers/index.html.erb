@@ -5,9 +5,9 @@
     <%= link_to('Aggiungi risorsa', new_resource_container_path, class: 'button') if policy(:resource_container).new? %>
   </div>
 
-  <div class="">
+  <div class="flex flex-wrap">
     <% @resource_containers.each do |resource_container| %>  
-      <div class="px-1 my-2">
+      <div class="md:w-1/2 p-2 my-2">
         <%= render ResourceContainer::CardComponent.new(resource_container, current_user) %>  
       </div>
     <% end %>
