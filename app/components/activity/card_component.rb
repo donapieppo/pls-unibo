@@ -1,9 +1,10 @@
 class Activity::CardComponent < ViewComponent::Base
   def initialize(activity, no_filter: false, in_evidence: false)
     @activity = activity
-    current_year = @activity.current_year?
-    @border_color = current_year ? "border-gray-400" : "border-gray-100"
-    @opacity = current_year ? "" : "opacity-60"
+    @current_year = @activity.current_year?
+
+    @card_style = @current_year ? "border-pls bg-gray-50" : "border-gray-400 bg-gray-200 opacity-70"
+
     @hidden = @activity.hidden?
     @in_evidence = in_evidence && !@hidden
 

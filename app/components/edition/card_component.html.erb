@@ -1,9 +1,9 @@
 <%= link_to @edition do %>
-  <div class="relative border-2 shadow-xl hover:shadow-2xl border-pls-strong p-8 mt-16">
-    <div class="bg-pls-strong text-gray-50 text-lg lg:text-2xl font-bold absolute -top-8 text-pls p-2 lg:p-4 px-8 rounded-2xl tracking-wider">
+  <div class="relative border-2 shadow-xl hover:shadow-2xl border-pls p-8 mt-16">
+    <div class="bg-gray-100 border-2 border-pls text-gray-800 text-lg lg:text-2xl font-bold absolute -top-8 text-pls p-2 lg:p-4 px-8 rounded-2xl tracking-wider">
       <%= @edition.academic_year_to_s %>
     </div>
-    <h2 class="my-4"> 
+    <h2 class="my-4 text-pls"> 
       <%= @edition.name %> 
     </h2>
 
@@ -13,7 +13,7 @@
       </div>
     <% end %>
 
-    <div class="my-2 text-lg text-pls font-semibold">
+    <div class="my-2 text-lg font-semibold">
       <div>
         <i class="fas fa-users fa-fw mr-2"></i>
         <%= @edition.audience %>
