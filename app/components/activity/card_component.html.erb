@@ -1,7 +1,7 @@
-<%= content_tag :div, class: "h-full project #{'with-filter' unless @no_filter} #{@opacity}", data: @filter_data do %>
-  <%= link_to @activity, class: "h-full relative flex flex-col my-2 bg-gray-100 border-t-4 #{@border_color} rounded-b-xl p-4 hover:bg-pls-light hover:shadow-2xl", data: { turbo: false } do %>
+<%= content_tag :div, class: "h-full project #{'with-filter' unless @no_filter} border-2 rounded-xl hover:shadow-2xl hover:bg-blue-100 #{@card_style}", data: @filter_data do %>
+  <%= link_to @activity, class: "h-full relative flex flex-col my-2 p-4", data: { turbo: false } do %>
     <% if @in_evidence || @hidden %>  
-      <div class="absolute -top-4 -left-2 bg-gray-100 text-pls-strong border-4 border-pls-light rounded-xl text-2xl p-1">
+      <div class="absolute -top-6 -left-2 bg-pls-light text-pls-strong border-2 border-pls-strong rounded-xl text-2xl p-1">
         <i class="far <%= @in_evidence ? 'fa-star' : 'fa-eye-slash' %>"></i>
       </div>
     <% end %>
@@ -24,7 +24,7 @@
       <% if @other_areas.any? %>  
         <div>Altre aree di interesse: <%= @other_areas.map(&:name).join(', ') %></div>
       <% end %>
-      <div><%= helpers.project_academic_years_to_s(@project) %></div>  
+      <div class="font-bold"><%= helpers.project_academic_years_to_s(@project) %></div>  
     </div>
   <% end %>
 <% end %>
