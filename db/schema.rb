@@ -77,6 +77,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_133524) do
     t.boolean "bookable_by_teacher", default: false
     t.boolean "bookable_by_teacher_for_students", default: false
     t.boolean "bookable_by_teacher_for_classes", default: false
+    t.boolean "bookable_by_teacher_for_groups"
+    t.integer "bookable_group_limit", limit: 2
     t.text "booking_url"
     t.datetime "booking_end", precision: nil
     t.datetime "booking_start", precision: nil
@@ -180,6 +182,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_133524) do
     t.column "role", "enum('student_secondary','student_university','teacher','other')"
     t.integer "grade", unsigned: true
     t.string "school_class"
+    t.boolean "school_group"
     t.string "teacher_name"
     t.string "teacher_surname"
     t.string "teacher_email"

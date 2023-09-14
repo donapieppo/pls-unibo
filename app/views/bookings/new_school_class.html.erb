@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container max-w-4xl">
   <h1 class="title">Iscrivi una classe</h1>
   <h2><%= @activity %></h2>
 
   <div class="my-4">
-    Sei registrato come <strong>docente</strong> e per questa attività puoi iscrivere gli studenti di una classe.<br/> 
+    Sei registrato come <strong>docente</strong> e per questa attività puoi iscrivere gli studenti di una classe.
   </div>
 
   <%= render Bookability::FreeSeatsComponent.new(@activity) %>  

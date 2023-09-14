@@ -1,6 +1,6 @@
 class ActivityDatesValidator < ActiveModel::Validator
   def validate(record)
-    return true unless record.bookable && (record.bookable == 'no' || record.bookable == 'to_confirm')
+    return true unless record.bookable && (record.bookable == "no" || record.bookable == "to_confirm")
 
     if record.booking_start && record.booking_end && record.booking_start > record.booking_end
       record.errors.add :booking_start, :wrong_date_order, message: "La data di inizio non può essere successiva alla data di fine."
@@ -17,7 +17,7 @@ module Bookable
     has_many :bookings
 
     scope :with_bookings, -> { where(id: Booking.select(:activity_id).group(:activity_id).map(&:activity_id)) }
-    scope :bookable_now, -> { where('activities.booking_start is not null and activities.booking_end is not null and activities.booking_start <= NOW() and NOW() <= activities.booking_end') }
+    scope :bookable_now, -> { where("activities.booking_start is not null and activities.booking_end is not null and activities.booking_start <= NOW() and NOW() <= activities.booking_end") }
     scope :bookable_undone, -> { where('activities.bookable != "done"') }
 
     before_save :fix_dates_for_external
@@ -29,31 +29,35 @@ module Bookable
   end
 
   def external_booking?
-    self.bookable && self.bookable == 'external'
+    self.bookable && self.bookable == "external"
   end
 
   def booking_to_confirm?
-    self.bookable && self.bookable == 'to_confirm'
+    self.bookable && self.bookable == "to_confirm"
   end
 
-
   def internally_bookable_with_dates?
-    self.bookable && self.bookable != 'no' && self.bookable != 'external' && self.with_booking_dates?
+    self.bookable && self.bookable != "no" && self.bookable != "external" && self.with_booking_dates?
   end
 
   def booking_action_to_s
     return "" unless self.bookable
-    self.booking_to_confirm? ? 'prenota' : 'iscriviti'
+    self.booking_to_confirm? ? "prenota" : "iscriviti"
   end
 
   def booking_action_your_students_to_s
     return "" unless self.bookable
-    self.booking_to_confirm? ? 'prenota i tuoi studenti' : 'iscrivi i tuoi studenti'
+    self.booking_to_confirm? ? "prenota i tuoi studenti" : "iscrivi i tuoi studenti"
   end
 
   def booking_action_class_to_s
     return "" unless self.bookable
-    self.booking_to_confirm? ? 'prenota una classe di studenti' : 'iscrivi una classe di studenti'
+    self.booking_to_confirm? ? "prenota una classe di studenti" : "iscrivi una classe di studenti"
+  end
+
+  def booking_action_group_to_s
+    return "" unless self.bookable
+    self.booking_to_confirm? ? "prenota un gruppo di studenti" : "iscrivi un gruppo di studenti"
   end
 
   def now_in_bookable_interval?
@@ -87,9 +91,9 @@ module Bookable
       return true
     elsif self.bookable_by_teacher && _user.confirmed_teacher?
       return true
-    else
-      return false
     end
+
+    false
   end
 
   def bookable_for_students?(_user)
@@ -102,40 +106,48 @@ module Bookable
     _user && _user.confirmed_teacher? && self.bookable_by_teacher_for_classes
   end
 
+  def bookable_for_groups?(_user)
+    return false if self.external_booking?
+    _user && _user.confirmed_teacher? && self.bookable_by_teacher_for_groups
+  end
+
   def bookable_by_user_role?(_user)
     return false if self.external_booking?
     return false unless _user
 
-    self.bookable_for_itsself?(_user) || self.bookable_for_students?(_user) || self.bookable_for_classes?(_user)
+    bookable_for_itsself?(_user) || bookable_for_students?(_user) || bookable_for_classes?(_user) || bookable_for_groups?(_user)
   end
 
   def bookable_by_to_s
     res = []
     if self.bookable_by_all
-      res << ' a tutti'
+      res << " a tutti"
     end
     if self.bookable_by_student_secondary
-      res << ' agli studenti delle scuole secondarie'
+      res << " agli studenti delle scuole secondarie"
     end
     if self.bookable_by_student_university
-      res << ' agli studenti universitari'
+      res << " agli studenti universitari"
     end
     if self.bookable_by_teacher
-      res << ' ai docenti'
+      res << " ai docenti"
     end
     if self.bookable_by_teacher_for_students
-      res << ' a studenti iscritti dal docente'
+      res << " a studenti iscritti dal docente"
     end
     if self.bookable_by_teacher_for_classes
-      res << ' a classi di studenti iscritti dal docente'
+      res << " a classi di studenti iscritti dal docente"
+    end
+    if self.bookable_by_teacher_for_groups
+      res << " a gruppi di studenti iscritti dal docente"
     end
 
-    what = booking_to_confirm? ? 'Prenotazioni' : 'Iscrizioni'
+    what = booking_to_confirm? ? "Prenotazioni" : "Iscrizioni"
 
     if res.any?
       return "#{what} aperte #{res.to_sentence}"
     else
-      return ''
+      return ""
     end
   end
 

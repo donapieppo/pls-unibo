@@ -73,6 +73,7 @@ it:
         bookable_by_teacher:  Possono iscriversi i docenti per se stessi
         bookable_by_teacher_for_students: I docenti possono iscrivere gli studenti
         bookable_by_teacher_for_classes: I docenti possono iscrivere intere classi
+        bookable_by_teacher_for_groups: I docenti possono iscrivere gruppi di studenti
       event:
         hidden: Nascondi l'evento
         name: Nome
@@ -98,6 +99,7 @@ it:
         bookable_by_teacher:  Possono iscriversi i docenti per se stessi
         bookable_by_teacher_for_students: I docenti possono iscrivere gli studenti
         bookable_by_teacher_for_classes: I docenti possono iscrivere intere classi
+        bookable_by_teacher_for_groups: I docenti possono iscrivere gruppi di studenti
       resource:
         name: Nome completo
         display_name: Nome come appare sul sito

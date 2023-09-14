@@ -54,8 +54,10 @@ Rails.application.routes.draw do
     resources :bookings, only: [:index, :new, :create] do
       get :new_student, on: :collection
       get :new_school_class, on: :collection
+      get :new_school_group, on: :collection
       post :create_student, on: :collection
       post :create_school_class, on: :collection
+      post :create_school_group, on: :collection
     end
   end
 

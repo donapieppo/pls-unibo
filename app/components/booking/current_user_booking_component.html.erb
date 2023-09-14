@@ -22,18 +22,21 @@
 <% end %>
 
 <% if @user_this_teacher_bookings && @user_this_teacher_bookings.any? %>  
-  <div class="font-bold">Elenco studenti/classi che hai iscritto</div>
+  <div class="font-bold">
+    Elenco studenti/classi che hai iscritto
+  </div>
   <ul class="list-none">
     <% @user_this_teacher_bookings.each do |booking| %>  
       <li class="">
         <% if booking.for_class? %>  
           classe <strong><%= booking.school_class %></strong> (<%= booking.seats_to_s %>) 
-          <%= link_to_delete booking %>  
+        <% elsif booking.for_group? %>
+          gruppo di <%= booking.seats %> studenti 
         <% else %>
           <strong><%= booking.user %></strong>
           <small>(<%= booking.user.email %>)</small> 
-          <%= link_to_delete booking %>
         <% end %>
+        <%= link_to_delete booking %>
       </li>
     <% end %>
   </ul>

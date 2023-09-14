@@ -34,6 +34,12 @@
   </div>
 <% end %>
 
+<% if @bookable_for_groups %>
+  <div class="my-4">
+    <%= link_to booking_icon + ' ' + @what.booking_action_group_to_s, [:new_school_group, @what, :bookings], class: 'button' %>
+  </div>
+<% end %>
+
 <% unless @what.external_booking? %>  
   <% if @free_seats < 1 %>
     <div class="text-red-700 font-semibold my-4">  
