@@ -10,4 +10,3 @@ class Area::InlineOrganizationsComponent < ViewComponent::Base
     @areas.any?
   end
 end
-

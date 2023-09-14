@@ -9,4 +9,3 @@ class Contact::InlineSpeakersComponent < ViewComponent::Base
     @contacts.any?
   end
 end
-

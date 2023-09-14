@@ -1,5 +1,5 @@
 class Activity < ApplicationRecord
-  include Bookable 
+  include Bookable
 
   has_and_belongs_to_many :resources
   has_and_belongs_to_many :clusters
@@ -16,7 +16,7 @@ class Activity < ApplicationRecord
   scope :past, -> { where("activities.start_date <= DATE_ADD(UTC_TIMESTAMP(), INTERVAL -2 hour)") }
 
   def check_children
-    if Activity.where(parent_id: self.id).count > 0 
+    if Activity.where(parent_id: self.id).count > 0
       throw :abort
     end
   end
