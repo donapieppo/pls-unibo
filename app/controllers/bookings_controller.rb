@@ -10,7 +10,7 @@ class BookingsController < ApplicationController
       activity_id = (params[:activity_id] or params[:edition_id] or params[:event_id])
 
       @activity = activity_id ? Activity.find(activity_id) : nil
-      @activities = activity_id ? [@activity] : Activity.order('booking_start desc').with_bookings.bookable_undone
+      @activities = activity_id ? [@activity] : Activity.order("booking_start desc").with_bookings.bookable_undone
     end
 
     # TODO
@@ -30,7 +30,7 @@ class BookingsController < ApplicationController
                    else
                      []
                    end
-        send_data Booking.to_csv(bookings), filename: 'prenotazioni.csv'
+        send_data Booking.to_csv(bookings), filename: "prenotazioni.csv"
       end
     end
   end
@@ -58,6 +58,13 @@ class BookingsController < ApplicationController
   end
 
   def new_school_class
+    @booking = @activity.bookings.new(user_id: current_user.id, teacher_id: current_user.id, online: false)
+    authorize @booking
+
+    @free_seats = @activity.free_seats
+  end
+
+  def new_school_group
     @booking = @activity.bookings.new(user_id: current_user.id, teacher_id: current_user.id, online: false)
     authorize @booking
 
@@ -94,25 +101,29 @@ class BookingsController < ApplicationController
       return
     end
 
-    @user ||= User.create(email: params[:booking][:email], 
-                          name: params[:booking][:name], 
-                          surname: params[:booking][:surname],
-                          role: 'student_secondary', 
-                          school_id: current_user.school_id)
+    @user ||= User.create(
+      email: params[:booking][:email],
+      name: params[:booking][:name],
+      surname: params[:booking][:surname],
+      role: "student_secondary",
+      school_id: current_user.school_id
+    )
 
     if @user.id
-      @booking = @activity.bookings.new(user_id: @user.id, 
-                                        teacher_id: current_user.id,
-                                        teacher_name: current_user.name,
-                                        teacher_surname: current_user.surname,
-                                        teacher_email: current_user.email,
-                                        online: params[:booking][:online], 
-                                        notes: params[:booking][:notes])
+      @booking = @activity.bookings.new(
+        user_id: @user.id,
+        teacher_id: current_user.id,
+        teacher_name: current_user.name,
+        teacher_surname: current_user.surname,
+        teacher_email: current_user.email,
+        online: params[:booking][:online],
+        notes: params[:booking][:notes]
+      )
       @booking.seats = @booking.online ? 0 : 1
 
       authorize(@booking)
       if @booking.save
-        redirect_to [@activity, anchor: 'binfos'], notice: "Registrazione salvata."
+        redirect_to [@activity, anchor: "binfos"], notice: "Registrazione salvata."
       else
         @free_seats = @activity.free_seats
         render action: :new_student, status: :unprocessable_entity
@@ -137,7 +148,7 @@ class BookingsController < ApplicationController
   end
 
   def thankyou
-    render layout: 'pages'
+    render layout: "pages"
   end
 
   def confirm
@@ -172,14 +183,16 @@ class BookingsController < ApplicationController
   def booking_params
     if params[:booking][:online] == "1"
       params[:booking][:seats] = 0
-    elsif ! (current_user.confirmed_teacher? || current_user.staff?)
+    elsif !(current_user.confirmed_teacher? || current_user.staff?)
       params[:booking][:seats] = 1
       params[:booking].delete(:school_class)
     else
       # default seats
       params[:booking][:seats] = 1 unless params[:booking][:seats]
     end
-    params[:booking].permit(:email, :name, :surname, :role, :grade, :teacher_name, :teacher_surname, :teacher_email, :school_class,   
-                            :other_string, :notes, :online, :seats)
+    params[:booking].permit(
+      :email, :name, :surname, :role, :grade, :teacher_name, :teacher_surname, :teacher_email, :school_class,
+      :other_string, :notes, :online, :seats
+    )
   end
 end
