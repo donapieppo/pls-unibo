@@ -2,8 +2,20 @@
   <%= image_tag 'Logo_PLS_bg.png' %>  
 </div>
 
-<%= render "title" %>  
-<%= render "areas", areas: @areas %>  
-<%= render "highlights" %>
-<%= render "home_buttons" %>  
-<%= render "pls" %>  
+<%= render "title" %>
+
+<div class="my-16">
+  <%= render "areas", areas: @areas %>  
+</div>
+
+<div class="bg-pls-light py-16">
+  <h2 class="text-center py-8">
+    I progetti del PLS
+  </h2>
+  <%= render "home_buttons" %>  
+  <%= render "highlights" %>
+</div>
+
+<div class="py-16">
+  <%= render "pls" %>  
+</div>

@@ -1,11 +1,11 @@
 <% @hightlights = [527, 525] %>
 
 <% if @hightlights.any? %>
-  <h2 class="mt-16 text-center">In evidenza</h2>
+  <h3 class="text-center">In evidenza</h3>
 <% end %>
 
-<div class="container md:flex mt-8">
-  <% [527, 525].each do |i| %>
+<div class="container md:flex py-16">
+  <% @hightlights.each do |i| %>
     <div class="md:w-1/2 px-4 mt-2">
       <% e = Edition.find(i) %>
       <%= render Activity::CardComponent.new(e) %>
