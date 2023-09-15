@@ -33,20 +33,20 @@ class User < ApplicationRecord
   end
 
   def student_secondary?
-    self.role && self.role == 'student_secondary' 
+    self.role && self.role == "student_secondary"
   end
 
   def student_university?
-    self.role && self.role == 'student_university' 
+    self.role && self.role == "student_university"
   end
 
   def teacher?
-    self.role && self.role == 'teacher'
+    self.role && self.role == "teacher"
   end
 
   # FIXME TODO
   def confirmed_teacher?
-    self.role && self.role == 'teacher'
+    self.role && self.role == "teacher"
   end
 
   def unibo_account?

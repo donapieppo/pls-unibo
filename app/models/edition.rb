@@ -1,16 +1,16 @@
 class Edition < Activity
-  has_and_belongs_to_many :contacts, join_table: 'activities_contacts', foreign_key: 'activity_id'
-  has_and_belongs_to_many :speakers, join_table: 'activities_speakers', foreign_key: 'activity_id', class_name: 'Contact'
+  has_and_belongs_to_many :contacts, join_table: "activities_contacts", foreign_key: "activity_id"
+  has_and_belongs_to_many :speakers, join_table: "activities_speakers", foreign_key: "activity_id", class_name: "Contact"
 
   has_rich_text :details
 
-  belongs_to :project, foreign_key: 'parent_id'
+  belongs_to :project, foreign_key: "parent_id"
   belongs_to :audience
-  has_many :events, foreign_key: 'parent_id'
+  has_many :events, foreign_key: "parent_id"
 
   scope :this_academic_year, -> { where(academic_year: CURRENT_ACADEMIC_YEAR) }
   scope :in_evidence, -> { where(in_evidence: 1) }
-  scope :with_next_events, -> (n) { where(id: Event.future.order('start_date asc').map(&:parent_id).uniq[0..n]) }
+  scope :with_next_events, -> (n) { where(id: Event.future.order("start_date asc").map(&:parent_id).uniq[0..n]) }
   scope :in_area, -> (a) { where(parent_id: a.project_ids) }
   scope :bookable, -> { where("bookable != 'no' and booking_start < NOW() and booking_end > NOW()") }
 
@@ -29,15 +29,14 @@ class Edition < Activity
   end
 
   def over?
-    return false if self.id == 275 
+    return false if self.id == 275
     self.academic_year < CURRENT_ACADEMIC_YEAR
     # Date.parse("#{self.academic_year + 1}/07/31") < Date.today
   end
 
   def first_event_date
-    self.events.order('start_date asc').first.start_date
+    self.events.order("start_date asc").first.start_date
   end
-
 
   def self.all_academic_years
     @@all_academic_years ||= Edition.select(:academic_year).order(academic_year: :desc).group(:academic_year).map(&:academic_year)
