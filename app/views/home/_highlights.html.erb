@@ -1,6 +1,12 @@
-<div class="container flex md:mt-16">
+<% @hightlights = [527, 525] %>
+
+<% if @hightlights.any? %>
+  <h2 class="mt-16 text-center">In evidenza</h2>
+<% end %>
+
+<div class="container md:flex mt-8">
   <% [527, 525].each do |i| %>
-    <div class="w-1/2 px-4">
+    <div class="md:w-1/2 px-4 mt-2">
       <% e = Edition.find(i) %>
       <%= render Activity::CardComponent.new(e) %>
     </div>
