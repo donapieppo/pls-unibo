@@ -27,11 +27,11 @@ body {
 }
 
 #home_logo {
-  position: fixed; 
+  position: absolute; 
   left: 10px; 
   top: 10px; 
   z-index: -1000; 
-  opacity: 0.65;
+  opacity: 0.75;
   width: 90vw;
 }
 
