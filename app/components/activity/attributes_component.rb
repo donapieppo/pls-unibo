@@ -3,4 +3,3 @@ class Activity::AttributesComponent < ViewComponent::Base
     @activity = activity
   end
 end
-

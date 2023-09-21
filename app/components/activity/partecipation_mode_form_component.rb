@@ -5,5 +5,3 @@ class Activity::PartecipationModeFormComponent < ViewComponent::Base
     @f = form
   end
 end
-
-

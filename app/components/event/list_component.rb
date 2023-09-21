@@ -6,7 +6,7 @@ class Event::ListComponent < ViewComponent::Base
     @current_user = current_user
     @short = short
     @with_image = with_image
-    @title = title ? title : "prossimi eventi"
+    @title ||= "Prossimi eventi"
   end
 
   def render?
