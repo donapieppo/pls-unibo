@@ -6,7 +6,11 @@ class Resource < ApplicationRecord
   validates :name, presence: true, allow_blank: false
 
   def to_s
-    self.name.blank? ? ' - ' : self.name
+    if self.display_name.blank?
+      self.name.blank? ? " - " : self.name
+    else
+      self.display_name
+    end
   end
 
   def video?
@@ -20,22 +24,21 @@ class Resource < ApplicationRecord
 
   def embed_url
     if url =~ /https:\/\/www\.youtube\.com\/watch\?v=([0-9a-zA-Z]+)/
-      return "https://www.youtube.com/embed/#{$1}"
-
+      "https://www.youtube.com/embed/#{$1}"
     elsif url =~ /https:\/\/youtu.be\/([0-9a-zA-Z]+)/
-      return "https://www.youtube.com/embed/#{$1}"
+      "https://www.youtube.com/embed/#{$1}"
     end
   end
 
   def document_type
     if self.image?
-      return 'image'
+      "image"
     elsif self.video?
-      return 'video'
-    elsif ! self.url.blank?
-      return 'url'
+      "video"
+    elsif !self.url.blank?
+      "url"
     else
-      return 'document'
+      "document"
     end
   end
 
