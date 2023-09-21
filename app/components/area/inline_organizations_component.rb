@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Area::InlineOrganizationsComponent < ViewComponent::Base
-  def initialize(areas, title: 'Organizzato da')
+  def initialize(areas, label: "Organizzato da")
     @areas = areas
-    @title = title
+    @label = label
   end
 
   def render?
