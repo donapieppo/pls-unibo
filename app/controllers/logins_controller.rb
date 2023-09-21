@@ -15,7 +15,7 @@ class LoginsController < ApplicationController
   def google_oauth2
     parse_google_omniauth
     user = User.where(email: @email).first
-    if ! user
+    if !user
       logger.info "Authentication: google_oauth2 user #{@email} not present in db."
       user = create_logged_user
       sign_in_and_redirect user, myedit_users_path
@@ -30,11 +30,11 @@ class LoginsController < ApplicationController
     log_unibo_omniauth
     parse_unibo_omniauth
 
-    if @email =~ /@(studio\.)?unibo.it\z/ 
+    if @email =~ /@(studio\.)?unibo.it\z/
       allow_and_create
     else
       logger.info "#{@email} user not allowed."
-      redirect_to no_access_path 
+      redirect_to no_access_path
     end
   end
 
