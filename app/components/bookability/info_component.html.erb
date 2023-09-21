@@ -1,11 +1,11 @@
 <div id="binfos">
-  <div class="my-4 font-bold bg-blue-100 rounded-xl p-2">
+  <div class="my-4 font-bold bg-pls-flash rounded-xl p-4">
     <% if @what.external_booking? %>  
       Per le iscrizioni visitare il sito
       <%= link_to @what.booking_url, @what.booking_url %>  
     <% else %>
       <%= @what.bookable_by_to_s.upcase %><br/>
-      dal <%= l @what.booking_start, format: :long %>  al <%= l @what.booking_end %>.
+      dal <%= l @what.booking_start, format: :long %> al <%= l @what.booking_end %>.
     <% end %>
   </div>
   <% if @what.now_in_bookable_interval? && !@what.external_booking? %>  
