@@ -10,6 +10,9 @@ class EditionsController < ApplicationController
       @bookable_now = true
       @editions = @editions.order(:name).bookable.to_a
       @events = Event.bookable.to_a
+    elsif params[:on] == "1"
+      @on = true
+      @editions = @editions.order(:name).this_academic_year
     else
       # Never used
       @editions = @editions.order("academic_year desc, name asc").limit(20)
@@ -23,8 +26,15 @@ class EditionsController < ApplicationController
   end
 
   def new
-    @project = Project.find(params[:project_id])
-    @edition = @project.editions.new(name: @project.name, audience_id: @project.audience_id)
+    if params[:from]
+      orig = Edition.find(params[:from])
+      @project = Project.find(orig.parent_id)
+      @edition = @project.editions.new(orig.attributes)
+      @edition.academic_year = CURRENT_ACADEMIC_YEAR
+    else
+      @project = Project.find(params[:project_id])
+      @edition = @project.editions.new(name: @project.name, audience_id: @project.audience_id)
+    end
     authorize @edition
   end
 

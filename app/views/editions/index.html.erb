@@ -1,6 +1,8 @@
 <div class="container">
   <% if @bookable_now %>  
     <h1 class="title">Le attività prenotabili</h1>
+  <% elsif @on %>
+    <h1 class="title">Le attività del <br/><%= CURRENT_ACADEMIC_YEAR %>/<%= CURRENT_ACADEMIC_YEAR + 1 %></h1>
   <% else %>
     <h1 class="title">Le ultime 20 attività del PLS</h1>
   <% end %>

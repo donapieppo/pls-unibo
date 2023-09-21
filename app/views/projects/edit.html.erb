@@ -19,15 +19,15 @@
         </div>
         <div class="pls-card-content mx-auto max-w-sm py-4">
           <% @project.editions.order('academic_year desc').each do |edition| %>  
-            <div class="hover:bg-yellow-100 p-1">
-              <%= link_to [:edit, edition] do %>
-                <div class="text-sm mt-2 text-gray-700">
-                  <%= edition.academic_year_to_s %>
-                </div>
-                <div class="">
-                  <%= edition.name %> 
-                </div>
-              <% end %>
+            <div>
+              <div class="">
+                <%= edition.name %> 
+              </div>
+              <div>
+              <span class="text-sm mt-2 text-gray-700"><%= edition.academic_year_to_s %></span>
+              <%= link_to edit_icon, [:edit, edition] %>
+              <%= link_to clone_icon, new_edition_path(from: edition.id) %>
+              </div>
             </div>
           <% end %>
         </div>
