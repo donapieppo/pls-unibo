@@ -7,27 +7,38 @@
     <button data-action="click->resource#show_resources" data-resource-type-param="video" class="button">Video</button>
   </div>
 
-  <div class="md:flex md:flex-wrap md:flex-row">
-    <% @resources['document'].each do |resource| %>  
-      <div class="md:w-1/4 p-4 h-42" data-type="<%= resource.document_type %>" data-resource-target="resource" style="display: none">
-        <%= link_to resource.name_and_type, [:edit, resource] %>
-      </div>
-    <% end %>
-  </div>
+  <% if @resources['document'] %>
+    <ul role="list" class="md:flex md:flex-wrap md:flex-row divide-y divide-slate-200">
+      <% @resources['document'].each do |resource| %>  
+        <li class="md:w-1/2 p-4 h-42" data-type="<%= resource.document_type %>" data-resource-target="resource" style="display: block">
+          <%= link_to [:edit, resource] do %>
+            <div>
+              <%= attach_type_icon(resource.document.attachment.content_type) %>
+              <%= resource.name.upcase %>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 
-  <div class="md:flex md:flex-wrap md:flex-row">
-    <% @resources['image'].each do |resource| %>  
-      <div class="md:w-1/4 p-4 h-42" data-type="<%= resource.document_type %>" data-resource-target="resource" style="display: block">
-        <%= link_to image_tag(resource.document.variant(resize_to_limit: [350, 350]), class: 'h-full'), [:edit, resource] %>
-      </div>
-    <% end %>
-  </div>
+  <% if @resources['image'] %>
+    <div class="md:flex md:flex-wrap md:flex-row">
+      <% @resources['image'].each do |resource| %>  
+        <div class="md:w-1/4 p-4 h-42" data-type="<%= resource.document_type %>" data-resource-target="resource" style="display: none">
+          <%= link_to image_tag(resource.document.variant(resize_to_limit: [350, 350]), class: 'h-full'), [:edit, resource] %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 
-  <div class="flex flex-wrap flex-col md:flex-row justify-center">
-    <% @resources['video'].each do |resource| %>  
-      <div class="md:w-1/4 p-4" data-type="<%= resource.document_type %>" data-resource-target="resource" style="display: none">
-        <%= render Resource::ResourceComponent.new(resource)  %>  
-      </div>
-    <% end %>
-  </div>
+  <% if @resources['video'] %>
+    <div class="flex flex-wrap flex-col md:flex-row justify-center">
+      <% @resources['video'].each do |resource| %>  
+        <div class="md:w-1/4 p-4" data-type="<%= resource.document_type %>" data-resource-target="resource" style="display: none">
+          <%= render Resource::ResourceComponent.new(resource)  %>  
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
