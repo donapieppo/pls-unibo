@@ -66,4 +66,17 @@ module IconHelper
   def clock_icon
     '<i class="far fa-clock"></i>'.html_safe
   end
+
+  def attach_type_icon(content_type)
+    case content_type
+    when "application/pdf"
+      '<i class="fa-solid fa-file-pdf fa-xl fa-fw"></i>'.html_safe
+    when "application/msword"
+      '<i class="fa-regular fa-file-word fa-xl fa-fw"></i>'.html_safe
+    when "application/zip"
+      '<i class="fa-solid fa-file-zipper fa-xl fa-fw"></i>'.html_safe
+    else
+      '<i class="fa-solid fa-file fa-xl fa-fw"></i>'.html_safe
+    end
+  end
 end
