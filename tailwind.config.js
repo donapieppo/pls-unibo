@@ -18,7 +18,7 @@ module.exports = {
       }, 
       pls: {
         title: '#040D12',
-        white: 'rgb(247, 249, 251)',
+        white: '#FFFFFF',
         light: '#93B1A6',
         DEFAULT: '#183D3D',
         strong: '#040D12',
