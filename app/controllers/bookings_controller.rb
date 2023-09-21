@@ -3,6 +3,8 @@ class BookingsController < ApplicationController
   before_action :set_booking_and_check_permission, only: %i[thankyou confirm destroy]
 
   def index
+    authorize :booking
+
     if params[:cluster_id]
       @cluster = Cluster.find(params[:cluster_id])
       @bookings = Booking.find(@cluster.activities.map(&:booking_ids).flatten.uniq)
@@ -15,8 +17,6 @@ class BookingsController < ApplicationController
 
     # TODO
     @teacher_email = params[:temail]
-
-    authorize :booking
 
     respond_to do |format|
       format.html {}
