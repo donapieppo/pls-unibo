@@ -8,4 +8,3 @@ class Project::ListComponent < ViewComponent::Base
     @in_evidence = in_evidence
   end
 end
-
