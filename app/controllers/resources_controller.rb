@@ -1,6 +1,6 @@
 class ResourcesController < ApplicationController
-  before_action :set_what, only: %i[ new create ]
-  before_action :set_resource_and_check_permission, only: %i[ show edit update destroy ]
+  before_action :set_what, only: %i[new create]
+  before_action :set_resource_and_check_permission, only: %i[show edit update destroy]
 
   def index
     authorize :resource

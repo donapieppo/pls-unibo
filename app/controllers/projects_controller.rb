@@ -1,12 +1,12 @@
 class ProjectsController < ApplicationController
   include ContactConcern
   include ResourceConcern
-  before_action :set_project_and_check_permission, only: %i[ show edit update destroy add_contact remove_contact choose_resource add_resource remove_resource ]
+  before_action :set_project_and_check_permission, only: %i[show edit update destroy add_contact remove_contact choose_resource add_resource remove_resource]
 
   def index
     authorize :project
     @projects = Project.visible(current_user && current_user.staff?).includes(:areas, :editions, :activity_type).order(:name)
-    if params[:on] == '1'
+    if params[:on] == "1"
       @on = true
       @projects = @projects.where(id: Edition.this_academic_year_project_ids)
     elsif params[:area_id]

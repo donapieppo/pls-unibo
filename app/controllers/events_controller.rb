@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   def index
     authorize :event
     @events = Event.order(:name)
-    @events = @events.visible(current_user && current_user.staff?)
+    @events = @events.visible(current_user&.staff?)
   end
 
   def show
@@ -29,7 +29,7 @@ class EventsController < ApplicationController
     @event = @edition.events.new(event_params)
     authorize @event
     if @event.save
-      redirect_to [:edit, @event], notice: 'OK'
+      redirect_to [:edit, @event], notice: "OK"
     else
       render action: :new, status: :unprocessable_entity
     end

@@ -42,6 +42,7 @@ class ResourceContainersController < ApplicationController
   end
 
   private
+
   def set_resource_container_and_check_permission
     @resource_container = ResourceContainer.find(params[:id])
     authorize @resource_container
