@@ -1,12 +1,12 @@
 <div class="w-full overflow-hidden" 
      style="height: 60vh; background: no-repeat fixed center url(<%= asset_path(area_image(@area)) %>); background-size: cover;">
      <h1 class="m-4 my-24 text-4xl lg:text-8xl tracking-wide font-semibold text-white text-center leading-relaxed">
-       <span class="px-4 bg-pls bg-opacity-80 rounded-xl"><%= @area %></span>
+       <span class="px-4 bg-pls-strong bg-opacity-80 rounded-xl"><%= @area %></span>
      </h1>
 </div>
 
 <div class="lg:relative">
-  <div class="relative lg:ml-auto -top-16 lg:right-8 lg:max-w-4xl 2xl:max-w-6xl mx-2 bg-pls-light font-light lg:text-xl rounded-xl p-6 border-gray-900 border-4">
+  <div class="relative lg:ml-auto -top-16 lg:right-8 lg:max-w-4xl 2xl:max-w-6xl mx-2 bg-gray-50 font-light lg:text-xl rounded-xl p-6 border-gray-900 border-2">
     <div class="text-justify">
       <%= simple_format @area.description %>
     </div>
@@ -46,16 +46,18 @@
   </div>
 
   <% if @common_projects.any? %>  
-    <h2 class="title">Le attività comuni</h3>
+    <h2 class="title">Attività comuni</h3>
     <%= render Project::ListComponent.new(@common_projects, no_filter: true) %>
   <% end %>
 
 
   <% if @resource_containers.any? %>  
-    <h2 class="title">Le risorse</h2>
-    <div class="md:flex">
+    <h2 class="title">Risorse</h2>
+    <div class="flex flex-wrap">
       <% @resource_containers.each do |resource_container| %>  
-        <%= render ResourceContainer::CardComponent.new(resource_container, current_user) %>  
+        <div class="md:w-1/2 p-2 my-2">
+          <%= render ResourceContainer::CardComponent.new(resource_container, current_user) %>  
+        </div>
       <% end %>
     </div>
   <% end %>
