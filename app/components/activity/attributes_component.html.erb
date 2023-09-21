@@ -1,10 +1,10 @@
 <% if @activity.campus_id %>  
-  <div class="font-bold">
+  <div class="font-bold text-xl text-pls-falsh mb-4">
     Sede: <%= @activity.campus %>  
   </div>
 <% end %>
 
 <%= render Area::InlineOrganizationsComponent.new(@activity.areas) %>  
-<%= render Area::InlineOrganizationsComponent.new(@activity.interested_areas, title: 'Altre aree di interesse') %>  
+<%= render Area::InlineOrganizationsComponent.new(@activity.interested_areas, label: 'Altre aree di interesse') %>  
 <%= render Contact::InlineContactsComponent.new(@activity.contacts) %>  
 

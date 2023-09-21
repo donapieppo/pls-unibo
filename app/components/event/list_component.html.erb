@@ -14,16 +14,16 @@
     <% end %>
   </div>
 <% else %>
-  <div class="relative my-8 border-2 border-pls rounded-xl shadow-xl bg-gray-100 bg-opacity-50">
-    <h2 class="md:absolute md:-top-6 md:left-5 bg-pls rounded-xl text-gray-100 px-4 py-2 text-2xl text-center">
-      <%= @title.upcase %>  
-    </h3>
+  <div class="relative border-2 shadow-xl hover:shadow-2xl border-pls p-8 mt-16">
+    <div class="bg-gray-100 border-2 border-pls text-gray-800 text-lg lg:text-2xl font-bold absolute -top-8 text-pls p-2 lg:p-4 px-8 rounded-2xl tracking-wider">
+      <%= @title %>  
+    </div>
 
     <% @events.each do |event| %>  
       <% next if event.hidden? %>
       <div class="my-4 md:my-8 md:flex px-2">
-        <div class="md:w-1/5 md:px-8 py-2 text-center">
-          <%= link_to event, class: "block text-pls border-pls border-2 shadow-xl text-sm font-bold py-2 px-4" do %>  
+        <div class="md:w-1/5 py-2 text-center">
+          <%= link_to event, class: "block text-pls font-bold px-2" do %>  
             <%= l event.start_date %> 
           <% end %>
         </div>
@@ -37,7 +37,7 @@
             </div>
           <% end %>
             <div>
-            <%= render Contact::InlineSpeakersComponent.new(event.speakers) %>  
+            <%= render Contact::InlineContactsComponent.new(event.speakers, label: "Relatori") %>  
           </div>
           <%= render Bookability::InfoComponent.new(event) %>  
           <%= render Booking::CurrentUserBookingComponent.new(event, @current_user) %>  
@@ -55,7 +55,7 @@
             </div>
           <% end %>
       </div>
-      <hr class="my-4 w-64 border-pls border mx-auto"/>
+      <hr class="my-4 w-4/5 border-gray-200 border mx-auto"/>
     <% end %>
   </div>
 <% end %>

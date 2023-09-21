@@ -1,13 +1,13 @@
-<div class="md:w-1/2 md:p-4">
-  <div class="flex flex-col h-full border-2 border-pls rounded-2xl my-2 bg-gray-100">
-    <div class="text-center bg-pls text-gray-50 rounded-t-xl py-4">
+<div class="md:p-1">
+  <div class="flex flex-col h-full border-2 border-pls rounded-2xl my-2 bg-gray-100 justify-center items-center">
+    <div class="text-center bg-pls-light text-pls-dark rounded-t-xl py-4 w-full">
       <div class="text-lg font-semibold leading-6 tracking-wide">
-        <%= @resource_container.name.upcase %>
+        <%= @resource_container.to_s.upcase %>
       </div>
     </div>
     <div class="flex-grow p-2">
       <% @resource_container.resources.each do |resource| %>  
-        <div class="inline-block">
+        <div class="inline-block py-4 border-b-2 last-of-type:border-0 border-pls-strong">
           <%= render Resource::ResourceComponent.new(resource, small: true) %>  
         </div>
       <% end %>
