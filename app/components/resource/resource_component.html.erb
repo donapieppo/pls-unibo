@@ -14,7 +14,7 @@
     <%= image_tag @resource.document.preview(resize_to_limit: [@limit, @limit]), class: 'block mx-auto' %>
   <% end %>
   <div class="underline text-lg text-center">
-    <%= link_to @resource.name, @resource.url.blank? ? url_for(@resource.document) : @resource.url %>
+    <%= link_to @resource, @resource.url.blank? ? url_for(@resource.document) : @resource.url %>
   </div>
 
 <% else @resource.video? %>  
