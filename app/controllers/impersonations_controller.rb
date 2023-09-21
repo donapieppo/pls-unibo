@@ -6,12 +6,12 @@ class ImpersonationsController < ApplicationController
       @users = User.order(:surname)
       @main_users = User.where(email: Rails.configuration.main_impersonations || [])
     else
-      redirect_to root_path and return 
+      redirect_to root_path and return
     end
   end
 
   def impersonate
-    #authorize :impersonation
+    # authorize :impersonation
     skip_authorization
     if current_user && true_user_can_impersonate?
       user = User.find(params[:id])
