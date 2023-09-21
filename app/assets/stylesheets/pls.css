@@ -128,3 +128,8 @@ ul {
 ol {
   list-style-type: decimal;
 }
+
+.number {
+  font-family: monospace;
+  text-align: right;
+}
