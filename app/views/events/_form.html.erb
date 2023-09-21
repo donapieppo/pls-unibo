@@ -5,12 +5,12 @@
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
     <%= f.input :name %>
-    <%= f.input :description %>
-
-    <%= render Activity::PartecipationModeFormComponent.new(f) %>
+    <%= f.input :description, input_html: { cols: 80, rows: 10 } %>
 
     <%= f.input :start_date, minute_step: 10 %>
     <%= f.input :duration %>
+
+    <%= render Activity::PartecipationModeFormComponent.new(f) %>
 
     <% unless @edition && @edition.atomic %>  
       <%= f.input :seats %>
