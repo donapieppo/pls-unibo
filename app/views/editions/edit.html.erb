@@ -8,7 +8,7 @@
   </div>
 
   <div class="text-center">
-    in <%= link_to @edition.project.name, [:edit, @edition.project], class: 'button' %>
+    in <%= link_to @edition.project.name, [:edit, @edition.project], class: 'underline' %>
   </div>
 
   <div class="lg:flex">
@@ -19,21 +19,7 @@
       <%= render Contact::EditComponent.new(what: @edition, can_add: policy(@edition).edit?) %>
       <%= render Contact::EditComponent.new(what: @edition, as: :speaker, can_add: policy(@edition).edit?) %>
       <%= render Resource::EditComponent.new(@edition, current_user) %>
-
-      <div class="pls-card my-8">
-        <div class="pls-card-title">EVENTI</div>
-        <div class="pls-card-content">
-          <% @edition.events.order('start_date desc').each do |event| %>  
-            <div class="py-1 hover:bg-gray-100">
-              <%= link_to [:edit, event] do %> 
-                <i class="fas fa-chevron-right mr-2"></i> 
-                <%= event.name %> 
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-        <%= link_to 'Nuovo Evento', new_edition_event_path(@edition), class: 'button' %>  
-      </div>
+      <%= render Event::EditComponent.new(@edition, current_user) %>
 
       <%= render Snippet::EditComponent.new(@edition) %>  
     </div>
