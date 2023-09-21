@@ -12,8 +12,8 @@
         </div>
       <% end %>
       <hr class="my-2"/>
-      <%= render Contact::InlineContactsComponent.new(@edition.contacts) %>  
-      <%= render Contact::InlineSpeakersComponent.new(@edition.speakers) %>  
+      <%= render Contact::InlineContactsComponent.new(@edition.contacts, label: "Conattti") %>  
+      <%= render Contact::InlineContactsComponent.new(@edition.speakers, label: "Relatori") %>  
 
       <%= render Bookability::InfoComponent.new(@edition) %>  
       <%= render Booking::CurrentUserBookingComponent.new(@edition, current_user) %>  
@@ -28,7 +28,8 @@
 
     <div class="md:w-2/3 md:pr-4">
       <div class="text-lg my-4 md:mt-0">
-        Progetto: <%= link_to @edition.project.name.upcase, @edition.project, class: 'underline' %>
+        Attività all'interno del progetto 
+        <strong>&ldquo;<%= link_to @edition.project.name.upcase, @edition.project, class: 'underline' %>&rdquo;</strong>
       </div>
       <div class="my-2 md:text-xl text-pls font-semibold">
         <div>
@@ -69,7 +70,7 @@
   <% end %>
 </div>
 
-<div class="text-center text-base mt-4">
+<div class="text-center text-base my-8">
   <%= link_to '[torna al progetto]', @edition.project %>  
 </div>
 

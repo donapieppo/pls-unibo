@@ -18,7 +18,7 @@
       <%= render Activity::Extra.new(@event) %>  
     </div>
 
-    <%= render Contact::InlineSpeakersComponent.new(@event.speakers) %>  
+    <%= render Contact::InlineContactsComponent.new(@event.speakers, label: "Relatori") %>  
 
     <div class="my-8">
       <%= @event.description %>  
