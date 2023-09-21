@@ -3,8 +3,11 @@ module ResourceConcern
 
   def choose_resource
     @what = @project || @edition || @event || @resource_container
-    @resources = Resource.where.not(id: @what.resource_ids).order(:name)
-    render 'resources/choose_resource'
+    @resources = Hash.new { |hash, key| hash[key] = [] }
+    Resource.where.not(id: @what.resource_ids).order(:name).with_attached_document.each do |r|
+      @resources[r.document_type] << r
+    end
+    render "resources/choose_resource"
   end
 
   def add_resource
