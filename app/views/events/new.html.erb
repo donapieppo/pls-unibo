@@ -1,9 +1,9 @@
 <div class="container">
   <h1 class="title">
-    <%= @edition %>
+    Nuovo evento
   </h1>
   <div class="text-center">
-    <%= link_to @edition.to_s, [:edit, @edition], class: "button" %>
+    in <%= link_to @edition, [:edit, @edition], class: "text-xl underline" %>
   </div>
 
   <%= render 'form' %>
