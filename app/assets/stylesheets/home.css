@@ -1,0 +1,21 @@
+.big-home-button {
+  @apply flex flex-col items-center justify-center; 
+  @apply h-full;
+  @apply bg-gray-50 hover:bg-gray-200 text-pls-strong;
+  @apply border-2 border-pls-strong rounded-2xl hover:shadow-2xl;
+  @apply text-2xl font-bold;
+  @apply hover:shadow-2xl; 
+  @apply p-8 py-16 m-2 my-4;
+  position: relative;
+}
+.big-home-button-icon {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  padding: 15px;
+  @apply text-xl text-pls;
+  @apply bg-gray-100 text-pls border-2 border-pls;
+  @apply rounded-2xl;
+}
+
+

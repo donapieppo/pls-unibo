@@ -1,13 +1,11 @@
 #home-first {
-  @apply flex flex-col md:flex-row justify-center items-center min-h-screen;
+  min-height: 85vh;
+  @apply flex flex-col md:flex-row justify-center items-center;
   @apply md:-mt-8;
 }
 #home-first-left {
   @apply mt-0 md:w-1/2 text-center md:text-right ; 
   @apply md:pr-8;
-  h1 {
-    @apply text-pls font-medium text-4xl sm:text-5xl xl:text-6xl 2xl:text-8xl tracking-tight;
-  }
 }
 #home-first-right {
   @apply md:w-1/2 text-center;

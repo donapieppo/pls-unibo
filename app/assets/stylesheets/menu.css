@@ -14,7 +14,7 @@
       width: 33%;
       @apply grow text-center px-2;
       @apply text-xl lg:text-2xl;
-      @apply text-blue-900 font-bold tracking-widest;
+      @apply font-bold tracking-widest;
     }
     .header-user {
       width: 33%;
@@ -36,7 +36,7 @@
 }
 
 .bar {
-  @apply block ml-8 bg-blue-900;
+  @apply block ml-8 bg-pls-strong;
   width: 32px;
   height: 6px;
   margin: 8px;
@@ -60,6 +60,6 @@
 
 .menu-items {
   a.menu-items-item {
-    @apply block uppercase text-pls border-b border-pls p-1 md:p-2 px-4 font-bold hover:bg-pls hover:text-white;
+    @apply block uppercase text-pls-strong border-b border-pls p-1 md:p-2 px-4 font-bold hover:bg-pls hover:text-white;
   }
 }
