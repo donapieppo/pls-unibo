@@ -11,30 +11,8 @@
     </div>
     <div class="lg:w-1/3">
       <%= render Contact::EditComponent.new(what: @project, can_add: policy(@project).edit?) %>
+      <%= render Edition::EditComponent.new(@project, current_user) %>
       <%= render Resource::EditComponent.new(@project, current_user) %>
-
-      <div class="pls-card my-6">
-        <div class="pls-card-title">
-          EDIZIONI
-        </div>
-        <div class="pls-card-content mx-auto max-w-sm py-4">
-          <% @project.editions.order('academic_year desc').each do |edition| %>  
-            <div>
-              <div class="">
-                <%= edition.name %> 
-              </div>
-              <div>
-              <span class="text-sm mt-2 text-gray-700"><%= edition.academic_year_to_s %></span>
-              <%= link_to edit_icon, [:edit, edition] %>
-              <%= link_to clone_icon, new_edition_path(from: edition.id) %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-        <div class="pls-card-footer">
-          <%= link_to 'Nuova edizione', new_project_edition_path(@project), class: 'button' %>  
-        </div>
-      </div>
     </div>
   </div>
 </div>
