@@ -16,7 +16,7 @@
 <% elsif @user_sibling_booking_activity %>
   <div class="text-lg text-green-700 font-bold my-4">  
     Sei iscritto all'attività 
-    &ldquo;<span class="underline"><%= link_to @user_sibling_booking_activity.to_s, @user_sibling_booking_activity %>&rdquo;</span>
+    &ldquo;<%= link_to @user_sibling_booking_activity.to_s, @user_sibling_booking_activity, class: "underline" %>&rdquo;
     dello stesso gruppo. 
   </div>
 <% end %>
