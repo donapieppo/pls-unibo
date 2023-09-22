@@ -11,24 +11,28 @@ class Bookability::ActionsComponent < ViewComponent::Base
       booking_online = what.bookings.new(online: true)
       booking_inpresence = what.bookings.new(online: false)
 
-      @bookable_by_user_online = BookingPolicy.new(@current_user, booking_online).create?
-      @bookable_by_user_inpresence = BookingPolicy.new(@current_user, booking_inpresence).create?
+      if @current_user
+        online_booking_policy = BookingPolicy.new(@current_user, booking_online)
+        in_presence_booking_policy = BookingPolicy.new(@current_user, booking_inpresence)
 
-      @bookable_for_students_online = BookingPolicy.new(@current_user, booking_online).new_student?
-      @bookable_for_students_inpresence = BookingPolicy.new(@current_user, booking_inpresence).new_student?
+        @bookable_by_user_online = online_booking_policy.create?
+        @bookable_for_students_online = online_booking_policy.new_student?
 
-      @bookable_for_classes = BookingPolicy.new(@current_user, booking_inpresence).new_school_class?
-      @bookable_for_groups = BookingPolicy.new(@current_user, booking_inpresence).new_school_group?
+        @bookable_by_user_inpresence = in_presence_booking_policy.create?
+        @bookable_for_students_inpresence = in_presence_booking_policy.new_student?
+        @bookable_for_classes = in_presence_booking_policy.new_school_class?
+        @bookable_for_groups = in_presence_booking_policy.new_school_group?
 
-      if @bookable_by_user_online || @bookable_by_user_inpresence
-        @user_this_booking = @what.bookings.where(user_id: @current_user.id).where(school_class: nil).first
-        @user_sibling_booking_activity_id = @what.cluster_siblings_booked_activity_ids(@current_user).first
-        @user_sibling_booking_activity = Activity.find(@user_sibling_booking_activity_id) if @user_sibling_booking_activity_id
+        if @bookable_by_user_online || @bookable_by_user_inpresence
+          @user_this_booking = @what.bookings.where(user_id: @current_user.id).where(school_class: nil).first
+          @user_sibling_booking_activity_id = @what.cluster_siblings_booked_activity_ids(@current_user).first
+          @user_sibling_booking_activity = Activity.find(@user_sibling_booking_activity_id) if @user_sibling_booking_activity_id
+        end
       end
     end
   end
 
   def render?
-    @current_user && @what.internally_bookable_with_dates?
+    @what.internally_bookable_with_dates?
   end
 end

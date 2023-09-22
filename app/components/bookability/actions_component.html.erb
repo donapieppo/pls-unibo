@@ -1,43 +1,45 @@
-<% if (@bookable_by_user_online || @bookable_by_user_inpresence) && !@user_this_booking %>  
-  <% if @what.booking_to_confirm? %>  
-    <div>
-      Puoi fare richiesta di partecipazione.<br/> 
-      In seguito riceverai ulteriori informazioni al tuo indirizzo email <%= @current_user.email if @current_user %>.
-    </div>
+<% if @current_user %>
+  <% if (@bookable_by_user_online || @bookable_by_user_inpresence) && !@user_this_booking %>  
+    <% if @what.booking_to_confirm? %>  
+      <div>
+        Puoi fare richiesta di partecipazione.<br/> 
+        In seguito riceverai ulteriori informazioni al tuo indirizzo email <%= @current_user.email if @current_user %>.
+      </div>
+    <% end %>
+    <% if @bookable_by_user_online %>  
+      <div class="my-4">
+        <%= link_to booking_icon + ' ' + @what.booking_action_to_s + " in remoto", [:new, @what, :booking, online: 1], class: 'button' %>
+      </div>
+    <% end %>
+    <% if @bookable_by_user_inpresence %>  
+      <div class="my-4">
+        <%= link_to booking_icon + ' ' + @what.booking_action_to_s + " in presenza", [:new, @what, :booking], class: 'button' %>
+      </div>
+    <% end %>
   <% end %>
-  <% if @bookable_by_user_online %>  
+
+  <% if @bookable_for_students_online %>
     <div class="my-4">
-      <%= link_to booking_icon + ' ' + @what.booking_action_to_s + " in remoto", [:new, @what, :booking, online: 1], class: 'button' %>
+      <%= link_to booking_icon + ' ' + @what.booking_action_your_students_to_s + " in remoto", [:new_student, @what, :bookings, online: 1], class: 'button' %>
     </div>
   <% end %>
-  <% if @bookable_by_user_inpresence %>  
+  <% if @bookable_for_students_inpresence %>
     <div class="my-4">
-      <%= link_to booking_icon + ' ' + @what.booking_action_to_s + " in presenza", [:new, @what, :booking], class: 'button' %>
+      <%= link_to booking_icon + ' ' + @what.booking_action_your_students_to_s + " in presenza", [:new_student, @what, :bookings], class: 'button' %>
     </div>
   <% end %>
-<% end %>
 
-<% if @bookable_for_students_online %>
-  <div class="my-4">
-    <%= link_to booking_icon + ' ' + @what.booking_action_your_students_to_s + " in remoto", [:new_student, @what, :bookings, online: 1], class: 'button' %>
-  </div>
-<% end %>
-<% if @bookable_for_students_inpresence %>
-  <div class="my-4">
-    <%= link_to booking_icon + ' ' + @what.booking_action_your_students_to_s + " in presenza", [:new_student, @what, :bookings], class: 'button' %>
-  </div>
-<% end %>
+  <% if @bookable_for_classes %>
+    <div class="my-4">
+      <%= link_to booking_icon + ' ' + @what.booking_action_class_to_s, [:new_school_class, @what, :bookings], class: 'button' %>
+    </div>
+  <% end %>
 
-<% if @bookable_for_classes %>
-  <div class="my-4">
-    <%= link_to booking_icon + ' ' + @what.booking_action_class_to_s, [:new_school_class, @what, :bookings], class: 'button' %>
-  </div>
-<% end %>
-
-<% if @bookable_for_groups %>
-  <div class="my-4">
-    <%= link_to booking_icon + ' ' + @what.booking_action_group_to_s, [:new_school_group, @what, :bookings], class: 'button' %>
-  </div>
+  <% if @bookable_for_groups %>
+    <div class="my-4">
+      <%= link_to booking_icon + ' ' + @what.booking_action_group_to_s, [:new_school_group, @what, :bookings], class: 'button' %>
+    </div>
+  <% end %>
 <% end %>
 
 <% unless @what.external_booking? %>  
@@ -66,9 +68,8 @@
   <% end %>
 <% end %>
 
-<% if @current_user && @current_user.voyeur? && @what.bookable != 'no' && @what.bookable != 'external' %>  
+<% if @current_user&.voyeur? && @what.bookable != 'no' && @what.bookable != 'external' %>  
   <div>
     <%= link_to 'Elenco prenotazioni', bookings_path(activity_id: @what.id), class: 'underline' %>  
   </div>
 <% end %>
-
