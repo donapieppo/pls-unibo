@@ -32,11 +32,11 @@
             <div class="text-lg font-semibold">
               <%= event.name.upcase %>  
             </div>
-            <div class="text-sm italic text-justify text-gray-700 mt-4">
+            <div class="italic text-justify text-gray-700 mt-2 mb-4">
               <%= event.description %>
             </div>
           <% end %>
-            <div>
+          <div>
             <%= render Contact::InlineContactsComponent.new(event.speakers, label: "Relatori") %>  
           </div>
           <%= render Bookability::InfoComponent.new(event) %>  
@@ -47,8 +47,8 @@
             <div class="md:w-1/5 px-4">
             <% event.resources.each do |r| %>  
               <% if r.image? %>  
-                <div class="mx-auto">
-                  <%= image_tag(r.document.variant(resize_to_limit: [350, 350])) %>  
+                <div class="mx-auto p-4 md:p-0">
+                  <%= image_tag(r.document.variant(resize_to_limit: [300, 300]), class: "rounded-xl") %>  
                 </div>
               <% end %>
             <% end %>
