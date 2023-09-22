@@ -4,7 +4,6 @@ class Resource::ResourceComponent < ViewComponent::Base
   def initialize(resource, small: false)
     @resource = resource
     @small = small
-    @limit = @small ? 250 : 400
+    @limit = @small ? 250 : 350
   end
 end
-
