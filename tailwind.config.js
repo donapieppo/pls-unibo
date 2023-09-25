@@ -14,7 +14,7 @@ module.exports = {
       orange: colors.orange, 
       home: {
         title: '#040D12',
-        bg1: '#93B1A6',
+        bg1: '#E5E7EB',
       }, 
       pls: {
         title: '#040D12',
