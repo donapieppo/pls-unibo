@@ -26,21 +26,6 @@ body {
   @apply text-white border-2 border-pls bg-pls-strong hover:bg-pls hover:text-white font-bold p-8 text-center rounded-2xl;
 }
 
-#home_logo {
-  position: absolute; 
-  left: 10px; 
-  top: 10px; 
-  z-index: -1000; 
-  opacity: 0.75;
-  width: 90vw;
-}
-
-@media screen and (min-width: 1000px) {
-  #home_logo {
-    width: 60vw;
-  }
-}
-
 .alert {
   @apply bg-red-100 border-l-4 border-red-500 text-black p-4;
 }

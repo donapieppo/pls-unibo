@@ -19,3 +19,18 @@
 }
 
 
+#home_logo {
+  position: absolute; 
+  left: 10px; 
+  top: 10px; 
+  z-index: -1000; 
+  opacity: 0.25;
+  width: 90vw;
+}
+
+@media screen and (min-width: 1000px) {
+  #home_logo {
+    width: 60vw;
+  }
+}
+
