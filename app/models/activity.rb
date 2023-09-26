@@ -4,7 +4,7 @@ class Activity < ApplicationRecord
   has_and_belongs_to_many :resources
   has_and_belongs_to_many :clusters
 
-  has_many :snippets
+  has_many :snippets, dependent: :destroy
 
   before_destroy :check_children
 
