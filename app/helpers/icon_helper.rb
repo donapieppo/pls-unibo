@@ -12,7 +12,7 @@ module IconHelper
   end
 
   def edit_icon
-    '<i class="fas fa-edit ml-2"></i>'.html_safe
+    '<i class="fas fa-edit"></i>'.html_safe
   end
 
   def download_icon
