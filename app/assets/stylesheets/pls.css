@@ -64,7 +64,7 @@ h4 {
 }
 
 .pls-card {
-  @apply border-2 border-pls shadow-lg p-2 py-4 rounded-lg relative;
+  @apply border-2 border-pls shadow-lg p-2 pb-4 pt-8 rounded-lg relative;
   .pls-card-title {
     @apply block border-2 border-pls bg-white rounded font-bold absolute -top-4 -left-2 p-1 px-4;
   }

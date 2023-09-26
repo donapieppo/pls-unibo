@@ -18,19 +18,19 @@
   @apply rounded-2xl;
 }
 
-
 #home_logo {
   position: absolute; 
-  left: 10px; 
-  top: 10px; 
+  left: 0px; 
+  top: 60px; 
   z-index: -1000; 
   opacity: 0.25;
-  width: 90vw;
+  width: 100vw;
 }
 
 @media screen and (min-width: 1000px) {
   #home_logo {
     width: 60vw;
+    left: 60px;
   }
 }
 
