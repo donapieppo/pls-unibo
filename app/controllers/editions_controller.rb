@@ -1,7 +1,7 @@
 class EditionsController < ApplicationController
   include ContactConcern
   include ResourceConcern
-  before_action :set_edition_and_check_permission, only: %i[show edit update destroy add_contact remove_contact add_speaker remove_speaker choose_resource add_resource remove_resource]
+  before_action :set_edition_and_check_permission, only: %i[show edit update destroy clone add_contact remove_contact add_speaker remove_speaker choose_resource add_resource remove_resource]
 
   def index
     authorize :edition
@@ -26,15 +26,8 @@ class EditionsController < ApplicationController
   end
 
   def new
-    if params[:from]
-      orig = Edition.find(params[:from])
-      @project = Project.find(orig.parent_id)
-      @edition = @project.editions.new(orig.attributes)
-      @edition.academic_year = CURRENT_ACADEMIC_YEAR
-    else
-      @project = Project.find(params[:project_id])
-      @edition = @project.editions.new(name: @project.name, audience_id: @project.audience_id)
-    end
+    @project = Project.find(params[:project_id])
+    @edition = @project.editions.new(name: @project.name, audience_id: @project.audience_id)
     authorize @edition
   end
 
@@ -47,6 +40,11 @@ class EditionsController < ApplicationController
     else
       render action: :new, status: :unprocessable_entity
     end
+  end
+
+  def clone
+    @cloned = @edition.clone
+    redirect_to [:edit, @cloned], notice: "OK"
   end
 
   def edit

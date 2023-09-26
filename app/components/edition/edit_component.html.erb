@@ -3,17 +3,22 @@
     EDIZIONI
   </div>
   <div class="pls-card-content mx-auto max-w-sm py-4">
-    <% @editions.each do |edition| %>  
+    <% current_year_present = false %>
+    <% @editions.each do |edition| %> 
+      <% current_year_present ||= edition.current_year? %>
       <div>
         <div class="">
           <%= edition %> 
         </div>
-        <div>
-          <span class="text-sm mt-2 text-gray-700">
+        <div class="">
+          <span class="text-sm text-gray-700 px-2">
             <%= edition.academic_year_to_s %>
           </span>
-          <%= link_to edit_icon, [:edit, edition], title: "Modifica" %>
-          <%= link_to clone_icon, new_edition_path(from: edition.id), title: "Duplica l'edizione" %>
+          <%= link_to link_icon, edition, title: "Vai alla pagina", class: 'mr-1' %>
+          <%= link_to edit_icon, [:edit, edition], title: "Modifica", class: 'mr-1' %>
+          <% if !current_year_present %>
+            <%= button_to clone_icon, clone_edition_path(edition), title: "Duplica l'edizione", form: {class: "inline"} %>
+          <% end %>
         </div>
       </div>
     <% end %>

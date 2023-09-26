@@ -87,6 +87,7 @@ Rails.application.routes.draw do
   resources :editions, concerns: [:resourceble, :contactable, :bookable] do
     resources :events
     resources :snippets
+    post :clone, on: :member
   end
 
   resources :events, concerns: [:resourceble, :contactable, :bookable] do

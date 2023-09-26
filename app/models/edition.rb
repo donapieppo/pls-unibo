@@ -67,4 +67,35 @@ class Edition < Activity
   def hidden?
     self.hidden || self.project.hidden?
   end
+
+  def clone
+    if self.academic_year == CURRENT_ACADEMIC_YEAR
+      return false
+    end
+    cloned = self.project.editions.new(academic_year: CURRENT_ACADEMIC_YEAR)
+    cloned.name = self.name
+    cloned.description = self.description
+    cloned.place = self.place
+    cloned.details = self.details
+    cloned.seats = self.seats
+    cloned.audience_id = self.audience_id
+    cloned.organization_id = self.organization_id
+    cloned.sofia = self.sofia
+    cloned.pcto = self.pcto
+    cloned.bookable = "no"
+    cloned.save!
+    self.contacts.each do |c|
+      cloned.contacts << c
+    end
+    self.speakers.each do |c|
+      cloned.speakers << c
+    end
+    self.snippets.each do |s|
+      s1 = s.dup
+      s1.description = s.description.dup
+      s1.save
+      cloned.snippets << s1
+    end
+    cloned
+  end
 end
