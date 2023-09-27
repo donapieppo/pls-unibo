@@ -13,7 +13,7 @@ application.register("turbo-modal", TurboModalController)
 import MenuController from "./menu_controller"
 application.register("menu", MenuController)
 
-import HideShowController from "./hideshow"
+import HideShowController from "./hideshow_controller"
 application.register("hideshow", HideShowController)
 
 import FilterController from "./filter_controller"
@@ -33,3 +33,6 @@ application.register("resource", ResourceController)
 
 import SchoolController from "./school_controller"
 application.register("school", SchoolController)
+
+// import FormAlertController from "./form_alert_controller"
+// application.register("form-alert", FormAlertController)
