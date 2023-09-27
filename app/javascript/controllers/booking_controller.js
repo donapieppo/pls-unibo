@@ -5,8 +5,6 @@ export default class extends Controller {
 
   connect() {
     console.log("booking controller");
-    console.log(this.bookableGroupTarget);
-    console.log(this.groupLimitTarget);
 
     display_unless(['no', 'external'], this.byTarget, this.bookableTypeTarget);
     display_unless(['no', 'external'], this.datesTarget, this.bookableTypeTarget);
