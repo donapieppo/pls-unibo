@@ -6,11 +6,11 @@
 </div>
 
 <div class="lg:relative">
-  <div class="relative lg:ml-auto -top-16 lg:right-8 lg:max-w-4xl 2xl:max-w-6xl mx-2 bg-gray-50 font-light lg:text-xl rounded-xl p-6 border-gray-900 border-2">
+  <div class="relative lg:ml-auto -top-16 lg:right-8 lg:max-w-4xl 2xl:max-w-6xl mx-2 bg-gray-50 font-light lg:text-lg rounded-xl p-6 border-pls-strong border-2">
     <div class="text-justify">
       <%= simple_format @area.description %>
     </div>
-    <div class="text-sm mt-4">
+    <div class="text-base mt-4">
       <div>Responsabile: <%= @area.head %></div>
       <div><%= render Contact::InlineContactsComponent.new(@area.contacts, label: "Contatti") %></div>
     </div>
