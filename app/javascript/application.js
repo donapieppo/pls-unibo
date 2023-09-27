@@ -27,11 +27,11 @@ window.display_if = function (txt, what, condition_input) {
   });
 }
 
-window.display_if_checked = function (what, condition_input) {
-  what.style.display = (condition_input.checked) ? 'block' : 'none';
+window.display_if_checked = function (what, condition_input, display="block") {
+  what.style.display = (condition_input.checked) ? display : 'none';
   condition_input.addEventListener('change', () => {
     console.log(condition_input.checked);
-    what.style.display = (condition_input.checked) ? 'block' : 'none';
+    what.style.display = (condition_input.checked) ? display : 'none';
   });
 }
 

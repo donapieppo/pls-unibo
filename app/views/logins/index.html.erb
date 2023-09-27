@@ -8,10 +8,16 @@
       e iscriverti alle attività.
     </div>
 
+    <% if Rails.env.development? %>  
+      <div class="text-center my-4 text-lg">
+        <%= button_to "Entra in test", '/auth/developer', data: { turbo: false } %>
+      </div>
+    <% end %>
+
     <div class="text-center">
       <%= button_to "", '/auth/google_oauth2', data: { turbo: false }, class: "input-google-login", style: "background-image: url(#{ image_path("google/btn_google_signin_light_normal_web.png") }" %>
 
-      <div class="text-sm text-gray-500 px-2 mt-2 mb-6">
+      <div class="text-sm text-gray-600 px-2 mt-2 mb-6">
         Sono account Google validi anche <br/>
         gli account scolastici che usano <br/> 
         Google Classroom.
@@ -22,11 +28,11 @@
       <%= link_to image_tag('ssologo18x18.png', class: 'inline mr-2') + " Accedi in Unibo", "https://www.dm.unibo.it/nuovo-pls/login", 
                    class: 'bg-gray-100 border-b-2 border-gray-300 hover:bg-gray-200 text-sm font-bold py-2 px-4 rounded', data: { turbo: false } %>
 
-      <div class="text-sm text-gray-500 px-2 mt-2 mb-6">
+      <div class="text-sm text-gray-600 px-2 mt-4 mb-6">
         Sono account Unibo validi sia gli account <br/>
-        <i>@unibo</i> <br/>
+        <i>@unibo.it</i> <br/>
         che gli account <br/>
-        <i>@studio.unibo</i>.
+        <i>@studio.unibo.it</i>.
       </div>
     </div>
 
@@ -36,11 +42,5 @@
     Continuando, accetti i Termini di servizio del piano PLS e dichiari 
     di aver letto le nostre <%= link_to 'Norme sulla privacy', privacy_path, class: 'underline' %>
     </p>
-
-    <% if Rails.env.development? %>  
-      <div class="text-center">
-        <%= button_to "Entra in test", '/auth/developer', data: { turbo: false } %>
-      </div>
-    <% end %>
   </div>
 </div>
