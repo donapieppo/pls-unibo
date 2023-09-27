@@ -11,16 +11,18 @@
       <%= f.rich_text_area :details %>
     </div>
 
-    <%= f.association :activity_type, include_blank: false %>  
-    <div class="my-4">
-      <%= f.input :global, input_html: { id: 'activity_global' } %>  
-    </div>
-    <div class="md:flex" id="areas_select">
-      <div class="md:w-1/2">
-        <%= f.association :areas, as: :check_boxes %>  
+    <div data-controller="hideshow" data-hideshow-display-value="flex">
+      <%= f.association :activity_type, include_blank: false %>  
+      <div class="my-4">
+        <%= f.input :global, input_html: {data: {"hideshow-target": "control"}} %>  
       </div>
-      <div class="md:w-1/2">
-        <%= f.association :interested_areas, as: :check_boxes, hint: "Se l'attività è di interesse per altre aree oltre che per l'area organizzatrice." %>  
+      <div class="md:flex" id="areas_select" data-hideshow-target="controlled">
+        <div class="md:w-1/2">
+          <%= f.association :areas, as: :check_boxes %>  
+        </div>
+        <div class="md:w-1/2">
+          <%= f.association :interested_areas, as: :check_boxes, hint: "Se l'attività è di interesse per altre aree oltre che per l'area organizzatrice." %>  
+        </div>
       </div>
     </div>
     <%= f.association :organization, label: "È possibile indicare il Dipartimento che organizza (richiesta di chimica).".html_safe,
@@ -30,14 +32,3 @@
     <%= f.submit %>  
   <% end %>
 </div>
-
-<%= javascript_tag do %>  
-  var global = document.getElementById('activity_global');
-  var area_form = document.getElementById('areas_select');
-  area_form.style.display = global.checked ? 'none': 'flex';
-
-  global.addEventListener('click', function() {
-    area_form.style.display = global.checked ? 'none': 'flex';
-  });
-<% end %>
-
