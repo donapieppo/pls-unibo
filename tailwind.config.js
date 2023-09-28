@@ -14,7 +14,7 @@ module.exports = {
       orange: colors.orange, 
       home: {
         title: '#040D12',
-        bg1: '#E5E7EB',
+        bg1: '#93B1A6',
       }, 
       pls: {
         title: '#040D12',
@@ -23,6 +23,7 @@ module.exports = {
         DEFAULT: '#183D3D',
         strong: '#040D12',
         flash: '#F09C2C', 
+        footer: '#91a3b0',
       },
       button: {
         DEFAULT: 'rgb(247, 249, 251)',
