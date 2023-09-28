@@ -14,7 +14,7 @@
   right: -20px;
   padding: 15px;
   @apply text-xl text-pls;
-  @apply bg-gray-100 text-pls border-2 border-pls;
+  @apply bg-gray-50 text-pls border-2 border-pls;
   @apply rounded-2xl;
 }
 
