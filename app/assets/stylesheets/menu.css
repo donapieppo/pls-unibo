@@ -60,6 +60,6 @@
 
 .menu-items {
   a.menu-items-item {
-    @apply block uppercase text-pls-strong border-b border-pls p-1 md:p-2 px-4 font-bold hover:bg-pls hover:text-white;
+    @apply block uppercase text-pls-strong border-b border-pls-light p-1 md:p-2 px-4 font-bold hover:bg-pls-light hover:text-white;
   }
 }
