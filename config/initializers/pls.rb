@@ -11,7 +11,7 @@
 
 CURRENT_ACADEMIC_YEAR = 2023
 CESIA_UPN = ["pietro.donatini@unibo.it", "valeria.montesi3@unibo.it"]
-BOOKING_WATCHERS = ["mirella.manaresi@unibo.it"]
+BOOKING_WATCHERS = ["mirella.manaresi@unibo.it", "alessia.cattabriga@unibo.it"]
 
 ACCROCCHIO_VECCHIO_SITO = [
   "",
