@@ -24,6 +24,7 @@ module.exports = {
         strong: '#040D12',
         flash: '#F09C2C', 
         footer: '#91a3b0',
+        light2: '#7FC2DC',
       },
       button: {
         DEFAULT: 'rgb(247, 249, 251)',

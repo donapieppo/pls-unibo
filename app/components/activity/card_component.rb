@@ -5,7 +5,7 @@ class Activity::CardComponent < ViewComponent::Base
     @hidden = @activity.hidden?
     @in_evidence = in_evidence && !@hidden
 
-    @card_style = @current_year ? "border-pls bg-gray-50" : "border-gray-400 bg-gray-200 opacity-70"
+    @card_style = @current_year ? "border-pls-strong bg-gray-50" : "border-pls-strong bg-gray-200 opacity-70"
 
     @project = @activity.is_a?(Project) ? @activity : @activity.project
 
