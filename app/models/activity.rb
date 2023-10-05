@@ -63,4 +63,9 @@ class Activity < ApplicationRecord
   def this_academic_year?
     self.academic_year == CURRENT_ACADEMIC_YEAR
   end
+
+  def start_and_end_time_to_s
+    "dalle #{I18n.l self.start_date, format: :hour}" +
+      ((self.start_date && self.duration) ? " alle #{I18n.l(self.start_date + self.duration.minutes, format: :hour)}" : "")
+  end
 end
