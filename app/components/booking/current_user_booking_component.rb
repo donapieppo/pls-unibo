@@ -13,7 +13,7 @@ class Booking::CurrentUserBookingComponent < ViewComponent::Base
     end
 
     if @current_user&.confirmed_teacher?
-      @user_this_teacher_bookings = @what.bookings.where("teacher_id = ? OR school_group > 0", @current_user.id)
+      @user_this_teacher_bookings = @what.bookings.where("teacher_id = ? AND school_group > 0", @current_user.id)
     end
   end
 
