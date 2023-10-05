@@ -1,4 +1,11 @@
 module ApplicationHelper
+  include IconHelper
+  include ImageHelper
+  include LinkHelper
+  include ResourceHelper
+  include AreaHelper
+  include ContactHelper
+
   def area_root(area)
     "#{config.relative_url_root}/#{area.slug}"
   end
@@ -22,13 +29,6 @@ module ApplicationHelper
   end
 
   def sofia_link(a)
-    a.sofia ? link_to('iscrizioni disponibili su S.O.F.I.A.', SOFIA_LINK) : ''
+    a.sofia ? link_to("iscrizioni disponibili su S.O.F.I.A.", SOFIA_LINK) : ""
   end
 end
-
-include IconHelper
-include ImageHelper
-include LinkHelper
-include ResourceHelper
-include AreaHelper
-include ContactHelper
