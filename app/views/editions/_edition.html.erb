@@ -58,13 +58,13 @@
 
 <div class="container">
   <% unless @all_events.empty? %>  
-    <% if @all_events.size == 1 && ! @edition.atomic %>  
+    <% if @all_events.size == 1 && !@edition.atomic %>  
       <hr class="my-16"/>
       <%= render Event::EventComponent.new(@all_events.first, current_user, no_edition: true, heading: :h2) %>
     <% else %>
       <div class="my-4">
-        <%= render Event::ListComponent.new(@events, current_user, short: @edition.atomic, title: 'prossimi eventi') %>  
-        <%= render Event::ListComponent.new(@past_events, current_user, short: @edition.atomic, title: 'eventi passati') %>  
+        <%= render Event::ListComponent.new(@events, current_user, short: false, atomic: @edition.atomic, title: 'prossimi eventi') %>  
+        <%= render Event::ListComponent.new(@past_events, current_user, short: false, atomic: @edition.atomic, title: 'eventi passati') %>  
       </div>
     <% end %>
   <% end %>
