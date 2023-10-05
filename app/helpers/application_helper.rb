@@ -1,11 +1,11 @@
-module ApplicationHelper
-  include IconHelper
-  include ImageHelper
-  include LinkHelper
-  include ResourceHelper
-  include AreaHelper
-  include ContactHelper
+include IconHelper
+include ImageHelper
+include LinkHelper
+include ResourceHelper
+include AreaHelper
+include ContactHelper
 
+module ApplicationHelper
   def area_root(area)
     "#{config.relative_url_root}/#{area.slug}"
   end
