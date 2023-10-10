@@ -29,16 +29,16 @@ window.display_if = function (txt, what, condition_input) {
 
 window.display_if_checked = function (what, condition_input, display="block", negate=false) {
   if (negate) {
-    what.style.display = (condition_input.checked) ? display : 'none';
-  } else {
     what.style.display = (condition_input.checked) ? 'none' : display;
+  } else {
+    what.style.display = (condition_input.checked) ? display : 'none';
   }
   condition_input.addEventListener('change', () => {
     console.log(condition_input.checked);
     if (negate) {
-      what.style.display = (condition_input.checked) ? display : 'none';
-    } else {
       what.style.display = (condition_input.checked) ? 'none' : display;
+    } else {
+      what.style.display = (condition_input.checked) ? display : 'none';
     }
   });
 }
