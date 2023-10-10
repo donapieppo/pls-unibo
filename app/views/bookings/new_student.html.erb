@@ -1,11 +1,10 @@
-<div class="container">
-  <h1 class="title">
-    Iscrivi uno studente <%= 'in remoto' if @booking.online %>  
-  </h1>
+<div class="container max-w-4xl">
+  <h1 class="title">Iscrivi uno studente <%= 'in remoto' if @booking.online %></h1>
+  <h2><%= @activity %></h2>
 
   <div class="info my-8">
-  <p>Sei registrato come docente.</p>
-  <p>Puoi iscrivere i tuoi studenti fornendo il loro nome, cognome e la loro email.</p>
+    <p>Sei registrato come docente.</p>
+    <p>Puoi iscrivere i tuoi studenti fornendo il loro nome, cognome e la loro email.</p>
   </div>
 
   <%= form_for @booking, url: [:create_student, @activity, :bookings] do |f| %>  
