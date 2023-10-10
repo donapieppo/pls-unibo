@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container max-w-4xl">
   <h1 class="title">Iscrizione <%= @booking.online == true ? "in remoto" : "in presenza" %></h1>
 
   <div class="my-8">
@@ -7,7 +7,7 @@
 
   <% txt_action = @activity.booking_to_confirm? ? ' Prenotami' : ' Iscrivimi' %>  
 
-  <div class="my-8">
+  <div class="my-16 px-4">
     <% if @activity.booked_by?(current_user) %>  
       <div class="info">Sei registrato a questa attività.</div>
     <% else %>
