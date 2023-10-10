@@ -5,6 +5,7 @@
     <button data-action="click->resource#show_resources" data-resource-type-param="document" class="button">Documenti</button>
     <button data-action="click->resource#show_resources" data-resource-type-param="image" class="button">Immagini</button>
     <button data-action="click->resource#show_resources" data-resource-type-param="video" class="button">Video</button>
+    <button data-action="click->resource#show_resources" data-resource-type-param="url" class="button">Link</button>
   </div>
 
   <% @resources.each do |t, resources| %>
@@ -17,6 +18,9 @@
             <%= resource %>
           <% elsif t == "image" %>
             <%= image_tag(resource.document.variant(resize_to_limit: [350, 350]), class: '') %>
+          <% elsif t == "url" %>
+            <strong><%= resource.name %></strong><br/>
+            <small>(<%= resource.url %>)</small>
           <% else %>
             <%= render Resource::ResourceComponent.new(resource) %>  
           <% end %>
