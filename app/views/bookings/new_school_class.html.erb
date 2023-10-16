@@ -3,7 +3,17 @@
   <h2><%= @activity %></h2>
 
   <div class="my-4">
-    Sei registrato come <strong>docente</strong> e per questa attività puoi iscrivere gli studenti di una classe.
+    <% if current_user.school %>
+      Sei registrato come <strong>docente</strong> 
+      presso la scuola <%= current_user.school %> 
+      e per questa attività puoi iscrivere gli studenti di una classe.
+    <% else %>
+      <div class="alert alert-danger">
+        Sei registrato come <strong>docente</strong> 
+        ma non hai inserito ancora la tua scuola. Visita 
+        <span class="underline"><%= link_to 'questa pagina', myedit_users_path %></span> per completare i tuoi dati.
+      </div>
+    <% end %>
   </div>
 
   <%= render Bookability::FreeSeatsComponent.new(@activity) %>  
