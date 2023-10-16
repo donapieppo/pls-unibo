@@ -5,7 +5,7 @@ class ResourcesController < ApplicationController
   def index
     authorize :resource
     @resources = Hash.new { |hash, key| hash[key] = [] }
-    Resource.all.with_attached_document.each do |r|
+    Resource.order(:name).with_attached_document.each do |r|
       @resources[r.document_type] << r
     end
   end
@@ -23,9 +23,9 @@ class ResourcesController < ApplicationController
     authorize @resource
     if @resource.save
       @what.resources << @resource
-      redirect_to [:edit, @what], notice: "Resource was successfully created." 
+      redirect_to [:edit, @what], notice: "Resource was successfully created."
     else
-      render :new, status: :unprocessable_entity 
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -33,30 +33,30 @@ class ResourcesController < ApplicationController
   end
 
   def update
-    @resource = @resource
     if @resource.update(resource_params)
       redirect_to [:edit, @resource], notice: "Resource was successfully updated."
     else
-      render :edit, status: :unprocessable_entity 
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @resource.destroy
-    redirect_to resources_url, notice: "Resource was successfully destroyed." 
+    redirect_to resources_url, notice: "Resource was successfully destroyed."
   end
 
   private
+
   def set_resource_and_check_permission
-    @resource= Resource.find(params[:id])
+    @resource = Resource.find(params[:id])
     authorize @resource
   end
 
   def set_what
-    if params[:resource_container_id]
-      @what = ResourceContainer.find(params[:resource_container_id])
+    @what = if params[:resource_container_id]
+      ResourceContainer.find(params[:resource_container_id])
     else
-      @what = Activity.find(params[:event_id] || params[:edition_id] || params[:project_id])
+      Activity.find(params[:event_id] || params[:edition_id] || params[:project_id])
     end
   end
 
