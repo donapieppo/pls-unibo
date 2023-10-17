@@ -1,7 +1,7 @@
 class Activity < ApplicationRecord
   include Bookable
+  include Resourceable
 
-  has_and_belongs_to_many :resources
   has_and_belongs_to_many :clusters
 
   has_many :snippets, dependent: :destroy
