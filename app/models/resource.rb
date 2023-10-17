@@ -5,6 +5,8 @@ class Resource < ApplicationRecord
 
   validates :name, presence: true, allow_blank: false
 
+  # ["url", "video", "document", "image"]
+
   def to_s
     if self.display_name.blank?
       self.name.blank? ? " - " : self.name
@@ -14,8 +16,9 @@ class Resource < ApplicationRecord
   end
 
   def video?
-    self.url.blank? and return false
-    self.url.match("^https://vimeo.com") || self.url.match("^https://(www.)?youtu\.?be")
+    if !self.url.blank?
+      self.url.match("^https://vimeo.com") || self.url.match("^https://(www.)?youtu\.?be")
+    end
   end
 
   def image?
