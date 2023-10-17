@@ -1,6 +1,11 @@
 <% if @resource.video? %>  
 
-  <iframe class="w-64 py-2" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen src="<%= @resource.embed_url %>" frameborder="0"></iframe>
+  <iframe class="w-64 py-2" 
+          title="YouTube video player" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen 
+          src="<%= @resource.embed_url %>" 
+          frameborder="0"></iframe>
 
 <% elsif @resource.document.image? %>
 
@@ -17,7 +22,7 @@
     <%= link_to @resource, @resource.url.blank? ? url_for(@resource.document) : @resource.url %>
   </div>
 
-<% else @resource.video? %>  
+<% else %>  
 
   <div class="text-left font-medium text-gray-900">
     <span class="mr-2 ml-2"><%= @resource.url.blank? ? document_icon : link_icon %></span>
