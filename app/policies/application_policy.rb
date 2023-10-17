@@ -15,7 +15,7 @@ class ApplicationPolicy
   end
 
   def create?
-    @user && @user.staff?
+    @user&.staff?
   end
 
   def new?
@@ -23,7 +23,7 @@ class ApplicationPolicy
   end
 
   def update?
-    @user && @user.staff?
+    @user&.staff?
   end
 
   def edit?
@@ -31,11 +31,11 @@ class ApplicationPolicy
   end
 
   def destroy?
-    @user && @user.staff?
+    @user&.staff?
   end
 
   def add_contact?
-    @user && @user.staff?
+    @user&.staff?
   end
 
   def remove_contact?
@@ -43,7 +43,7 @@ class ApplicationPolicy
   end
 
   def add_resource?
-    @user && @user.staff?
+    @user&.staff?
   end
 
   def choose_resource?
