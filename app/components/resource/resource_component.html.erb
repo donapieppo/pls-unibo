@@ -1,32 +1,77 @@
 <% if @resource.video? %>  
 
-  <iframe class="w-64 py-2" 
-          title="YouTube video player" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen 
-          src="<%= @resource.embed_url %>" 
-          frameborder="0"></iframe>
+  <% if @small && !@with_download %>
+    <%= image_tag @resource.video_thumbnail_url %>
+  <% else %>
+    <div class="p-2">
+      <iframe class="w-64 rounded-2xl" 
+              title="YouTube video player" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen 
+              src="<%= @resource.embed_url %>" 
+              frameborder="0"></iframe>
+    </div>
+  <% end %>
 
 <% elsif @resource.document.image? %>
 
-  <%= link_to @resource.url.blank? ? url_for(@resource.document) : @resource.url do %>
-    <%= image_tag @resource.document.variant(resize_to_limit: [@limit, @limit]), class: 'block mx-auto' %>
-  <% end %>
+  <div>
+    <% if @with_download %>
+      <%= link_to @resource.document do %>
+        <%= image_tag @resource.document.variant(resize_to_limit: [@limit, @limit]), class: 'block mx-auto rounded-xl' %>
+      <% end %>
+    <% else %>
+      <%= image_tag @resource.document.variant(resize_to_limit: [@limit, @limit]), class: 'block mx-auto rounded-xl' %>
+    <% end %>
+  </div>
+  <div class="text-center text-gray-700">
+    <%= @resource %>
+  </div>
 
-<% elsif @resource.document && @resource.document.previewable? %>  
 
-  <%= link_to url_for(@resource.document) do %>  
-    <%= image_tag @resource.document.preview(resize_to_limit: [@limit, @limit]), class: 'block mx-auto' %>
-  <% end %>
-  <div class="underline text-lg text-center">
-    <%= link_to @resource, @resource.url.blank? ? url_for(@resource.document) : @resource.url %>
+<% elsif !@small && @resource.document && @resource.document.previewable? %>  
+
+  <div>
+    <% if @link_url %>
+      <%= link_to @link_url do %>
+        <%= image_tag @resource.document.preview(resize_to_limit: [@limit, @limit]), class: 'block mx-auto rounded-xl' %>
+      <% end %>
+    <% else %>
+      <%= image_tag @resource.document.preview(resize_to_limit: [@limit, @limit]), class: 'block mx-auto rounded-xl' %>    
+    <% end %>
+  </div>
+  <div class="text-center">
+    <%= @resource %>
   </div>
 
 <% else %>  
 
-  <div class="text-left font-medium text-gray-900">
-    <span class="mr-2 ml-2"><%= @resource.url.blank? ? document_icon : link_icon %></span>
-    <span class="underline text-lg"><%= link_to @resource.name, @resource.url.blank? ? url_for(@resource.document) : @resource.url %></span>
-  </div>
+  <span class="mr-2 ml-2">
+    <%= @resource.url.blank? ? document_icon : link_icon %>
+  </span>
+  <span class="">
+    <% if @link_url %>
+      <%= link_to @link_url do %>
+        <%= @resource %>
+      <% end %>
+    <% else %>
+      <%= @resource %>
+    <% end %>
+  </span>
 
+<% end %>
+
+<% if !@small && @policy.edit? %>
+  <% @activities = @resource.activities.all %>
+  <% if @activities.any? %>
+    <ul class="m-4">
+      <% @resource.activities.each do |a| %>
+        <li class="bullet">risorsa associata a <%= link_to a, a, class: 'underline' %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <div class="my-4 p-1 alert">Risorsa non associata a nessuna attività.</div>
+  <% end %>
+
+  <%= link_to "modifica la risorsa", [:edit, @resource], class: "button my-2" %>
 <% end %>
