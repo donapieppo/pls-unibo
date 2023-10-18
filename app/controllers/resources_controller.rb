@@ -4,13 +4,14 @@ class ResourcesController < ApplicationController
 
   def index
     authorize :resource
-    @resources = Hash.new { |hash, key| hash[key] = [] }
-    Resource.order(:name).with_attached_document.each do |r|
-      @resources[r.document_type] << r
-    end
+    @t = params[:t] || "document"
+    @resources = Resource.order(:name)
+      .with_attached_document
+      .where(typology: @t)
   end
 
   def show
+    @modal = params[:modal]
   end
 
   def new
