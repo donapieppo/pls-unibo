@@ -14,7 +14,7 @@ body {
   scroll-behavior: smooth;
 }
 .container {
-  @apply px-2 lg:px-16 lg:mx-auto;
+  @apply px-4 lg:px-16 lg:mx-auto;
 }
 .button {
   @apply border-2 border-pls-strong text-pls-strong hover:bg-pls-strong hover:text-white font-bold py-1 px-4 rounded;
