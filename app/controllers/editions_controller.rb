@@ -1,6 +1,6 @@
 class EditionsController < ApplicationController
   include ContactConcern
-  include ResourceConcern
+  include ResourceableConcern
   before_action :set_edition_and_check_permission, only: %i[show edit update destroy clone add_contact remove_contact add_speaker remove_speaker choose_resource add_resource remove_resource]
 
   def index

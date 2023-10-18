@@ -1,5 +1,5 @@
 class ResourceContainersController < ApplicationController
-  include ResourceConcern
+  include ResourceableConcern
   before_action :set_resource_container_and_check_permission, only: %i[ show edit update destroy choose_resource add_resource remove_resource ]
 
   def index

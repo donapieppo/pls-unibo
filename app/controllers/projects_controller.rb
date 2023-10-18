@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   include ContactConcern
-  include ResourceConcern
+  # no risorse :-) include ResourceableConcern
   before_action :set_project_and_check_permission, only: %i[show edit update destroy add_contact remove_contact choose_resource add_resource remove_resource]
 
   def index
@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @editions = @project.editions.visible(current_user && current_user.staff?).order('academic_year desc, name').with_rich_text_details
+    @editions = @project.editions.visible(current_user && current_user.staff?).order("academic_year desc, name").with_rich_text_details
   end
 
   def new
@@ -28,19 +28,19 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     authorize @project
     if @project.save
-      redirect_to [:edit, @project], notice: 'OK'
+      redirect_to [:edit, @project], notice: "OK"
     else
       render action: :new, status: :unprocessable_entity
     end
   end
 
   def edit
-    @editions = @project.editions.order('academic_year desc')
+    @editions = @project.editions.order("academic_year desc")
   end
 
   def update
     if @project.update(project_params)
-      redirect_to [:edit, @project], notice: 'OK'
+      redirect_to [:edit, @project], notice: "OK"
     else
       render action: :edit, status: :unprocessable_entity
     end
@@ -48,7 +48,7 @@ class ProjectsController < ApplicationController
 
   def destroy
     if @project.destroy
-      flash[:notice] = 'OK'
+      flash[:notice] = "OK"
     end
     redirect_to projects_path
   end

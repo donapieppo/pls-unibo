@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   include ContactConcern
-  include ResourceConcern
+  include ResourceableConcern
   before_action :set_event_and_check_permission, only: %i[show edit update destroy add_contact remove_contact add_speaker remove_speaker choose_resource add_resource remove_resource]
 
   def index
