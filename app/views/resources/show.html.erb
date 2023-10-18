@@ -1,5 +1,8 @@
-<div class="p-8 lg:max-w-4xl m-auto">
-  <%= render Resource::ResourceComponent.new(@resource) %>  
-
-  <%= link_to edit_icon, [:edit, @resource] %>  
-</div>
+<% if @modal %>
+  <%= render ModalComponent.new do %>
+    <%= render Resource::ResourceComponent.new(@resource, current_user, size: :big) %>  
+  <% end %>
+<% else  %>  
+  <div class="p-8 lg:max-w-4xl m-auto">
+    <%= render Resource::ResourceComponent.new(@resource, current_user, size: :big) %>  
+<% end %>
