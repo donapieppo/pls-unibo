@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def show 
+  def show
     @user = User.find(params[:id])
     @bookings = @user.bookings
     authorize @user
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   def me
     @user = current_user
-    @bookings = Booking.where('user_id = ? or teacher_id =?', @user.id, @user.id).includes(:activity).order('activities.name')
+    @bookings = Booking.where("user_id = ? or teacher_id =?", @user.id, @user.id).includes(:activity).order("activities.name")
     authorize @user
     render action: :show
   end
@@ -35,14 +35,14 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_user.staff?
-      @user = User.find(params[:id])
+    @user = if current_user.staff?
+      User.find(params[:id])
     else
-      @user = current_user
+      current_user
     end
     authorize @user
     if @user.update(user_params)
-      redirect_to me_users_path, notice: 'I tuoi dati sono stati registrati.'
+      redirect_to me_users_path, notice: "I tuoi dati sono stati registrati."
     else
       render action: :edit, status: :unprocessable_entity
     end
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   def forget_form
     authorize :user
     @user = current_user
-    if ! @user
+    if !@user
       redirect_to root_path
     end
   end
@@ -60,8 +60,8 @@ class UsersController < ApplicationController
     authorize :user
     @user = current_user
     if @user
-      @user.update!(name: "#{@user.id}Name", 
-                    surname: "#{@user.id}Surname", 
+      @user.update!(name: "#{@user.id}Name",
+                    surname: "#{@user.id}Surname",
                     email: "#{@user.id}@deleted-pls-unibo.it")
     end
     session[:user_id] = nil
@@ -79,7 +79,7 @@ class UsersController < ApplicationController
     if current_user.staff?
       permitted << :email
     else
-      params[:user].delete(:email) 
+      params[:user].delete(:email)
     end
 
     params[:user].permit(permitted)
