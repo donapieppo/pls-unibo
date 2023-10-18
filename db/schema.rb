@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_07_133524) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_29_082051) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -77,7 +77,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_133524) do
     t.boolean "bookable_by_teacher", default: false
     t.boolean "bookable_by_teacher_for_students", default: false
     t.boolean "bookable_by_teacher_for_classes", default: false
-    t.boolean "bookable_by_teacher_for_groups"
+    t.boolean "bookable_by_teacher_for_groups", default: false
     t.integer "bookable_group_limit", limit: 2
     t.text "booking_url"
     t.datetime "booking_end", precision: nil
@@ -182,7 +182,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_133524) do
     t.column "role", "enum('student_secondary','student_university','teacher','other')"
     t.integer "grade", unsigned: true
     t.string "school_class"
-    t.boolean "school_group"
+    t.boolean "school_group", default: false
     t.string "teacher_name"
     t.string "teacher_surname"
     t.string "teacher_email"
@@ -240,6 +240,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_133524) do
   end
 
   create_table "resources", id: { type: :integer, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.column "typology", "enum('document','image','video','url')"
     t.string "name"
     t.string "display_name"
     t.string "url"
