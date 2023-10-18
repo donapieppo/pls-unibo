@@ -8,7 +8,7 @@
     <div class="flex-grow p-2">
       <% @resource_container.resources.each do |resource| %>  
         <div class="inline-block py-4 border-b-2 last-of-type:border-0 border-pls-strong">
-          <%= render Resource::ResourceComponent.new(resource, small: true) %>  
+          <%= render Resource::ResourceComponent.new(resource, size: :small) %>  
         </div>
       <% end %>
     </div>
