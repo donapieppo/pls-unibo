@@ -1,0 +1,23 @@
+<div class="pls-card my-8">
+  <div class="pls-card-title">
+    Allegati
+  </div>
+
+  <div class="pls-card-content mx-auto max-w-sm ">
+    <div class="max-w-xl">
+      <% @what.resources.each do |resource| %>  
+        <%= render Resource::ResourceComponent.new(resource, @current_user, size: :small) %>  
+        <div class="text-right">
+          <%= link_to helpers.edit_icon, [:edit, resource] %>
+          <%= helpers.link_to_delete([:remove_resource, @what, { resource_id: resource.id }]) if @what %>  
+        </div>
+        <hr class="my-4 w-3/4 mx-auto text-pls-strong"/>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="pls-card-footer">
+    <%= link_to 'Aggiungi risorsa esistente', [:choose_resource, @what], class: 'button inline-block' %>  
+    <%= link_to 'Crea nuova risorsa', [:new, @what, :resource], class: 'button inline-block' %>  
+  </div>
+</div>

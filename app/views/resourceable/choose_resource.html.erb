@@ -1,0 +1,23 @@
+<div class="container">
+  <h1 class="title">Scegli la risorsa da allegare</h1>
+  <h2 class="title">a <%= @what %></h2>
+
+  <%= render Resourceable::TabComponent.new(@t, what: @what) %>
+
+  <ul>
+    <% @resources.each do |resource| %>
+      <% rclass = "w-1/2 md:w-1/4 p-4 h-42 border-2 border-gray-100" %>
+      <li>
+        <% if @what %>
+          <%= button_to [:add_resource, @what, {resource_id: resource.id}], form: {class: rclass} do %>
+            <%= resource.name %>
+          <% end %>
+        <% else %>
+          <%= link_to [:edit, resource], class: rclass do %>
+            <%= resource.name %>
+          <% end %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

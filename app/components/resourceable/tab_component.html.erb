@@ -1,0 +1,10 @@
+<div class="my-4">
+  <% Resource.typologies.each do |t| %>
+    <% selected = (t == @t) ? "bg-blue-400" : "" %>
+    <% if @what %>
+      <%= link_to I18n.t(t), [:choose_resource, @what, t: t], class: "button inline #{selected}" %>
+    <% else %>
+      <%= link_to I18n.t(t), resources_path(t: t), class: "button inline #{selected}" %>
+    <% end %>
+  <% end %>
+</div>
