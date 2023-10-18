@@ -17,6 +17,10 @@ it:
   student_university: Studente universitario
   teacher: Docente di scuola secondaria
   other: Altro
+  document: documenti
+  image: immagini
+  video: video
+  url: link
 
   activerecord:
     models:
@@ -24,9 +28,9 @@ it:
       activity: Attività
       edition: Edizione
       event: Evento
-      resource: Prodotto
+      resource: Risorsa
       contact: Contatto
-
+      cluster: Raggruppamento
     attributes:
       area:
         name: Nome
@@ -106,6 +110,8 @@ it:
         description: Descrizione
         area: Area
         document: Documento
+        url: Pagina web (opzionale)
+        credits: 
       resource_item:
         name: Nome
         url: Indirizzo esterno
@@ -170,6 +176,7 @@ it:
       resource:
         name: "Per esempio: Locandina del film Pulp Fiction"
         display_name: "Per esempio: Locandina"
+        url: Per esempio https://pagine_del_corso.unibo.it.
         credits: Indicazioni di copyright delle foto, di autore di un documento, di attribuzione di qualche tipo della risorsa inserita.
 
     placeholders:
