@@ -6,8 +6,11 @@
     <% @what.snippets.each do |snippet| %>  
       <div class="py-1 hover:bg-gray-100">
         <i class="fas fa-chevron-right mr-2"></i> 
-        <%= link_to snippet.name, [:edit, snippet] %> 
-        <span class="float-end"><%= link_to_delete snippet_path(snippet) %></span>
+        <%= snippet.name %> 
+        <span class="float-right">
+          <%= link_to edit_icon, [:edit, snippet] %>
+          <%= link_to_delete snippet_path(snippet) %>
+        </span>
       </div>
     <% end %>
   </div>
