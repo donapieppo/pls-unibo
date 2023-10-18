@@ -62,6 +62,7 @@ Rails.application.routes.draw do
   end
 
   resources :resources
+
   resources :organizations, only: [:index, :show]
   resources :bookings do
     get :thankyou, on: :member
