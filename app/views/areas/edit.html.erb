@@ -1,23 +1,22 @@
 <div class="container">
   <h1 class="title"><%= @area %></h1>
 
-  <%= simple_form_for @area do |f| %>  
-    <%= f.input :description, input_html: { cols: 80, rows: 10, class: 'border-2' } %>
-    <%= f.rich_text_area :notice %>
-    <%= f.association :head, label_method: :cn, collection: Contact.order(:surname, :name) %>  
-    <%= f.submit %>  
-  <% end %>
-
-  <div class="mt-4">
-    <%= render Contact::EditComponent.new(what: @area, can_add: policy(@area).edit?) %>
-  </div>
-
-  <div class="mt-4">
-    <%= render ResourceContainer::EditComponent.new(what: @area) %>
-  </div>
-
-  <div class="info my-2">
-    Per associare un contenitore di risorse a questa attività scegliete il
-    contenitore da <%= link_to 'questa lista', resource_containers_path, class: 'underline' %> e modificatelo.
+  <div class="lg:flex">
+    <div class="lg:w-2/3 lg:pr-4">
+      <%= simple_form_for @area do |f| %>  
+        <%= f.input :description, input_html: { cols: 80, rows: 10, class: 'border-2' } %>
+        <%= f.rich_text_area :notice %>
+        <%= f.association :head, label_method: :cn, collection: Contact.order(:surname, :name) %>  
+        <%= f.submit %>  
+      <% end %>
+    </div>
+    <div class="lg:w-1/3">
+      <%= render Contact::EditComponent.new(what: @area, can_add: policy(@area).edit?) %>
+      <%= render Resourceable::EditResourcesComponent.new(@area, current_user) %>
+      <div class="info my-2">
+        Per associare un contenitore di risorse a questa attività scegliete il
+        contenitore da <%= link_to 'questa lista', resource_containers_path, class: 'underline' %> e modificatelo.
+      </div>
+    </div>
   </div>
 </div>

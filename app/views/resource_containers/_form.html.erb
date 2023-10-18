@@ -1,11 +1,9 @@
-<div class="mx-4">
-  <%= simple_form_for(resource_container) do |f| %>
-    <%= f.error_notification %>
-    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<%= simple_form_for(resource_container) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-    <%= f.association :areas, as: :check_boxes %>  
-    <%= f.input :name %>  
-    <%= f.input :description %>  
-    <%= f.button :submit, 'Salva' %>
-  <% end %>
-</div>
+  <%= f.association :areas, as: :check_boxes %>  
+  <%= f.input :name %>  
+  <%= f.input :description %>  
+  <%= f.button :submit, 'Salva' %>
+<% end %>

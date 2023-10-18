@@ -5,9 +5,11 @@
     <%= link_to_edit_if_editable @cluster, msg: 'modifica raggruppamento' %>
   </div>
 
-  <div class="rounded-xl bg-gray-50 border-2 border-pls my-4 p-4 max-w-screen-lg">
-    <%= simple_format @cluster.description %>
-  </div>
+  <% unless @cluster.description.blank? %>
+    <div class="rounded-xl bg-gray-50 border-2 border-pls my-4 p-4 max-w-screen-lg">
+      <%= simple_format @cluster.description %>
+    </div>
+  <% end %>
 
   <div class="my-4 text-gray-700">
     <%= @cluster.details %>  

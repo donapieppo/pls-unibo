@@ -1,27 +1,25 @@
-<div class="m-6">
-  <%= simple_form_for [@edition, @event] do |f| %>
-    <%= f.input :hidden %>  
-    <%= f.error_notification %>
-    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<%= simple_form_for [@edition, @event] do |f| %>
+  <%= f.input :hidden %>  
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-    <%= f.input :name %>
-    <%= f.input :description, input_html: { cols: 80, rows: 10 } %>
+  <%= f.input :name %>
+  <%= f.input :description, input_html: { cols: 80, rows: 10 } %>
 
-    <%= f.input :start_date, minute_step: 10 %>
-    <%= f.input :duration %>
+  <%= f.input :start_date, minute_step: 10 %>
+  <%= f.input :duration %>
 
-    <%= render Activity::PartecipationModeFormComponent.new(f) %>
+  <%= render Activity::PartecipationModeFormComponent.new(f) %>
 
-    <% unless @edition && @edition.atomic %>  
-      <%= f.input :seats %>
-      <div class="my-2">
-        <%= f.input :sofia %>
-        <%= f.input :pcto %>
-      </div>
+  <% unless @edition && @edition.atomic %>  
+    <%= f.input :seats %>
+    <div class="my-2">
+      <%= f.input :sofia %>
+      <%= f.input :pcto %>
+    </div>
 
-      <%= render Booking::TipologyFormComponent.new(f) %>  
-    <% end %>
-
-    <%= f.submit %>
+    <%= render Booking::TipologyFormComponent.new(f) %>  
   <% end %>
-</div>
+
+  <%= f.submit %>
+<% end %>
