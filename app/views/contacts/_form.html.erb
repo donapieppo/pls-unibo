@@ -1,18 +1,16 @@
-<div class="container lg:w-1/2 mx-auto">
-  <%= simple_form_for [@what, @contact] do |f| %>  
-    <input type="hidden" name="as" value="<%= @as %>"/>
-    <%= f.input :name %>  
-    <%= f.input :surname %>  
-    <%= f.input :email %>  
-    <%= f.input :web_page %>  
-    <%= f.input :affiliation %>  
-    <%= f.input :description %>  
-    <% unless @contact.avatar.attached? %>
-      <%= f.input :avatar %>  
-    <% end %>
-    <%= f.submit %>  
+<%= simple_form_for [@what, @contact], html: {class: "max-w-3xl mx-auto"} do |f| %>  
+  <input type="hidden" name="as" value="<%= @as %>"/>
+  <%= f.input :name %>  
+  <%= f.input :surname %>  
+  <%= f.input :email %>  
+  <%= f.input :web_page %>  
+  <%= f.input :affiliation %>  
+  <%= f.input :description %>  
+  <% unless @contact.avatar.attached? %>
+    <%= f.input :avatar %>  
   <% end %>
-</div>
+  <%= f.submit %>  
+<% end %>
 
 <% if @contact.avatar.attached? %>
   <div class="container text-center">

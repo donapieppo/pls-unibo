@@ -2,9 +2,11 @@
   <h1 class="title">
     Nuovo evento
   </h1>
-  <div class="text-center">
+  <div class="text-center max-w-3xl mx-auto">
     in <%= link_to @edition, [:edit, @edition], class: "text-xl underline" %>
   </div>
 
-  <%= render 'form' %>
+  <div class="max-w-3xl mx-auto">
+    <%= render 'form' %>
+  </div>
 </div>

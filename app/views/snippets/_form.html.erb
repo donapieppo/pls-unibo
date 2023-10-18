@@ -1,5 +1,12 @@
-<%= simple_form_for [@edition, @snippet] do |f| %>  
+<%= simple_form_for [@edition, @snippet], html: {class: "max-w-3xl mx-auto"} do |f| %>  
   <%= f.input :name %>  
-  <%= f.rich_text_area :description  %>
+
+  <div class="details-trix-editor">
+    <label>
+      Descrizione più dettagliata con la possibilità di formattare il testo (opzionale)
+    </label>
+    <%= f.rich_text_area :description %>
+  </div>
+
   <%= f.submit %>  
 <% end %>

@@ -20,8 +20,8 @@
       <%= render Bookability::ActionsComponent.new(@edition, current_user) %>
 
       <% @edition.resources.each do |resource| %>
-        <div class="mt-4 w-full">
-          <%= render Resource::ResourceComponent.new(resource) %>  
+        <div class="mt-8 w-full text-left">
+          <%= render Resource::ResourceComponent.new(resource, with_download: true) %>  
         </div>
       <% end %>
     </div>
