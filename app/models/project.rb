@@ -51,11 +51,7 @@ class Project < Activity
   end
 
   def cache_years
-    if @_cache_years
-      @_cache_years
-    else
-      @_cache_years = self.editions.order(:academic_year).map(&:academic_year)
-    end
+    @_cache_years ||= self.editions.order(:academic_year).map(&:academic_year)
   end
 
   def editions_audience_ids
