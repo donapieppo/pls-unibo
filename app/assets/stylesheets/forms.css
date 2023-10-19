@@ -1,12 +1,12 @@
 form {
-  span.radio, span.checkbox, span.hint, label.string, label.text, label.email, label.select, label.integer, label.file, label.radio_buttons, label.check_boxes, label.datetime, label.boolean, legend {
+  span.radio, span.checkbox, span.hint, label.string, label.text, label.email, label.select, label.integer, label.file, label.radio_buttons, label.check_boxes, label.datetime, label.boolean, label.url, legend {
     @apply block;
   }
   span.hint {
     @apply italic text-sm text-gray-700;
   }
   label, legend {
-    @apply text-sm text-gray-700 mt-4 mb-2;
+    @apply text-base text-gray-800 mt-4 mb-2;
   }
   input[type="text"], input.string, input.numeric, textarea {
     @apply w-full text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow;
