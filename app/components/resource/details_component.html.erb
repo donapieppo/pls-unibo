@@ -1,0 +1,20 @@
+<% @activities = @resource.activities.all %>
+
+<% if @activities.any? %>
+  <strong>Risorsa associata a:</strong>
+  <ul class="p-4">
+    <% @resource.activities.each do |a| %>
+      <li class="bullet"><%= link_to a, a, class: 'underline' %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <div class="my-4 p-1 alert">Risorsa non associata a nessuna attività.</div>
+<% end %>
+
+<% if @with_actions && @policy.edit? %>
+  <div class="my-8">
+    <%= link_to edit_icon + " modifica la risorsa", [:edit, @resource], class: "button my-2" %>
+    <%= link_to_delete "elimina la risorsa", @resource, add_class: "button button-danger my-2" %>
+  </div>
+<% end %>
+
