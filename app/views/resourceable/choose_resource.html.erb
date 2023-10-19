@@ -9,7 +9,7 @@
       <% rclass = "border-b-2 border-gray-100 my-2" %>
       <li>
         <%= button_to [:add_resource, @what, {resource_id: resource.id}], form: {class: rclass} do %>
-          <%= render Resource::ResourceComponent.new(resource, current_user, size: :small) %>
+          <%= render Resource::ResourceComponent.new(resource, size: :small) %>
         <% end %>
       </li>
     <% end %>

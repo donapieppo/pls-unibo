@@ -6,7 +6,7 @@
   <div class="pls-card-content mx-auto max-w-sm ">
     <div class="max-w-xl">
       <% @what.resources.each do |resource| %>  
-        <%= render Resource::ResourceComponent.new(resource, @current_user, size: :small, with_download: true) %>  
+        <%= render Resource::ResourceComponent.new(resource, size: :small, with_download: true) %>  
         <div class="text-right">
           <%= link_to helpers.edit_icon, [:edit, resource] %>
           <%= helpers.link_to_delete([:remove_resource, @what, { resource_id: resource.id }]) if @what %>  
@@ -17,7 +17,7 @@
   </div>
 
   <div class="pls-card-footer">
-    <%= link_to 'Aggiungi risorsa esistente', [:choose_resource, @what], class: 'button inline-block' %>  
+    <%= link_to 'Aggiungi risorsa esistente', [:choose_resource, @what], class: 'button inline-block my-2' %>  
     <%= link_to 'Crea nuova risorsa', [:new, @what, :resource], class: 'button inline-block' %>  
   </div>
 </div>

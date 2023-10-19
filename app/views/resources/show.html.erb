@@ -1,8 +1,15 @@
 <% if @modal %>
   <%= render ModalComponent.new do %>
-    <%= render Resource::ResourceComponent.new(@resource, current_user, size: :big) %>  
+    <div class="flex flex-wrap">
+      <div class="md:w-1/3 md:p-4 md:border-r-2 border-pls-strong">
+        <%= render Resource::DetailsComponent.new(@resource, current_user, with_actions: true) %>
+      </div>
+      <div class="md:w-2/3">
+        <%= render Resource::ResourceComponent.new(@resource, size: :big) %>
+      </div>
   <% end %>
 <% else  %>  
   <div class="p-8 lg:max-w-4xl m-auto">
-    <%= render Resource::ResourceComponent.new(@resource, current_user, size: :big) %>  
+    <%= render Resource::ResourceComponent.new(@resource, size: :big) %>  
+    <%= render Resource::DetailsComponent.new(@resource, current_user, with_actions: true) %>  
 <% end %>

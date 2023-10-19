@@ -15,7 +15,7 @@
     <% @resources.each do |resource| %>
       <div class="<%= item_class %>">
         <%= link_to resource_path(resource, modal: 1), data: { turbo_frame: :modal } do %>
-        <%= render Resource::ResourceComponent.new(resource, current_user, size: :small) %>
+        <%= render Resource::ResourceComponent.new(resource, size: :small) %>
       <% end %>
       </div>
     <% end %>
