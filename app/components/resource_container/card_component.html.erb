@@ -5,15 +5,15 @@
         <%= @resource_container.to_s.upcase %>
       </div>
     </div>
-    <div class="flex-grow p-2">
+    <div class="flex-grow p-2 w-full">
       <% @resource_container.resources.each do |resource| %>  
-        <div class="inline-block py-4 border-b-2 last-of-type:border-0 border-pls-strong">
-          <%= render Resource::ResourceComponent.new(resource, size: :small) %>  
+        <div class="py-4 border-b last-of-type:border-0 border-pls w-full">
+          <%= render Resource::ResourceComponent.new(resource, size: :small, with_download: true) %>  
         </div>
       <% end %>
     </div>
     <div class="text-right bg-gray-100 border-t border-gray-200 rounded-b-xl p-4 w-full">
-      <%= helpers.areas_to_s(@resource_container.areas) %>
+      <%= helpers.areas_to_s(@resource_container.areas) %> &nbsp;
       <% if @resource_container_policy.edit? %>  
         <%= link_to helpers.edit_icon, [:edit, @resource_container] %>
       <% end %>
