@@ -16,7 +16,7 @@ module LinkHelper
   def link_to_delete(name = "", url, button: false, add_class: "", size: nil, confirm_message: "Siete sicuri di voler cancellare?")
     button_to url, method: :delete,
       title: "elimina",
-      form: {data: {"turbo-confirm": confirm_message},
+      form: {data: {"turbo-confirm": confirm_message, turbo: false},
              class: "inline-block px-0 mx-0 #{add_class}"} do
                '<i class="far fa-trash-alt"></i> '.html_safe + name
              end
