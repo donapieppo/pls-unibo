@@ -15,7 +15,7 @@
     </div>
   <% end %>
   <div class="text-center text-gray-700">
-    <%= @resource %>
+    <%= @resource_name %>
   </div>
 
 <% elsif @resource.document.image? %>
@@ -30,7 +30,7 @@
     <% end %>
   </div>
   <div class="text-center text-gray-700">
-    <%= @resource %>
+    <%= @resource_name %>
   </div>
 
 <% elsif !@small && @resource.document && @resource.document.previewable? %>  
@@ -45,7 +45,7 @@
     <% end %>
   </div>
   <div class="text-center">
-    <%= @resource %>
+    <%= @resource_name %>
   </div>
 
 <% else %>  
@@ -57,11 +57,11 @@
     <span class="">
       <% if @link_url %>
         <%= link_to @link_url do %>
-          <%= @resource %> 
+          <%= @resource_name %> 
           <%= "<small>(link esterno)</small>".html_safe if @external_link %>
         <% end %>
       <% else %>
-        <%= @resource %>
+        <%= @resource_name %>
       <% end %>
     </span>
   </div>

@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class Resource::ResourceComponent < ViewComponent::Base
-  def initialize(resource, size: :base, with_download: false)
+  def initialize(resource, size: :base, with_download: false, name: false)
     @resource = resource
     @with_download = with_download
+    @resource_name = (name == :complete) ? resource.name : resource.to_s
 
     if @with_download
       @link_url = if !@resource.url.blank?
