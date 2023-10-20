@@ -10,6 +10,6 @@ class ResourceContainer < ApplicationRecord
   end
 
   def areas_to_s
-    self.areas.map(&:name).join(', ')
+    self.areas.map(&:name).join(", ")
   end
 end
