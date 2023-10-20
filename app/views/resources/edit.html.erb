@@ -13,10 +13,10 @@
         <div class="pls-card-content">
           <ul class="list-none">
             <% @resource.resource_containers.each do |rc| %>  
-              <li><i class="fa-solid fa-chevron-right mx-2"></i> <%= link_to rc.name, rc %></li>
+              <li><i class="fa-solid fa-chevron-right mx-2"></i> <%= link_to rc, rc %></li>
             <% end %>
             <% @resource.activities.each do |activity| %>  
-              <li><i class="fa-solid fa-chevron-right mx-2"></i> <%= link_to activity.name, activity %></li>
+              <li><i class="fa-solid fa-chevron-right mx-2"></i> <%= link_to activity, activity %></li>
             <% end %>
         </div>
       </div>
