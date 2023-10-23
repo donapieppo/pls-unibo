@@ -37,10 +37,10 @@
     <% end %>
   </div>
   <div class="md:w-1/3">
-    <div class="px-8 text-center md:max-w-xl m-auto">
-      <% @event.resources.each do |resource| %>  
-        <%= render resource %>  
-      <% end %>
-    </div>
+    <% @event.resources.each do |resource| %>
+      <div class="mt-8 w-full text-left">
+        <%= render Resource::ResourceComponent.new(resource, with_download: true) %>  
+      </div>
+    <% end %>
   </div>
 </div>
