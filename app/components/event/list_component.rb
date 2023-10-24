@@ -6,7 +6,7 @@ class Event::ListComponent < ViewComponent::Base
     @current_user = current_user
     @short = short
     @with_image = with_image
-    @title ||= "Prossimi eventi"
+    @title = title || "Prossimi eventi"
     @atomic = atomic
   end
 
