@@ -9,7 +9,7 @@
       </div>
   <% end %>
 <% else  %>  
-  <div class="p-8 lg:max-w-4xl m-auto">
+  <div class="p-8 max-w-2xl m-auto">
     <%= render Resource::ResourceComponent.new(@resource, size: :big) %>  
     <%= render Resource::DetailsComponent.new(@resource, current_user, with_actions: true) %>  
 <% end %>
