@@ -6,5 +6,10 @@ class Booking::DetailsComponent < ViewComponent::Base
     @current_user = current_user
     @deletable = deletable
   end
-end
 
+  private
+
+  def render?
+    @booking.activity.this_academic_year?
+  end
+end
