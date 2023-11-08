@@ -11,17 +11,17 @@
     <% if @activity.booked_by?(current_user) %>  
       <div class="info">Sei registrato a questa attività.</div>
     <% else %>
+      <% if @booking.online == true %>
+        <div class="inline rounded-xl bg-blue-200 px-4 py-2 my-4">Partecipazione in remoto.</div>
+      <% else %>
+        <div class="inline rounded-xl bg-blue-200 px-4 py-2 my-4">Partecipazione in presenza.</div>
+        <div class="my-6">
+          <%= render Bookability::FreeSeatsComponent.new(@activity) %>  
+        </div>
+      <% end %>
+
       <%= simple_form_for [@activity, @booking] do |f| %>  
         <%= f.error_notification %>
-
-        <% if @booking.online == true %>
-          <div class="inline rounded-xl bg-blue-200 px-4 py-2">Partecipazione in remoto.</div>
-        <% else %>
-          <div class="inline rounded-xl bg-blue-200 px-4 py-2">Partecipazione in presenza.</div>
-          <div class="my-6">
-            <%= render Bookability::FreeSeatsComponent.new(@activity) %>  
-          </div>
-        <% end %>
 
         <%= f.input :online, as: :hidden %>  
 
