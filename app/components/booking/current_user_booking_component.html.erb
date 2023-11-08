@@ -11,7 +11,7 @@
   </div>
 
   <div class="my-4">
-    <%= button_to "Cancella l'iscrizione", booking_path(@user_this_booking), method: :delete, class: 'button-danger' %>  
+    <%= button_to "Cancella l'iscrizione", booking_path(@user_this_booking), method: :delete, form: {class: "inline button-danger"} %> 
   </div>
 <% elsif @user_sibling_booking_activity %>
   <div class="text-lg text-green-700 font-bold my-4">  
