@@ -61,7 +61,12 @@ class Activity < ApplicationRecord
   end
 
   def this_academic_year?
-    self.academic_year == CURRENT_ACADEMIC_YEAR
+    case self
+    when Edition then self.academic_year == CURRENT_ACADEMIC_YEAR
+    when Event then self.edition.this_academic_year?
+    else
+      false
+    end
   end
 
   def start_and_end_time_to_s
