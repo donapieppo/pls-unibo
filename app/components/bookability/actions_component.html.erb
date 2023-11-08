@@ -55,10 +55,7 @@
 
   <% if @current_user %>  
     <div>
-      <%= link_to 'Controlla i tuoi dati', myedit_users_path, class: 'underline' %>
-    </div>
-    <div>
-      <%= link_to "Controlla le tue iscrizioni e prenotazioni per attività PLS", me_users_path, class: "underline" %>
+      <%= link_to "Controlla i tuoi dati e le tue iscrizioni", me_users_path, class: "underline" %>
     </div>
   <% else %> 
     <div class="italic">
