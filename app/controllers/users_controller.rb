@@ -22,10 +22,14 @@ class UsersController < ApplicationController
   end
 
   def me
-    @user = current_user
-    authorize @user
-    @bookings = Booking.where("user_id = ? or teacher_id = ?", @user.id, @user.id).includes(:activity).order("activities.name")
-    render action: :show
+    if @user = current_user
+      authorize @user
+      @bookings = Booking.where("user_id = ? or teacher_id = ?", @user.id, @user.id).includes(:activity).order("activities.name")
+      render action: :show
+    else
+      skip_authorization
+      redirect_to root_path
+    end
   end
 
   def myedit
