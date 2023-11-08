@@ -108,7 +108,7 @@ class Booking < ApplicationRecord
     self.school_group
   end
 
-  def self.to_csv(_bookings)
+  def self.to_csv(bs)
     CSV.generate(headers: true, encoding: Encoding::UTF_8) do |csv|
       csv << [
         "posto",
@@ -125,7 +125,7 @@ class Booking < ApplicationRecord
         "email docente",
         "attività"
       ]
-      _bookings.each do |b|
+      bs.each do |b|
         csv << [
           b.seats,
           b.user.name.strip,
