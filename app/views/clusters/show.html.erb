@@ -35,9 +35,7 @@
           <div>
             <% if events.any? %>
               <i class="far fa-calendar fa-fw mr-2"></i>
-              <span class="text-gray-900">
-                <%= events.map{|event| I18n.l event.start_date}.join(' - ') %>
-              </span>
+              <%= events.map{|event| I18n.l event.start_date}.join(' - ') %>
             <% else %>
               &nbsp;
             <% end %>
