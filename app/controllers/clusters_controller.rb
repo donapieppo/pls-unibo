@@ -23,7 +23,7 @@ class ClustersController < ApplicationController
 
   def show
     # SONO EDITIONS
-    @activities = @cluster.activities.order(:name)
+    @activities = @cluster.activities.includes(:events).order(:name)
   end
 
   def edit
