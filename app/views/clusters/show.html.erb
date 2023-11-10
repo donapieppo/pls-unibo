@@ -32,19 +32,18 @@
             <%= activity.speakers_to_s(if_blank: 'TBA') %>  
           </div>
 
-          <div>
-            <% if events.any? %>
+          <% if events.any? %>
+            <div>
               <i class="far fa-calendar fa-fw mr-2"></i>
               <%= events.map{|event| I18n.l event.start_date}.join(' - ') %>
-            <% else %>
-              &nbsp;
-            <% end %>
-            <% if activity.now_in_bookable_interval? %>  
-              <span class="float-right">
-                <%= render Bookability::FreeSeatsComponent.new(activity) %>  
-              </span>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
+          <% if activity.now_in_bookable_interval? %>  
+            <div>
+              <i class="fa-solid fa-fw fa-chair mr-2"></i>
+              <%= render Bookability::FreeSeatsComponent.new(activity) %>  
+            </div>
+          <% end %>
         </div>
       </div>
     <% end %>
