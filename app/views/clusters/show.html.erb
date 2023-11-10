@@ -15,14 +15,14 @@
     <%= @cluster.details %>  
   </div>
 
-  <% i = 1 %>  
-  <% @activities.each do |activity| %>  
+  <% @activities.each_with_index do |activity, i| %>  
+    <% events = activity.events.all %>
     <%= link_to activity do %>
       <div class="hover:bg-gray-200 border border-pls-strong rounded-xl my-2 p-2">
-        <div class="text-lg font-bold text-pls-strong px-2">
-          <%= i %>. <%= activity %>
+        <div class="text-lg font-bold text-pls-strong">
+          <%= i + 1 %>. <%= activity %>
         </div>
-        <div class="ml-6">
+        <div class="lg:ml-6">
           <div>
             <%= activity.description %>  
           </div>
@@ -33,9 +33,13 @@
           </div>
 
           <div>
-            <i class="far fa-calendar fa-fw mr-2"></i>
-            <% activity.events.each do |event| %>  
-              <span class="text-gray-900 pr-4"><%= l event.start_date %></span>
+            <% if events.any? %>
+              <i class="far fa-calendar fa-fw mr-2"></i>
+              <span class="text-gray-900">
+                <%= events.map{|event| I18n.l event.start_date}.join(' - ') %>
+              </span>
+            <% else %>
+              &nbsp;
             <% end %>
             <% if activity.now_in_bookable_interval? %>  
               <span class="float-right">
@@ -46,7 +50,6 @@
         </div>
       </div>
     <% end %>
-    <% i += 1 %>  
   <% end %>
 
   <% if current_user && current_user.staff? %>
