@@ -8,8 +8,7 @@ class Booking::CurrentUserBookingComponent < ViewComponent::Base
     if @current_user
       @user_this_booking = @what.bookings.where(user_id: @current_user.id).personal.first
 
-      @user_sibling_booking_activity_id = @what.cluster_siblings_booked_activity_ids(@current_user).first
-      @user_sibling_booking_activity = Activity.find(@user_sibling_booking_activity_id) if @user_sibling_booking_activity_id
+      @user_sibling_booking_activities = Activity.find(@what.cluster_siblings_booked_activity_ids(@current_user))
     end
 
     if @current_user&.confirmed_teacher?

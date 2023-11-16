@@ -13,10 +13,12 @@
   <div class="my-4">
     <%= button_to "Cancella l'iscrizione", booking_path(@user_this_booking), method: :delete, form: {class: "inline button-danger"} %> 
   </div>
-<% elsif @user_sibling_booking_activity %>
+<% elsif @user_sibling_booking_activities.any? %>
   <div class="text-lg text-green-700 font-bold my-4">  
-    Sei iscritto all'attività 
-    &ldquo;<%= link_to @user_sibling_booking_activity.to_s, @user_sibling_booking_activity, class: "underline" %>&rdquo;
+    Sei iscritto a
+    <% @user_sibling_booking_activities.each do |a| %>
+      &ldquo;<%= link_to a, a, class: "underline" %>&rdquo;
+    <% end %>
     dello stesso gruppo. 
   </div>
 <% end %>
