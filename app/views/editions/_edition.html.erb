@@ -8,7 +8,8 @@
       <% if @cluster %>  
         <div class="">
           All'interno di:<br/>
-          <%= link_to @cluster.to_s, @cluster, class: 'underline' %>  
+          <%= link_to @cluster.to_s, @cluster, class: 'underline' %> 
+          <div><%= @cluster.max_bookable_activities_to_s %></div>
         </div>
       <% end %>
       <hr class="my-2"/>
