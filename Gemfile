@@ -1,10 +1,10 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem "rails", "~> 7.0.0"
+gem "rails", "~> 7.1.2"
 gem "sprockets-rails"
 gem "mysql2", "~> 0.5"
-gem "puma", "~> 5.0"
+gem "puma", "~> 6.0"
 
 gem "importmap-rails"
 gem "jsbundling-rails"
