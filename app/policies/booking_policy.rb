@@ -53,7 +53,9 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def destroy?
-    @user && (@user.id == @record.user_id || @user.id == @record.teacher_id || @user.staff?)
+    @user &&
+      @record.activity.now_in_bookable_interval? &&
+      (@user.id == @record.user_id || @user.id == @record.teacher_id || @user.staff?)
   end
 
   def confirm?
