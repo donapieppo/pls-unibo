@@ -10,9 +10,15 @@
     <% end %>
   </div>
 
-  <div class="my-4">
-    <%= button_to "Cancella l'iscrizione", booking_path(@user_this_booking), method: :delete, form: {class: "inline button-danger"} %> 
-  </div>
+  <% if BookingPolicy.new(@current_user, @user_this_booking).destroy? %>
+    <div class="my-4">
+      <%= button_to "Cancella l'iscrizione", booking_path(@user_this_booking), method: :delete, form: {class: "inline button-danger"} %> 
+    </div>
+  <% else %>
+    <%# <div class="alert alert-warning"> %>
+    <%#   Per eliminare  %>
+    <%# </div> %>
+  <% end %>
 <% elsif @user_sibling_booking_activities.any? %>
   <div class="text-lg text-green-700 font-bold my-4">  
     Sei iscritto a
