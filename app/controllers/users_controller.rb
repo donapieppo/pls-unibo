@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def me
-    if @user = current_user
+    if (@user = current_user)
       authorize @user
       @bookings = Booking.where("user_id = ? or teacher_id = ?", @user.id, @user.id).includes(:activity).order("activities.name")
       render action: :show
