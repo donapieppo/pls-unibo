@@ -174,4 +174,12 @@ module Bookable
       self.booking_end = nil
     end
   end
+
+  def booking_type_to_s
+    booking_to_confirm? ? "Prenotazione" : "Iscrizione"
+  end
+
+  def to_book_to_s
+    booking_to_confirm? ? "Prenota" : "Iscrivi"
+  end
 end
