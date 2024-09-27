@@ -24,4 +24,7 @@
       ©Copyright 2023 - ALMA MATER STUDIORUM - Università di Bologna - Via Zamboni, 33 - 40126 Bologna - Partita IVA: 01131710376 
     </div>
   </div>
+  <% if policy(:impersonation).impersonate? %>
+    <%= link_to 'imp', who_impersonate_path %>
+  <% end %>
 </div>
