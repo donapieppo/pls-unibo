@@ -136,7 +136,7 @@ it:
         university: Universitario
         other_string: Specificare
         notes: Note facoltative
-        seats: Posti da prenotare
+        seats: Numero di posti
         teacher_name: Nome del docente
         teacher_surname: Cognome del docente
         teacher_email: Indirizzo email del docente
