@@ -24,7 +24,7 @@ class User < ApplicationRecord
     if name.blank? || surname.blank?
       "?"
     else
-      (self.name[0] + self.surname[0])
+      (self.name.strip[0] + self.surname.strip[0])
     end
   end
 

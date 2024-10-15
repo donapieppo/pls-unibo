@@ -1,9 +1,13 @@
 <div class="container max-w-4xl">
-  <h1 class="title">Iscrivi un gruppo di studenti</h1>
+  <h1 class="title">
+    <%= @activity.to_book_to_s %> un gruppo di studenti
+  </h1>
   <h2><%= @activity %></h2>
 
   <div class="my-4">
-    Sei registrato come <strong>docente</strong> e per questa attività puoi iscrivere un guppo di 
+    Sei registrato come <strong>docente</strong> e per questa attività puoi 
+    <%= @activity.to_book_to_s.downcase %>re
+    un gruppo di 
     <% if @activity.bookable_group_limit && @activity.bookable_group_limit > 0 %>
       <strong>massimo <%= @activity.bookable_group_limit %></strong>
     <% end %>
@@ -25,6 +29,6 @@
       <%= f.text_area :notes %>
     </div>
 
-    <%= f.submit "Iscrivi il gruppo di studenti" %>  
+    <%= f.submit "#{@activity.to_book_to_s} il gruppo di studenti" %>  
   <% end %>
 </div>

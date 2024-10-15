@@ -52,11 +52,12 @@
       <strong>scuola:</strong> 
       <%= b.school %>  
       <%= b.school_city %>
-      <%# <% if @activity.booking_to_confirm? && ! b.confirmed? %1> %>  
-      <%#   <%= button_to '<i class="far fa-check-circle"></i> conferma'.html_safe, confirm_booking_path(b), class: 'underline' %1> %>  
-      <%# <% elsif @editable %1> %>
-      <%#   <span class="text-green-500"><i class="fas fa-check-circle"></i> confermata</span> %>
-      <%# <% end %1> %>
+
+      <% if !b.confirmed? %>  
+        <%= button_to '<i class="far fa-check-circle"></i> conferma prenotazione'.html_safe, confirm_booking_path(b), class: 'underline button' %>  
+      <% elsif @editable %>
+        <span class="text-green-500"><i class="fas fa-check-circle"></i> confermata</span>
+      <% end %>
 
       <%# <span class="font-mono"><%= b.nonce ? b.nonce : '-----' %1></span> %> 
       <small>(<%= l b.created_at %> - <%= b.id %>)</small>

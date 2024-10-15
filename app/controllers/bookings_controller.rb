@@ -22,14 +22,14 @@ class BookingsController < ApplicationController
       format.html {}
       format.csv do
         bookings = if @cluster
-                     @bookings
-                   elsif @activity
-                     @activity.bookings
-                   elsif @teacher_email
-                     Booking.where(teacher_email: @teacher_email).includes(:user, :activity)
-                   else
-                     []
-                   end
+          @bookings
+        elsif @activity
+          @activity.bookings
+        elsif @teacher_email
+          Booking.where(teacher_email: @teacher_email).includes(:user, :activity)
+        else
+          []
+        end
         send_data Booking.to_csv(bookings), filename: "prenotazioni.csv"
       end
     end
@@ -78,7 +78,7 @@ class BookingsController < ApplicationController
 
     @free_seats = @activity.free_seats
     if @booking.save
-      redirect_to @activity, notice: "Iscrizione registrata correttamente."
+      redirect_to @activity, notice: "#{@booking.typology_to_s} registrata correttamente."
     else
       logger.info(@booking.errors.inspect)
       render action: :new, status: :unprocessable_entity
@@ -136,11 +136,12 @@ class BookingsController < ApplicationController
   def create_school_class
     @booking = @activity.bookings.new(booking_params)
     @booking.user_id = current_user.id
+    @booking.teacher_id = current_user.id
     authorize @booking
 
     @free_seats = @activity.free_seats
     if @booking.save
-      redirect_to @activity, notice: "Iscrizione registrata correttamente."
+      redirect_to @activity, notice: "#{@booking.typology_to_s} registrata correttamente."
     else
       logger.info(@booking.errors.inspect)
       render action: :new_school_class, status: :unprocessable_entity
@@ -150,13 +151,14 @@ class BookingsController < ApplicationController
   def create_school_group
     @booking = @activity.bookings.new(booking_params)
     @booking.user_id = current_user.id
+    @booking.teacher_id = current_user.id
     @booking.school_group = true
     authorize @booking
 
     @free_seats = @activity.free_seats
 
     if @booking.save
-      redirect_to @activity, notice: "Iscrizione registrata correttamente."
+      redirect_to @activity, notice: "#{@booking.typology_to_s} registrata correttamente."
     else
       logger.info(@booking.errors.inspect)
       render action: :new_school_group, status: :unprocessable_entity
@@ -171,7 +173,7 @@ class BookingsController < ApplicationController
     if @booking.confirm
       flash[:notice] = "Iscrizione confermata."
     end
-    redirect_to bookings_path
+    redirect_to [@booking.activity, :bookings]
   end
 
   def destroy

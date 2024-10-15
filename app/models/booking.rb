@@ -97,7 +97,7 @@ class Booking < ApplicationRecord
 
   def confirm
     self.confirmed = true
-    self.save!
+    self.save!(validate: false)
   end
 
   def for_class?
@@ -163,6 +163,10 @@ class Booking < ApplicationRecord
   def seats_to_s
     return unless self.seats.to_i > 0
     "#{self.seats} post" + ((self.seats > 1) ? "i" : "o")
+  end
+
+  def typology_to_s
+    self.confirmed ? "iscrizione" : "prenotazione da confermare"
   end
 
   private

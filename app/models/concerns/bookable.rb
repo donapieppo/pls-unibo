@@ -1,9 +1,9 @@
 class ActivityDatesValidator < ActiveModel::Validator
   def validate(record)
-    return true unless record.bookable && (record.bookable == "no" || record.bookable == "to_confirm")
-
-    if record.booking_start && record.booking_end && record.booking_start > record.booking_end
-      record.errors.add :booking_start, :wrong_date_order, message: "La data di inizio non può essere successiva alla data di fine."
+    if record.bookable && (record.bookable == "no" || record.bookable == "to_confirm")
+      if record.booking_start && record.booking_end && record.booking_start > record.booking_end
+        record.errors.add :booking_start, :wrong_date_order, message: "La data di inizio non può essere successiva alla data di fine."
+      end
     end
   end
 end
@@ -59,6 +59,10 @@ module Bookable
     return "" unless self.bookable
     self.booking_to_confirm? ? "prenota un gruppo di studenti" : "iscrivi un gruppo di studenti"
   end
+
+  # def booking_type_to_s
+  #   self.booking_to_confirm? ? "prenotazione" : "iscrizione i tuoi studenti"
+  # end
 
   def now_in_bookable_interval?
     now = Time.now
@@ -145,9 +149,9 @@ module Bookable
     what = booking_to_confirm? ? "Prenotazioni" : "Iscrizioni"
 
     if res.any?
-      return "#{what} aperte #{res.to_sentence}"
+      "#{what} aperte #{res.to_sentence}"
     else
-      return ""
+      ""
     end
   end
 
@@ -173,10 +177,6 @@ module Bookable
       self.booking_start = nil
       self.booking_end = nil
     end
-  end
-
-  def booking_type_to_s
-    booking_to_confirm? ? "Prenotazione" : "Iscrizione"
   end
 
   def to_book_to_s
