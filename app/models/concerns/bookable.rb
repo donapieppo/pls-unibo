@@ -71,10 +71,10 @@ module Bookable
 
   # each activity belongs to many clusters each with limited bookable activities number
   # clustr has max_bookable_activities
-  def cluster_complete_for_user?(_user)
+  def cluster_complete_for_user?(u)
     self.clusters.each do |c|
       if c.max_bookable_activities.to_i > 0
-        other_activities_booked_in_cluster = _user.bookings.where(activity_id: c.activity_ids).count
+        other_activities_booked_in_cluster = u.bookings.where(activity_id: c.activity_ids).count
         if other_activities_booked_in_cluster >= c.max_bookable_activities.to_i
           return true
         end
@@ -83,43 +83,43 @@ module Bookable
     false
   end
 
-  def bookable_for_itsself?(_user)
+  def bookable_for_itsself?(u)
     return false if self.external_booking?
-    return false unless _user
+    return false unless u
 
     if self.bookable_by_all
       return true
-    elsif self.bookable_by_student_secondary && _user.student_secondary?
+    elsif self.bookable_by_student_secondary && u.student_secondary?
       return true
-    elsif self.bookable_by_student_university && _user.student_university?
+    elsif self.bookable_by_student_university && u.student_university?
       return true
-    elsif self.bookable_by_teacher && _user.confirmed_teacher?
+    elsif self.bookable_by_teacher && u.confirmed_teacher?
       return true
     end
 
     false
   end
 
-  def bookable_for_students?(_user)
+  def bookable_for_students?(u)
     return false if self.external_booking?
-    _user && _user.confirmed_teacher? && self.bookable_by_teacher_for_students
+    u&.confirmed_teacher? && self.bookable_by_teacher_for_students
   end
 
-  def bookable_for_classes?(_user)
+  def bookable_for_classes?(u)
     return false if self.external_booking?
-    _user && _user.confirmed_teacher? && self.bookable_by_teacher_for_classes
+    u&.confirmed_teacher? && self.bookable_by_teacher_for_classes
   end
 
-  def bookable_for_groups?(_user)
+  def bookable_for_groups?(u)
     return false if self.external_booking?
-    _user && _user.confirmed_teacher? && self.bookable_by_teacher_for_groups
+    u&.confirmed_teacher? && self.bookable_by_teacher_for_groups
   end
 
-  def bookable_by_user_role?(_user)
+  def bookable_by_user_role?(u)
     return false if self.external_booking?
-    return false unless _user
+    return false unless u
 
-    bookable_for_itsself?(_user) || bookable_for_students?(_user) || bookable_for_classes?(_user) || bookable_for_groups?(_user)
+    bookable_for_itsself?(u) || bookable_for_students?(u) || bookable_for_classes?(u) || bookable_for_groups?(u)
   end
 
   def bookable_by_to_s
