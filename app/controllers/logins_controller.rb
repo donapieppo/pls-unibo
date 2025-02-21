@@ -41,7 +41,7 @@ class LoginsController < ApplicationController
   def developer
     parse_developer_omniauth
     check_developer!
-    user = User.where(email: @email).first
+    user = User.where(email: @mail).first
     if !user
       logger.info "Developer Authentication: User #{@email} to be CREATED"
       user = create_logged_user
@@ -96,7 +96,7 @@ class LoginsController < ApplicationController
 
   def parse_developer_omniauth
     oinfo = request.env["omniauth.auth"].info
-    @email = oinfo.name
+    @email = oinfo.upn
     @name = "Pippo"
     @surname = "Pluto"
   end
