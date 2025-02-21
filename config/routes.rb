@@ -5,10 +5,12 @@ Rails.application.routes.draw do
   # get '/nuovo-pls/auth/shibboleth/callback' do
   #  redirect 'https://www.dm.unibo.it/nuovo-pls/auth/shibboleth/callback'
   # end
+  #
+  get "up" => "rails/health#show", as: :rails_health_check
 
   get "auth/google_oauth2/callback", to: "logins#google_oauth2"
   get "auth/shibboleth/callback", to: "logins#shibboleth"
-  post "auth/developer/callback", to: "logins#developer"
+  get "auth/developer/callback", to: "logins#developer"
 
   get "/auth/failure" do
     flash[:notice] = params[:message] # if using sinatra-flash or rack-flash
