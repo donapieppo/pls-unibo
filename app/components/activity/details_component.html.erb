@@ -1,0 +1,59 @@
+<div class="my-2 p-3 rounded-xl bg-green-100 md:text-lg text-pls">
+  <%= icon_and_text "fas fa-users fa-fw" do %>
+    <%= @activity.audience %>
+  <% end %>
+
+  <% if @activity.start_date %>  
+    <%= icon_and_text "far fa-calendar fa-fw" do %>
+      <%= I18n.l(@activity.start_date, format: :day) %>
+    <% end %>
+    <%= icon_and_text "far fa-clock fa-fw" do %>
+      <%= I18n.l(@activity.start_date, format: :hour) %>
+    <% end %>
+  <% end %>
+
+  <% if @activity.online %>  
+    <%= icon_and_text "fas fa-network-wired fa-fw" do %> 
+      Fruibile online 
+      <% unless @no_link || @activity.access_url.blank? %>
+        <%= link_to @activity.access_url, class: 'underline' do %>  
+          [<%= @activity.access_url_name %>]
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% if @activity.in_presence %>  
+    <%= icon_and_text "fas fa-chair fa-fw" do %> 
+      In presenza 
+      <% if !@activity.place.blank? %>
+        presso <%= @activity.place %>
+      <% end %>
+      <% if !(@no_link || @activity.google_map.blank?) %>  
+        <%= link_to ' (mostra su google map)', @activity.google_map, class: 'underline', target: '_new' %>  
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% if @activity.seats.to_i > 0 %>
+    <%= icon_and_text "fa-solid fa-door-open fa-fw" do %> 
+      Numero massimo di partecipanti: <%= @activity.seats %>
+  <% end %>
+  <% end %>
+
+  <% if @activity.sofia %>  
+    <%= icon_and_text "far fa-star fa-fw" do %>
+      <% if @no_link %>  
+        Iscrizioni disponibili su S.O.F.I.A.
+      <% else %>
+        <%= link_to 'Iscrizioni disponibili su S.O.F.I.A.', SOFIA_LINK, class: 'underline' %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% if @activity.pcto %>
+    <%= icon_and_text "far fa-star fa-fw" do %>
+      PCTO
+    <% end %>
+  <% end %>
+</div>
