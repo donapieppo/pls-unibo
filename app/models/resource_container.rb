@@ -6,10 +6,10 @@ class ResourceContainer < ApplicationRecord
   validates :name, presence: true, allow_blank: false
 
   def to_s
-    self.name
+    name
   end
 
   def areas_to_s
-    self.areas.map(&:name).join(", ")
+    areas.map(&:name).join(", ")
   end
 end

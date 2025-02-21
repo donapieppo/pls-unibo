@@ -12,21 +12,21 @@ class Resource < ApplicationRecord
   end
 
   def to_s
-    if self.display_name.blank?
-      self.name.blank? ? " - " : self.name
+    if display_name.blank?
+      name.blank? ? " - " : name
     else
-      self.display_name
+      display_name
     end
   end
 
   def video?
-    if !self.url.blank?
-      self.url.match("^https://vimeo.com") || self.url.match("^https://(www.)?youtu\.?be")
+    if !url.blank?
+      url.match("^https://vimeo.com") || url.match("^https://(www.)?youtu\.?be")
     end
   end
 
   def image?
-    self.document.image?
+    document.image?
   end
 
   def embed_url
@@ -46,11 +46,11 @@ class Resource < ApplicationRecord
   end
 
   def document_type
-    if self.image?
+    if image?
       "image"
-    elsif self.video?
+    elsif video?
       "video"
-    elsif !self.url.blank?
+    elsif url.blank?
       "url"
     else
       "document"
@@ -58,12 +58,12 @@ class Resource < ApplicationRecord
   end
 
   def name_and_type
-    "#{self.name} (#{self.document.attachment.content_type})"
+    "#{name} (#{document.attachment.content_type})"
   end
 
   private
 
   def set_typology
-    self.typology = self.document_type
+    typology = document_type
   end
 end
