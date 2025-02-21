@@ -1,0 +1,31 @@
+@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;1,400;1,700&display=swap');
+
+@plugin '@tailwindcss/forms';
+
+@theme {
+  --color-home-title: #040d12;
+  --color-home-bg1: #93b1a6;
+
+  --color-pls-title: #040d12;
+  --color-pls-white: #ffffff;
+  --color-pls-light: #93b1a6;
+  --color-pls: #183d3d;
+  --color-pls-strong: #040d12;
+  --color-pls-flash: #f09c2c;
+  --color-pls-footer: #91a3b0;
+  --color-pls-light2: #7fc2dc;
+
+  --color-button: rgb(247, 249, 251);
+  --color-button-hover: #9db2bf;
+}
+
+@import './pls.css';
+@import './forms.css';
+@import './menu.css';
+@import './pages.css';
+@import './home.css';
+@import './home_title.css';
+
+@source '../stylesheets/*.css';
+

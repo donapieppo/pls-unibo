@@ -27,7 +27,7 @@ form {
     @apply pr-4;
   }
   input[type="submit"] {
-    @apply button cursor-pointer my-4;
+    @apply border-2 border-pls-strong text-pls-strong hover:bg-pls-strong hover:text-white font-bold py-1 px-4 rounded cursor-pointer my-4;
   }
 
   .is-invalid {
