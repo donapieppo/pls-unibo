@@ -1,6 +1,3 @@
-#home-buttons {
-  @apply md:flex items-center justify-center text-center;
-}
 .home-button-container {
   @apply md:w-1/3 p-4 md:h-full;
   height: 15em;

@@ -7,8 +7,10 @@ gem "puma", ">= 5.0"
 gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
+gem "tailwindcss-ruby"
 gem "tailwindcss-rails"
 gem "jbuilder"
+gem "csv"
 
 gem "simple_form"
 gem "pundit"
@@ -22,6 +24,9 @@ gem "omniauth-rails_csrf_protection"
 gem "pretender"
 
 gem "recaptcha"
+
+gem "sentry-ruby"
+gem "sentry-rails"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"

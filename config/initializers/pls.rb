@@ -27,7 +27,7 @@ ACCROCCHIO_VECCHIO_SITO = [
 
 SOFIA_LINK = "https://sofia.istruzione.it/"
 
-module PlsUnibo
+module Pls
   class Application < Rails::Application
     config.domain_name = "dm.unibo.it"
 

@@ -13,37 +13,37 @@
   margin-left: 100px;
   animation: incomea 2s; 
 }
-  @keyframes incomea {
-    0% {
-      transform: translate(-300px, 300px);
-    }
-    100% {
-      transform: translate(0, 0);
-    }
+@keyframes incomea {
+  0% {
+    transform: translate(-300px, 300px);
   }
+  100% {
+    transform: translate(0, 0);
+  }
+}
 #home-box-second { 
   margin-top: -75px; 
   margin-left: 0;
   animation: incomep 2s; 
 }
-  @keyframes incomep {
-    0% {
-      transform: translate(-400px, 0);
-    }
-    100% {
-      transform: translate(0, 0);
-    }
+@keyframes incomep {
+  0% {
+    transform: translate(-400px, 0);
   }
+  100% {
+    transform: translate(0, 0);
+  }
+}
 #home-box-third { 
   margin-top:  -75px; 
   margin-left: 100px;
   animation: incomes 2s; 
 }
-  @keyframes incomes {
-    0% {
-      transform: translate(-500px, -500px);
-    }
-    100% {
-      transform: translate(0, 0);
-    }
+@keyframes incomes {
+  0% {
+    transform: translate(-500px, -500px);
   }
+  100% {
+    transform: translate(0, 0);
+  }
+}
