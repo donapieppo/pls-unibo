@@ -10,12 +10,12 @@
 
     <% if Rails.env.development? %>  
       <div class="text-center my-4 text-lg">
-        <%= button_to "Entra in test", '/auth/developer', data: { turbo: false } %>
+        <%= button_to "Entra in test", '/auth/developer', data: {turbo: false} %>
       </div>
     <% end %>
 
     <div class="text-center">
-      <%= button_to "", '/auth/google_oauth2', data: { turbo: false }, class: "input-google-login", style: "background-image: url(#{ image_path("google/btn_google_signin_light_normal_web.png") }" %>
+      <%= button_to "", '/auth/google_oauth2', data: {turbo: false}, class: "input-google-login", style: "background-image: url(#{ image_path("google/btn_google_signin_light_normal_web.png") }" %>
 
       <div class="text-sm text-gray-600 px-2 mt-2 mb-6">
         Sono account Google validi anche <br/>
