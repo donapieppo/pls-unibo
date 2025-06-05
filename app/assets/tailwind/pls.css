@@ -1,12 +1,12 @@
 body {
   font-family: 'Titillium Web', sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   @apply bg-pls-white;
 }
 
 @media screen and (min-width: 1000px) {
   body {
-    font-size: 18px;
+    font-size: 20px;
   }
 }
 
@@ -72,9 +72,9 @@ h1.hero-title {
 }
 
 .pls-card {
-  @apply border-1 border-pls shadow-lg p-2 pb-4 pt-8 rounded-lg relative;
+  @apply border-1 border-pls shadow-lg p-2 pb-4 pt-8 rounded-lg relative p-2;
   .pls-card-title {
-    @apply block  bg-white rounded-sm font-bold absolute -top-4 -left-2 p-1 px-4 text-pls-strong;
+    @apply block bg-white border-1 border-pls rounded-sm font-bold absolute -top-4 -left-2 p-1 px-4 text-pls-strong;
   }
   .pls-card-content {
     @apply mt-4 mb-4;
