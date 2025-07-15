@@ -28,6 +28,12 @@
     </div>
   <% end %>
 
+  <% if !@booking.notes.blank? %>
+    <div class="pl-2">
+      <stong>Note</stong>: <i><%= @booking.notes %></i>
+    </div>
+  <% end %>
+
   <% if BookingPolicy.new(@current_user, @booking).destroy? %>
     <div>
       <%= button_to booking_path(@booking), method: :delete, form: {data: {turbo_confirm: "Sicuro di voler cancellare la tua #{@booking.typology_to_s}?"}} do %>
