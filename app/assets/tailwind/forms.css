@@ -6,7 +6,7 @@ form {
     @apply italic text-sm text-gray-700;
   }
   label, legend {
-    @apply text-base text-gray-800 mt-4 mb-2;
+    @apply text-gray-800 mt-4 mb-2;
   }
   input[type="text"], input.string, input.numeric, textarea {
     @apply w-full text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow;
