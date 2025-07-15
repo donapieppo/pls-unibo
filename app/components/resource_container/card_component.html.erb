@@ -5,7 +5,7 @@
         <%= @resource_container.to_s.upcase %>
       </div>
     </div>
-    <div class="flex-grow p-2 w-full">
+    <div class="grow p-2 w-full">
       <% @resource_container.resources.each do |resource| %>  
         <div class="py-4 border-b last-of-type:border-0 border-pls w-full">
           <%= render Resource::ResourceComponent.new(resource, size: :small, with_download: true) %>  

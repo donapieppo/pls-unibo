@@ -1,6 +1,6 @@
 <div id="modal-menu" data-menu-target="menu">
-  <div role="navigation" class="flex flex-col min-h-screen relative w-full h-full lg:w-1/3 bg-gray-50 border-r-2 border-t-2 border-b-2 border-pls-light rounded-r-2xl">
-    <div class="menu-items px-24 my-4 text-center flex-grow">
+  <div role="navigation" class="flex flex-col min-h-screen relative w-full h-full xl:w-1/3 bg-gray-50 border-r-1 border-t-1 border-b-1 border-pls-light rounded-r-2xl">
+    <div class="menu-items px-12 my-4 text-center grow">
       <%= link_to 'home', root_path, class: 'menu-items-item' %>
       <%= link_to 'presentazione', presentation_path, class: 'menu-items-item' %>
       <%= link_to 'attività', projects_path, class: 'menu-items-item' %>
@@ -9,11 +9,12 @@
       <%= link_to 'contatti', contacts_page_path, class: 'menu-items-item' %>
       <%= link_to 'privacy', privacy_path, class: 'menu-items-item' %>
       <% if @current_user&.voyeur? %>  
+        <div class="mt-4 text-sm">analisi</div>
         <%= link_to 'prenotazioni', bookings_path, class: 'menu-items-item' %>  
         <%= link_to 'report', report_path, class: 'menu-items-item' %>  
       <% end %>
       <% if @current_user&.staff? %>  
-        <div class="mt-4 text-sm">admin</div>
+        <div class="mt-4 text-sm">amministrazione</div>
         <%= link_to 'contatti', contacts_path, class: 'menu-items-item' %>
         <%= link_to 'raggruppamenti', clusters_path, class: 'menu-items-item' %>
         <%= link_to 'iscrizioni', bookings_path, class: 'menu-items-item' %>

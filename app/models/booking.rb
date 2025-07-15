@@ -123,7 +123,8 @@ class Booking < ApplicationRecord
         "email",
         "nome docente",
         "email docente",
-        "attività"
+        "attività",
+        "notes"
       ]
       bs.each do |b|
         csv << [
@@ -139,7 +140,8 @@ class Booking < ApplicationRecord
           b.user.email.strip,
           (b.teacher_name.blank? ? "" : (b.teacher_name.strip + " " + b.teacher_surname.strip)),
           (b.teacher_email.blank? ? "" : b.teacher_email.strip),
-          b.activity
+          b.activity,
+          b.notes
         ]
       end
     end

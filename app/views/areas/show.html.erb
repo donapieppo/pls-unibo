@@ -1,7 +1,7 @@
 <div class="w-full overflow-hidden" 
      style="height: 60vh; background: no-repeat fixed center url(<%= asset_path(area_image(@area)) %>); background-size: cover;">
      <h1 class="m-4 my-24 text-4xl lg:text-8xl tracking-wide font-semibold text-white text-center leading-relaxed">
-       <span class="px-4 bg-pls bg-opacity-80 rounded-xl"><%= @area %></span>
+       <span class="px-4 bg-pls bg-black/80 rounded-xl"><%= @area %></span>
      </h1>
 </div>
 
@@ -12,7 +12,7 @@
     </div>
     <div class="text-base mt-4">
       <div>Responsabile: <%= @area.head %></div>
-      <div><%= render Contact::InlineContactsComponent.new(@area.contacts, label: "Contatti") %></div>
+      <div class="mt-4"><%= render Contact::InlineContactsComponent.new(@area.contacts, label: "Contatti: ") %></div>
     </div>
     <div class="text-right">
       <%= link_to_edit_if_editable @area, msg: 'modifica descrizione e responsabile' %>

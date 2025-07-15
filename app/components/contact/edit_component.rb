@@ -7,14 +7,13 @@ class Contact::EditComponent < ViewComponent::Base
 
     @as = as
     if @as == :speaker
-      @label = 'RELATORI'
+      @label = "RELATORI"
       @contacts = @what.speakers
     else
-      @label = 'CONTATTI'
+      @label = "CONTATTI"
       @contacts = @what.contacts
     end
 
     @form_id = "form_#{@what.id}_#{@as}"
   end
 end
-
