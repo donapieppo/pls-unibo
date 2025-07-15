@@ -1,70 +1,74 @@
 module IconHelper
-  def logout_icon
-    '<i class="fas fa-sign-out-alt"></i>'.html_safe
+  def icon(what, size = "")
+    "<i class=\"#{what} #{size}\"></i>".html_safe
   end
 
-  def add_icon
-    '<i class="fas fa-plus-circle"></i>'.html_safe
+  def logout_icon(size: "")
+    icon "fas fa-sign-out-alt", size
   end
 
-  def trash_icon(size: 24)
-    '<i class="far fa-trash-alt"></i>'.html_safe
+  def add_icon(size: "")
+    icon "fas fa-plus-circle", size
+  end
+
+  def trash_icon(size: "")
+    icon "far fa-trash-alt", size
   end
 
   def edit_icon
-    '<i class="fas fa-edit"></i>'.html_safe
+    icon "fas fa-edit"
   end
 
   def download_icon
-    '<i class="fas fa-download"></i>'.html_safe
+    icon "fas fa-download"
   end
 
   def document_icon
-    '<i class="far fa-file-alt"></i>'.html_safe
+    icon "far fa-file-alt"
   end
 
   def clone_icon
-    '<i class="far fa-clone"></i>'.html_safe
+    icon "far fa-clone"
   end
 
-  def plus_icon
-    '<i class="far fa-plus-square"></i>'.html_safe
+  def plus_icon(size: "")
+    icon "far fa-plus-square", size
   end
 
   def link_icon
-    '<i class="fas fa-external-link-alt"></i>'.html_safe
+    icon "fas fa-external-link-alt"
   end
 
   def mail_icon
-    '<i class="far fa-envelope"></i>'.html_safe
+    icon "far fa-envelope"
   end
 
   def booking_icon
-    '<i class="fas fa-user-clock"></i>'.html_safe
+    icon "fas fa-user-clock"
   end
 
   def eye_icon
-    '<i class="fas fa-eye"></i>'.html_safe
+    icon "fas fa-eye"
   end
 
   def exclamation_icon
-    '<i class="fas fa-exclamation-circle"></i>'.html_safe
+    icon "fas fa-exclamation-circle"
   end
 
   def facebook_icon
-    '<i class="fab fa-facebook-square"></i>'.html_safe
+    icon "fab fa-facebook-square"
   end
 
   def youtube_icon
-    '<i class="fab fa-youtube"></i>'.html_safe
+    icon "fab fa-youtube"
   end
 
   def calendar_icon
-    '<i class="far fa-calendar"></i>'.html_safe
+    icon "far fa-calendar"
   end
 
   def clock_icon
-    '<i class="far fa-clock"></i>'.html_safe
+    icon "far fa-clock"
   end
 
   def attach_type_icon(content_type)
