@@ -1,24 +1,24 @@
-<div id="home-first">
-  <div id="home-first-left">
+<div id="home-first" class="flex flex-col md:flex-row justify-center items-center md:-mt-8">
+  <div id="home-first-left" class="mt-0 md:w-1/2 text-center md:text-right md:pr-8">
     <h1 id="home-first-title" class="text-home-title text-4xl sm:text-5xl xl:text-6xl 2xl:text-8xl">
       PIANO<br/>LAUREE<br/>SCIENTIFICHE<br/>
       <span class="block py-2 text-xl sm:text-2xl xl:text-2xl 2xl:text-4xl">Università di Bologna</span>
     </h1>
   </div>
 
-  <div id="home-first-right">
+  <div id="home-first-right" class="md:w-1/2 text-center md:pl-8">
     &nbsp;
-    <div id="home-box-first" class="home-box text-gray-100 bg-pls-flash">
-      <div>dal <span class="home-box-number">2010</span></div>
+    <div id="home-box-first" class="home-box text-gray-900 bg-pls-flash">
+      <div>dal <div class="home-box-number">2010</div></div>
     </div>
-    <div id="home-box-second" class="home-box text-gray-100 bg-pls-light2">
+    <div id="home-box-second" class="home-box text-gray-900 bg-pls-light2">
       <%= link_to "#areas" do %>  
-        <div><span class="home-box-number">8</span> aree</div>
+        <div><div class="home-box-number">8</div> aree</div>
       <% end %>
     </div>
-    <div id="home-box-third" class="home-box text-gray-100 bg-pls-light">
+    <div id="home-box-third" class="home-box text-gray-900 bg-pls-light">
       <%= link_to "#home-buttons" do %>
-        <div>oltre <span class="home-box-number"><%= Activity.approximate_count %></span> iniziative</div>
+        <div>oltre <div class="home-box-number"><%= Activity.approximate_count %></div> iniziative</div>
       <% end %>
     </div>
   </div>
