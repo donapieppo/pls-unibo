@@ -7,5 +7,11 @@
     <h1 class="title">Le ultime 20 attività del PLS</h1>
   <% end %>
 
-  <%= render Edition::ListComponent.new(@editions, current_user) %>
+  <% if @editions.empty? %>
+    <div class="alert max-w-xl mx-auto">
+      Non sono presenti attività.
+    </div>
+  <% else %>
+    <%= render Edition::ListComponent.new(@editions, current_user) %>
+  <% end %>
 </div>
