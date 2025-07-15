@@ -1,4 +1,9 @@
-<div class="my-2 p-3 rounded-xl bg-green-100 md:text-lg text-pls">
+<div class="my-2 p-4 rounded-xl bg-gray-200 md:text-lg text-pls">
+  <div class="text-lg my-4 md:mt-0">
+    Attività nell'ambito del progetto 
+    <strong>&ldquo;<%= link_to @activity.project.name.upcase, @activity.project, class: 'underline' %>&rdquo;</strong>
+  </div>
+
   <%= icon_and_text "fas fa-users fa-fw" do %>
     <%= @activity.audience %>
   <% end %>
@@ -38,7 +43,7 @@
   <% if @activity.seats.to_i > 0 %>
     <%= icon_and_text "fa-solid fa-door-open fa-fw" do %> 
       Numero massimo di partecipanti: <%= @activity.seats %>
-  <% end %>
+    <% end %>
   <% end %>
 
   <% if @activity.sofia %>  
