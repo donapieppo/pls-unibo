@@ -1,6 +1,6 @@
 class EditionPolicy < ActivityPolicy
   def show?
-    @record.visible? || (@user && @user.staff?)
+    @record.visible? || @user&.staff?
   end
 
   def destroy?

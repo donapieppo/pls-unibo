@@ -9,7 +9,7 @@
 #   }
 # end
 
-CURRENT_ACADEMIC_YEAR = 2023
+CURRENT_ACADEMIC_YEAR = 2025
 CESIA_UPN = ["pietro.donatini@unibo.it", "valeria.montesi3@unibo.it"]
 BOOKING_WATCHERS = ["mirella.manaresi@unibo.it", "alessia.cattabriga@unibo.it"]
 
@@ -27,7 +27,7 @@ ACCROCCHIO_VECCHIO_SITO = [
 
 SOFIA_LINK = "https://sofia.istruzione.it/"
 
-module PlsUnibo
+module Pls
   class Application < Rails::Application
     config.domain_name = "dm.unibo.it"
 

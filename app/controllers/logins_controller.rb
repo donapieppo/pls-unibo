@@ -14,7 +14,7 @@ class LoginsController < ApplicationController
   # env['omniauth.auth'].info = {email, name, last_name}
   def google_oauth2
     parse_google_omniauth
-    user = User.where(email: @email).first
+    user = User.find_by_email(@email)
     if !user
       logger.info "Authentication: google_oauth2 user #{@email} not present in db."
       user = create_logged_user
@@ -41,7 +41,7 @@ class LoginsController < ApplicationController
   def developer
     parse_developer_omniauth
     check_developer!
-    user = User.where(email: @email).first
+    user = User.find_by_email(@email)
     if !user
       logger.info "Developer Authentication: User #{@email} to be CREATED"
       user = create_logged_user
@@ -70,7 +70,7 @@ class LoginsController < ApplicationController
 
     # logger.info("after logout we redirect to params[:return] = #{params[:return]}")
     # redirect_to (params[:return] || 'https://www.muriditalia.it')
-    redirect_to "https://idp.unibo.it/adfs/ls/?wa=wsignout1.0", allow_other_host: true
+    redirect_to "https://idp.unibo.it/adfs/ls/?wa=wsignout1.0&wreply=https://pls.unibo.it", allow_other_host: true
   end
 
   def glogout
@@ -96,7 +96,7 @@ class LoginsController < ApplicationController
 
   def parse_developer_omniauth
     oinfo = request.env["omniauth.auth"].info
-    @email = oinfo.name
+    @email = oinfo.upn
     @name = "Pippo"
     @surname = "Pluto"
   end

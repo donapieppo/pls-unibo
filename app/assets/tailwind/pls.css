@@ -1,0 +1,128 @@
+body {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 18px;
+  @apply bg-pls-white;
+}
+
+@media screen and (min-width: 1000px) {
+  body {
+    font-size: 20px;
+  }
+}
+
+* { 
+  scroll-behavior: smooth;
+}
+.container {
+  @apply px-2 md:px-4 lg:px-16 lg:mx-auto;
+}
+.button {
+  @apply border-2 border-pls-strong text-pls-strong hover:bg-pls-strong hover:text-white font-bold py-1 px-4 rounded;
+}
+.button-danger {
+  @apply bg-red-700 text-white hover:bg-red-800 font-bold py-1 px-4 rounded;
+}
+.big-button {
+  @apply text-white border-2 border-pls bg-pls-strong hover:bg-pls hover:text-white font-bold p-8 text-center rounded-2xl;
+}
+
+.alert {
+  @apply bg-red-100 border-l-4 border-red-500 text-black p-4;
+}
+
+.info {
+  @apply bg-blue-100 border-l-4 border-blue-500 text-black p-4;
+}
+
+.warning {
+  @apply bg-yellow-100 border-l-4 border-yellow-500 text-black p-4;
+}
+
+.success {
+  @apply bg-green-100 border-l-4 border-green-500 text-black p-4;
+}
+.title {
+  @apply block m-auto leading-none font-bold text-pls-strong tracking-tight my-6 text-center;
+}
+
+h1, h2, #home-first {
+  font-family: Times New Roman;
+}
+
+h1.hero-title {
+  @apply text-8xl;
+}
+@layer base {
+  h1 {
+    @apply text-2xl md:text-5xl;
+  }
+  h2 {
+    @apply text-xl md:text-4xl;
+  }
+  h3 {
+    @apply text-xl md:text-2xl my-2 md:my-4 text-pls text-base;
+  }
+  h4 {
+    @apply text-lg md:text-xl;
+  }
+}
+
+.trix-content h1 {
+  @apply text-2xl;
+}
+
+.pls-card {
+  @apply border-1 border-pls shadow-lg p-4 rounded-lg relative;
+  .pls-card-title {
+    @apply block border-1 border-pls rounded-sm font-bold absolute -top-4 -left-2 p-1 px-4 bg-pls-flash text-pls;
+  }
+  .pls-card-content {
+    @apply mt-4 mb-4;
+  }
+  .pls-card-footer {
+    @apply mt-4 mb-1;
+  }
+}
+
+.toggable {
+  transition: all 3s;
+}
+.badge {
+  @apply ml-1 px-3 py-0 font-semibold border-2 border-pls text-pls hover:text-gray-50 hover:bg-pls rounded-xl; 
+}
+
+.presentation {
+  @apply p-2 relative pt-4 md:mt-8;
+  .presentation-title {
+    @apply border-t-2 border-b-2  border-pls bg-gray-50 font-bold absolute -top-8 -ml-2 md:-ml-16 text-pls p-2 md:px-8 rounded-2xl tracking-wider;
+  }
+}
+
+.input-google-login {
+  background-color: #fff; 
+  height: 46px; 
+  width: 191px; 
+}
+
+.filtered {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+table {
+  th, td {
+    @apply p-1 px-2 border border-gray-500;
+  }
+}
+
+ul {
+  list-style-type: circle;
+}
+ol {
+  list-style-type: decimal;
+}
+
+.number {
+  font-family: monospace;
+  text-align: right;
+}

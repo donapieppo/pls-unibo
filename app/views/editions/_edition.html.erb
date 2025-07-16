@@ -28,18 +28,8 @@
     </div>
 
     <div class="md:w-2/3 md:pr-4">
-      <div class="text-lg my-4 md:mt-0">
-        Attività nell'ambito del progetto 
-        <strong>&ldquo;<%= link_to @edition.project.name.upcase, @edition.project, class: 'underline' %>&rdquo;</strong>
-      </div>
-      <div class="my-2 md:text-xl text-pls font-semibold">
-        <div>
-          <i class="fas fa-users fa-fw mr-2"></i>
-          <%= @edition.audience %>
-        </div>
-        <%= render Activity::DateAndPlaceComponent.new(@edition) %>  
-        <%= render Activity::Extra.new(@edition) %>  
-      </div>
+      <%= render Activity::DetailsComponent.new(@edition) %>
+
       <div class="my-4 lg:text-lg">
         <%= simple_format @edition.description %>  
       </div>

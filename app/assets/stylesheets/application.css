@@ -1,0 +1,49 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+#home-box-first { 
+  margin-top: -25px; 
+  margin-left: 100px;
+  animation: incomea 2s; 
+}
+@keyframes incomea {
+  0% {
+    transform: translate(-300px, 300px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+#home-box-second { 
+  margin-top: -75px; 
+  margin-left: 0;
+  animation: incomep 2s; 
+}
+@keyframes incomep {
+  0% {
+    transform: translate(-400px, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+#home-box-third { 
+  margin-top:  -75px; 
+  margin-left: 100px;
+  animation: incomes 2s; 
+}
+@keyframes incomes {
+  0% {
+    transform: translate(-500px, -500px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}

@@ -1,7 +1,7 @@
-<div class="max-w-3xl mx-auto ">
+<div class="max-w-2xl mx-auto px-2">
   <h1 class="title">Aggiorna i tuoi dati</h1>
 
-  <%= simple_form_for @user, html: {class: "max-w-3xl mx-auto"} do |f| %>  
+  <%= simple_form_for @user do |f| %>  
     <%= f.input :email, disabled: !current_user.staff? %>
     <%= render partial: 'users/common_to_booking', locals: { f: f }%>  
     <%= f.submit 'Salva' %>  

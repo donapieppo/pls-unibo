@@ -1,3 +1,0 @@
-ignore:
-  - 'app/models/*':
-    - Style/RedundantSelf

@@ -1,15 +1,7 @@
-// import "@fortawesome/fontawesome-free/js/regular.min"
-// import "@fortawesome/fontawesome-free/js/solid.min"
-// import "@fortawesome/fontawesome-free/js/brands.min"
-// import "@fortawesome/fontawesome-free/js/fontawesome.min"
-import "@fortawesome/fontawesome-free/js/all.min"
-
-import "trix"
-import "@rails/actiontext"
-
+// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
-import "./controllers"
-
+import "controllers"
+//
 // txts = Array
 window.display_unless = function (txts, what, condition_input) {
   what.style.display = txts.includes(condition_input.value) ? 'none' : 'block';
@@ -42,4 +34,3 @@ window.display_if_checked = function (what, condition_input, display="block", ne
     }
   });
 }
-

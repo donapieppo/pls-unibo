@@ -1,34 +1,41 @@
-<%= simple_form_for @project do |f| %>  
-  <%= f.input :hidden %>  
-  <%= f.input :name %>  
-  <%= f.input :description, input_html: { cols: 80, rows: 5 } %>
-
-  <div class="details-trix-editor">
-    <label>
-      Descrizione più dettagliata con la possibilità di formattare il testo (opzionale)
-    </label>
-    <%= f.rich_text_area :details %>
+<div class="pls-card">
+  <div class="pls-card-title">
+    DETTAGLI
   </div>
+  <div class="pls-card-content">
+    <%= simple_form_for @project do |f| %>  
+      <%= f.input :hidden %>  
+      <%= f.input :name %>  
+      <%= f.input :description, input_html: { cols: 80, rows: 5 } %>
 
-  <div data-controller="hideshow" data-hideshow-display-value="flex" data-hideshow-negate-value="true">
-    <%= f.association :activity_type, include_blank: false %>  
-    <div class="my-4">
-      <%= f.input :global, input_html: {data: {"hideshow-target": "control"}} %>  
-    </div>
-    <div class="md:flex" id="areas_select" data-hideshow-target="controlled">
-      <div class="md:w-1/2">
-        <%= f.association :areas, as: :check_boxes %>  
+      <div class="details-trix-editor">
+        <label>
+          Descrizione più dettagliata con la possibilità di formattare il testo (opzionale)
+        </label>
+        <%= f.rich_text_area :details %>
       </div>
-      <div class="md:w-1/2">
-        <%= f.association :interested_areas, as: :check_boxes, hint: "Se l'attività è di interesse per altre aree oltre che per l'area organizzatrice." %>  
+
+      <div data-controller="hideshow" data-hideshow-display-value="flex" data-hideshow-negate-value="true">
+        <%= f.association :activity_type, include_blank: false %>  
+        <div class="my-4">
+          <%= f.input :global, input_html: {data: {"hideshow-target": "control"}} %>  
+        </div>
+        <div class="xl:flex" id="areas_select" data-hideshow-target="controlled">
+          <div class="xl:w-1/2">
+            <%= f.association :areas, as: :check_boxes %>  
+          </div>
+          <div class="xl:w-1/2">
+            <%= f.association :interested_areas, as: :check_boxes, hint: "Se l'attività è di interesse per altre aree oltre che per l'area organizzatrice." %>  
+          </div>
+        </div>
       </div>
-    </div>
+      <%= f.association :organization, 
+                        label: "È possibile indicare il Dipartimento che organizza (richiesta di chimica).".html_safe,
+                        hint: "<strong>Opzionale.</strong> Utile solo per distinguere le due chimiche.".html_safe %>  
+      <%= f.association :campus, 
+                        label: "È possibile indicare la sede didattica (richiesta di chimica).",
+                        hint: "<strong>Opzionale.</strong>".html_safe %>
+      <%= f.submit %>  
+    <% end %>
   </div>
-  <%= f.association :organization, 
-    label: "È possibile indicare il Dipartimento che organizza (richiesta di chimica).".html_safe,
-    hint: "<strong>Opzionale.</strong> Utile solo per distinguere le due chimiche.".html_safe %>  
-  <%= f.association :campus, 
-    label: "È possibile indicare la sede didattica (richiesta di chimica).",
-    hint: "<strong>Opzionale.</strong>".html_safe %>
-  <%= f.submit %>  
-<% end %>
+</div>

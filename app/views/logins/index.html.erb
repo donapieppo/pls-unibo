@@ -1,5 +1,5 @@
 <div class="py-6">
-  <div class="mx-auto max-w-lg text-center border-4 border-gray-300 bg-gray-50 shadow-md py-4">
+  <div class="mx-auto max-w-xl text-center border-4 border-gray-300 bg-gray-50 shadow-md py-4">
     <%= image_tag 'Logo_PLS_s.png', style: "width: 200px; margin: auto" %>
 
     <div class="my-8">
@@ -10,25 +10,25 @@
 
     <% if Rails.env.development? %>  
       <div class="text-center my-4 text-lg">
-        <%= button_to "Entra in test", '/auth/developer', data: { turbo: false } %>
+        <%= button_to "Entra in test", '/auth/developer', data: {turbo: false}, class: "button cursor-pointer" %>
       </div>
     <% end %>
 
-    <div class="text-center">
-      <%= button_to "", '/auth/google_oauth2', data: { turbo: false }, class: "input-google-login", style: "background-image: url(#{ image_path("google/btn_google_signin_light_normal_web.png") }" %>
-
-      <div class="text-sm text-gray-600 px-2 mt-2 mb-6">
+    <div class="text-center text-lg">
+      <%= button_to "/auth/google_oauth2", form: {data: {turbo: false}}, class: "input-google-login cursor-pointer" do %>
+        <%= image_tag("google/btn_google_signin_light_normal_web.png") %>
+      <% end %>
+      <div class="text-base text-gray-800 px-2 mt-2 mb-6">
         Sono account Google validi anche <br/>
         gli account scolastici che usano <br/> 
         Google Classroom.
       </div>
 
-      <%# <%= button_to image_tag('ssologo18x18.png', class: 'inline mr-2') + " Accedi in Unibo", '/auth/shibboleth/callback', %> 
-      <%#               class: 'bg-gray-100 border-b-2 border-gray-300 hover:bg-gray-200 text-sm font-bold py-2 px-4 rounded', data: { turbo: false } %1> %>
-      <%= link_to image_tag('ssologo18x18.png', class: 'inline mr-2') + " Accedi in Unibo", "https://www.dm.unibo.it/nuovo-pls/login", 
-                   class: 'bg-gray-100 border-b-2 border-gray-300 hover:bg-gray-200 text-sm font-bold py-2 px-4 rounded', data: { turbo: false } %>
+      <%= button_to "/auth/azure_activedirectory_v2", form: {data: {turbo: false}}, class: 'bg-gray-100 border-b-2 border-gray-300 hover:bg-gray-200 text-sm font-bold py-2 px-4 rounded' do %>
+        <%= image_tag('ssologo18x18.png', class: 'inline mr-2') + " Accedi in Unibo" %>
+      <% end %>
 
-      <div class="text-sm text-gray-600 px-2 mt-4 mb-6">
+      <div class="text-base text-gray-800 px-2 mt-4 mb-6">
         Sono account Unibo validi sia gli account <br/>
         <i>@unibo.it</i> <br/>
         che gli account <br/>

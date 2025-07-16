@@ -1,4 +1,4 @@
-<div class="pls-card my-8">
+<div class="pls-card mb-8">
   <div class="pls-card-title">
     <%= @label %>  
   </div>
@@ -17,7 +17,7 @@
     <%= simple_form_for [:add_contact, @what], method: :post, html: { id: @form_id } do |f| %>  
       <input type="hidden" name="as" value="<%= @as %>"></input>
       <label>Cerca nome/cognome inizando a scrivere</label><br/>
-      <input name="contact_name" class="border-4 rounded my-2" list="<%= @form_id %>_contacts" />
+      <input name="contact_name" class="border-2 rounded-lg my-2 mx-1" list="<%= @form_id %>_contacts" />
       <datalist id="<%= @form_id %>_contacts" style="background-color: #ccc;">
         <% Contact.order(:surname).find_each do |c| %>  
           <option data-value="<%= c.id %>" value="<%= c.cn_militar %>"/>
@@ -27,6 +27,6 @@
     <% end %>
   </div>
   <div class="pls-card-footer">
-    <%= link_to plus_icon + ' aggiungi un nuovo contatto se non lo trovi nella lista', [:new, @what, :contact, as: @as], class: 'text-sm' %>  
+    <%= link_to plus_icon(size: "xl") + ' aggiungi un nuovo contatto se non lo trovi nella lista', [:new, @what, :contact, as: @as] %>  
   </div>
 </div>
