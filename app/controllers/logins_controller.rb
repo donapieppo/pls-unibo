@@ -25,16 +25,16 @@ class LoginsController < ApplicationController
     end
   end
 
-  # email="usrBase@testtest.unibo.it" last_name="Base" name="SSO"
-  def shibboleth
-    log_unibo_omniauth
-    parse_unibo_omniauth
-
-    if @email.match?(/@(studio\.)?unibo.it\z/)
-      allow_and_create
+  def entra_id
+    parse_entra_id
+    user = User.find_by_email(@email)
+    if !user
+      logger.info "Authentication: entra_id user #{@email} not present in db."
+      user = create_logged_user
+      sign_in_and_redirect user, myedit_users_path
     else
-      logger.info "#{@email} user not allowed."
-      redirect_to no_access_path
+      logger.info "Authentication: entra_id user #{user.inspect} found in db."
+      sign_in_and_redirect user, root_path
     end
   end
 
@@ -94,25 +94,20 @@ class LoginsController < ApplicationController
     @surname = oinfo.last_name
   end
 
+  def parse_entra_id
+    if (oa = request.env["omniauth.auth"]["extra"]["raw_info"])
+      @email = oa.email
+      @name = oa.given_name
+      @surname = oa.family_name
+      @id_anagrafica_unica = oa.idAnagraficaUnica.to_i
+    end
+  end
+
   def parse_developer_omniauth
     oinfo = request.env["omniauth.auth"].info
     @email = oinfo.upn
     @name = "Pippo"
     @surname = "Pluto"
-  end
-
-  def parse_unibo_omniauth
-    @upn = request.env["omniauth.auth"].uid
-    oinfo = request.env["omniauth.auth"].info
-    extra = request.env["omniauth.auth"].extra.raw_info
-
-    @idAnagraficaUnica = extra.idAnagraficaUnica.to_i
-    @idAnagraficaUnica > 0 or raise "NO idAnagraficaUnica"
-
-    @email = @upn
-    @name = oinfo.first_name || oinfo.name
-    @surname = oinfo.last_name
-    @nationalpin = extra.codiceFiscale
   end
 
   def sign_in_and_redirect(user, url)
@@ -150,17 +145,6 @@ class LoginsController < ApplicationController
     logger.info "Authentication: create_logged_user user #{@email} to be CREATED"
     logger.info "name: #{@name}, surname: #{@surname}, email: #{@email}"
     User.create!(name: @name, surname: @surname, email: @email)
-  end
-
-  def log_unibo_omniauth
-    logger.info("Chiamato shibboleth")
-    logger.info("HTTP_EPPN: #{request.env["HTTP_EPPN"]}")
-
-    if request.env["omniauth.auth"]
-      logger.info("Authentication: uid   = #{request.env["omniauth.auth"].uid}")
-      logger.info("Authentication: info  = #{request.env["omniauth.auth"].info}")
-      logger.info("Authentication: extra = #{request.env["omniauth.auth"].extra}")
-    end
   end
 
   def no_access

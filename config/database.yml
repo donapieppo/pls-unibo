@@ -4,7 +4,7 @@
 #   gem install mysql2
 #
 # Ensure the MySQL gem is defined in your Gemfile
-#   gem 'mysql2'
+#   gem "mysql2"
 #
 # And be sure to use new-style password hashing:
 #   https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html
@@ -26,7 +26,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: pls_unibo_test
+  database: pls_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -43,11 +43,24 @@ test:
 # URL environment variable explicitly:
 #
 #   production:
-#     url: <%= ENV['MY_APP_DATABASE_URL'] %>
+#     url: <%= ENV["MY_APP_DATABASE_URL"] %>
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: pls
+  primary: &primary_production
+    <<: *default
+    database: pls
+  cache:
+    <<: *primary_production
+    database: pls_production_cache
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *primary_production
+    database: pls_production_queue
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *primary_production
+    database: pls_production_cable
+    migrations_paths: db/cable_migrate

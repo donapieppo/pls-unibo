@@ -8,9 +8,9 @@ Rails.application.configure do
       res = {}
       res[:remote_ip] = controller.request.remote_ip
       res[:host] = controller.request.host
-      res[:current_user] = controller.current_user&.upn if controller.respond_to?(:current_user)
+      res[:current_user] = controller.current_user&.email if controller.respond_to?(:current_user)
       if controller.respond_to?(:true_user) && controller.current_user != controller.true_user
-        res[:true_user] = controller.true_user&.upn
+        res[:true_user] = controller.true_user&.email
       end
       res
     end

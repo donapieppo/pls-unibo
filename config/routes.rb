@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   get "auth/google_oauth2/callback", to: "logins#google_oauth2"
-  get "auth/shibboleth/callback", to: "logins#shibboleth"
+  get "auth/entra_id/callback", to: "logins#entra_id"
   get "auth/developer/callback", to: "logins#developer"
 
   get "/auth/failure" do
