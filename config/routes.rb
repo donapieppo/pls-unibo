@@ -119,9 +119,11 @@ Rails.application.routes.draw do
 
   resources :areas, concerns: :contactable
 
-  Area.find_each do |a|
-    get "/#{a.slug}", to: "areas#show", id: a.id
-    get "/#{a.slug}/archive", to: "home#archive", id: a.id
-    get "/#{a.slug}/projects", to: "projects#index", area_id: a.id
+  # Area.all.map{|a| [a.id, a.slug]}
+  # altrimenti precompile si rompe senza database
+  [[1, "biologia-e-biotecnologie"], [2, "chimica"], [3, "fisica"], [4, "geologia"], [5, "informatica"], [6, "matematica"], [7, "scienze-naturali-e-ambientali"], [8, "statistica"]].each do |a|
+    get "/#{a[1]}", to: "areas#show", id: a[0]
+    get "/#{a[1]}/archive", to: "home#archive", id: a[0]
+    get "/#{a[1]}/projects", to: "projects#index", area_id: a[0]
   end
 end
