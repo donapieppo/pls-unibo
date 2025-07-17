@@ -1,6 +1,6 @@
 <div class="py-6">
-  <div class="mx-auto max-w-xl text-center border-4 border-gray-300 bg-gray-50 shadow-md py-4">
-    <%= image_tag 'Logo_PLS_s.png', style: "width: 200px; margin: auto" %>
+  <div class="mx-auto max-w-xl text-center py-4">
+    <%= image_tag 'Logo_PLS_s.png', style: "width: 250px; margin: auto" %>
 
     <div class="my-8">
       Puoi usare il tuo account Google o Unibo per <br/>
@@ -16,7 +16,7 @@
 
     <div class="text-center text-lg">
       <%= button_to "/auth/google_oauth2", form: {data: {turbo: false}}, class: "input-google-login cursor-pointer" do %>
-        <%= image_tag("google/btn_google_signin_light_normal_web.png") %>
+        <%= image_tag("google/btn_google_signin.svg") %>
       <% end %>
       <div class="text-base text-gray-800 px-2 mt-2 mb-6">
         Sono account Google validi anche <br/>
@@ -24,7 +24,7 @@
         Google Classroom.
       </div>
 
-      <%= button_to "/auth/azure_activedirectory_v2", form: {data: {turbo: false}}, class: 'bg-gray-100 border-b-2 border-gray-300 hover:bg-gray-200 text-sm font-bold py-2 px-4 rounded' do %>
+      <%= button_to "/auth/azure_activedirectory_v2", form: {data: {turbo: false}}, class: 'cursor-pointer bg-gray-100 hover:bg-gray-200 text-sm font-bold py-1 px-2 rounded-xl' do %>
         <%= image_tag('ssologo18x18.png', class: 'inline mr-2') + " Accedi in Unibo" %>
       <% end %>
 
