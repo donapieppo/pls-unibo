@@ -68,9 +68,7 @@ class LoginsController < ApplicationController
     reset_session
     cookies.clear
 
-    # logger.info("after logout we redirect to params[:return] = #{params[:return]}")
-    # redirect_to (params[:return] || 'https://www.muriditalia.it')
-    redirect_to "https://idp.unibo.it/adfs/ls/?wa=wsignout1.0&wreply=https://pls.unibo.it", allow_other_host: true
+    redirect_to "https://login.microsoftonline.com/common/oauth2/v2.0/logout?post_logout_redirect_uri=https%3A%2F%2Fwww.pls-test.unibo.it", allow_other_host: true
   end
 
   def glogout

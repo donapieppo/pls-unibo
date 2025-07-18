@@ -15,8 +15,8 @@
     <% end %>
 
     <div class="text-center text-lg">
-      <%= button_to "/auth/google_oauth2", form: {data: {turbo: false}}, class: "input-google-login cursor-pointer" do %>
-        <%= image_tag("google/btn_google_signin.svg") %>
+      <%= button_to "/auth/google_oauth2", form: {data: {turbo: false}}, class: 'cursor-pointer bg-gray-100 hover:bg-gray-200 text-sm font-bold py-1 px-2 rounded-xl' do %>
+        <%= image_tag('google/btn_google_signin.png', class: 'inline mr-2') + " Accedi con Google" %>
       <% end %>
       <div class="text-base text-gray-800 px-2 mt-2 mb-6">
         Sono account Google validi anche <br/>
