@@ -20,6 +20,18 @@
   --color-button-hover: #9db2bf;
 }
 
+body {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 18px;
+  @apply bg-pls-white;
+}
+
+@media screen and (min-width: 1000px) {
+  body {
+    font-size: 20px;
+  }
+}
+
 @import './pls.css';
 @import './forms.css';
 @import './menu.css';
