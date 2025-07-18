@@ -34,3 +34,6 @@ window.display_if_checked = function (what, condition_input, display="block", ne
     }
   });
 }
+
+import "trix"
+import "@rails/actiontext"
