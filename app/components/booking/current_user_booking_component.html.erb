@@ -12,7 +12,7 @@
 
   <% if BookingPolicy.new(@current_user, @user_this_booking).destroy? %>
     <div class="my-4">
-      <%= button_to "Cancella l'iscrizione", booking_path(@user_this_booking), method: :delete, form: {class: "inline button-danger"} %> 
+      <%= button_to "Cancella l'iscrizione", booking_path(@user_this_booking), method: :delete, form: {class: "inline button-danger cursor-pointer"} %> 
     </div>
   <% else %>
     <%# <div class="alert alert-warning"> %>
