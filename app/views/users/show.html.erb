@@ -17,7 +17,7 @@
       <% if @current_user.unibo_account? %>  
         <%= link_to 'Disconnetti', logout_path, class: 'button', data: {turbo: false} %>  
       <% else %>
-        <%= link_to logout_icon, google_logout_path, data: {turbo: false} %>
+        <%= link_to 'Disconnetti', google_logout_path, class: 'button', data: {turbo: false} %>
       <% end %>
       <%= link_to 'Modifica i miei dati', myedit_users_path, class: 'button' %>  
     </div>

@@ -17,7 +17,7 @@ body {
   @apply px-2 md:px-4 lg:px-16 lg:mx-auto;
 }
 .button {
-  @apply border-2 border-pls-strong text-pls-strong hover:bg-pls-strong hover:text-white font-bold py-1 px-4 rounded;
+  @apply border-2 border-pls-strong text-pls-strong hover:bg-pls hover:text-white font-bold py-1 px-4 rounded;
 }
 .button-danger {
   @apply bg-red-700 text-white hover:bg-red-800 font-bold py-1 px-4 rounded;
