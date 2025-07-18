@@ -1,42 +1,46 @@
 <div class="container max-w-4xl">
-  <h1 class="title">Iscrizione <%= @booking.online == true ? "in remoto" : "in presenza" %></h1>
+  <h1 class="title"><%= @activity %></h1>
 
-  <div class="my-8">
-    <h2 class="text-center"><%= @activity %></h2>
-  </div>
+  <h2 class="title">
+    Iscrizione <%= @booking.online == true ? "in remoto" : "in presenza" %>
+  </h2>
 
   <% txt_action = @activity.booking_to_confirm? ? ' Prenotami' : ' Iscrivimi' %>  
 
-  <div class="my-16 px-4">
-    <% if @activity.booked_by?(current_user) %>  
-      <div class="info">Sei registrato a questa attività.</div>
-    <% else %>
-      <% if @booking.online == true %>
-        <div class="inline rounded-xl bg-blue-200 px-4 py-2 my-4">Partecipazione in remoto.</div>
-      <% else %>
-        <div class="inline rounded-xl bg-blue-200 px-4 py-2 my-4">Partecipazione in presenza.</div>
-        <div class="my-6">
-          <%= render Bookability::FreeSeatsComponent.new(@activity) %>  
-        </div>
+  <% if @activity.booked_by?(current_user) %>  
+    <div class="info">Sei registrato a questa attività.</div>
+  <% else %>
+    <div class="pls-card my-8">
+      <div class="pls-card-title">
+        <% if @booking.online == true %>
+          Partecipazione in remoto
+        <% else %>
+          Partecipazione in presenza
+        <% end %>
+      </div>
+      <div class="pls-card-content">
+        <% if ! @booking.online %>
+          <div class="my-6 font-bold">
+            <%= render Bookability::FreeSeatsComponent.new(@activity) %>  
+          </div>
+        <% end %>
+        <%= simple_form_for [@activity, @booking] do |f| %>  
+          <%= f.error_notification %>
+
+          <%= f.input :online, as: :hidden %>  
+
+          <div class="max-w-xl">
+            <% if current_user && current_user.student_secondary? %>  
+              <%= f.input :teacher_name %>
+              <%= f.input :teacher_surname %>
+              <%= f.input :teacher_email %>
+              <%= f.input :grade, collection: 3..5, as: :radio_buttons %>
+            <% end %>
+            <%= f.input :notes %>  
+            <%= f.submit txt_action %> - <%= link_to 'indietro', @activity %>    
+          </div>
+        <% end %>
       <% end %>
-
-      <%= simple_form_for [@activity, @booking] do |f| %>  
-        <%= f.error_notification %>
-
-        <%= f.input :online, as: :hidden %>  
-
-        <div class="max-w-xl">
-          <% if current_user && current_user.student_secondary? %>  
-            <%= f.input :teacher_name %>
-            <%= f.input :teacher_surname %>
-            <%= f.input :teacher_email %>
-            <%= f.input :grade, collection: 3..5, as: :radio_buttons %>
-          <% end %>
-          <%= f.input :notes %>  
-          <%= f.submit txt_action %> - <%= link_to 'indietro', @activity %>    
-        </div>
-      <% end %>
-    <% end %>
-  </div>
+    </div>
 </div>
 
