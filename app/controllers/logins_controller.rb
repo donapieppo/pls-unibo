@@ -68,7 +68,8 @@ class LoginsController < ApplicationController
     reset_session
     cookies.clear
 
-    redirect_to "https://login.microsoftonline.com/common/oauth2/v2.0/logout?post_logout_redirect_uri=https%3A%2F%2Fwww.pls-test.unibo.it", allow_other_host: true
+    logger.info "redirect to https://login.microsoftonline.com/common/oauth2/v2.0/logout?post_logout_redirect_uri=#{root_url}"
+    redirect_to "https://login.microsoftonline.com/common/oauth2/v2.0/logout?post_logout_redirect_uri=#{root_url}", allow_other_host: true
   end
 
   def glogout
