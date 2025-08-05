@@ -1,6 +1,6 @@
 class ResourceContainersController < ApplicationController
   include ResourceableConcern
-  before_action :set_resource_container_and_check_permission, only: %i[ show edit update destroy choose_resource add_resource remove_resource ]
+  before_action :set_resource_container_and_check_permission, only: %i[show edit update destroy choose_resource add_resource remove_resource]
 
   def index
     authorize :resource_container
@@ -8,6 +8,7 @@ class ResourceContainersController < ApplicationController
   end
 
   def show
+    @modal = params[:modal]
   end
 
   def new
@@ -22,9 +23,9 @@ class ResourceContainersController < ApplicationController
     @resource_container = ResourceContainer.new(resource_container_params)
     authorize @resource_container
     if @resource_container.save
-      redirect_to [:edit, @resource_container], notice: "Resource was successfully created." 
+      redirect_to [:edit, @resource_container], notice: "Resource was successfully created."
     else
-      render :new, status: :unprocessable_entity 
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -32,7 +33,7 @@ class ResourceContainersController < ApplicationController
     if @resource_container.update(resource_container_params)
       redirect_to [:edit, @resource_container], notice: "Resource was successfully updated."
     else
-      render :edit, status: :unprocessable_entity 
+      render :edit, status: :unprocessable_entity
     end
   end
 

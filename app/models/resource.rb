@@ -50,7 +50,7 @@ class Resource < ApplicationRecord
       "image"
     elsif video?
       "video"
-    elsif url.blank?
+    elsif !url.blank?
       "url"
     else
       "document"
@@ -64,6 +64,6 @@ class Resource < ApplicationRecord
   private
 
   def set_typology
-    typology = document_type
+    self.typology = document_type
   end
 end
