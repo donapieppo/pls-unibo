@@ -1,34 +1,31 @@
-<div class="pls-card">
-  <div class="pls-card-title">Iscrizioni</div>
-  <div class="pls-card-content">
-    <div data-controller="booking">
-      <%= @form.input :bookable, collection: [['no', 'no'], 
-                                              ['si', 'yes'], 
-                                              ['da confermare', 'to_confirm'], 
-                                              ['esterne', 'external'],
-                                              ['tutto finito', 'done']], 
-      include_blank: false, 
-      input_html: { data: { 'booking-target': 'bookableType' }} %>
+<div>
+  <h3>Iscrizioni</h3>
+  <div data-controller="booking">
+    <%= @form.input :bookable, collection: [['no', 'no'], 
+                                            ['si', 'yes'], 
+                                            ['da confermare', 'to_confirm'], 
+                                            ['esterne', 'external'],
+                                            ['tutto finito', 'done']], 
+    include_blank: false, 
+    input_html: { data: { 'booking-target': 'bookableType' }} %>
 
-    <div data-booking-target="dates">
-      <%= @form.input :booking_start, minute_step: 10 %>
-      <%= @form.input :booking_end, minute_step: 10 %>
-    </div>
+  <div data-booking-target="dates">
+    <%= @form.input :booking_start, minute_step: 10 %>
+    <%= @form.input :booking_end, minute_step: 10 %>
+  </div>
 
-    <div data-booking-target="by">
-      <%= @form.input :bookable_by_all %>
-      <%= @form.input :bookable_by_student_secondary %>
-      <%= @form.input :bookable_by_student_university %>
-      <%= @form.input :bookable_by_teacher %>
-      <%= @form.input :bookable_by_teacher_for_students %>
-      <%= @form.input :bookable_by_teacher_for_classes %>
-      <%= @form.input :bookable_by_teacher_for_groups, input_html: { data: { 'booking-target': 'bookableGroup' }} %>
-      <div class="ml-4" data-booking-target="groupLimit"> <%= @form.input :bookable_group_limit, label: "Per un massimo di studenti pari a" %></div>
-    </div>
+  <div data-booking-target="by">
+    <%= @form.input :bookable_by_all %>
+    <%= @form.input :bookable_by_student_secondary %>
+    <%= @form.input :bookable_by_student_university %>
+    <%= @form.input :bookable_by_teacher %>
+    <%= @form.input :bookable_by_teacher_for_students %>
+    <%= @form.input :bookable_by_teacher_for_classes %>
+    <%= @form.input :bookable_by_teacher_for_groups, input_html: { data: { 'booking-target': 'bookableGroup' }} %>
+    <div class="ml-4" data-booking-target="groupLimit"> <%= @form.input :bookable_group_limit, label: "Per un massimo di studenti pari a" %></div>
+  </div>
 
-    <div data-booking-target="url">
-      <%= @form.input :booking_url, as: :string, hint: "In caso di sofia #{SOFIA_LINK}" %>
-    </div>
-    </div>
+  <div data-booking-target="url">
+    <%= @form.input :booking_url, as: :string, hint: "In caso di sofia #{SOFIA_LINK}" %>
   </div>
 </div>
