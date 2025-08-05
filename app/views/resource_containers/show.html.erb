@@ -1,3 +1,7 @@
-<div class="container">
+<% if @modal %>
+  <%= render ModalComponent.new do %>
+    <%= render ResourceContainer::CardComponent.new(@resource_container, current_user) %>  
+  <% end %>
+<% else  %>  
   <%= render ResourceContainer::CardComponent.new(@resource_container, current_user) %>  
-</div>
+<% end %>

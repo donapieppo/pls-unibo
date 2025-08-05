@@ -4,8 +4,13 @@
   <div class="lg:flex">
     <div class="lg:w-2/3 lg:pr-4">
       <%= simple_form_for @area do |f| %>  
-        <%= f.input :description, input_html: { cols: 80, rows: 10, class: 'border-2' } %>
-        <%= f.rich_text_area :notice %>
+        <%= f.input :description, input_html: {cols: 80, rows: 10, class: "border-2"} %>
+        <div class="details-trix-editor">
+          <label>
+            Descrizione più dettagliata con la possibilità di formattare il testo (opzionale)
+          </label>
+          <%= f.rich_text_area :notice %>
+        </div>
         <%= f.association :head, label_method: :cn, collection: Contact.order(:surname, :name) %>  
         <%= f.submit %>  
       <% end %>

@@ -1,14 +1,14 @@
-<div class="container">
+<div class="container mx-auto">
   <h1 class="title">Risorse</h1>
 
   <div class="text-center my-4">
     <%= link_to('Aggiungi contenitore di risorse', new_resource_container_path, class: 'button') if policy(:resource_container).new? %>
   </div>
 
-  <div class="flex flex-wrap">
+  <div>
     <% @resource_containers.each do |resource_container| %>  
-      <div class="md:w-1/2 p-2 my-2">
-        <%= render ResourceContainer::CardComponent.new(resource_container, current_user) %>  
+      <div class="max-w-2xl my-2 mx-auto">
+        <%= render ResourceContainer::CardComponent.new(resource_container, current_user, compressed: true) %>  
       </div>
     <% end %>
   </div>
