@@ -1,3 +1,9 @@
+.details-trix-editor {
+  @apply text-gray-800 mt-4 mb-2;
+  label {
+    @apply block text-gray-800 mt-4 mb-2;
+  }
+}
 form {
   span.radio, span.checkbox, span.hint, label.string, label.text, label.email, label.select, label.integer, label.file, label.radio_buttons, label.check_boxes, label.datetime, label.boolean, label.url, legend {
     @apply block;
