@@ -14,7 +14,7 @@
 
     <hr class="my-2"/>
 
-    <%= simple_form_for [:add_contact, @what], method: :post, html: { id: @form_id } do |f| %>  
+    <%= helpers.simple_form_for [:add_contact, @what], method: :post, html: { id: @form_id } do |f| %>  
       <input type="hidden" name="as" value="<%= @as %>"></input>
       <label>Cerca nome/cognome inizando a scrivere</label><br/>
       <input name="contact_name" class="border-2 rounded-lg my-2 mx-1" list="<%= @form_id %>_contacts" />
