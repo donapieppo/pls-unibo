@@ -60,7 +60,7 @@ h1.hero-title {
 }
 
 .pls-card {
-  @apply border-1 border-pls shadow-lg p-4 rounded-lg relative;
+  @apply border-1 border-pls shadow-lg p-4 my-4 rounded-lg relative;
   .pls-card-title {
     @apply block border-1 border-pls rounded-sm font-bold absolute -top-4 -left-2 p-1 px-4 bg-pls-flash text-pls;
   }
