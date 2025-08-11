@@ -20,14 +20,16 @@ jobs:
         uses: ruby/setup-ruby@78c01b705fd9d5ad960d432d3a0cfa341d50e410 # v1.179.1
         with:
           bundler-cache: true
+      - name: Install security audit tools
+        run: |
+          gem install bundler-audit brakeman rubocop
+          bundler-audit update
       - name: Generate binstubs
         run: |
-          gem install bundler-audit
-          bundle-audit update
-          bundle binstubs bundler-audit brakeman rubocop
+          bundle binstubs rubocop --force
       # Add or replace any other lints here
       - name: Security audit dependencies
-        run: bin/bundler-audit --update
+        run: bin/bundler-audit check
       - name: Security audit application code
         run: bin/brakeman -q -w2
       - name: Lint Ruby files
