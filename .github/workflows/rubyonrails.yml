@@ -22,11 +22,11 @@ jobs:
           bundler-cache: true
       - name: Install security audit tools
         run: |
-          gem install bundler-audit brakeman rubocop
+          gem install bundler-audit brakeman 
           bundler-audit update
-      - name: Generate binstubs
-        run: |
-          bundle binstubs rubocop --force
+      # - name: Generate binstubs
+      #   run: |
+      #     bundle binstubs rubocop --force
       # Add or replace any other lints here
       - name: Security audit dependencies
         run: bundler-audit check
