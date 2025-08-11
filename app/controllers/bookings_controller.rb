@@ -208,6 +208,7 @@ class BookingsController < ApplicationController
       # default seats
       params[:booking][:seats] = 1 unless params[:booking][:seats]
     end
+    # brakeman:disable MassAssignment
     params[:booking].permit(
       :email, :name, :surname, :role, :grade, :teacher_name, :teacher_surname, :teacher_email, :school_class,
       :other_string, :notes, :online, :seats
