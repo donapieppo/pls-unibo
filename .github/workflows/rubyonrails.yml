@@ -22,7 +22,7 @@ jobs:
           bundler-cache: true
       - name: Generate binstubs
         run: |
-          gem install bundle-audit
+          gem install bundler-audit
           bundle-audit update
           bundle binstubs bundler-audit brakeman rubocop
       # Add or replace any other lints here
