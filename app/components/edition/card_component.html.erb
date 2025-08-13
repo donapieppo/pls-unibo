@@ -1,11 +1,11 @@
 <%= link_to @edition do %>
-  <div class="relative border-2 shadow-xl hover:shadow-2xl border-pls p-8 mt-16">
-    <div class="bg-gray-100 border-2 border-pls text-gray-800 text-lg lg:text-2xl font-bold absolute -top-8 text-pls p-2 lg:p-4 px-8 rounded-2xl tracking-wider">
+  <div class="relative border-2 shadow-xl hover:shadow-2xl border-pls p-6 mt-16">
+    <div class="bg-gray-100 text-pls border-2 border-pls text-lg lg:text-xl font-bold absolute -top-7 p-2 lg:p-3 px-4 rounded-2xl tracking-wider">
       <%= @edition.academic_year_to_s %>
     </div>
-    <h2 class="my-4 text-pls"> 
+    <h3 class="my-4"> 
       <%= @edition.name %> 
-    </h2>
+    </h3>
 
     <% if @with_project %>  
       <div class="text-xl mb-4">

@@ -2,7 +2,7 @@
   scroll-behavior: smooth;
 }
 .container {
-  @apply px-2 md:px-4 lg:px-16 lg:mx-auto;
+  @apply px-2 md:px-4 lg:px-16 lg:mx-auto max-w-6xl;
 }
 .button {
   @apply border-2 border-pls-strong text-pls-strong hover:bg-pls hover:text-white font-bold py-1 px-4 rounded;
@@ -30,7 +30,7 @@
   @apply bg-green-100 border-l-4 border-green-500 text-black p-4;
 }
 .title {
-  @apply block m-auto leading-none font-bold text-pls-strong tracking-tight my-6 text-center;
+  @apply block max-w-4xl m-auto leading-none font-bold text-pls-strong tracking-tight my-6 text-center;
 }
 
 h1, h2, #home-first {
@@ -48,7 +48,7 @@ h1.hero-title {
     @apply text-xl md:text-4xl;
   }
   h3 {
-    @apply text-xl md:text-2xl my-2 md:my-4 text-pls text-base;
+    @apply text-lg md:text-xl my-2 md:my-4 text-pls;
   }
   h4 {
     @apply text-lg md:text-xl;
@@ -76,7 +76,7 @@ h1.hero-title {
   transition: all 3s;
 }
 .badge {
-  @apply ml-1 px-3 py-0 font-semibold border-2 border-pls text-pls hover:text-gray-50 hover:bg-pls rounded-xl; 
+  @apply ml-1 px-3 py-0 font-semibold border-1 border-pls text-pls hover:text-gray-50 hover:bg-pls rounded-xl; 
 }
 
 .presentation {
