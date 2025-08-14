@@ -82,7 +82,7 @@ h1.hero-title {
 .presentation {
   @apply p-2 relative pt-4 md:mt-8;
   .presentation-title {
-    @apply border-t-2 border-b-2  border-pls bg-gray-50 font-bold absolute -top-8 -ml-2 md:-ml-16 text-pls p-2 md:px-8 rounded-2xl tracking-wider;
+    @apply border-2 border-pls bg-gray-50 font-bold absolute -top-8 -ml-2 md:-ml-16 text-pls p-2 md:px-8 rounded-2xl tracking-wider;
   }
 }
 
