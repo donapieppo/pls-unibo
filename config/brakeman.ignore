@@ -1,0 +1,28 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Mass Assignment",
+      "warning_code": 105,
+      "fingerprint": "e9c839b3e50a0a0a3e4d2fd1bdf57c15084d41bf35108eb4515587d4a12bc120",
+      "check_name": "PermitAttributes",
+      "message": "Potentially dangerous key allowed for mass assignment",
+      "file": "app/controllers/bookings_controller.rb",
+      "line": 213,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params[:booking].permit(:email, :name, :surname, :role, :grade, :teacher_name, :teacher_surname, :teacher_email, :school_class, :other_string, :notes, :online, :seats)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "BookingsController",
+        "method": "booking_params"
+      },
+      "user_input": ":role",
+      "confidence": "Medium",
+      "cwe_id": [
+        915
+      ],
+      "note": ""
+    }
+  ],
+  "brakeman_version": "7.1.0"
+}

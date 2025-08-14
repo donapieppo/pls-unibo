@@ -9,7 +9,7 @@
 
   <div>
     <% @resource_containers.each do |resource_container| %>  
-      <div class="max-w-2xl my-2 mx-auto">
+      <div class="max-w-2xl mb-1 mx-auto">
         <%= render ResourceContainer::CardComponent.new(resource_container, current_user, compressed: true) %>  
       </div>
     <% end %>
