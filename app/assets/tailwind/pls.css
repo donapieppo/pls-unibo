@@ -2,7 +2,7 @@
   scroll-behavior: smooth;
 }
 .container {
-  @apply px-2 md:px-4 lg:px-16 lg:mx-auto max-w-6xl;
+  @apply px-2 md:px-4 lg:px-16 lg:mx-auto max-w-7xl;
 }
 .button {
   @apply border-2 border-pls-strong text-pls-strong hover:bg-pls hover:text-white font-bold py-1 px-4 rounded;
@@ -36,7 +36,7 @@
 h1, h2, #home-first {
   font-family: Times New Roman;
 }
-
+plscss
 h1.hero-title {
   @apply text-8xl;
 }
@@ -62,13 +62,13 @@ h1.hero-title {
 .pls-card {
   @apply border-1 border-pls shadow-lg p-4 my-4 rounded-lg relative;
   .pls-card-title {
-    @apply block border-1 border-pls rounded-sm font-bold absolute -top-4 -left-2 p-1 px-4 bg-pls-flash text-pls;
+    @apply block border-1 border-pls rounded-sm font-bold absolute -top-4 -left-2 p-1 px-4 bg-pls-light text-pls;
   }
   .pls-card-content {
-    @apply mt-4 mb-4;
+    @apply py-2;
   }
   .pls-card-footer {
-    @apply mt-4 mb-1;
+    @apply mt-2 mb-1;
   }
 }
 
