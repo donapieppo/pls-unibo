@@ -53,9 +53,9 @@
 
   <% if @resource_containers.any? %>  
     <h2 class="title">Risorse</h2>
-    <div class="lg:flex lg:flex-wrap">
+    <div class="max-w-4xl m-auto">
       <% @resource_containers.each do |resource_container| %>  
-        <div class="lg:w-1/2 p-2 my-2">
+        <div class="p-2 my-2">
           <%= render ResourceContainer::CardComponent.new(resource_container, current_user) %>  
         </div>
       <% end %>

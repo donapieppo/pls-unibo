@@ -8,11 +8,11 @@
     <div class="header-title text-pls-strong">
       <%= link_to 'PLS UNIBO', root_path %>
     </div>
-    <div class="header-user text-base pe-2 xl:pe-4">
+    <div class="header-user text-right text-pls-strong text-base pr-2 xl:pr-4">
       <% if @current_user %>  
-        <%= link_to @current_user.initials, me_users_path, class: "rounded-full border-2 border-pls text-pls font-bold py-1 px-2" %>
+        <%= link_to @current_user.initials, me_users_path, class: "rounded-full border-2 border-pls font-bold py-1 px-2" %>
       <% else %>
-        <%= link_to '<i class="fas fa-sign-in-alt pr-1"></i> accedi'.html_safe, login_path, class: 'underline text-pls' %>
+        <%= link_to '<i class="fas fa-sign-in-alt pr-1"></i> accedi'.html_safe, login_path, class: 'underline text-lg' %>
       <% end %>
     </div>
   </nav>
