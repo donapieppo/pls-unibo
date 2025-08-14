@@ -18,7 +18,7 @@ module LinkHelper
       title: "elimina",
       form: {data: {"turbo-confirm": confirm_message, turbo: false},
              class: "inline-block px-0 mx-0 #{add_class}"} do
-               '<i class="far fa-trash-alt"></i> '.html_safe + name
+               '<i class="far fa-trash-alt cursor-pointer"></i> '.html_safe + name
              end
   end
 
