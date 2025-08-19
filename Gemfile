@@ -3,7 +3,7 @@ source "https://rubygems.org"
 gem "rails", "~> 8.0.1"
 gem "propshaft"
 gem "mysql2", "~> 0.5"
-gem "puma", ">= 5.0"
+gem "puma", ">= 6.0"
 gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
@@ -19,6 +19,8 @@ gem "omniauth"
 gem "omniauth-google-oauth2"
 gem "omniauth-entra-id"
 gem "omniauth-rails_csrf_protection"
+
+gem "aws-sdk-s3", require: false
 
 gem "pretender"
 
