@@ -5,10 +5,10 @@
       <div class="py-1 hover:bg-gray-100">
         <%= link_to [:edit, edition] do %> 
           <i class="fas fa-chevron-right mr-2"></i> 
-          <%= edition %> 
-          <span class="text-sm text-gray-700 px-2">
+          <%= edition %> <br/>
+          <div class="text-sm text-gray-700 px-2 text-right">
             <%= edition.academic_year_to_s %>
-          </span>
+          </div>
         <% end %>
       </div>
     <% end %>

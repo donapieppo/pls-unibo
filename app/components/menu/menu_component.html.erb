@@ -24,15 +24,6 @@
       <%= form_with url: search_path, data: {turbo: false} do %>  
         <input class="mt-4 border border-gray-300 bg-white px-2 py-1 rounded-lg text-sm focus:outline-none" type="search" name="search" placeholder="cerca"/>
       <% end %>
-      <%= render partial: 'layouts/social' %>  
-      <div class="lg:flex text-center pt-4">
-        <div class="lg:w-1/2 max-h-24 my-2">
-          <%= link_to image_tag('logo-unibo.png', class: 'm-auto h-full'), 'https://www.unibo.it' %>
-        </div>
-        <div class="lg:w-1/2 max-h-24 my-2">
-          <%= link_to image_tag('Logo_PLS_s.png', class: 'm-auto h-full'), 'https://www.pianolaureescientifiche.it' %>
-        </div>
-      </div>
     </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <div class="w-full overflow-hidden" 
      style="height: 60vh; background: no-repeat fixed center url(<%= asset_path(area_image(@area)) %>); background-size: cover;">
-     <h1 class="m-4 my-24 text-4xl lg:text-8xl tracking-wide font-semibold text-white text-center leading-relaxed">
-       <span class="px-4 bg-pls bg-black/80 rounded-xl"><%= @area %></span>
+     <h1 class="m-4 my-24 text-5xl lg:text-8xl tracking-wide font-semibold text-white text-center leading-relaxed">
+       <span class="px-4 bg-pls rounded-xl"><%= @area %></span>
      </h1>
 </div>
 
@@ -53,9 +53,9 @@
 
   <% if @resource_containers.any? %>  
     <h2 class="title">Risorse</h2>
-    <div class="lg:flex lg:flex-wrap">
+    <div class="max-w-4xl m-auto">
       <% @resource_containers.each do |resource_container| %>  
-        <div class="lg:w-1/2 p-2 my-2">
+        <div class="p-2 my-2">
           <%= render ResourceContainer::CardComponent.new(resource_container, current_user) %>  
         </div>
       <% end %>
