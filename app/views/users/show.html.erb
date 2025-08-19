@@ -1,25 +1,30 @@
 <div class="container max-w-3xl">
   <div class="">
     <h2 class="title">I tuoi dati</h2>
-    Sei registrato con l'indirizzo di posta <%= @user.email %>
-    <% if @user.role %>  
-      come <%= t(@user.role).upcase %>
-      <% if @user.role == 'student_secondary' || @user.role == 'teacher' %> 
-        <% if @user.school %>
-          <br/>presso la scuola <%= @user.school %> (<%= @user.school.municipality %>)
+
+    <div class="p-4 border-2 border-pls-flash text-center">
+      <div class="text-lg">
+        Sei registrato con l'indirizzo di posta <strong><%= @user.email %></strong>
+        <% if @user.role %>  
+          <br/>come <%= t(@user.role).upcase %>
+          <% if @user.role == 'student_secondary' || @user.role == 'teacher' %> 
+            <% if @user.school %>
+              <br/>presso la scuola <%= @user.school %> (<%= @user.school.municipality %>)
+            <% end %>
+          <% end %>
+        <% else %>
+          <br/><strong>senza avere specificato il tuo ruolo (docente/studente/altro).</strong>
+          <br/>Puoi aggiornare i tuoi dati
         <% end %>
-      <% end %>
-    <% else %>
-      <br/><strong>senza avere specificato il tuo ruolo (docente/studente/altro).</strong>
-      <br/>Puoi aggiornare i tuoi dati
-    <% end %>
-    <div class="mt-8">
-      <% if @current_user.unibo_account? %>  
-        <%= link_to 'Disconnetti', logout_path, class: 'button', data: {turbo: false} %>  
-      <% else %>
-        <%= link_to 'Disconnetti', google_logout_path, class: 'button', data: {turbo: false} %>
-      <% end %>
-      <%= link_to 'Modifica i miei dati', myedit_users_path, class: 'button' %>  
+      </div>
+      <div class="mt-8">
+        <% if @current_user.unibo_account? %>  
+          <%= link_to 'Disconnetti', logout_path, class: 'button', data: {turbo: false} %>  
+        <% else %>
+          <%= link_to 'Disconnetti', google_logout_path, class: 'button', data: {turbo: false} %>
+        <% end %>
+        <%= link_to 'Modifica i miei dati', myedit_users_path, class: 'ml-1 button' %>  
+      </div>
     </div>
   </div>
 
