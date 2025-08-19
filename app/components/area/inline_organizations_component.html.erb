@@ -3,7 +3,7 @@
     <%= @label %>
   </div>
   <% @areas.each do |area| %>  
-    <div class="inline-block cursor-pointer my-2">
+    <div class="inline-block cursor-pointer my-1">
       <%= link_to area.name, helpers.area_root(area), class: 'badge' %>  
     </div>
   <% end %>
