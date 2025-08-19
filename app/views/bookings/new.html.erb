@@ -17,18 +17,16 @@
         <% else %>
           Partecipazione in presenza
         <% end %>
-      </div>
+      </div><!-- pls-card-title -->
       <div class="pls-card-content">
-        <% if ! @booking.online %>
+        <% if !@booking.online %>
           <div class="my-6 font-bold">
             <%= render Bookability::FreeSeatsComponent.new(@activity) %>  
           </div>
         <% end %>
         <%= simple_form_for [@activity, @booking] do |f| %>  
           <%= f.error_notification %>
-
           <%= f.input :online, as: :hidden %>  
-
           <div class="max-w-xl">
             <% if current_user && current_user.student_secondary? %>  
               <%= f.input :teacher_name %>
@@ -40,7 +38,8 @@
             <%= f.submit txt_action %> - <%= link_to 'indietro', @activity %>    
           </div>
         <% end %>
-      <% end %>
+      </div><!-- pls-card-content -->
     </div>
+  <% end %>
 </div>
 
