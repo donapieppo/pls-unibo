@@ -10,7 +10,7 @@
         <%= render partial: 'layouts/social' %>  
       </div>
     </div>
-    <div class="text-xs">
+    <div class="text-sm">
       <h3 class="mb-4">Partecipanti:</h3>
       <% Organization.order(:name).each do |org| %>
         <div class="m-1">
@@ -21,7 +21,7 @@
   </div>
   <div class="container">
     <div class="mt-2 text-sm text-center w-full">
-      ©Copyright 2024 - ALMA MATER STUDIORUM - Università di Bologna - Via Zamboni, 33 - 40126 Bologna - Partita IVA: 01131710376 
+     	&copy; Copyright 2024 - ALMA MATER STUDIORUM - Università di Bologna - Via Zamboni, 33 - 40126 Bologna - Partita IVA: 01131710376 
     </div>
   </div>
   <% if policy(:impersonation).impersonate? %>

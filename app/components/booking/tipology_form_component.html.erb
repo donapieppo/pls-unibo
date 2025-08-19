@@ -21,8 +21,10 @@
     <%= @form.input :bookable_by_teacher %>
     <%= @form.input :bookable_by_teacher_for_students %>
     <%= @form.input :bookable_by_teacher_for_classes %>
-    <%= @form.input :bookable_by_teacher_for_groups, input_html: { data: { 'booking-target': 'bookableGroup' }} %>
-    <div class="ml-4" data-booking-target="groupLimit"> <%= @form.input :bookable_group_limit, label: "Per un massimo di studenti pari a" %></div>
+    <%= @form.input :bookable_by_teacher_for_groups, input_html: {data: {'booking-target': 'bookableGroup'}} %>
+    <div class="ml-4" data-booking-target="groupLimit">
+      <%= @form.input :bookable_group_limit, label: "Per un massimo di studenti pari a" %>
+    </div>
   </div>
 
   <div data-booking-target="url">
