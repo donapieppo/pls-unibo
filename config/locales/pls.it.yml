@@ -172,7 +172,7 @@ it:
       booking:
         seats: Se si intende partecipare in presenza con i propri studenti indicare il numero totale di partecipanti (studenti + accompagnatori)
       snippet:
-        name: il Titolo compare come pulsante
+        name: il titolo compare come pulsante
       resource:
         name: "Per esempio: Locandina del film Pulp Fiction"
         display_name: "Per esempio: Locandina"
