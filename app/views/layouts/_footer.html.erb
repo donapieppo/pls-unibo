@@ -2,15 +2,15 @@
   <div class="container md:flex items-stretch">
     <div class="grow text-center">
       <div class="w-64 mx-auto flex">
-        <%= link_to 'https://www.pianolaureescientifiche.it/' do %>  
-          <%= image_tag('Logo_PLS_s.png') %>
+        <%= link_to "https://www.pianolaureescientifiche.it/", class: "p-4" do %>  
+          <%= image_tag "Logo_PLS_s.png", height: 500 %>
         <% end %>
-        <%= link_to 'https://www.unibo.it' do %>
-           <%= image_tag('logo-unibo.png') %>
+        <%= link_to "https://www.unibo.it", class: "p-4" do %>
+          <%= image_tag "logo-unibo.png", height: 500 %>
         <% end %>
       </div>
       <div class="my-8">
-        <%= render partial: 'layouts/social' %>  
+        <%= render partial: "layouts/social" %>  
       </div>
     </div>
     <div class="text-sm">
@@ -24,10 +24,10 @@
   </div>
   <div class="container">
     <div class="mt-2 text-sm text-center w-full">
-     	&copy; Copyright 2024 - ALMA MATER STUDIORUM - Università di Bologna - Via Zamboni, 33 - 40126 Bologna - Partita IVA: 01131710376 
+      &copy; Copyright 2025 - ALMA MATER STUDIORUM - Università di Bologna - Via Zamboni, 33 - 40126 Bologna - Partita IVA: 01131710376 
     </div>
+    <% if policy(:impersonation).impersonate? %>
+      <%= link_to 'impersona', who_impersonate_path %>
+    <% end %>
   </div>
-  <% if policy(:impersonation).impersonate? %>
-    <%= link_to 'imp', who_impersonate_path %>
-  <% end %>
 </div>
