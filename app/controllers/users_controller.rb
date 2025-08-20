@@ -63,11 +63,11 @@ class UsersController < ApplicationController
   def forget
     authorize :user
     @user = current_user
-    if @user
-      @user.update!(name: "#{@user.id}Name",
-                    surname: "#{@user.id}Surname",
-                    email: "#{@user.id}@deleted-pls-unibo.it")
-    end
+    @user&.update!(
+      name: "#{@user.id}Name",
+      surname: "#{@user.id}Surname",
+      email: "#{@user.id}@deleted-pls-unibo.it"
+    )
     session[:user_id] = nil
     reset_session
     cookies.clear
