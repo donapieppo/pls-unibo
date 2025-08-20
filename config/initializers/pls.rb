@@ -1,4 +1,4 @@
-CURRENT_ACADEMIC_YEAR = 2025
+CURRENT_ACADEMIC_YEAR = 2026
 CESIA_UPN = ["pietro.donatini@unibo.it", "valeria.montesi3@unibo.it"]
 BOOKING_WATCHERS = ["mirella.manaresi@unibo.it", "alessia.cattabriga@unibo.it"]
 
