@@ -29,8 +29,8 @@
   </div>
 
   <div class="mt-6">
+    <h2 class="title">Le tue iscrizioni</h2>
     <% @bookings.each do |booking| %>
-      <h2 class="title">Le tue iscrizioni</h2>
       <%= render Booking::DetailsComponent.new(booking, current_user, deletable: true) %>  
     <% end %>
     <% if @bookings.empty? %>  
