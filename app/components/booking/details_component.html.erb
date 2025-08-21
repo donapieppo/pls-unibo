@@ -34,7 +34,7 @@
     </div>
   <% end %>
 
-  <% if BookingPolicy.new(@current_user, @booking).destroy? %>
+  <% if @deletable && BookingPolicy.new(@current_user, @booking).destroy? %>
     <div>
       <%= button_to booking_path(@booking), method: :delete, form: {data: {turbo_confirm: "Sicuro di voler cancellare la tua #{@booking.typology_to_s}?"}} do %>
         [Cancella]
