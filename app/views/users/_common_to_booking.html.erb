@@ -15,15 +15,17 @@
 
   <div data-user-target="schoolChoose">
     <% if @user && school = @user.school %>  
-      <div data-user-target="choosedSchool" class="p-2 bg-gray-100">
-        Scuola <br/>
+      <div data-user-target="choosedSchool" class="p-2 bg-gray-200 rounded-xl">
+        <div>
+          <strong>Scuola</strong>
+        </div>
         <div class="ml-2">
           <%= school %> <br/>
           <%= school.address %> <%= school.cap %> <%= school.municipality %> <br/>
           <%= school.province %> <br/>  
           <%= link_to(link_icon, school.web_url) unless school.url.blank? %>  
           <div class="text-right">
-            <%= link_to edit_icon + ' cambia', '#', data: { action: "click->user#change_school" } %>  
+            <%= link_to edit_icon + ' cambia scuola', '#', class: "underline", data: { action: "click->user#change_school" } %>  
           </div>
         </div>
       </div>

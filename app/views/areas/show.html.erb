@@ -53,7 +53,7 @@
 
   <% if @resource_containers.any? %>  
     <h2 class="title">Risorse</h2>
-    <div class="max-w-4xl m-auto">
+    <div class="max-w-3xl m-auto">
       <% @resource_containers.each do |resource_container| %>  
         <div class="p-2 my-2">
           <%= render ResourceContainer::CardComponent.new(resource_container, current_user) %>  

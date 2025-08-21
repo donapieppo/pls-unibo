@@ -1,8 +1,8 @@
-<div class="container max-w-3xl">
-  <div class="">
+<div class="container">
+  <div class="max-w-2xl mx-auto">
     <h2 class="title">I tuoi dati</h2>
 
-    <div class="p-4 border-2 border-pls-flash text-center">
+    <div class="p-4 border-2 border-pls-light text-center">
       <div class="text-lg">
         Sei registrato con l'indirizzo di posta <strong><%= @user.email %></strong>
         <% if @user.role %>  
@@ -26,12 +26,10 @@
         <%= link_to 'Modifica i miei dati', myedit_users_path, class: 'ml-1 button' %>  
       </div>
     </div>
-  </div>
 
-  <div class="mt-6">
-    <h2 class="title">Le tue iscrizioni</h2>
+    <h2 class="title mt-8">Le tue iscrizioni</h2>
     <% @bookings.each do |booking| %>
-      <%= render Booking::DetailsComponent.new(booking, current_user, deletable: true) %>  
+      <%= render Booking::DetailsComponent.new(booking, current_user, deletable: false) %>  
     <% end %>
     <% if @bookings.empty? %>  
       <div class="warning">
