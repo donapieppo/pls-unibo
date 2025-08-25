@@ -3,7 +3,7 @@
 
   <%= render Resourceable::TabComponent.new(@t)   %>
 
-  <% if @t == 'video' or @t == 'image' %>
+  <% if (@t == "video") || (@t == "image") %>
     <% list_class = "flex flex-wrap" %>
     <% item_class = "md:w-1/2 lg:w-1/3 xl:w-1/4 p-2" %>
   <% else %>
@@ -14,7 +14,7 @@
   <div class="<%= list_class %>">
     <% @resources.each do |resource| %>
       <div class="<%= item_class %>">
-        <%= link_to resource_path(resource, modal: 1), data: { turbo_frame: :modal } do %>
+        <%= link_to resource_path(resource, modal: 1), data: {turbo_frame: :modal} do %>
         <%= render Resource::ResourceComponent.new(resource, size: :small, name: :complete) %>
       <% end %>
       </div>
