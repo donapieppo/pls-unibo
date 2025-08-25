@@ -5,7 +5,7 @@
         <%= render Resource::DetailsComponent.new(@resource, current_user, with_actions: true) %>
       </div>
       <div class="md:w-2/3">
-        <%= render Resource::ResourceComponent.new(@resource, size: :big) %>
+        <%= render Resource::ResourceComponent.new(@resource, size: :big, with_download: true) %>
       </div>
   <% end %>
 <% else  %>  
