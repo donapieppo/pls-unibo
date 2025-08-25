@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   # allow_browser versions: :modern
   helper_method :current_user
 
-  before_action :log_current_user
   after_action :verify_authorized
 
   include Pundit::Authorization
@@ -18,12 +17,6 @@ class ApplicationController < ActionController::Base
   impersonates :user
 
   private
-
-  def log_current_user
-    if current_user
-      logger.info "Current user: #{current_user.email}"
-    end
-  end
 
   def user_not_authorized
     flash[:alert] = "Operazione non permessa."
