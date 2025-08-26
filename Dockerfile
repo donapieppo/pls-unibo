@@ -61,4 +61,4 @@ RUN echo 'PS1="DOCKER \w: "' >> ~/.bashrc
 
 # Start server via Thruster by default, this can be overwritten at runtime
 EXPOSE 80
-CMD ["./bin/thrust", "./bin/rails", "server"]
+CMD ["./bin/rails", "server"]
