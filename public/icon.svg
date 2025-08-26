@@ -1,0 +1,20 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">PLS Icon</title>
+  <desc id="desc">Circular icon with centered PLS text and tighter margins</desc>
+  <!-- Circle background -->
+  <circle cx="256" cy="256" r="256" fill="#93B1A6"/>
+  <!-- Text with tighter margins -->
+  <text
+    x="50%"
+    y="50%"
+    dy="16"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif"
+    font-size="220"
+    font-weight="800"
+    letter-spacing="4"
+    fill="#000000"
+  >PLS</text>
+</svg>
+
