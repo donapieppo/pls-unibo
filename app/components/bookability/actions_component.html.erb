@@ -44,12 +44,12 @@
 
 <% unless @what.external_booking? %>  
   <% if @free_seats < 1 %>
-    <div class="text-red-700 font-semibold my-4">  
-      <span class="text-lg">Posti in presenza esauriti</span>
+    <div class="text-red-600 font-semibold my-4">  
       <span class="fa-stack">
         <i class="fas fa-chair fa-stack-1x"></i>
         <i class="fas fa-ban fa-stack-2x"></i>
       </span>
+      <span class="text-lg">Posti in presenza esauriti</span>
     </div>
   <% end %>
 
