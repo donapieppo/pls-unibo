@@ -18,5 +18,6 @@ SOFIA_LINK = "https://sofia.istruzione.it/"
 
 module Pls
   class Application < Rails::Application
+    config.archive_url_root = "https://www.dm.unibo.it/archivio_pls/it"
   end
 end
