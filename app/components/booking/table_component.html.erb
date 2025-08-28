@@ -9,10 +9,17 @@
     </tr>
   </thead>
   <tbody>
+    <% year = Date.today.year %>
     <% @activities.each do |activity| %>  
+      <% if year != (year = activity.booking_start.year) %>
+        <tr>
+          <td colspan="5" class="text-center py-2 bg-pls-light font-bold"><%= year %></td>
+        </tr>
+        <% next %>
+      <% end %>
       <tr>
         <td>
-          <%= link_to activity.name.upcase, activity %>
+          <%= link_to activity.name.upcase, activity %> 
           <% if activity.booking_to_confirm? %>  
             <div class="text-yellow-800">
               Attività con prenotazioni da confermare
@@ -31,7 +38,7 @@
           <%= l activity.booking_start, format: :day_short %> - <%= l activity.booking_end, format: :day_short %>
         </td>
         <td>
-          <%= link_to 'elenco iscritti', [activity, :bookings], class: 'underline' %>  
+          <%= link_to 'iscritti', [activity, :bookings], class: 'underline' %>  
         </td>
       </tr>
     <% end %>
