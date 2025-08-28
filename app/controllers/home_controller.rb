@@ -29,7 +29,7 @@ class HomeController < ApplicationController
     @area = Area.find(params[:id])
     @slug = @area.slug
     @slug = "scienze-naturali-ambientali" if @slug == "scienze-naturali-e-ambientali"
-    @archive_page = "#{config.relative_url_root}/archivio/it/#{@slug}.html"
+    @archive_page = "#{Rails.configuration.archive_url_root}/#{@slug}.html"
 
     render layout: "archive"
   end
