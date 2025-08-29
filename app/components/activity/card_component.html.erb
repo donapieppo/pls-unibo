@@ -1,4 +1,4 @@
-<%= content_tag :div, class: "h-full project #{'with-filter' unless @no_filter} border-1 rounded-xl hover:shadow-2xl hover:bg-gray-200 #{@card_style}", data: @filter_data do %>
+<%= content_tag :div, class: "h-full project #{'with-filter' unless @no_filter} border-2 rounded-xl transition-all duration-300 transform hover:scale-105  hover:shadow-lg #{@card_style}", data: @filter_data do %>
   <%= link_to @activity, class: "h-full relative flex flex-col my-2 p-4", data: {turbo: false} do %>
     <% if @in_evidence || @hidden %>  
       <div class="absolute -top-6 -left-2 bg-pls-flash text-pls-strong border-2 border-pls-strong rounded-xl text-xl p-1">
