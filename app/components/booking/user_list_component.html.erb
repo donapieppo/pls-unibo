@@ -35,7 +35,7 @@
       <span class="underline"><%= mail_to b.email %></span>
 
       <% if BookingPolicy.new(@current_user, b).destroy? %>  
-        <%= link_to_delete b, confirm_message: "Confermi la cancellazione? Ricordiamo che gli iscritti NON vengono avvisati della cancellazione. Consigliamo di mandare una mail di avviso (salvate l'indirizzo mail prima di cancellare)." %> 
+        <%= link_to_delete "", b, confirm_message: "Confermi la cancellazione? Ricordiamo che gli iscritti NON vengono avvisati della cancellazione. Consigliamo di mandare una mail di avviso (salvate l'indirizzo mail prima di cancellare)." %> 
       <% end %>
 
       <br/>

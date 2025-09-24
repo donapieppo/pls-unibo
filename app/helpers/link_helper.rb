@@ -1,7 +1,7 @@
 module LinkHelper
-  def link_to_delete_if_deletable(what)
+  def link_to_delete_if_deletable(name, what)
     if policy(what).destroy?
-      link_to_delete(what)
+      link_to_delete(name, what)
     end
   end
 
@@ -13,13 +13,28 @@ module LinkHelper
     end
   end
 
-  def link_to_delete(name = "", url, button: false, add_class: "", size: nil, confirm_message: "Siete sicuri di voler cancellare?")
-    button_to url, method: :delete,
+  def link_to_delete(name, url, button: false, add_class: "", size: nil, confirm_message: "Siete sicuri di voler cancellare?")
+    add_class += if button
+      " button-danger"
+    else
+      " inline-block px-0 mx-0 cursor-pointer"
+    end
+    button_to url,
+      method: :delete,
       title: "elimina",
-      form: {data: {"turbo-confirm": confirm_message, turbo: false},
-             class: "inline-block px-0 mx-0 #{add_class}"} do
-               '<i class="far fa-trash-alt cursor-pointer"></i> '.html_safe + name
-             end
+      class: "cursor-pointer",
+      form_class: add_class,
+      form: {data: {"turbo-confirm": confirm_message}} do
+      dm_icon("trash-alt", text: name, size: size)
+    end
+  end
+
+  def dm_icon(name, prefix = "solid", text: nil, size: nil, fw: true)
+    text = text.blank? ? "" : " #{text}"
+    c = "fa-#{prefix} fa-#{name} "
+    c += " fa-#{size}" if size
+    c += " fa-fw" if fw
+    content_tag(:i, "", class: c) + text
   end
 
   # def link_to_remove(item, parent)

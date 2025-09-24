@@ -9,7 +9,7 @@
         <%= render Resource::ResourceComponent.new(resource, size: :small, with_download: true) %>  
         <div class="text-right">
           <%= link_to helpers.edit_icon, [:edit, resource] %>
-          <%= helpers.link_to_delete([:remove_resource, @what, { resource_id: resource.id }]) if @what %>  
+          <%= helpers.link_to_delete("", [:remove_resource, @what, { resource_id: resource.id }]) if @what %>  
         </div>
         <hr class="my-4 w-3/4 mx-auto text-pls-strong"/>
       <% end %>

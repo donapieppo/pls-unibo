@@ -1,14 +1,6 @@
+<%= render TitleComponent.new(@project, editable: policy(@project).edit?) %>
+
 <div class="container">
-  <% if !@project.activity_type.description.blank? %>
-    <div class="mx-auto text-center text-xl mt-4 max-w-xl bg-pls-bg-title rounded-2xl p-2">
-      <%= @project.activity_type.description.upcase %>  
-    </div>
-  <% end %>
-
-  <h1 class="title">
-    <%= @project %>
-  </h1>
-
   <div class="md:flex my-8 md:my-16">
     <div class="md:w-2/3 md:pr-4">
       <div class="text-lg">
