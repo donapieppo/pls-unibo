@@ -1,0 +1,28 @@
+<% if @what.is_a?(Project) %>
+  <% if !@what.activity_type.description.blank? %>
+    <div class="mx-auto text-center text-xl mt-4 max-w-xl bg-pls-bg-title rounded-2xl p-2">
+      <%= @what.activity_type.description.upcase %>  
+    </div>
+  <% end %>
+<% elsif @what.is_a?(Edition) %>
+  <div class="mx-auto text-center text-xl mt-4 max-w-xl bg-pls-bg-title border border-pls-light rounded-xl px-4 py-1">
+    <%= @what.audience.name.upcase %>  
+  </div>
+<% end %>
+
+<h1 class="title">
+  <%= @what.name %> 
+</h1>
+
+<% if @what.is_a?(Edition) %>
+  <h2 class="title">
+    <%= @what.academic_year_to_s %>
+  </h2>
+<% end %>
+
+<% if @editable %>
+  <div class="text-center">
+    <%= link_to (helpers.edit_icon + "  Modifica i dati"), [:edit, @what], class: "button text-lg" %>
+  </div>
+<% end %>
+
