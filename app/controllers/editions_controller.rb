@@ -44,7 +44,7 @@ class EditionsController < ApplicationController
 
   def clone
     @cloned = @edition.clone
-    redirect_to [:edit, @cloned], notice: "OK"
+    redirect_to [:edit, @cloned], notice: "L'edizione è stata colonata. Potete ora aggiornare i contenuti copiati."
   end
 
   def edit
