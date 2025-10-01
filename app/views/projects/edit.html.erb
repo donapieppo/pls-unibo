@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="title"><%= link_to @project.to_s, @project %></h1>
+  <%= render TitleComponent.new(@project) %>
 
   <div class="text-center text-2xl my-2">
     <%= link_to_delete_if_deletable "", @project %>
