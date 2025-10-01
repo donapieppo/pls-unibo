@@ -1,11 +1,12 @@
 <div data-controller="accordion">
   <div class="flex flex-col h-full border-2 border-pls-light rounded-xl justify-center items-center">
     <div class="text-center bg-pls-light text-pls-dark rounded-t-xl py-2 w-full cursor-pointer" data-action="click->accordion#toggle">
-      <div class="text-lg font-semibold tracking-wide">
+      <div class="text-lg font-semibold tracking-wide px-2">
         <%= @resource_container.to_s.upcase %>
+        <i class="fas fa-chevron-left transition-transform duration-300 float-right" data-accordion-target="icon"></i>
       </div>
     </div>
-    <div class="grow p-2 w-full resource_container_resources <%= "hidden" if @compressed %>">
+    <div class="grow p-2 w-full resource_container_resources <%= "hidden" if @compressed %>" data-accordion-target="content">
       <% @resource_container.resources.each do |resource| %>  
         <div class="py-4 border-b last-of-type:border-0 border-pls w-full">
           <%= render Resource::ResourceComponent.new(resource, size: :small, with_download: true) %>  
