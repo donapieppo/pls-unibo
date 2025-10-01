@@ -3,24 +3,24 @@
 
   <div class="lg:flex">
     <div class="lg:w-2/3 lg:pr-4">
-<div class="pls-card">
-  <div class="pls-card-title">
-    DETTAGLI
-  </div>
-  <div class="pls-card-content">
-      <%= simple_form_for @area do |f| %>  
-        <%= f.input :description, input_html: {cols: 80, rows: 10, class: "border-2"} %>
-        <div class="details-trix-editor">
-          <label>
-            Descrizione più dettagliata con la possibilità di formattare il testo (opzionale)
-          </label>
-          <%= f.rich_text_area :notice %>
+      <div class="pls-card">
+        <div class="pls-card-title">
+          DETTAGLI
         </div>
-        <%= f.association :head, label_method: :cn, collection: Contact.order(:surname, :name) %>  
-        <%= f.submit %>  
-      <% end %>
-    </div>
-    </div>
+        <div class="pls-card-content">
+          <%= simple_form_for @area do |f| %>  
+            <%= f.input :description, input_html: {cols: 80, rows: 10, class: "border-2"} %>
+            <div class="details-trix-editor">
+              <label>
+                Descrizione più dettagliata con la possibilità di formattare il testo (opzionale)
+              </label>
+              <%= f.rich_text_area :notice %>
+            </div>
+            <%= f.association :head, label_method: :cn, collection: Contact.order(:surname, :name) %>  
+            <%= f.submit %>  
+          <% end %>
+        </div>
+      </div>
     </div>
     <div class="lg:w-1/3">
       <%= render Contact::EditComponent.new(what: @area, can_add: policy(@area).edit?) %>
