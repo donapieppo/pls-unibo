@@ -7,10 +7,10 @@
   </div>
   <div data-filter-target="menu" id="filters" class="hidden bg-gray-50 border border-gray-500 py-4">
     <div class="lg:flex w-full px-4">
-      <div data-filter-target="years" id="years">
+      <div data-filter-target="years" id="years" class="w-1/2">
         <% unless @no_year_filter %>
           <div class="pr-2">
-            <h4 class="text-base font-bold text-pls-strong pb-2">A.A.</h4>
+            <h4 class="text-base font-bold text-pls-strong pb-2">Anno accademico</h4>
             <% Edition.all_academic_years.each do |y| %>  
               <input type="checkbox" id="yr_<%= y %>" name="years" value="<%= y %>"/>
               <label for="yr_<%= y %>">
@@ -32,7 +32,10 @@
           </div>
         <% end %>
       </div>
-      <div data-filter-target="audiences" id="audiences" class="grow">
+    </div>
+
+    <div class="lg:flex w-full px-4 mt-2">
+      <div data-filter-target="audiences" id="audiences" class="w-1/2">
         <div class="pr-2">
           <h4 class="text-base font-bold text-pls-strong pb-2">Rivolto a</h4>
           <% Audience.order(:name).each do |a| %>  
