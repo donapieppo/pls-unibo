@@ -79,7 +79,7 @@ class LoginsController < ApplicationController
     session[:user_id] = nil
     reset_session
     cookies.clear
-    redirect_to "https://accounts.google.com/Logout?hl=it&continue=#{root_url}", allow_other_host: true
+    redirect_to "https://www.google.com/accounts/Logout?continue=#{root_url}", allow_other_host: true
   end
 
   private
