@@ -1,8 +1,13 @@
 <div class="container">
-  <h1 class="title"><%= @area %></h1>
+  <%= render TitleComponent.new(@area) %>
 
   <div class="lg:flex">
     <div class="lg:w-2/3 lg:pr-4">
+<div class="pls-card">
+  <div class="pls-card-title">
+    DETTAGLI
+  </div>
+  <div class="pls-card-content">
       <%= simple_form_for @area do |f| %>  
         <%= f.input :description, input_html: {cols: 80, rows: 10, class: "border-2"} %>
         <div class="details-trix-editor">
@@ -14,6 +19,8 @@
         <%= f.association :head, label_method: :cn, collection: Contact.order(:surname, :name) %>  
         <%= f.submit %>  
       <% end %>
+    </div>
+    </div>
     </div>
     <div class="lg:w-1/3">
       <%= render Contact::EditComponent.new(what: @area, can_add: policy(@area).edit?) %>
