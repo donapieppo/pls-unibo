@@ -1,9 +1,5 @@
 <div class="container">
-  <h3 class="text-center">Edizione <%= @edition.academic_year_to_s %></h3>
-
-  <h1 class="title">
-    <%= link_to @edition.name, @edition %>
-  </h1>
+  <%= render TitleComponent.new(@edition) %>
 
   <div class="text-center text-2xl my-2">
     <%= link_to_delete "", @edition %>
