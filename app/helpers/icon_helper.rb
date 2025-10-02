@@ -23,8 +23,8 @@ module IconHelper
     icon "fas fa-download"
   end
 
-  def document_icon
-    icon "far fa-file-alt"
+  def document_icon(size: "")
+    icon "far fa-file-alt", size
   end
 
   def clone_icon
@@ -35,8 +35,8 @@ module IconHelper
     icon "far fa-plus-square", size
   end
 
-  def link_icon
-    icon "fas fa-external-link-alt"
+  def link_icon(size: "")
+    icon "fas fa-external-link-alt", size
   end
 
   def mail_icon

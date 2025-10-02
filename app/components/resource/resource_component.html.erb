@@ -52,7 +52,7 @@
 
   <div class="w-full">
     <span class="mr-2 ml-2">
-      <%= @resource.url.blank? ? document_icon : link_icon %>
+      <%= @resource.url.blank? ? document_icon(size: "fa-2xl") : link_icon(size: "fa-2xl") %>
     </span>
     <span class="">
       <% if @link_url %>
