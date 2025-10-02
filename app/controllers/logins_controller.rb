@@ -27,7 +27,7 @@ class LoginsController < ApplicationController
 
   def entra_id
     parse_entra_id
-    if @email.match?(/\w+\.\w+@\w?.?unibo\.it/)
+    if @email&.match?(/\w+\.\w+@\w?.?unibo\.it/)
       user = User.find_by_email(@email)
       if !user
         logger.info "Authentication: entra_id user #{@email} not present in db."
