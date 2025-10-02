@@ -27,14 +27,19 @@ class LoginsController < ApplicationController
 
   def entra_id
     parse_entra_id
-    user = User.find_by_email(@email)
-    if !user
-      logger.info "Authentication: entra_id user #{@email} not present in db."
-      user = create_logged_user
-      sign_in_and_redirect user, myedit_users_path
+    if @email.match?(/\w+\.\w+@\w?.?unibo\.it/)
+      user = User.find_by_email(@email)
+      if !user
+        logger.info "Authentication: entra_id user #{@email} not present in db."
+        user = create_logged_user
+        sign_in_and_redirect user, myedit_users_path
+      else
+        logger.info "Authentication: entra_id user #{user.inspect} found in db."
+        sign_in_and_redirect user, root_path
+      end
     else
-      logger.info "Authentication: entra_id user #{user.inspect} found in db."
-      sign_in_and_redirect user, root_path
+      logger.info "Authentication: entra_id email #{@mail} not in unibo."
+      redirect_to root_path
     end
   end
 
