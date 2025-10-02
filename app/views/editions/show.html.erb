@@ -1,5 +1,6 @@
+<%= render TitleComponent.new(@edition, editable: policy(@edition).edit?) %>
+
 <div class="container">
-  <%= render Edition::TitleComponent.new(@edition) %>  
   <%# <%= TO REFACTOR. USED IN PAGES OF PARTICULAR EDITIONS 'app/vies/pages' %1> %>  
   <%= render 'editions/edition' %>  
 </div>

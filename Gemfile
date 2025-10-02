@@ -46,6 +46,7 @@ gem "image_processing", "~> 1.2"
 group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
+  gem 'factory_bot_rails'
 end
 
 group :development do

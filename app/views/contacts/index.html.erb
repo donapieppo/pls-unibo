@@ -19,7 +19,7 @@
           <%= mail_to(contact.email, mail_icon) unless contact.email.blank? %>
           <%= link_to(link_icon, contact.web_page) unless contact.web_page.blank? %>
           <% if contact.deletable? %>
-            <%= link_to_delete contact %>
+            <%= link_to_delete "", contact %>
           <% end %>
           <%= link_to_edit_if_editable(contact) %>
         </div> 
