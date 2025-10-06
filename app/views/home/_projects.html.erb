@@ -1,5 +1,4 @@
 <div class="container">
-  <% @hightlights = [630, 631] %>
   <h2 class="title mt-0 text-center">
     I progetti del PLS
   </h2>
@@ -25,12 +24,12 @@
     </div>
   </div>
 
-  <% if @hightlights.any? %>
+  <% if Rails.configuration&.project_hightlights.any? %>
     <h3 class="title text-center my-16">In evidenza</h3>
   <% end %>
 
   <div class="flex flex-wrap w-4/5 m-auto">
-    <% @hightlights.each do |i| %>
+    <% Rails.configuration&.project_hightlights.each do |i| %>
       <div class="md:w-1/2 px-4 mt-2">
         <% e = Edition.find(i) %>
         <%= render Activity::CardComponent.new(e) %>
