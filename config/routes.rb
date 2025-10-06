@@ -10,7 +10,8 @@ Rails.application.routes.draw do
 
   # 127.0.0.1:3000/it/risorse/immagini/chimica-1/image"
   get "/archivio/it/*path", to: redirect { |params, req|
-    Rails.configuration.archive_url_root + "/#{params[:path]}"
+    encoded_path = params[:path].split('/').map { |segment| CGI.escape(segment) }.join('/')
+    Rails.configuration.archive_url_root + "/#{encoded_path}"
   }
 
   get "auth/google_oauth2/callback", to: "logins#google_oauth2"
