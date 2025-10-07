@@ -7,14 +7,12 @@ class Resource::ResourceComponent < ViewComponent::Base
     @resource_name = (name == :complete) ? resource.name : resource.to_s
     @link_url = nil
 
-    if @with_download
-      @link_url = if !@resource.url.blank?
-        @external_link = true
-        @resource.url
-      elsif @resource.image? || @resource.document_type == "document"
-        # FIXME
-        @resource.document
-      end
+    if @with_download && !@resource.url.blank?
+      @link_url = @resource.url
+      @external_link = true
+    end
+    if @with_download && (@resource.image? || @resource.document_type == "document")
+      @document = @resource.document
     end
 
     @small = (size == :small)

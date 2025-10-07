@@ -60,8 +60,10 @@
           <%= @resource_name %> 
           <%= "<small>(link esterno)</small>".html_safe if @external_link %>
         <% end %>
-      <% else %>
-        <%= @resource_name %>
+      <% elsif @document %>
+        <%= link_to url_for(@document) do %>
+          <%= @resource_name %>
+        <% end %>
       <% end %>
     </span>
   </div>
