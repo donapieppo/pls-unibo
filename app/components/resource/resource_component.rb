@@ -5,15 +5,15 @@ class Resource::ResourceComponent < ViewComponent::Base
     @resource = resource
     @with_download = with_download
     @resource_name = (name == :complete) ? resource.name : resource.to_s
-    @link_url = nil
 
-    if @with_download && !@resource.url.blank?
-      @link_url = @resource.url
-      @external_link = true
-    end
-    if @with_download && (@resource.image? || @resource.document_type == "document")
-      @document = @resource.document
-    end
+    # if @with_download
+    #   if !@resource.url.blank?
+    #     @link_url = @resource.url
+    #     @external_link = true
+    #   elsif @resource.image? || @resource.document_type == "document"
+    #     @document = @resource.document
+    #   end
+    # end
 
     @small = (size == :small)
     @limit = case size

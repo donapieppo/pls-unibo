@@ -36,8 +36,8 @@
 <% elsif !@small && @resource.document && @resource.document.previewable? %>  
 
   <div>
-    <% if @link_url %>
-      <%= link_to @link_url do %>
+    <% if @with_download %>
+      <%= link_to @resource.document do %>
         <%= image_tag @resource.document.preview(resize_to_limit: [@limit, @limit]), class: 'block mx-auto rounded-xl' %>
       <% end %>
     <% else %>
@@ -55,13 +55,17 @@
       <%= @resource&.url.blank? ? document_icon(size: "fa-2xl") : link_icon(size: "fa-2xl") %>
     </span>
     <span class="">
-      <% if @link_url %>
-        <%= link_to @link_url do %>
+      <% if @with_download && !@resource.url.blank? %>
+        <%= link_to @resource.url do %>
           <%= @resource_name %> 
-          <%= "<small>(link esterno)</small>".html_safe if @external_link %>
+          <%= "<small>(link esterno)</small>".html_safe %>
         <% end %>
-      <% elsif @document %>
-        <%= link_to url_for(@document) do %>
+      <% elsif @resource.document %>
+        <% if @with_download && @resource.document.attached? %>
+          <%= link_to url_for(@resource.document) do %>
+            <%= @resource_name %>
+          <% end %>
+        <% else %>
           <%= @resource_name %>
         <% end %>
       <% end %>
