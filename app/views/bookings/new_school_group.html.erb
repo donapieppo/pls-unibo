@@ -1,8 +1,8 @@
 <div class="container max-w-4xl">
-  <h1 class="title">
+  <h1 class="title"><%= @activity %></h1>
+  <h2>
     <%= @activity.to_book_to_s %> un gruppo di studenti
-  </h1>
-  <h2><%= @activity %></h2>
+  </h2>
 
   <div class="my-4">
     Sei registrato come <strong>docente</strong> e per questa attività puoi 
@@ -19,6 +19,7 @@
   <%= simple_form_for [:create_school_group, @activity, @booking] do |f| %>  
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <%# f.input :online, as: :hidden %> 
 
     <div class="my-4">
       <%= f.input :seats, hint: false %>
