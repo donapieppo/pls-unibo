@@ -29,15 +29,21 @@
     </div>
   <% end %>
 
-  <% if @bookable_for_classes %>
+  <% if @bookable_for_classes_in_presence %>
     <div class="my-4">
       <%= link_to booking_icon + ' ' + @what.booking_action_class_to_s, [:new_school_class, @what, :bookings], class: 'button' %>
     </div>
   <% end %>
 
-  <% if @bookable_for_groups %>
+  <% if @bookable_for_groups_in_presence %>
     <div class="my-4">
       <%= link_to booking_icon + ' ' + @what.booking_action_group_to_s, [:new_school_group, @what, :bookings], class: 'button' %>
+    </div>
+  <% end %>
+
+  <% if @bookable_for_groups_online %>
+    <div class="my-4">
+      <%= link_to booking_icon + ' ' + @what.booking_action_group_to_s, [:new_school_group, @what, :bookings, online: 1], class: 'button' %>
     </div>
   <% end %>
 <% end %>
