@@ -1,4 +1,4 @@
-<%= simple_form_for [@what, @resource] do |f| %>
+<%= simple_form_for [@what, @resource], html: {data: {turbo: false}} do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
@@ -22,5 +22,5 @@
 
   <%= f.input :document %>  
   <%= f.input :credits %>  
-  <%= f.button :submit %>
+  <%= f.submit %>
 <% end %>
