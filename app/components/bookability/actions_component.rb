@@ -20,8 +20,9 @@ class Bookability::ActionsComponent < ViewComponent::Base
 
         @bookable_by_user_inpresence = in_presence_booking_policy.create?
         @bookable_for_students_inpresence = in_presence_booking_policy.new_student?
-        @bookable_for_classes = in_presence_booking_policy.new_school_class?
-        @bookable_for_groups = in_presence_booking_policy.new_school_group?
+        @bookable_for_classes_in_presence = in_presence_booking_policy.new_school_class?
+        @bookable_for_groups_in_presence = in_presence_booking_policy.new_school_group?
+        @bookable_for_groups_online = false # DA PENSARE online_booking_policy.new_school_group?
 
         if @bookable_by_user_online || @bookable_by_user_inpresence
           @user_this_booking = @what.bookings.where(user_id: @current_user.id).where(school_class: nil).first
