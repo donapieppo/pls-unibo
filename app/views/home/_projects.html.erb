@@ -31,8 +31,9 @@
   <div class="flex flex-wrap w-4/5 m-auto">
     <% Rails.configuration&.project_hightlights.each do |i| %>
       <div class="md:w-1/2 px-4 mt-2">
-        <% e = Edition.find(i) %>
-        <%= render Activity::CardComponent.new(e) %>
+        <% if (e = Edition.find_by_id(i)) %>
+          <%= render Activity::CardComponent.new(e) %>
+        <% end %>
       </div>
     <% end %>
   </div>
