@@ -65,7 +65,7 @@ class BookingsController < ApplicationController
   end
 
   def new_school_group
-    @booking = @activity.bookings.new(user_id: current_user.id, teacher_id: current_user.id, online: false)
+    @booking = @activity.bookings.new(user_id: current_user.id, teacher_id: current_user.id, online: (params[:online] or false))
     authorize @booking
 
     @free_seats = @activity.free_seats
@@ -156,7 +156,6 @@ class BookingsController < ApplicationController
     authorize @booking
 
     @free_seats = @activity.free_seats
-
     if @booking.save
       redirect_to @activity, notice: "#{@booking.typology_to_s} registrata correttamente."
     else
