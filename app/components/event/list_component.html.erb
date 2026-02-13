@@ -40,7 +40,7 @@
             <%= event.description %>
           </div>
           <div>
-            <%= render Contact::InlineContactsComponent.new(event.speakers, label: "Relatori") %>  
+            <%= render Contact::InlineContactsComponent.new(event.speakers, label: "Relatori:") %>  
           </div>
           <%= render Bookability::InfoComponent.new(event) %>  
           <%= render Booking::CurrentUserBookingComponent.new(event, @current_user) %>  
