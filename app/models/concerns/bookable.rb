@@ -57,7 +57,7 @@ module Bookable
 
   def booking_action_group_to_s
     return "" unless self.bookable
-    self.booking_to_confirm? ? "prenota un gruppo di studenti" : "iscrivi un gruppo di studenti"
+    self.booking_to_confirm? ? "prenota un gruppo di studenti #{"online" if self.online}" : "iscrivi un gruppo di studenti #{"online" if self.online}"
   end
 
   # def booking_type_to_s
