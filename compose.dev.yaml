@@ -1,0 +1,24 @@
+services:
+  web:
+    build:
+      target: development
+    command: ./bin/dev
+    environment:
+      BUNDLE_WITHOUT: ""
+      VCENTER_USERNAME: ${VCENTER_USERNAME}
+      VCENTER_PASSWORD: ${VCENTER_PASSWORD}
+      AD_LDAP_USERNAME: ${AD_LDAP_USERNAME}
+      AD_LDAP_PASSWORD: ${AD_LDAP_PASSWORD}
+      PROXMOX_USERNAME: ${PROXMOX_USERNAME}
+      PROXMOX_PASSWORD: ${PROXMOX_PASSWORD}
+      ELASTIC_HOST: ${ELASTIC_HOST}
+      ELASTIC_KEY: ${ELASTIC_KEY}
+      NODE_ENV: development
+      RAILS_ENV: development
+    volumes:
+      - .:/rails
+      - ./node_modules:/rails/node_modules
+      - /home/dona/puppet-control-repo:/home/dona/puppet-control-repo
+      - /home/dona/g/nis2-proto/data:/rails/tmp/data
+      - /home/dona/g:/rails/g
+      - /home/dona/hpc/ansibleCesiaHPC:/rails/tmp/ansibleCesiaHPC
