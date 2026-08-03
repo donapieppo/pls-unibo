@@ -14,14 +14,14 @@ WORKDIR /rails
 
 # Install base packages
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y git curl default-mysql-client libjemalloc2 libvips fonts-liberation && \
+    apt-get install --no-install-recommends -y default-mysql-client libjemalloc2 libvips fonts-liberation mupdf-tools && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Set production environment
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
-    BUNDLE_WITHOUT="development"
+    BUNDLE_WITHOUT="development test"
 
 # Throw-away build stage to reduce size of final image
 FROM base AS build

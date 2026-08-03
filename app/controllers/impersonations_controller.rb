@@ -4,7 +4,7 @@ class ImpersonationsController < ApplicationController
     skip_authorization
     if current_user && true_user_can_impersonate?
       @users = User.order(:surname)
-      @main_users = User.where(email: Rails.configuration.main_impersonations || [])
+      @main_users = User.where(email: Rails.configuration&.main_impersonations || [])
     else
       redirect_to root_path and return
     end
