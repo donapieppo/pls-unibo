@@ -9,7 +9,7 @@ class BookingsController < ApplicationController
       @cluster = Cluster.find(params[:cluster_id])
       @bookings = Booking.find(@cluster.activities.map(&:booking_ids).flatten.uniq)
     else
-      activity_id = (params[:activity_id] or params[:edition_id] or params[:event_id])
+      activity_id = params[:activity_id] || params[:edition_id] || params[:event_id]
 
       @activity = activity_id ? Activity.find(activity_id) : nil
       @activities = activity_id ? [@activity] : Activity.order("booking_start desc").with_bookings.bookable_undone
@@ -36,7 +36,7 @@ class BookingsController < ApplicationController
   end
 
   def new
-    @booking = @activity.bookings.new(user_id: current_user.id, online: (params[:online] or false))
+    @booking = @activity.bookings.new(user_id: current_user.id, online: (params[:online] || false))
     authorize @booking
 
     @free_seats = @activity.free_seats
@@ -47,7 +47,7 @@ class BookingsController < ApplicationController
   end
 
   def new_student
-    @booking = @activity.bookings.new(teacher_id: current_user.id, online: (params[:online] or false))
+    @booking = @activity.bookings.new(teacher_id: current_user.id, online: (params[:online] || false))
     authorize @booking
 
     @free_seats = @activity.free_seats
@@ -65,7 +65,7 @@ class BookingsController < ApplicationController
   end
 
   def new_school_group
-    @booking = @activity.bookings.new(user_id: current_user.id, teacher_id: current_user.id, online: (params[:online] or false))
+    @booking = @activity.bookings.new(user_id: current_user.id, teacher_id: current_user.id, online: (params[:online] || false))
     authorize @booking
 
     @free_seats = @activity.free_seats
