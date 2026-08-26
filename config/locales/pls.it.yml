@@ -20,6 +20,7 @@ it:
   image: immagini
   video: video
   url: link
+  pcto: PCTO
 
   activerecord:
     models:
