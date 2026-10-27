@@ -6,8 +6,6 @@ class ApplicationController < ActionController::Base
 
   after_action :verify_authorized
 
-  impersonates :user
-
   include Pundit::Authorization
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -29,6 +27,9 @@ class ApplicationController < ActionController::Base
   def current_user
     @_current_user
   end
+
+  # current_user must be defined before the impersonates method
+  impersonates :user
 
   private
 
