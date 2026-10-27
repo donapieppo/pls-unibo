@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
       return
     end
 
-    @_current_user = ::User.find(user_id)
+    @_current_user = ::User.find_by(id: user_id)
   end
 
   def current_user
@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   end
 
   def session_expired?
-    authenticated_at = session[:authenticated_at].to_i
+    authenticated_at = request.session[:authenticated_at].to_i
     return true if authenticated_at.zero?
     # 2.weeks.to_i
     Time.current.to_i - authenticated_at >= 1_209_600
