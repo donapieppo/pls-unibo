@@ -27,7 +27,7 @@ class LoginsController < ApplicationController
 
   def entra_id
     parse_entra_id
-    if @email&.match?(/\w+\.\w+@\w*.?unibo\.it/)
+    if @email&.match?(/\A[\w.+-]+@([\w-]+\.)*unibo\.it\z/)
       user = User.find_by_email(@email)
       if !user
         logger.info "Authentication: entra_id user #{@email} not present in db."
@@ -120,15 +120,11 @@ class LoginsController < ApplicationController
     session[:user_id] = user.id
     session[:authenticated_at] = Time.current.to_i
     user.update(last_login: Time.now)
-    if user.last_login
-      if session[:activity_asked]
-        url = Activity.find(session[:activity_asked])
-        session.delete(:activity_asked)
-      end
-      redirect_to url
-    else
-      redirect_to myedit_users_path
+    if session[:activity_asked]
+      url = Activity.find(session[:activity_asked])
+      session.delete(:activity_asked)
     end
+    redirect_to url
   end
 
   def allow_and_create
