@@ -18,7 +18,7 @@
         <% end %>
       </div>
       <div class="mt-8">
-        <% if @current_user.unibo_account? %>  
+        <% if @user.unibo_account? %>  
           <%= link_to 'Disconnetti', logout_path, class: 'button', data: {turbo: false} %>  
         <% else %>
           <%= link_to 'Disconnetti', google_logout_path, class: 'button', data: {turbo: false} %>
