@@ -95,7 +95,7 @@ class LoginsController < ApplicationController
     oinfo = request.env["omniauth.auth"].info
     Rails.logger.info(oinfo.inspect)
     @email = oinfo.email
-    @name = oinfo.firstname
+    @name = oinfo.first_name
     @surname = oinfo.last_name
   end
 
