@@ -118,6 +118,7 @@ class LoginsController < ApplicationController
 
   def sign_in_and_redirect(user, url)
     session[:user_id] = user.id
+    session[:authenticated_at] = Time.current.to_i
     user.update(last_login: Time.now)
     if user.last_login
       if session[:activity_asked]
