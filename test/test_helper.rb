@@ -11,3 +11,9 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
+Dir[File.join(__dir__, "support", "**", "*.rb")].sort.each { |support_file| require support_file }
+
+class ActionDispatch::IntegrationTest
+  include OmniauthSignInHelper
+end
