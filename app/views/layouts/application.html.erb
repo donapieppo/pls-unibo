@@ -15,15 +15,12 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <link href="/fontawesome/css/fontawesome.min.css" rel="stylesheet" />
     <link href="/fontawesome/css/solid.min.css" rel="stylesheet" />
     <link href="/fontawesome/css/brands.min.css" rel="stylesheet" />
-    <%# <link href="/fontawesome/css/sharp-thin.css" rel="stylesheet" /> %>
-    <%# <link href="/fontawesome/css/duotone-thin.css" rel="stylesheet" /> %>
-    <%# <link href="/fontawesome/css/sharp-duotone-thin.css" rel="stylesheet" /> %>
+    <meta name="turbo-prefetch" content="false">
   </head>
 
   <body>
